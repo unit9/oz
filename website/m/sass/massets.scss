@@ -29,8 +29,8 @@ $sprite-url-tablet-2x:	sprite-url($sprite-name-tablet-2x);
 @mixin asset-responsive-retina($path, $name, $ext: 'png', $useSprite: true)
 {
 	@include background-image-retina($path, $name, '', $ext);
-	width: image-width($path + '/' + $name + '.' + $ext);
-	height: image-height($path + '/' + $name + '.' + $ext);
+	width: ceil(image-width($path + '/' + $name + '-2x.' + $ext) / 2);
+	height: ceil(image-height($path + '/' + $name + '-2x.' + $ext) / 2);
 
 	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
 	{
@@ -87,8 +87,8 @@ $sprite-url-tablet-2x:	sprite-url($sprite-name-tablet-2x);
 	//@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina
 	{
 		@include background-image($sprite-url-mobile-2x);
-		background-position: round(nth(sprite-position($sprite-name-mobile-2x, $name), 1) / 2) round(nth(sprite-position($sprite-name-mobile-2x, $name), 2) / 2);
-		background-size: round(image-width(sprite-path($sprite-name-mobile-2x)) * 0.5) round(image-height(sprite-path($sprite-name-mobile-2x)) * 0.5);
+		background-position: ceil(nth(sprite-position($sprite-name-mobile-2x, $name), 1) / 2) ceil(nth(sprite-position($sprite-name-mobile-2x, $name), 2) / 2);
+		background-size: ceil(image-width(sprite-path($sprite-name-mobile-2x)) * 0.5) ceil(image-height(sprite-path($sprite-name-mobile-2x)) * 0.5);
 	}
 
 	/* tablet */
@@ -103,7 +103,7 @@ $sprite-url-tablet-2x:	sprite-url($sprite-name-tablet-2x);
 	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight) and (-webkit-min-device-pixel-ratio: 2), (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight) and (min-resolution: 192dpi)
 	{
 		@include background-image($sprite-url-tablet-2x);
-		background-position: round(nth(sprite-position($sprite-name-tablet-2x, $name), 1) / 2) round(nth(sprite-position($sprite-name-tablet-2x, $name), 2) / 2);
-		background-size: round(image-width(sprite-path($sprite-name-tablet-2x)) * 0.5) round(image-height(sprite-path($sprite-name-tablet-2x)) * 0.5);
+		background-position: ceil(nth(sprite-position($sprite-name-tablet-2x, $name), 1) / 2) ceil(nth(sprite-position($sprite-name-tablet-2x, $name), 2) / 2);
+		background-size: ceil(image-width(sprite-path($sprite-name-tablet-2x)) * 0.5) ceil(image-height(sprite-path($sprite-name-tablet-2x)) * 0.5);
 	}
 }

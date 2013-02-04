@@ -10,7 +10,6 @@
 /*global CutoutOverlayController */
 /*global OverlayController */
 /*global SharingController */
-/*global EXIF */
 /*global AnimationController */
 /*global CutoutControls */
 /*global HeaderViewSimple */
@@ -238,19 +237,6 @@ Package('page',
 				$('#uploadButton').fadeOut();
 			},
 
-			setUserPhoto : function(photo)
-			{
-				// var $newPhoto = $(photo);
-				// $newPhoto.attr('id', this.$userPhoto.attr('id'));
-
-				// this.$userPhoto.replaceWith($newPhoto);
-				// this.$userPhoto = $newPhoto;
-
-				this.$userPhoto.attr('src', photo.src);
-
-				PhotoPositionController.getInstance().init(photo, this.$photoFrame, this.$userPhoto);
-			},
-
 			showUserPhoto : function()
 			{
 				this.$userPhoto.fadeIn();
@@ -263,9 +249,11 @@ Package('page',
 
 			loadUserPhoto : function(photoData)
 			{
-				this.userPhoto = new Image();
-				this.userPhoto.onload = Poof.retainContext(this, this.onPhotoLoadComplete);
-				this.userPhoto.src = photoData.url;
+				this.$userPhoto.attr('src', photoData.url).load(Poof.retainContext(this, this.onPhotoLoadComplete));
+
+				// this.userPhoto = new Image();
+				// this.userPhoto.onload = Poof.retainContext(this, this.onPhotoLoadComplete);
+				// this.userPhoto.src = photoData.url;
 			},
 
 			showIntroOverlay : function()
@@ -496,11 +484,6 @@ Package('page',
 				};
 			},
 
-			getPhotoOrientation : function()
-			{
-				EXIF.getData(this.userPhoto, Poof.retainContext(this, this.onPhotoOrientationReady));
-			},
-
 			onFirstTap : function(event)
 			{
 				if(!this.firstTime)
@@ -548,6 +531,7 @@ Package('page',
 
 				Analytics.getInstance().trackGoogleAnalyticsEvent(Analytics.GA_EVENTS.cutoutpage_automatic_uploadstart);
 				this.hideUploadButton();
+				this.hideUserPhoto();
 				this.setLoadingMode();
 			},
 
@@ -572,14 +556,9 @@ Package('page',
 				Poof.suppressUnused(event);
 
 				Analytics.getInstance().trackGoogleAnalyticsEvent(Analytics.GA_EVENTS.cutoutpage_automatic_uploadfinish);
-				this.getPhotoOrientation();
-			},
-
-			onPhotoOrientationReady : function()
-			{
-				this.userPhotoOrientation = EXIF.getTag(this.userPhoto, 'Orientation');
-
-				this.setUserPhoto(this.userPhoto);
+				
+				this.userPhoto = this.$userPhoto[0];
+				PhotoPositionController.getInstance().init(this.userPhoto, this.$photoFrame, this.$userPhoto);
 				PhotoPositionController.getInstance().updateData();
 				this.setRedoMode();
 				PhotoPositionController.getInstance().setInitialPosition(1);
