@@ -1,4 +1,0 @@
-cron:
-- description: deletes images older than 3 months
-  url: /tasks/clean
-  schedule: every mon,wed,fri 04:00
