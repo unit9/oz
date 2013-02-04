@@ -18,3 +18,5 @@ project/develop/gae
 project/Diagram.mindnode
 project/readme.txt
 .DS_Store
+website/api
+website/config
