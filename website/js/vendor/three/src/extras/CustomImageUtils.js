@@ -82,9 +82,17 @@ CustomImageUtils = {
 					dds = CustomImageUtils.parsedCompressedTextures[url]
 				}
 				else {
-					dds = THREE.ImageUtils.parseDDS( buffer, true );
-					if(CustomImageUtils.cacheTextures)
-						CustomImageUtils.parsedCompressedTextures[url] = dds
+					try
+					{
+						dds = THREE.ImageUtils.parseDDS( buffer, true );
+						if(CustomImageUtils.cacheTextures)
+							CustomImageUtils.parsedCompressedTextures[url] = dds;
+					}
+					catch (error)
+					{
+						if(onError) onError(texture,error)
+						return texture
+					}
 				}
 
 				texture.format = dds.format;
@@ -116,9 +124,17 @@ CustomImageUtils = {
 					dds = CustomImageUtils.parsedCompressedTextures[url]
 				}
 				else {
-					dds = THREE.ImageUtils.parseDDS( buffer, true );
-					if(CustomImageUtils.cacheTextures)
-						CustomImageUtils.parsedCompressedTextures[url] = dds
+					try
+					{
+						dds = THREE.ImageUtils.parseDDS( buffer, true );
+						if(CustomImageUtils.cacheTextures)
+							CustomImageUtils.parsedCompressedTextures[url] = dds
+					}
+					catch (error)
+					{
+						if(onError) onError(texture,error)
+						return texture
+					}						
 				}
 
 				texture.format = dds.format;

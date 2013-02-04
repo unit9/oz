@@ -36,7 +36,10 @@ class BrowserDetection
                         if format ==  _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT 
                             dxt3Supported = true;
                 
-                webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2
+
+                _glExtensionTextureFilterAnisotropic = _gl.getExtension( 'EXT_texture_filter_anisotropic' ) || _gl.getExtension( 'MOZ_EXT_texture_filter_anisotropic' ) || _gl.getExtension( 'WEBKIT_EXT_texture_filter_anisotropic' );
+
+                webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2
 
         catch error
             webGLContextCreationSuccessful =  false  

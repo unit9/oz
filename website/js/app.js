@@ -2367,6 +2367,8 @@
       this.onTextureComplete = __bind(this.onTextureComplete, this);
 
       this.onTextureProgress = __bind(this.onTextureProgress, this);
+
+      this.onTextureError = __bind(this.onTextureError, this);
       if (params != null) {
         this.init(params);
       }
@@ -2420,21 +2422,26 @@
         }
         if (url.indexOf("/") !== -1) {
           if (url.indexOf(".dds") !== -1) {
-            CustomImageUtils.loadCompressedTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, null, false, index);
+            CustomImageUtils.loadCompressedTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
           } else {
-            tex = CustomImageUtils.loadTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, null, index);
+            tex = CustomImageUtils.loadTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, index);
             tex.flipY = false;
           }
         } else {
           if (url.indexOf(".dds") !== -1) {
-            CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, null, false, index);
+            CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
           } else {
-            tex = CustomImageUtils.loadTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, null, index);
+            tex = CustomImageUtils.loadTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, index);
             tex.flipY = false;
           }
         }
       }
       return null;
+    };
+
+    IFLMaterialManager.prototype.onTextureError = function(texture, error) {
+      console.warn("Texture Failed to load: " + error);
+      this.onTextureComplete(texture);
     };
 
     IFLMaterialManager.prototype.onTextureProgress = function(progress, index) {
@@ -4367,7 +4374,7 @@
 
       this.compare = __bind(this.compare, this);
 
-      var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _i, _len;
+      var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
       this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
       webGLContextCreationSuccessful = false;
@@ -4405,7 +4412,8 @@
               }
             }
           }
-          webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2;
+          _glExtensionTextureFilterAnisotropic = _gl.getExtension('EXT_texture_filter_anisotropic') || _gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || _gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
+          webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2;
         }
       } catch (error) {
         webGLContextCreationSuccessful = false;

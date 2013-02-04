@@ -95,7 +95,7 @@
 
       this.compare = __bind(this.compare, this);
 
-      var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _i, _len;
+      var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
       this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
       webGLContextCreationSuccessful = false;
@@ -133,7 +133,8 @@
               }
             }
           }
-          webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2;
+          _glExtensionTextureFilterAnisotropic = _gl.getExtension('EXT_texture_filter_anisotropic') || _gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || _gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
+          webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2;
         }
       } catch (error) {
         webGLContextCreationSuccessful = false;

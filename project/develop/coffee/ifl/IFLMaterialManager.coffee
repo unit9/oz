@@ -82,23 +82,26 @@ class IFLMaterialManager
             if url.indexOf("/") != -1
                 # load full path texture
                 if url.indexOf(".dds") != -1
-                    CustomImageUtils.loadCompressedTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, null, false, index );
+                    CustomImageUtils.loadCompressedTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
                 else
-                    tex = CustomImageUtils.loadTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, null, index  );
+                    tex = CustomImageUtils.loadTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, index  );
                     tex.flipY = false   
             else
                 # load basepath texture
                 if url.indexOf(".dds") != -1
-                    CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, null, false, index );
+                    CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
                 else
-                    tex = CustomImageUtils.loadTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, null, index  );
+                    tex = CustomImageUtils.loadTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, index  );
                     tex.flipY = false   
 
 
         return null
 
 
-
+    onTextureError:(texture,error)=>
+        console.warn "Texture Failed to load: #{error}"
+        @onTextureComplete(texture)
+        return
 
     onTextureProgress:(progress,index)=>
         singletexProg = progress / ( 1 / @loadTextures.length )
