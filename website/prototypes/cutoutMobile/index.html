@@ -1,0 +1,172 @@
+<!-- 
+     - What is "real"? How do you define "real"? 
+     - Welcome to the Matrix Neo
+ -->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:300,500,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <style>
+        body{
+            width:100%;
+            /*overflow: hidden;*/
+        }
+
+        canvas, #character
+        {
+            pointer-events: none;
+        }
+
+        #image
+        {
+            position: absolute;
+            width: 566px;
+            height: 800px;
+            max-width: 566px;
+            
+            max-height: 800px;
+            overflow: hidden;
+        }
+
+        #photo, #character, canvas
+        {
+            width: 566px;
+            height: 800px;
+            position: absolute;
+
+        }
+
+        canvas{
+            visibility: hidden;
+        }
+
+        #character
+        {
+            display: none;
+        }
+
+        #btnTakePic
+        {
+            display: none;
+            position: absolute;
+            left: 580px;
+            top: 80px;
+        }
+
+        </style>
+
+        
+        <script src="js/html2canvas.min.js"></script>
+        <script src="../defaults/vendors/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript">
+
+        var context, character, characterImage, picImage;
+
+        $(document).ready(function(){
+
+            characterImage = new Image()
+            characterImage.src = "images/cutout.png"
+
+            picImage = new Image()
+
+            context = $('#canvas')[0].getContext('2d')
+            character = $('#character')
+            character.append('<img src="images/cutout.png" />');
+
+            $('#fileInput').change(function(evt){
+                var elem = evt.srcElement;
+                var file = elem.files[0]
+
+                var img = document.createElement("img");
+                img.id = "img";
+                var reader = new FileReader();
+                reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; picImage=e.target.result; }; })(img);
+                reader.readAsDataURL(file);
+
+                $('#photo').empty();
+                $('#photo').append(img);
+                $('#photo').bind('dragstart', function(event){
+                    event.preventDefault();
+                });
+                $('#photo').mousedown(
+                    function(event){
+
+                        offsetX = event.clientX;
+                        offsetY = event.clientY;
+
+                        console.log(event)
+
+                        $(window).mousemove(function(event){
+                            console.log(event);
+                            $('#photo').css({
+                                top : event.screenY - offsetY,
+                                left: event.screenX - offsetX
+                            });
+                        }
+                    );
+                });
+
+                $(window).mouseup(function(){
+                    console.log('asdasdasdsad');
+                    $(window).unbind('mousemove');
+                })
+                
+
+                $('#btnTakePic').show();
+                $('#character').show();
+
+            });
+
+            $('#btnTakePic').click(function(){
+
+                context.drawImage($('#img')[0], parseInt($('#photo').css('left')),parseInt($('#photo').css('top')));
+                context.drawImage(characterImage, 0,0);
+                /*$('#character').hide();
+                $('#photo').hide();*/
+
+                window.open($('canvas')[0].toDataURL())
+
+            });
+            
+        })
+        </script>
+        
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="top">
+            <span id="unit9Logo"><img src="https://raw.github.com/unit9/bnkr/master/html/boilerplate/defaults/img/unit9-logo.png"/></span>
+            <h3>Cutout Mobile <sup>1.0.1</sup></h3>
+            <p>Mobile Character Cutout</p>
+        </div>
+
+        <div class="container" id="container">
+            <input id="fileInput" type="file" accept="image/*;capture=camera">
+            <div id="image">
+                <div id="photo"></div><div id="character"></div>
+            </div>
+
+            <canvas width='566' height="800" id="canvas"></canvas>
+
+            <button id="btnTakePic" class="btn btn-primary" type="button">Take Picture</button>
+        </div>
+
+    </body>
+</html>

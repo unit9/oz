@@ -1,0 +1,76 @@
+{
+    "Google_OZ_landing page" : 
+    {
+    "cat" : "googl298"
+    },
+
+    "Google_OZ_SocialClick_Google" : 
+    {
+        "cat" : "googl930"
+    },
+
+    "Google_OZ_SocialClick_Facebook" : 
+    {
+        "cat" : "googl097"
+    },
+
+    "Google_OZ_SocialClick_Twitter" : 
+    {
+        "cat" : "googl119"
+    },
+
+    "Google_OZ_Music Box" : 
+    {
+        "cat" : "googl378"
+    },
+
+    "Google_OZ_Balloon Ride" : 
+    {
+        "cat" : "googl746"
+    },
+
+    "Google_OZ_Zeotrope" : 
+    {
+        "cat" : "googl857"
+    },
+
+    "Google_OZ_Zeotrope_SocialClick_Google" : 
+    {
+        "cat" : "googl665"
+    },
+
+    "Google_OZ_Zeotrope_SocialClick_Facebook" : 
+    {
+        "cat" : "googl151"
+    },
+
+    "Google_OZ_Zeotrope_SocialClick_Twitter" : 
+    {
+        "cat" : "googl394"
+    },
+
+    "Google_OZ_HoleInFace_EngagementClick" : 
+    {
+        "cat" : "googl864"
+    },
+
+    "Google_OZ_HoleInFace_SocialClick_Google" : 
+    {
+        "cat" : "googl773"
+    },
+
+    "Google_OZ_HoleInFace_SocialClick_Facebook" : 
+    {
+        "cat" : "googl841"
+    },
+
+    "Google_OZ_HoleInFace_SocialClick_Twitter" : 
+    {
+        "cat" : "googl952"
+    },
+
+    "Google_OZ_ViewPayoff_Movie_EngagementClick" : 
+    {
+        "cat" : "googl558"
+    }
+}

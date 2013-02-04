@@ -1,0 +1,118 @@
+// min-width: 320px  // smartphones, iPhone, portrait 480x320 phones
+// min-width: 481px  // portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide.
+// min-width: 641px  // portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 and 854x480 phones
+// min-width: 961px  // tablet, landscape iPad, lo-res laptops ands desktops
+// min-width: 1025px // big landscape tablets, laptops, and desktops
+// min-width: 1281px // hi-res laptops and desktops
+
+
+/*------------------------------------*\
+    $IPHONE
+\*------------------------------------*/
+@media screen and (max-device-width: 480px)
+{
+    @media (orientation:portrait)
+    {
+        .logo_chrome div, .logo_google div
+        {
+            margin-left: -13px;
+        }
+    }
+
+    @media (orientation:landscape)
+    {
+        
+    }  
+}
+
+@media screen and (min-width: 320px) {
+    .footer-share {
+
+        div:first-child {
+            margin: 0 0px 5px 10px !important;
+        }
+
+    }
+    
+}
+
+@media screen and (min-width: 641px) {
+
+    .footer-logos {
+        width: auto !important;
+
+        a:nth-child(2) img {
+            margin-left: 0px !important;
+        }
+
+        a:last-child img {
+            margin-left: 0px !important;
+        }
+    }
+
+
+    .footer-share {
+        position: absolute !important;
+        width: auto !important;
+        height: 20px !important;
+        right: 0px !important;
+        bottom: 10px !important;
+
+        div, iframe {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: auto !important;
+        }
+
+        div:first-child {
+            width: 100px !important;
+            margin: 0 -22px 0 0px !important;
+        }
+
+        .fb-like {
+            margin: 0 0 0 -22px;
+        }
+
+
+    }
+
+}
+
+@media screen and (min-width: 1025px) {
+
+    /*footer {
+        bottom: 10px !important;
+
+        .footer-logos {
+
+            a {
+                margin: 0 15px 0 0 !important;
+            }
+
+            .logo_oz {
+                width: 53px !important;
+                height: 55px !important;
+                margin-top: 8px !important;
+            }
+
+            .logo_chrome {
+                width: 100px !important;
+                height: 45px !important;
+                margin-top: 20px !important;
+            }
+
+            .logo_google {
+                width: 92px !important;
+                height: 49px !important;
+                margin-top: 20px !important;
+            }
+
+        }
+
+    }*/
+
+ }
+
+
+
+

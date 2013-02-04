@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://html5-demos.appspot.com/static/media-source.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>MediaSource API Demo</title>
+<style>
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+::selection {
+  color: #fff;
+  background: pink;
+}
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+body {
+  color: #222;
+  font-family: 'Open Sans', arial, sans-serif;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  -webkit-flex-direction: column;
+  display: -ms-flex;
+  -ms-align-items: center;
+  -ms-justify-content: center;
+  -ms-flex-direction: column;
+  display: -moz-flex;
+  -moz-align-items: center;
+  -moz-justify-content: center;
+  -moz-flex-direction: column;
+  display: -o-flex;
+  -o-align-items: center;
+  -o-justify-content: center;
+  -o-flex-direction: column;
+}
+details {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  margin: 1em 0;
+  cursor: pointer;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+  max-width: 600px;
+  font-size: 10pt;
+  z-index: 100;
+}
+details > div {
+  margin: 10px 0;
+}
+details blockquote {
+  font-style: italic;
+}
+pre:not(#log) {
+  background: #eee;
+  border-radius: 5px;
+  padding: 3px 17px 20px 17px;
+  border: 1px solid #ccc;
+  color: navy;
+}
+#log {
+  margin: 0 1em;
+}
+code {
+  font-weight: bold;
+}
+section {
+  display: -webkit-flex;
+}
+</style>
+</head>
+<body>
+
+<details>
+  <summary>What is this?</summary>
+  <div>
+    <p>This demo splits a <a href="http://html5-demos.appspot.com/static/Chrome_ImF.webm">.webm video</a> into
+    <span data-num-chunks="">5</span> chunks using the File APIs. The entire movie
+    is then 'streamed' to a <code>&lt;video&gt;</code> element by appending each 
+    chunk using the
+    <a href="http://dvcs.w3.org/hg/html-media/raw-file/tip/media-source/media-source.html" target="_blank">MediaSource API</a>.</p>
+    <p><b>Support:</b> Chrome Dev Channel 17+ and the <code>--enable-media-source</code> flag set. The feature is enabled
+      by default in Chrome 23, which also updated its implementation to the new version of the API.</p>
+  </div>
+</details>
+
+<h3>Appending .webm video chunks using the Media Source API</h3>
+
+<section>
+  <video controls="" autoplay="" width="320" height="240"></video>
+  <pre id="log">mediaSource readyState: open<br>num chunks:5<br>chunkSize:43890, totalSize:219448<br>appending chunk:0<br>appending chunk:1<br>appending chunk:2<br>appending chunk:3<br>appending chunk:4<br>mediaSource readyState: ended<br></pre>
+</section>
+
+<pre><code>
+window.MediaSource = window.MediaSource || window.WebKitMediaSource;
+
+var ms = new MediaSource();
+
+var video = document.querySelector('video');
+video.src = window.URL.createObjectURL(ms);
+
+ms.addEventListener('webkitsourceopen', function(e) {
+  ...
+  var sourceBuffer = ms.addSourceBuffer('video/webm; codecs="vorbis,vp8"');
+  sourceBuffer.append(oneVideoWebMChunk);
+  ....
+}, false);
+</code></pre>
+
+<script src="https://raw.github.com/unit9/bnkr/master/html/boilerplate/defaults/vendors/jquery-1.8.2.min.js"></script>
+<script src="app.js"></script>
+
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+
+</body></html>

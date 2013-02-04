@@ -1,0 +1,71 @@
+/**
+ * By default all detection items are hidden to indicate a N/A feature.
+ * Overriding the selector with display:block indicates available feature.
+ */
+.detection
+{
+	display: none;
+}
+
+/**
+ * Detect tablet
+ */
+.tablet
+{
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
+	{
+		display: block;
+	}
+}
+
+/**
+ * Detect retina displays
+ */
+.retina
+{
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+	//@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina
+	{
+		display: block;
+	}
+}
+
+/**
+ * Determine what sprites are going to be used (mobile, tablet, mobile-2x or tablet-2x) and get their URL
+ * To prevent loading the sprite on page load which would cause delay to the custom preloader, overwrite
+ * background-image with 'none' as a last rule. This still makes the actual URL stay in the full rules set
+ * so accessing the last but one will return the true URL, even though it's not loaded.
+ */
+.sprite-url
+{
+	@include background-image($sprite-url-mobile);
+
+	/* retina */
+	//@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+	@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina
+	{
+		@include background-image($sprite-url-mobile-2x);
+	}
+
+	/* tablet */
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
+	{
+		@include background-image($sprite-url-tablet);
+	}
+
+	/* tablet retina */
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
+	{
+		//@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+		@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina
+		{
+			@include background-image($sprite-url-tablet-2x);
+		}
+	}
+
+	/* prevent actual image loading, JS will read the url by accessing last but one matching rule */
+	&.preventload
+	{
+		background-image: none;
+	}
+}

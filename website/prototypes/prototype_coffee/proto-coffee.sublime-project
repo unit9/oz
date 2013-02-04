@@ -1,0 +1,26 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"${project_path}/scripts/build.cmd"
+			],
+			"name": "Oz Prototype CoffeeScript Windows",
+			"path": "",
+			"working_dir": "${project_path}"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "/C/Users/daniele/Desktop/disney/trunk/website/prototypes/prototype_coffee"
+		}
+	],
+	"settings":
+	[
+		{
+			"translate_tabs_to_spaces": true
+		}
+	]
+}

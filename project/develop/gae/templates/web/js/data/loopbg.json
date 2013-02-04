@@ -1,0 +1,356 @@
+{
+   "cols":[
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            7
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            5
+         ]
+      },
+      {
+         "rows":[
+            4
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            5
+         ]
+      },
+      {
+         "rows":[
+            8
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            5
+         ]
+      },
+      {
+         "rows":[
+            6
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            3
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            4
+         ]
+      },
+      {
+         "rows":[
+            3
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            4
+         ]
+      },
+      {
+         "rows":[
+            5
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+            2
+         ]
+      },
+      {
+         "rows":[
+            5
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      },
+      {
+         "rows":[
+
+         ]
+      }
+   ],
+   "dimensions":{
+      "lines":10,
+      "cols":48
+   },
+   "notes":[
+      {
+         "label":"C",
+         "event":"musicbox_c1"
+      },
+      {
+         "label":"D",
+         "event":"musicbox_d1"
+      },
+      {
+         "label":"E",
+         "event":"musicbox_e1"
+      },
+      {
+         "label":"F",
+         "event":"musicbox_f1"
+      },
+      {
+         "label":"G",
+         "event":"musicbox_g1"
+      },
+      {
+         "label":"A",
+         "event":"musicbox_a1"
+      },
+      {
+         "label":"B",
+         "event":"musicbox_b1"
+      },
+      {
+         "label":"C",
+         "event":"musicbox_c2"
+      },
+      {
+         "label":"D",
+         "event":"musicbox_d2"
+      },
+      {
+         "label":"E",
+         "event":"musicbox_e2"
+      }
+   ],
+   "loops":[
+      {
+         "event":"musicbox_loop_10",
+         "col":3
+      },
+      {
+         "event":"musicbox_loop_11",
+         "col":6
+      },
+      {
+         "event":"musicbox_loop_12",
+         "col":9
+      },
+      {
+         "event":"musicbox_loop_13",
+         "col":12
+      },
+      {
+         "event":"musicbox_loop_14",
+         "col":15
+      },
+      {
+         "event":"musicbox_loop_15",
+         "col":18
+      },
+      {
+         "event":"musicbox_loop_16",
+         "col":21
+      },
+      {
+         "event":"musicbox_loop_1",
+         "col":24
+      },
+      {
+         "event":"musicbox_loop_2",
+         "col":27
+      },
+      {
+         "event":"musicbox_loop_3",
+         "col":30
+      },
+      {
+         "event":"musicbox_loop_4",
+         "col":33
+      },
+      {
+         "event":"musicbox_loop_5",
+         "col":36
+      },
+      {
+         "event":"musicbox_loop_6",
+         "col":39
+      },
+      {
+         "event":"musicbox_loop_7",
+         "col":42
+      },
+      {
+         "event":"musicbox_loop_8",
+         "col":45
+      },
+      {
+         "event":"musicbox_loop_9",
+         "col":0
+      }
+   ]
+}

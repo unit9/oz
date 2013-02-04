@@ -1,0 +1,76 @@
+.FooterPage
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: black;
+	
+	.content
+	{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 100%;
+		margin-left: -50%;
+		margin-top: -98px;
+		text-align: center;
+
+		.logo
+		{
+			margin: 0 auto;
+		}
+
+		.ornament-small
+		{
+			margin: 0 auto;
+			margin-top: 25px;
+		}
+
+		.separator
+		{
+			@extend .text.tradegothic;
+			@extend .text.white;
+			font-size: 14px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		.links
+		{
+			margin-top: 24px;
+			text-align: center;
+		}
+
+		.link
+		{
+			@extend .text.tradegothic;
+			@extend .text.white;
+			font-size: 14px;
+			letter-spacing: 1px;
+			text-decoration: none;
+		}
+
+		.button
+		{
+			position: relative;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+	}
+
+	footer
+	{
+		margin-bottom: 16px;
+
+		.group.left
+		{
+			margin-left: 5px;
+		}
+
+		.group.right
+		{
+			margin-right: 5px;
+		}
+	}
+}

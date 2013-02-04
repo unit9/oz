@@ -1,0 +1,92 @@
+@import "constants";
+@import "compass/typography/lists/horizontal-list";
+
+footer.global
+{
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	z-index: 999;
+
+	nav
+	{
+		float: left;
+
+		ul
+		{
+			@include horizontal-list;
+		}
+
+		.separator
+		{
+			display: inline-block;
+			float: left;
+			margin: 0px 2px;
+		}
+	}
+
+	.items.group
+	{
+		position: relative;
+		bottom: 0px;
+	}
+
+	.items.group.left
+	{
+		position: absolute;
+		left: 0px;
+	}
+
+	.items.group.middle
+	{
+		position: absolute;
+		left: 50%;
+	}
+
+	.items.group.right
+	{
+		position: absolute;
+		right: 0px;
+	}
+
+	.item
+	{
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+
+	&.extended
+	{
+		.middle
+		{
+			margin-left: -143px;
+		}
+
+		#logoChromeExperiment
+		{
+			margin-bottom: -4px;
+		}
+
+		#logoGoogle
+		{
+			margin-bottom: -4px;
+		}
+
+		#logoPg
+		{
+			margin-bottom: -2px;
+		}
+	}
+
+	&.simple
+	{
+		.scroll-down
+		{
+			position: absolute;
+			left: 50%;
+			margin-left: -7px;
+			margin-top: -17px;
+			opacity: 1;
+		}
+	}
+}

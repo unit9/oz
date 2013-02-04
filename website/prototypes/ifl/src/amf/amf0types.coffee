@@ -1,0 +1,20 @@
+namespace "amf"
+	Amf0Types: 
+		kNumberType:         0
+		kBooleanType:        1
+		kStringType:         2
+		kObjectType:         3
+		kMovieClipType:      4
+		kNullType:           5
+		kUndefinedType:      6
+		kReferenceType:      7
+		kECMAArrayType:      8
+		kObjectEndType:      9
+		kStrictArrayType:   10
+		kDateType:          11
+		kLongStringType:    12
+		kUnsupportedType:   13
+		kRecordsetType:     14
+		kXMLObjectType:     15
+		kTypedObjectType:   16
+		kAvmPlusObjectType: 17

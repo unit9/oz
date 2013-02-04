@@ -1,0 +1,29 @@
+@mixin linear-gradient($color1, $color2)
+{
+	background-image: -moz-linear-gradient($color1, $color2);
+	background-image: -o-linear-gradient($color1, $color2);
+	background-image: -ms-linear-gradient($color1, $color2);
+	background-image: linear-gradient($color1, $color2);
+	background-image: -webkit-linear-gradient($color1, $color2);
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $color1), color-stop(100%, $color2));
+}
+
+@mixin text-gradient($color1, $color2)
+{
+	-webkit-background-clip: text;
+	background-clip: text;
+  	-webkit-text-fill-color: transparent;
+  	text-fill-color: transparent;
+
+	.androidVersion1 &, .androidVersion2 &
+	{
+		background-image: none;
+		-webkit-background-clip: content-box;
+		background-clip: content-box;
+  		-webkit-text-fill-color: $color1;
+  		text-fill-color: $color1;
+	}
+
+	color: $color1;
+	@include linear-gradient($color1, $color2);
+}

@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>GLSL Sandbox</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<style>
+
+			body {
+
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+
+			}
+
+			button, select, a, a:visited {
+
+				padding: 8px 12px 8px 12px;
+
+				border: none;
+				border-radius: 5px;
+				margin-right: 5px;
+
+				color: #ffffff;
+				background-color: #000000;
+				opacity: 0.5;
+
+				font-family: Monospace;
+				font-size: 12px;
+				font-weight: bold;
+
+				cursor: pointer;
+				text-decoration: none;
+
+			}
+
+			button:hover, select:hover, a:hover {
+
+				opacity: 1;
+				box-shadow: 0 0 4px #FFF;
+
+			}
+
+			option {
+
+				color: #ffffff;
+				background-color: #000000;
+
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<link rel="stylesheet" href="css/codemirror.css">
+		<link rel="stylesheet" href="css/default.css">
+
+		<script src="js/lzma.js"></script>
+		<script src='js/jquery.js'></script>
+		<script src='js/helpers.js'></script>
+		<script src="js/codemirror.js"></script>
+		<script src="js/glsl.js"></script>
+
+<script id="example" type="x-shader/x-fragment">
+
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform float time;
+uniform vec2 resolution;
+
+//
+// GLSL textureless classic 3D noise "cnoise",
+// with an RSL-style periodic variant "pnoise".
+// Author:  Stefan Gustavson (stefan.gustavson@liu.se)
+// Version: 2011-10-11
+//
+// Many thanks to Ian McEwan of Ashima Arts for the
+// ideas for permutation and gradient selection.
+//
+// Copyright (c) 2011 Stefan Gustavson. All rights reserved.
+// Distributed under the MIT license. See LICENSE file.
+// https://github.com/ashima/webgl-noise
+//
+
+vec3 mod289(vec3 x)
+{
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec4 mod289(vec4 x)
+{
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+vec4 permute(vec4 x)
+{
+  return mod289(((x*34.0)+1.0)*x);
+}
+
+vec4 taylorInvSqrt(vec4 r)
+{
+  return 1.79284291400159 - 0.85373472095314 * r;
+}
+
+vec3 fade(vec3 t) {
+  return t*t*t*(t*(t*6.0-15.0)+10.0);
+}
+
+// Classic Perlin noise
+float cnoise(vec3 P)
+{
+  vec3 Pi0 = floor(P); // Integer part for indexing
+  vec3 Pi1 = Pi0 + vec3(1.0); // Integer part + 1
+  Pi0 = mod289(Pi0);
+  Pi1 = mod289(Pi1);
+  vec3 Pf0 = fract(P); // Fractional part for interpolation
+  vec3 Pf1 = Pf0 - vec3(1.0); // Fractional part - 1.0
+  vec4 ix = vec4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+  vec4 iy = vec4(Pi0.yy, Pi1.yy);
+  vec4 iz0 = Pi0.zzzz;
+  vec4 iz1 = Pi1.zzzz;
+
+  vec4 ixy = permute(permute(ix) + iy);
+  vec4 ixy0 = permute(ixy + iz0);
+  vec4 ixy1 = permute(ixy + iz1);
+
+  vec4 gx0 = ixy0 * (1.0 / 7.0);
+  vec4 gy0 = fract(floor(gx0) * (1.0 / 7.0)) - 0.5;
+  gx0 = fract(gx0);
+  vec4 gz0 = vec4(0.5) - abs(gx0) - abs(gy0);
+  vec4 sz0 = step(gz0, vec4(0.0));
+  gx0 -= sz0 * (step(0.0, gx0) - 0.5);
+  gy0 -= sz0 * (step(0.0, gy0) - 0.5);
+
+  vec4 gx1 = ixy1 * (1.0 / 7.0);
+  vec4 gy1 = fract(floor(gx1) * (1.0 / 7.0)) - 0.5;
+  gx1 = fract(gx1);
+  vec4 gz1 = vec4(0.5) - abs(gx1) - abs(gy1);
+  vec4 sz1 = step(gz1, vec4(0.0));
+  gx1 -= sz1 * (step(0.0, gx1) - 0.5);
+  gy1 -= sz1 * (step(0.0, gy1) - 0.5);
+
+  vec3 g000 = vec3(gx0.x,gy0.x,gz0.x);
+  vec3 g100 = vec3(gx0.y,gy0.y,gz0.y);
+  vec3 g010 = vec3(gx0.z,gy0.z,gz0.z);
+  vec3 g110 = vec3(gx0.w,gy0.w,gz0.w);
+  vec3 g001 = vec3(gx1.x,gy1.x,gz1.x);
+  vec3 g101 = vec3(gx1.y,gy1.y,gz1.y);
+  vec3 g011 = vec3(gx1.z,gy1.z,gz1.z);
+  vec3 g111 = vec3(gx1.w,gy1.w,gz1.w);
+
+  vec4 norm0 = taylorInvSqrt(vec4(dot(g000, g000), dot(g010, g010), dot(g100, g100), dot(g110, g110)));
+  g000 *= norm0.x;
+  g010 *= norm0.y;
+  g100 *= norm0.z;
+  g110 *= norm0.w;
+  vec4 norm1 = taylorInvSqrt(vec4(dot(g001, g001), dot(g011, g011), dot(g101, g101), dot(g111, g111)));
+  g001 *= norm1.x;
+  g011 *= norm1.y;
+  g101 *= norm1.z;
+  g111 *= norm1.w;
+
+  float n000 = dot(g000, Pf0);
+  float n100 = dot(g100, vec3(Pf1.x, Pf0.yz));
+  float n010 = dot(g010, vec3(Pf0.x, Pf1.y, Pf0.z));
+  float n110 = dot(g110, vec3(Pf1.xy, Pf0.z));
+  float n001 = dot(g001, vec3(Pf0.xy, Pf1.z));
+  float n101 = dot(g101, vec3(Pf1.x, Pf0.y, Pf1.z));
+  float n011 = dot(g011, vec3(Pf0.x, Pf1.yz));
+  float n111 = dot(g111, Pf1);
+
+  vec3 fade_xyz = fade(Pf0);
+  vec4 n_z = mix(vec4(n000, n100, n010, n110), vec4(n001, n101, n011, n111), fade_xyz.z);
+  vec2 n_yz = mix(n_z.xy, n_z.zw, fade_xyz.y);
+  float n_xyz = mix(n_yz.x, n_yz.y, fade_xyz.x); 
+  return 2.2 * n_xyz;
+}
+
+float surface3 ( vec3 coord ) {
+	
+	float frequency = 4.0;
+	float n = 0.0;	
+		
+	n += 1.0	* abs( cnoise( coord * frequency ) );
+	n += 0.5	* abs( cnoise( coord * frequency * 2.0 ) );
+	n += 0.25	* abs( cnoise( coord * frequency * 4.0 ) );
+	
+	return n;
+}
+
+
+
+//Simple raymarching sandbox with camera
+
+//Raymarching Distance Fields
+//About http://www.iquilezles.org/www/articles/raymarchingdf/raymarchingdf.htm
+//Also known as Sphere Tracing
+
+//Util Start
+mat2 m = mat2( 0.80,  0.60, -0.60,  0.80 );
+
+float hash( float n )
+{
+    return fract(sin(n)*43758.5453);
+}
+
+float noise( in vec2 x )
+{
+    vec2 p = floor(x);
+    vec2 f = fract(x);
+    f = f*f*(3.0-2.0*f);
+    float n = p.x + p.y*57.0;
+    float res = mix(mix( hash(n+  0.0), hash(n+  1.0),f.x), mix( hash(n+ 57.0), hash(n+ 58.0),f.x),f.y);
+    return res;
+}
+
+float fbm_5oct( vec2 p )
+{
+    float f = 0.0;
+    f += 0.50000*noise( p ); p = m*p*2.02;
+    f += 0.25000*noise( p ); p = m*p*2.03;
+    f += 0.12500*noise( p ); p = m*p*2.01;
+    f += 0.06250*noise( p ); p = m*p*2.04;
+    f += 0.03125*noise( p );
+    return f/0.984375;
+}
+
+float fbm_3oct( vec2 p )
+{
+    float f = 0.0;
+    f += 0.50000*noise( p ); p = m*p*2.02;
+    f += 0.25000*noise( p ); p = m*p*2.03;
+    f += 0.12500*noise( p ); p = m*p*2.01;
+
+    return f/1.5;
+}
+
+vec2 ObjUnion(in vec2 obj0,in vec2 obj1){
+  if (obj0.x<obj1.x)
+  	return obj0;
+  else
+  	return obj1;
+}
+
+
+//Util End
+
+//Scene Start
+
+//Floor
+vec2 obj0(in vec3 p){
+  return vec2(p.y+3.0,0);
+}
+
+//Floor Color (checkerboard)
+vec3 obj0_c(in vec3 p){
+ if (fract(p.x*.5)>.5)
+   if (fract(p.z*.5)>.5)
+     return vec3(0,0,0);
+   else
+     return vec3(1,1,1);
+ else
+   if (fract(p.z*.5)>.5)
+     return vec3(1,1,1);
+   else
+     	return vec3(0,0,0);
+}
+
+//IQs RoundBox (try other objects http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm)
+vec2 obj1(in vec3 p){
+  return vec2(length(max(abs(p)-vec3(1,1,1),0.0))-0.25,1);
+}
+
+//RoundBox with simple solid color
+vec3 obj1_c(in vec3 p){
+	return vec3(1.0,1.0,1.0);
+}
+
+float sdCone( vec3 p, vec2 c )
+{
+    // c must be normalized
+    float q = length(p.xz);
+    return dot(c,vec2(q,-p.y));
+}
+
+vec2 obj2(in vec3 p){
+  // return vec2(length(max(abs(p)-vec3(1,1,1),0.0))-0.25,1);
+  // return vec2( fbm_3oct(p.xz/3.)/5. , 1);
+  // return vec2( cnoise(p*0.5)+5. , 1 );
+  float c = cos(0.8*cos(time)*p.y);
+  float s = sin(0.8*cos(time)*p.y);
+  mat2  m = mat2(c,-s,s,c);
+  vec3  q = vec3(m*p.xz,p.y);
+  float obj2depth = cnoise(q*0.5)+1.+1.;
+  return vec2(sdCone(vec3(p.x,p.y+14.,p.z), normalize(vec2(1.0,0.3)))+obj2depth, 1);
+  //return vec2( max(obj2depth,sdCone(p,vec2(1.,1.)), 1 );
+  //return vec2( cnoise(vec3(1.*p.x,1.*p.y,1.*p.z)*0.5)*1.+1.0 , 1);
+}
+
+
+
+//Objects union
+vec2 inObj(in vec3 p){
+  return ObjUnion(obj0(p),obj2(p));
+}
+
+//Scene End
+
+void main(void){
+  vec2 vPos=-1.0+2.0*gl_FragCoord.xy/resolution.xy;
+
+  //Camera animation
+  vec3 vuv=vec3(0,1,0);//Change camere up vector here
+  vec3 vrp=vec3(0,0,0); //Change camere view here
+  // vec3 prp=vec3(-sin(time)*8.0,4,cos(time)*8.0); //Change camera path position here
+  vec3 prp=vec3(-sin(time/10.)*10.0,0.0,cos(time/10.)*10.0); //Change camera path position here
+
+  //Camera setup
+  vec3 vpn=normalize(vrp-prp);
+  vec3 u=normalize(cross(vuv,vpn));
+  vec3 v=cross(vpn,u);
+  vec3 vcv=(prp+vpn);
+  vec3 scrCoord=vcv+vPos.x*u*resolution.x/resolution.y+vPos.y*v;
+  vec3 scp=normalize(scrCoord-prp);
+
+  //Raymarching
+  const vec3 e=vec3(0.1,0,0);
+  const float maxd=60.0; //Max depth
+
+  vec2 s=vec2(0.1,0.0);
+  vec3 c,p,n;
+
+  float f=1.0;
+  for(int i=0;i<24;i++){
+    if (abs(s.x)<.01||f>maxd) break;
+    f+=s.x;
+    p=prp+scp*f;
+    s=inObj(p);
+  }
+  
+  if (f<maxd){
+    if (s.y==0.0)
+      c=obj0_c(p);
+    else
+      c=obj1_c(p);
+    n=normalize(
+      vec3(s.x-inObj(p-e.xyy).x,
+           s.x-inObj(p-e.yxy).x,
+           s.x-inObj(p-e.yyx).x));
+    float b=dot(n,normalize(prp-p));
+    gl_FragColor=vec4((b*c+pow(b,8.0))*(1.0-f*.01),1.0);//simple phong LightPosition=CameraPosition
+  }
+  else gl_FragColor=vec4(0,0,0,1); //background color
+}
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+
+</script>
+
+		<script id="fragmentShader" type="x-shader/x-fragment">
+
+			#ifdef GL_ES
+			precision mediump float;
+			#endif
+
+			uniform vec2 resolution;
+			uniform sampler2D texture;
+
+			void main() {
+
+				vec2 uv = gl_FragCoord.xy / resolution.xy;
+				gl_FragColor = texture2D( texture, uv );
+
+			}
+
+		</script>
+
+		<script id="vertexShader" type="x-shader/x-vertex">
+
+			attribute vec3 position;
+
+			void main() {
+
+				gl_Position = vec4( position, 1.0 );
+
+			}
+
+		</script>
+
+		<script id="surfaceVertexShader" type="x-shader/x-vertex">
+
+			attribute vec3 position;
+			attribute vec2 surfacePosAttrib;
+			varying vec2 surfacePosition;
+
+			void main() {
+
+				surfacePosition = surfacePosAttrib;
+				gl_Position = vec4( position, 1.0 );
+
+			}
+
+		</script>
+
+		<script>
+
+			initialize_helper();
+
+			var compressor=initialize_compressor();
+
+			if ( !window.requestAnimationFrame ) {
+
+				window.requestAnimationFrame = ( function() {
+
+					return window.webkitRequestAnimationFrame ||
+						window.mozRequestAnimationFrame ||
+						window.oRequestAnimationFrame ||
+						window.msRequestAnimationFrame ||
+						function ( callback, element ) {
+
+							window.setTimeout( callback, 1000 / 60 );
+
+						};
+
+				} )();
+
+			}
+
+			// Get older browsers safely through init code, so users can read the
+			// message about how to download newer browsers.
+			if (!Date.now) {
+				Date.now = function() {
+					return +new Date();
+				};
+			}
+
+			// Greetings to Iq/RGBA! ;)
+
+			var quality = 4, quality_levels = [ 0.5, 1, 2, 4, 8 ];
+			var toolbar, compileButton, fullscreenButton, compileTimer, errorLines = [];
+			var code, canvas, gl, buffer, currentProgram, vertexPosition, screenVertexPosition, panButton,
+			parameters = { startTime: Date.now(), time: 0, mouseX: 0.5, mouseY: 0.5, screenWidth: 0, screenHeight: 0 },
+			surface = { centerX: 0, centerY: 0, width: 1, height: 1, isPanning: false, isZooming: false, lastX: 0, lastY: 0 },
+			frontTarget, backTarget, screenProgram, getWebGL, resizer = {}, compileOnChangeCode = true;
+
+			init();
+			if (gl) { animate(); }
+
+			function init() {
+
+				if (!document.addEventListener) {
+					document.location = 'http://get.webgl.org/';
+					return;
+				}
+
+				var effect = document.createElement( 'div' );
+				document.body.appendChild( effect );
+
+				canvas = document.createElement( 'canvas' );
+				effect.appendChild( canvas );
+
+				//
+
+
+				//
+
+				toolbar = document.createElement( 'div' );
+				toolbar.style.position = 'absolute';
+				toolbar.style.top = '25px';
+				toolbar.style.left = '25px';
+				document.body.appendChild( toolbar );
+
+				var rightside = document.createElement( 'div' );
+				rightside.style.cssFloat = 'right';
+				toolbar.appendChild( rightside );
+
+				panButton = document.createElement( 'button' );
+				panButton.textContent = 'pan/zoom';
+				panButton.style.cursor = 'move';
+				panButton.style.display = 'none';
+				panButton.title = "Pan: left-drag, Zoom: right-drag. Use 'hide code' for a large pan/zoom area.";
+				rightside.appendChild( panButton );
+
+				fullscreenButton = document.createElement( 'button' );
+				fullscreenButton.textContent = 'fullscreen';
+				fullscreenButton.title = 'Press F11 to enter or leave fullscreen mode';
+				fullscreenButton.addEventListener( 'click', function ( event ) {
+
+					if (document.body.requestFullScreen) {
+						document.body.requestFullScreen();
+					} else if (document.body.mozRequestFullScreen) {
+						document.body.mozRequestFullScreen();
+					} else if (document.body.webkitRequestFullScreen) {
+						document.body.webkitRequestFullScreen( Element.ALLOW_KEYBOARD_INPUT );
+					}
+
+				}, false );
+
+				rightside.appendChild( fullscreenButton );
+
+				var button = document.createElement( 'a' );
+				button.textContent = 'gallery';
+				button.href = 'http://glsl.heroku.com/';
+				rightside.appendChild( button );
+
+				var button = document.createElement( 'button' );
+				button.textContent = 'hide code';
+				button.addEventListener( 'click', function ( event ) {
+
+					if ( code.getWrapperElement().style.visibility === 'visible' ) {
+
+						button.textContent = 'show code';
+						code.getWrapperElement().style.visibility = 'hidden';
+						compileButton.style.visibility = 'hidden';
+						set_save_button('hidden');
+						set_parent_button('hidden');
+
+					} else {
+
+						button.textContent = 'hide code';
+						code.getWrapperElement().style.visibility = 'visible';
+						compileButton.style.visibility = 'visible';
+						set_save_button('visible');
+						set_parent_button('visible');
+
+					}
+
+				}, false );
+				toolbar.appendChild( button );
+
+				var select = document.createElement( 'select' );
+
+				for ( var i = 0; i < quality_levels.length; i ++ ) {
+
+					var option = document.createElement( 'option' );
+					option.textContent = quality_levels[ i ];
+					if ( quality_levels[ i ] == quality ) option.selected = true;
+					select.appendChild( option );
+
+				}
+
+				select.addEventListener( 'change', function ( event ) {
+
+					quality = quality_levels[ event.target.selectedIndex ];
+					onWindowResize();
+
+				}, false );
+
+				toolbar.appendChild( select );
+
+				compileButton = document.createElement( 'button' );
+				compileButton.textContent = 'compile';
+				compileButton.addEventListener( 'click', function ( event ) {
+
+					compile();
+
+				}, false );
+				toolbar.appendChild( compileButton );
+
+				// from helper.js
+				add_server_buttons();
+
+				// Initialise WebGL
+
+				try {
+
+					gl = canvas.getContext( 'experimental-webgl', { preserveDrawingBuffer: true } );
+
+				} catch( error ) { }
+
+				if ( !gl ) {
+
+					alert("WebGL not supported, but code will be shown.");
+
+				} else {
+
+					// Create vertex buffer (2 triangles)
+
+					buffer = gl.createBuffer();
+					gl.bindBuffer( gl.ARRAY_BUFFER, buffer );
+					gl.bufferData( gl.ARRAY_BUFFER, new Float32Array( [ - 1.0, - 1.0, 1.0, - 1.0, - 1.0, 1.0, 1.0, - 1.0, 1.0, 1.0, - 1.0, 1.0 ] ), gl.STATIC_DRAW );
+
+					// Create surface buffer (coordinates at screen corners)
+
+					surface.buffer = gl.createBuffer();
+				}
+
+				// initialize code editor
+				code = CodeMirror(document.body, {
+					lineNumbers: true,
+					matchBrackets: true,
+					indentWithTabs: true,
+					tabSize: 8,
+					indentUnit: 8,
+					mode: "text/x-glsl",
+					onChange: function () {
+						if (compileOnChangeCode) {
+							clearTimeout(compileTimer);
+							compileTimer = setTimeout(compile, 500);
+						}
+					}
+				});
+				code.getWrapperElement().style.visibility = 'visible';
+
+				resizer.offsetMouseX = 0;
+				resizer.offsetMouseY = 0;
+				resizer.isResizing = false;
+				resizer.currentWidth = 100;
+				resizer.currentHeight = 100;
+				resizer.minWidth = 100;
+				resizer.minHeight = 100;
+				resizer.maxWidth = 100;
+				resizer.maxHeight = 100;
+				resizer.element = document.createElement( 'div' );
+				resizer.element.className = 'resizer';
+				code.getWrapperElement().appendChild(resizer.element);
+
+				resizer.element.addEventListener( 'mousedown', function ( event ) {
+					if (event.button !== 2) {
+						resizer.offsetMouseX = event.clientX - resizer.currentWidth;
+						resizer.offsetMouseY = event.clientY - resizer.currentHeight;
+						resizer.isResizing = true;
+						event.preventDefault();
+					}
+				}, false );
+				
+				if (gl) {
+
+					var surfaceMouseDown = function ( event ) {
+
+						if (event.shiftKey) {
+							resetSurface();
+						}
+
+						if (event.button === 0) {
+							surface.isPanning = true;
+							document.body.style.cursor = 'move';
+						} else {
+							surface.isZooming = true;
+							document.body.style.cursor = 'se-resize';
+							panButton.style.cursor = 'se-resize';
+						}
+
+						surface.lastX = event.clientX;
+						surface.lastY = event.clientY;
+						event.preventDefault();
+
+					};
+
+					var noContextMenu = function ( event ) {
+
+						event.preventDefault();
+
+					};
+
+					canvas.addEventListener( 'mousedown', surfaceMouseDown, false );
+					panButton.addEventListener( 'mousedown', surfaceMouseDown, false );
+
+					canvas.addEventListener( 'contextmenu', noContextMenu, false);
+					panButton.addEventListener( 'contextmenu', noContextMenu, false);
+				}
+				
+				document.addEventListener( 'mousemove', function ( event ) {
+					var codeElement, dx, dy;
+					
+					parameters.mouseX = event.clientX / window.innerWidth;
+					parameters.mouseY = 1 - event.clientY / window.innerHeight;
+						
+					if (resizer.isResizing) {
+
+						resizer.currentWidth = Math.max(Math.min(event.clientX - resizer.offsetMouseX, resizer.maxWidth), resizer.minWidth);
+						resizer.currentHeight = Math.max(Math.min(event.clientY - resizer.offsetMouseY, resizer.maxHeight), resizer.minWidth);
+						codeElement = code.getWrapperElement();
+						codeElement.style.width = resizer.currentWidth + 'px';
+						codeElement.style.height = resizer.currentHeight + 'px';
+						code.refresh();
+						event.preventDefault();
+
+					} else if (surface.isPanning) {
+
+						dx = event.clientX - surface.lastX;
+						dy = event.clientY - surface.lastY;
+						surface.centerX -= dx * surface.width / window.innerWidth;
+						surface.centerY += dy * surface.height / window.innerHeight;
+						surface.lastX = event.clientX;
+						surface.lastY = event.clientY;
+						computeSurfaceCorners();
+						event.preventDefault();
+
+					} else if (surface.isZooming) {
+
+						dx = event.clientX - surface.lastX;
+						dy = event.clientY - surface.lastY;
+						surface.height *= Math.pow(0.997, dx + dy);
+						surface.lastX = event.clientX;
+						surface.lastY = event.clientY;
+						computeSurfaceCorners();
+						event.preventDefault();
+
+					}
+				}, false );
+
+				function settleDown ( event ) {
+					resizer.isResizing = surface.isPanning = surface.isZooming = false;
+					document.body.style.cursor = 'default';
+					panButton.style.cursor = 'move';
+				}
+
+				document.addEventListener( 'mouseup', settleDown, false );
+				document.addEventListener( 'mouseleave', settleDown, false );
+
+				onWindowResize();
+				window.addEventListener( 'resize', onWindowResize, false );
+				load_url_code();
+
+				compileScreenProgram();
+
+			}
+
+			function computeSurfaceCorners() {
+
+				if (gl) {
+
+					surface.width = surface.height * parameters.screenWidth / parameters.screenHeight;
+					
+					var halfWidth = surface.width * 0.5, halfHeight = surface.height * 0.5;
+					
+					gl.bindBuffer( gl.ARRAY_BUFFER, surface.buffer );
+					gl.bufferData( gl.ARRAY_BUFFER, new Float32Array( [
+						surface.centerX - halfWidth, surface.centerY - halfHeight,
+						surface.centerX + halfWidth, surface.centerY - halfHeight,
+						surface.centerX - halfWidth, surface.centerY + halfHeight,
+						surface.centerX + halfWidth, surface.centerY - halfHeight,
+						surface.centerX + halfWidth, surface.centerY + halfHeight,
+						surface.centerX - halfWidth, surface.centerY + halfHeight ] ), gl.STATIC_DRAW );
+
+				}
+
+			}
+
+			function resetSurface() {
+
+				surface.centerX = surface.centerY = 0;
+				surface.height = 1;
+				computeSurfaceCorners();
+
+			}
+
+			function compile() {
+			
+				if (!gl) {
+				
+					if (!getWebGL) {
+					
+						getWebGL = true;
+						compileButton.addEventListener( 'click', function ( event ) {
+
+							document.location = 'http://get.webgl.org/';
+
+						}, false );
+						compileButton.title = 'http://get.webgl.org/';
+						compileButton.style.color = '#ff0000';
+						compileButton.textContent = 'WebGL not supported!';
+						set_save_button('hidden');
+						
+					}
+					return;
+					
+				}
+
+				var program = gl.createProgram();
+				var fragment = code.getValue();
+				var vertex = document.getElementById( 'surfaceVertexShader' ).textContent;
+
+				var vs = createShader( vertex, gl.VERTEX_SHADER );
+				var fs = createShader( fragment, gl.FRAGMENT_SHADER );
+
+				if ( vs == null || fs == null ) return null;
+
+				gl.attachShader( program, vs );
+				gl.attachShader( program, fs );
+
+				gl.deleteShader( vs );
+				gl.deleteShader( fs );
+
+				gl.linkProgram( program );
+
+				if ( !gl.getProgramParameter( program, gl.LINK_STATUS ) ) {
+
+					var error = gl.getProgramInfoLog( program );
+
+					compileButton.title = error;
+					console.error( error );
+
+					console.error( 'VALIDATE_STATUS: ' + gl.getProgramParameter( program, gl.VALIDATE_STATUS ), 'ERROR: ' + gl.getError() );
+					compileButton.style.color = '#ff0000';
+					compileButton.textContent = 'compiled with errors';
+
+					set_save_button('hidden');
+
+					return;
+
+				}
+
+				if ( currentProgram ) {
+
+					gl.deleteProgram( currentProgram );
+					setURL( fragment );
+
+				}
+
+				currentProgram = program;
+
+				compileButton.style.color = '#00ff00';
+				compileButton.textContent = 'compiled succesfully';
+
+				set_save_button('visible');
+
+				panButton.style.display = (fragment.indexOf('varying vec2 surfacePosition;') >= 0) ? 'inline' : 'none';
+
+				// Cache uniforms
+
+				cacheUniformLocation( program, 'time' );
+				cacheUniformLocation( program, 'mouse' );
+				cacheUniformLocation( program, 'resolution' );
+				cacheUniformLocation( program, 'backbuffer' );
+				cacheUniformLocation( program, 'surfaceSize' );
+
+				// Load program into GPU
+
+				gl.useProgram( currentProgram );
+
+				// Set up buffers
+
+				surface.positionAttribute = gl.getAttribLocation(currentProgram, "surfacePosAttrib");
+				gl.enableVertexAttribArray(surface.positionAttribute);
+
+				vertexPosition = gl.getAttribLocation(currentProgram, "position");
+				gl.enableVertexAttribArray( vertexPosition );
+
+			}
+
+			function compileScreenProgram() {
+			
+				if (!gl) { return; }
+
+				var program = gl.createProgram();
+				var fragment = document.getElementById( 'fragmentShader' ).textContent;
+				var vertex = document.getElementById( 'vertexShader' ).textContent;
+
+				var vs = createShader( vertex, gl.VERTEX_SHADER );
+				var fs = createShader( fragment, gl.FRAGMENT_SHADER );
+
+				gl.attachShader( program, vs );
+				gl.attachShader( program, fs );
+
+				gl.deleteShader( vs );
+				gl.deleteShader( fs );
+
+				gl.linkProgram( program );
+
+				if ( !gl.getProgramParameter( program, gl.LINK_STATUS ) ) {
+
+					console.error( 'VALIDATE_STATUS: ' + gl.getProgramParameter( program, gl.VALIDATE_STATUS ), 'ERROR: ' + gl.getError() );
+
+					return;
+
+				}
+
+				screenProgram = program;
+
+				gl.useProgram( screenProgram );
+
+				cacheUniformLocation( program, 'resolution' );
+				cacheUniformLocation( program, 'texture' );
+
+				screenVertexPosition = gl.getAttribLocation(screenProgram, "position");
+				gl.enableVertexAttribArray( screenVertexPosition );
+
+			}
+
+			function cacheUniformLocation( program, label ) {
+
+				if ( program.uniformsCache === undefined ) {
+
+					program.uniformsCache = {};
+
+				}
+
+				program.uniformsCache[ label ] = gl.getUniformLocation( program, label );
+
+			}
+
+			//
+
+			function createTarget( width, height ) {
+
+				var target = {};
+
+				target.framebuffer = gl.createFramebuffer();
+				target.renderbuffer = gl.createRenderbuffer();
+				target.texture = gl.createTexture();
+
+				// set up framebuffer
+
+				gl.bindTexture( gl.TEXTURE_2D, target.texture );
+				gl.texImage2D( gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null );
+
+				gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE );
+				gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE );
+
+				gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST );
+				gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST );
+
+				gl.bindFramebuffer( gl.FRAMEBUFFER, target.framebuffer );
+				gl.framebufferTexture2D( gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, target.texture, 0 );
+
+				// set up renderbuffer
+
+				gl.bindRenderbuffer( gl.RENDERBUFFER, target.renderbuffer );
+
+				gl.renderbufferStorage( gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, width, height );
+				gl.framebufferRenderbuffer( gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, target.renderbuffer );
+
+				// clean up
+
+				gl.bindTexture( gl.TEXTURE_2D, null );
+				gl.bindRenderbuffer( gl.RENDERBUFFER, null );
+				gl.bindFramebuffer( gl.FRAMEBUFFER, null);
+
+				return target;
+
+			}
+
+			function createRenderTargets() {
+
+				frontTarget = createTarget( parameters.screenWidth, parameters.screenHeight );
+				backTarget = createTarget( parameters.screenWidth, parameters.screenHeight );
+
+			}
+
+			//
+
+			var dummyFunction = function() {};
+
+
+			//
+			
+			function htmlEncode(str){
+
+				return String(str)
+					.replace(/&/g, '&amp;')
+					.replace(/"/g, '&quot;')
+					.replace(/'/g, '&#39;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;');
+
+			}
+
+			//
+
+			function createShader( src, type ) {
+			
+				var shader = gl.createShader( type );
+				var line, lineNum, lineError, index = 0, indexEnd;
+
+				while (errorLines.length > 0) {
+					line = errorLines.pop();
+					code.setLineClass(line, null);
+					code.clearMarker(line);
+				}
+
+				gl.shaderSource( shader, src );
+				gl.compileShader( shader );
+
+				compileButton.title = '';
+
+				if ( !gl.getShaderParameter( shader, gl.COMPILE_STATUS ) ) {
+
+					var error = gl.getShaderInfoLog( shader );
+					
+					// Remove trailing linefeed, for FireFox's benefit.
+					while ((error.length > 1) && (error.charCodeAt(error.length - 1) < 32)) {
+						error = error.substring(0, error.length - 1);
+					}
+
+					compileButton.title = error;
+					console.error( error );
+
+					compileButton.style.color = '#ff0000';
+					compileButton.textContent = 'compiled with errors';
+
+					set_save_button('hidden');
+
+					while (index >= 0) {
+						index = error.indexOf("ERROR: 0:", index);
+						if (index < 0) { break; }
+						index += 9;
+						indexEnd = error.indexOf(':', index);
+						if (indexEnd > index) {
+							lineNum = parseInt(error.substring(index, indexEnd));
+							index = indexEnd + 1;
+							indexEnd = error.indexOf("ERROR: 0:", index);
+							lineError = htmlEncode((indexEnd > index) ? error.substring(index, indexEnd) : error.substring(index));
+							line = code.setMarker(lineNum - 1, '<abbr title="' + lineError + '">' + lineNum + '</abbr>', "errorMarker");
+							code.setLineClass(line, "errorLine");
+							errorLines.push(line);
+						}
+					}
+
+					return null;
+
+				}
+
+				return shader;
+
+			}
+
+			//
+
+			function onWindowResize( event ) {
+
+				var isMaxWidth = ((resizer.currentWidth === resizer.maxWidth) || (resizer.currentWidth === resizer.minWidth)),
+					isMaxHeight = ((resizer.currentHeight === resizer.maxHeight) || (resizer.currentHeight === resizer.minHeight));
+
+				toolbar.style.width = window.innerWidth - 47 + 'px';
+
+				resizer.isResizing = false;
+				resizer.maxWidth = window.innerWidth - 75;
+				resizer.maxHeight = window.innerHeight - 125;
+				if (isMaxWidth || (resizer.currentWidth > resizer.maxWidth)) {
+					resizer.currentWidth = resizer.maxWidth;
+				}
+				if (isMaxHeight || (resizer.currentHeight > resizer.maxHeight)) {
+					resizer.currentHeight = resizer.maxHeight;
+				}
+				if (resizer.currentWidth < resizer.minWidth) { resizer.currentWidth = resizer.minWidth; }
+				if (resizer.currentHeight < resizer.minHeight) { resizer.currentHeight = resizer.minHeight; }
+
+				code.getWrapperElement().style.top = '75px';
+				code.getWrapperElement().style.left = '25px';
+				code.getWrapperElement().style.width = resizer.currentWidth + 'px';
+				code.getWrapperElement().style.height = resizer.currentHeight + 'px';
+
+				canvas.width = window.innerWidth / quality;
+				canvas.height = window.innerHeight / quality;
+
+				canvas.style.width = window.innerWidth + 'px';
+				canvas.style.height = window.innerHeight + 'px';
+
+				parameters.screenWidth = canvas.width;
+				parameters.screenHeight = canvas.height;
+
+				computeSurfaceCorners();
+
+				if (gl) {
+				
+					gl.viewport( 0, 0, canvas.width, canvas.height );
+
+					createRenderTargets();
+					
+				}
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+			function render() {
+
+				if ( !currentProgram ) return;
+
+				parameters.time = Date.now() - parameters.startTime;
+
+				// Set uniforms for custom shader
+
+				gl.useProgram( currentProgram );
+
+				gl.uniform1f( currentProgram.uniformsCache[ 'time' ], parameters.time / 1000 );
+				gl.uniform2f( currentProgram.uniformsCache[ 'mouse' ], parameters.mouseX, parameters.mouseY );
+				gl.uniform2f( currentProgram.uniformsCache[ 'resolution' ], parameters.screenWidth, parameters.screenHeight );
+				gl.uniform1i( currentProgram.uniformsCache[ 'backbuffer' ], 0 );
+				gl.uniform2f( currentProgram.uniformsCache[ 'surfaceSize' ], surface.width, surface.height );
+
+				gl.bindBuffer( gl.ARRAY_BUFFER, surface.buffer );
+				gl.vertexAttribPointer( surface.positionAttribute, 2, gl.FLOAT, false, 0, 0 );
+				
+				gl.bindBuffer( gl.ARRAY_BUFFER, buffer );
+				gl.vertexAttribPointer( vertexPosition, 2, gl.FLOAT, false, 0, 0 );
+
+				gl.activeTexture( gl.TEXTURE0 );
+				gl.bindTexture( gl.TEXTURE_2D, backTarget.texture );
+
+				// Render custom shader to front buffer
+
+				gl.bindFramebuffer( gl.FRAMEBUFFER, frontTarget.framebuffer );
+
+				gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
+				gl.drawArrays( gl.TRIANGLES, 0, 6 );
+
+				// Set uniforms for screen shader
+
+				gl.useProgram( screenProgram );
+
+				gl.uniform2f( screenProgram.uniformsCache[ 'resolution' ], parameters.screenWidth, parameters.screenHeight );
+				gl.uniform1i( screenProgram.uniformsCache[ 'texture' ], 1 );
+
+				gl.bindBuffer( gl.ARRAY_BUFFER, buffer );
+				gl.vertexAttribPointer( screenVertexPosition, 2, gl.FLOAT, false, 0, 0 );
+				
+				gl.activeTexture( gl.TEXTURE1 );
+				gl.bindTexture( gl.TEXTURE_2D, frontTarget.texture );
+
+				// Render front buffer to screen
+
+				gl.bindFramebuffer( gl.FRAMEBUFFER, null );
+
+				gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
+				gl.drawArrays( gl.TRIANGLES, 0, 6 );
+
+				// Swap buffers
+
+				var tmp = frontTarget;
+				frontTarget = backTarget;
+				backTarget = tmp;
+
+			}
+
+		</script>
+
+	</body>
+</html>

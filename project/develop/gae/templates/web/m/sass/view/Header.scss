@@ -1,0 +1,51 @@
+header.global
+{
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	z-index: 999;
+
+	.items.group
+	{
+		margin: $headerMargin $headerMargin;
+	}
+
+	.items.group.left
+	{
+		position: absolute;
+		left: 0px;
+	}
+
+	.items.group.middle
+	{
+		position: absolute;
+		left: 50%;
+	}
+
+	.items.group.right
+	{
+		position: absolute;
+		right: 0px;
+	}
+
+	&.extended
+	{
+		.items.group.middle
+		{
+			margin-left: -29px;
+		}
+	}
+
+	&.simple
+	{
+		.scroll-up
+		{
+			position: absolute;
+			left: 50%;
+			margin-left: -7px;
+			margin-top: 8px;
+			height: 14px;
+			opacity: 1;
+		}
+	}
+}

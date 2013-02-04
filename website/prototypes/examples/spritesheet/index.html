@@ -1,0 +1,152 @@
+<!-- 
+     - What is "real"? How do you define "real"? 
+     - Welcome to the Matrix Neo
+ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="http://silviopaganini.github.com/bnkr/html/boilerplate/defaults/css/normalize.css">
+        <style type="text/css">
+        body{width:100%; height:100%;background-color: #000;}
+        div{float: left; margin-right: 20px;}
+        </style>
+
+        <script src="https://raw.github.com/unit9/bnkr/master/html/boilerplate/defaults/vendors/jquery-1.8.2.min.js"></script>
+        <script>
+
+            /*
+
+              USAGE:
+
+              img = new SSAsset(
+              {
+                fullSize     : [512, 512]
+                x            : 0,
+                y            : 0,
+                width        : 100,
+                height       : 100,
+                image_1x_url : '/img/spritesheet_1x.png',
+                image_2x_url : '/img/spritesheet_1x.png'
+              },
+              $('.myDiv'));
+
+
+              CONSTRUCTOR
+
+                  asset:
+                    which asset ID on JSON
+                      {
+                        fullSize     : background image 1x dimensions Array [x,y]
+                        width        : asset width
+                        height       : asset height
+                        x            : x position of the asset on SpriteSheet
+                        y            : y position of the asset on SpriteSheet
+                        image_1x_url : background image 1x URL
+                        image_2x_url : background image 2x URL
+
+                      }
+
+                  div :
+                    jQuery reference to the target DIV
+
+            */
+        
+            var SSAsset = function (asset, div) {
+                var css, x, y, w, h;
+
+                // Divide the coordinates by 2 as retina devices have 2x density
+                x = Math.round(asset.x / 2);
+                y = Math.round(asset.y / 2);
+                w = Math.round(asset.width / 2);
+                h = Math.round(asset.height / 2);
+
+                // Create an Object to store CSS attributes
+                css = {
+                  width                : w,
+                  height               : h,
+                  'background-image'   : "url(" + asset.image_1x_url + ")",
+                  'background-size'    : "" + asset.fullSize[0] + "px " + asset.fullSize[1] + "px",
+                  'background-position': "-" + x + "px -" + y + "px"
+                };
+
+                // If retina devices
+
+                if (window.devicePixelRatio === 2) {
+
+                  /*
+                  set -webkit-image-set
+                  for 1x and 2x
+                  All the calculations of X, Y, WIDTH and HEIGHT is taken care by the browser
+                  */
+
+                  css['background-image'] = "-webkit-image-set(url(" + asset.image_1x_url + ") 1x, url(" + asset.image_2x_url + ") 2x)";
+
+                }
+
+                // Set the CSS to the DIV
+                div.css(css);
+              };
+           
+
+            $(document).ready(function(){
+
+                // [1790, 603, 122, 150]
+
+                logo = new SSAsset(
+                  {
+                    fullSize     : [1024, 1024],
+                    x            : 1790,
+                    y            : 603,
+                    width        : 122,
+                    height       : 150,
+                    image_1x_url : 'img/spritesheet_1x.png',
+                    image_2x_url : 'img/spritesheet_2x.png'
+                  },
+                  $('#logo'));
+
+                //[1790, 1069, 184, 98], 
+
+                google = new SSAsset(
+                  {
+                    fullSize     : [1024, 1024],
+                    x            : 1790,
+                    y            : 1069,
+                    width        : 184,
+                    height       : 98,
+                    image_1x_url : 'img/spritesheet_1x.png',
+                    image_2x_url : 'img/spritesheet_2x.png'
+                  },
+                  $('#google'));
+
+                // [1790, 927, 200, 90]
+
+                chrome = new SSAsset(
+                  {
+                    fullSize     : [1024, 1024],
+                    x            : 1790,
+                    y            : 927,
+                    width        : 200,
+                    height       : 90,
+                    image_1x_url : 'img/spritesheet_1x.png',
+                    image_2x_url : 'img/spritesheet_2x.png'
+                  },
+                  $('#chrome'));
+            });
+            
+
+        </script>
+        
+    </head>
+    <body>
+        <div id="logo"></div>
+        <div id="google"></div>
+        <div id="chrome"></div>
+    </body>
+</html>

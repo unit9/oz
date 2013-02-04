@@ -1,0 +1,140 @@
+BEGIN:VCALENDAR
+METHOD:PUBLISH
+VERSION:2.0
+X-WR-CALNAME:JetBlue
+PRODID:-//Apple Inc.//iCal 5.0.2//EN
+X-APPLE-CALENDAR-COLOR:#711A76
+X-WR-TIMEZONE:Europe/London
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+DTSTART:20070311T020000
+TZNAME:EDT
+TZOFFSETTO:-0400
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+DTSTART:20071104T020000
+TZNAME:EST
+TZOFFSETTO:-0500
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+CREATED:20120531T194731Z
+UID:23A9B6FC-D94E-4DBF-B0FD-254825C9B1C6
+URL;VALUE=URI:Jetblue.com/getawaywithit
+DTEND;TZID=America/New_York:20120620T153000
+TRANSP:OPAQUE
+SUMMARY:Get Away With It\, presented by JetBlue Getaways
+DTSTART;TZID=America/New_York:20120620T150000
+DTSTAMP:20120531T194804Z
+SEQUENCE:4
+DESCRIPTION:Presenting\, the first-ever live online game show hosted by 
+ Mark Hammerberg. Real people playing in real time to win* real jetBlue G
+ etaways vacation packages to the hottest destinations. From the white-sa
+ nds beaches of Cancun to the azure waters of Turks and Caicos. Sign up n
+ ow\, before the show!\n\n*NO PURCHASE NECESSARY. Enter Contest by: 6/22/
+ 12 at 5:00 p.m. ET. To enter and for Official Rules\, visit www.jetblue.
+ com/getawaywithit. Selected entrants only.
+BEGIN:VALARM
+X-WR-ALARMUID:C18BB003-2310-4961-A6BC-B344A964D916
+TRIGGER:-PT1H
+ATTACH;VALUE=URI:Basso
+ACTION:AUDIO
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20120531T194840Z
+UID:A434AF1F-874F-431E-9717-709406FE797A
+URL;VALUE=URI:Jetblue.com/getawaywithit
+DTEND;TZID=America/New_York:20120620T173000
+TRANSP:OPAQUE
+SUMMARY:Get Away With It\, presented by JetBlue Getaways
+DTSTART;TZID=America/New_York:20120620T170000
+DTSTAMP:20120531T194912Z
+SEQUENCE:4
+DESCRIPTION:Presenting\, the first-ever live online game show hosted by 
+ Mark Hammerberg. Real people playing in real time to win* real jetBlue G
+ etaways vacation packages to the hottest destinations. From the white-sa
+ nds beaches of Cancun to the azure waters of Turks and Caicos. Sign up n
+ ow\, before the show!\n\n*NO PURCHASE NECESSARY. Enter Contest by: 6/22/
+ 12 at 5:00 p.m. ET. To enter and for Official Rules\, visit www.jetblue.
+ com/getawaywithit. Selected entrants only.
+BEGIN:VALARM
+X-WR-ALARMUID:0BE89C83-A9DB-4BD1-A696-C87B95210FDF
+TRIGGER:-PT1H
+ATTACH;VALUE=URI:Basso
+ACTION:AUDIO
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20120531T194933Z
+UID:DE88D949-B3B1-4B37-909F-B3BDEFD224E9
+URL;VALUE=URI:Jetblue.com/getawaywithit
+DTEND;TZID=America/New_York:20120620T193000
+TRANSP:OPAQUE
+SUMMARY:Get Away With It\, presented by JetBlue Getaways
+DTSTART;TZID=America/New_York:20120620T190000
+DTSTAMP:20120531T195011Z
+SEQUENCE:4
+DESCRIPTION:Presenting\, the first-ever live online game show hosted by 
+ Mark Hammerberg. Real people playing in real time to win* real jetBlue G
+ etaways vacation packages to the hottest destinations. From the white-sa
+ nds beaches of Cancun to the azure waters of Turks and Caicos. Sign up n
+ ow\, before the show!\n\n*NO PURCHASE NECESSARY. Enter Contest by: 6/22/
+ 12 at 5:00 p.m. ET. To enter and for Official Rules\, visit www.jetblue.
+ com/getawaywithit. Selected entrants only.
+BEGIN:VALARM
+X-WR-ALARMUID:8D8BA353-A69C-4398-B231-846633BA1714
+TRIGGER:-PT1H
+ATTACH;VALUE=URI:Basso
+ACTION:AUDIO
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20120531T194546Z
+UID:701DDEF5-339E-4D61-867D-DFA25813A773
+URL;VALUE=URI:Jetblue.com/getawaywithit
+DTEND;TZID=America/New_York:20120620T103000
+TRANSP:OPAQUE
+SUMMARY:Get Away With It\, presented by JetBlue Getaways
+DTSTART;TZID=America/New_York:20120620T100000
+DTSTAMP:20120531T194615Z
+SEQUENCE:4
+DESCRIPTION:Presenting\, the first-ever live online game show hosted by 
+ Mark Hammerberg. Real people playing in real time to win* real jetBlue G
+ etaways vacation packages to the hottest destinations. From the white-sa
+ nds beaches of Cancun to the azure waters of Turks and Caicos. Sign up n
+ ow\, before the show!\n\n*NO PURCHASE NECESSARY. Enter Contest by: 6/22/
+ 12 at 5:00 p.m. ET. To enter and for Official Rules\, visit www.jetblue.
+ com/getawaywithit. Selected entrants only.
+BEGIN:VALARM
+X-WR-ALARMUID:8F2925BB-91FF-443F-8A51-A0DCAA70F3AE
+TRIGGER:-PT1H
+ATTACH;VALUE=URI:Basso
+ACTION:AUDIO
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20120531T194634Z
+UID:EF60AEF2-6119-4537-969E-A6216FB8F152
+URL;VALUE=URI:Jetblue.com/getawaywithit
+DTEND;TZID=America/New_York:20120620T123000
+TRANSP:OPAQUE
+SUMMARY:Get Away With It\, presented by JetBlue Getaways
+DTSTART;TZID=America/New_York:20120620T120000
+DTSTAMP:20120531T194705Z
+SEQUENCE:4
+DESCRIPTION:Presenting\, the first-ever live online game show hosted by 
+ Mark Hammerberg. Real people playing in real time to win* real jetBlue G
+ etaways vacation packages to the hottest destinations. From the white-sa
+ nds beaches of Cancun to the azure waters of Turks and Caicos. Sign up n
+ ow\, before the show!\n\n*NO PURCHASE NECESSARY. Enter Contest by: 6/22/
+ 12 at 5:00 p.m. ET. To enter and for Official Rules\, visit www.jetblue.
+ com/getawaywithit. Selected entrants only.
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,40 @@
+body {
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+	color		: #eee;
+	background-color: #fefefe;
+	font-family	: arial;
+	font-size	: 12px;
+}
+#loading
+{
+	position: absolute;
+    left: 50%;
+    top: 100px;
+    margin-left: -250px;
+    display: block;     
+}
+#infopanel {
+    left: 20px;
+    top: 20px;
+	font: 10px/1.2 Verdana, Arial, Helvetica, Sans-Serif;
+	position: absolute;
+	background: #000;
+	opacity: 0.8;
+	border-radius: 8px;
+	padding: 20px;
+	display: none;
+}
+#infobtn
+{
+	position: absolute;
+    left: 40px;
+    top: 40px;
+	display: none;
+}
+p a {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}

@@ -1,0 +1,191 @@
+<!-- 
+     - What is "real"? How do you define "real"? 
+     - Welcome to the Matrix Neo
+ -->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Oz | Credits</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="/css/normalise.css">
+        <style>
+
+            @font-face {
+              font-family: 'League_Gothic';
+              src: url('/css/League_Gothic-webfont.woff') format('woff'),
+                   url('/css/League_Gothic-webfont.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal; 
+            }
+
+            @font-face {
+              font-family: 'Univers';
+              src: url('/css/UniversLTStd-LightUltraCn.otf') format('opentype');
+              font-weight: normal;
+              font-style: normal; 
+            }
+
+            @font-face {
+              font-family: 'Futura_Bold';
+              src: url('/css/FUTUB___.ttf') format('truetype');
+              font-weight: normal;
+              font-style: normal; 
+            }
+
+            body{
+                -webkit-font-smoothing: antialiased !important;
+                -moz-font-smoothing: antialiased !important;
+                font-smoothing: antialiased;
+                font-smooth: always;
+
+                text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+
+                background: #000 url("/img/home/oz_landscape.jpg") no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+
+                font-family: 'League_Gothic';
+                overflow: hidden;
+                text-align: center;
+                overflow-y: auto;
+
+                text-transform: uppercase;
+            }
+
+            .credits
+            {
+                top:0;
+                left:0;
+                position: absolute;
+                background: rgba(0,0,0,.7);
+                color: #FFF;
+                width: 100%;
+            }
+
+            .credits .credits_container {
+            }
+            .credits .title {
+              font-family: "Univers";
+              font-size: 24px;
+              letter-spacing: 8px;
+              margin-bottom: 8px;
+              margin-top: 35px;
+              padding: 0;
+            }
+            .credits .person {
+              font-family: "Futura_Bold";
+              font-size: 9px;
+              letter-spacing: 3px;
+              margin-bottom: 12px;
+            }
+            .credits .person .space_credits {
+              width: 4%;
+              float: left;
+            }
+            .credits .person .role {
+              float: left;
+              text-align: right;
+              width: 48%;
+            }
+            .credits .person .name {
+              float: right;
+              text-align: left;
+              width: 48%;
+              opacity: 0.6;
+            }
+
+            .credits .header
+            {
+                font-size: 50px;
+                background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#cdcdcd));
+                background: -moz-gradient(linear, left top, left bottom, from(#FFF), to(#cdcdcd));
+
+                margin-top: 30px;
+
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
+        </style>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $.get('/js/data/credits.json').success(parse)
+        })
+
+        function parse (event){
+            console.log(event);
+            cont = $('.credits_container')
+
+            for(var n in event){
+                console.log();
+                cont.append(getPartner(event[n].title))
+
+                for(var a in event[n].names)
+                {
+                    cont.append(getPerson(event[n].names[a].role, event[n].names[a].name));
+                }
+
+            };
+        }
+        
+        function getPerson (role, name){
+
+            roleNode = ""
+            nameNode = $('<div class="name">'+name+'</div>')
+            node = $('<div class="person"><div class="space_credits"/><div class="clearfix"></div></div>')
+            node.prepend(nameNode)
+
+            if(role != ""){
+                roleNode = $('<div class="role">'+role+'</div>')
+                node.prepend(roleNode);
+            } else {
+                nameNode.css({
+                    'width': '100%',
+                    'text-align': 'center'
+                })
+            }
+
+            return node;
+        }
+
+        function getPartner (partner)
+        {
+            return $('<div class="title">'+partner+'</div>')
+        }
+
+        </script>
+        
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="credits">
+
+            <a href="http://findyourwaytooz.com" style="text-decoration:none;" target="_blank"><div class="header">FIND YOUR WAY TO OZ</div></a>
+
+            <div class="credits_container">
+
+            </div>
+
+            <div style="height:50px"></div>
+
+        </div>
+
+    </body>
+</html>

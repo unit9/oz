@@ -1,0 +1,464 @@
+$numOverlays: 6;
+
+.CutoutPage
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: black;
+
+	#userPhoto
+	{
+		position: absolute;
+	}
+
+	#uploadButton
+	{
+		position: absolute;
+		left: 50%;
+		top: 50%%;
+		margin-left: -22px;
+		margin-top: -22px;
+		z-index: 2;
+
+		input
+		{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			margin-left: -45px;
+			margin-top: -55px;
+			opacity: 0;
+		}
+	}
+	
+	#userPhotoCanvas
+	{
+		position: absolute;
+	}
+
+	#introOverlay
+	{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		display: none;
+
+		.dimmer
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0.64;
+		}
+
+		.container
+		{
+			position: absolute;
+			left: 50%;
+			bottom: 30px;
+			width: 100%;
+			margin-left: -50%;
+			margin-top: -140px;
+
+			.ornament-big-top, .ornament-big-bottom
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -47px;
+				margin-top: 6px;
+			}
+
+			.intro
+			{
+				@extend .text.tradegothic;
+				@extend .text.white;
+				font-size: 15px;
+				line-height: 19px;
+				letter-spacing: 1px;
+
+				margin-top: 10px;
+				margin-bottom: 8px;
+				text-align: center;
+			}
+		}
+	}
+
+	#introClickOverlay
+	{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 3;
+		display: none;
+	}
+
+	#cutoutOverlays
+	{
+		position: absolute;
+		width: 100% * ($numOverlays + 2);
+		height: 100%;
+		top: 0px;
+		margin-top: 0%;
+
+		.overlay
+		{
+			position: relative;
+			display: inline-block;
+			width: 100% / ($numOverlays + 2);
+			height: 100%;
+			background-position: 50% 50%;
+			background-size: cover;
+			float: left;
+		}
+
+		.render-fix
+		{
+			position: relative;
+			display: inline-block;
+			float: left;
+			background-color: black;
+			width: 	100% / ($numOverlays + 2);
+			height: 100%;
+		}
+
+		/*@include transition-property(-webkit-filter);
+		@include transition-duration(1s);*/
+
+		/*-webkit-filter: blur(0px);
+		
+		&.blurred
+		{
+			-webkit-filter: blur(6px);
+		}*/
+	}
+
+	#uploadingOverlay
+	{
+		display: none;
+
+		.dimmer
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0.3;
+		}
+
+		.preloaderContainer
+		{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 68px;
+			height: 77px;
+			margin-left: -34px;
+			margin-top: -38px;
+
+			.particles
+			{
+				position: absolute;
+			}
+
+			.spinnerContainer
+			{
+				position: absolute;
+				margin-left: 11px;
+				margin-top: 11px;
+
+				.asset
+				{
+					margin-left: 0px;
+				}
+			}
+
+			.text
+			{
+				@extend .text.tradegothic;
+				@extend .text.white;
+				@extend .text.medium;
+
+				width: 100%;
+				text-align: center;
+				margin-top: 28px;
+
+				.chrome &
+				{
+					display: none;
+				}
+			}
+		}
+	}
+
+	#repositionOverlay
+	{
+		display: none;
+
+		#photoFrame
+		{
+			position: absolute;
+			left: 50%;
+			top: 26%;
+			width: 400px;
+			height: 300px;
+
+			border: dotted 1px white;
+
+			.photo-corner
+			{
+				position: absolute;
+
+				&.left
+				{
+					left: 0px;
+					margin-left: -10px;
+				}
+
+				&.right
+				{
+					right: 0px;
+					margin-right: -10px;
+				}
+
+				&.top
+				{
+					top: 0px;
+					margin-top: -10px;
+				}
+
+				&.bottom
+				{
+					bottom: 0px;
+					margin-bottom: -10px;
+				}
+			}
+		}
+
+		#repositionPrompt
+		{
+			position: absolute;
+			left: 50%;
+			top: 80%;
+			width: 300px;
+			margin-left: -150px;
+			margin-top: -60px;
+			text-align: center;
+
+			@extend .text.tradegothic;
+			@extend .text.white;
+			font-size: 15px;
+			letter-spacing: 0px;
+
+			.ornament-big-bottom, .ornament-big-top
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -46px;
+			}
+
+			.ornament-big-top
+			{
+				margin-bottom: 12px;
+			}
+
+			.ornament-big-bottom
+			{
+				margin-top: 9px;
+			}
+		}
+
+		#repositionDoneButton
+		{
+			position: absolute;
+			left: 50%;
+			bottom: 32px;
+			margin-left: -55px;
+
+			&.edit
+			{
+				margin-left: -75px;
+			}
+		}
+
+		#reUploadButton
+		{
+			position: absolute;
+			left: 50%;
+			bottom: 31px;
+			margin-left: 43px;
+
+			input
+			{
+				position: absolute;
+				width: 32px;
+				height: 32px;
+				margin-left: 0px;
+				margin-top: -32px;
+				opacity: 0;
+			}
+		}
+	}
+
+	#redoButton
+	{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 100px;
+		margin-left: -60px;
+		margin-top: -9%;
+		height: 18%;
+		opacity: 0;
+	}
+
+	#cutoutShareButton
+	{
+		position: absolute;
+		left: 50%;
+		bottom: 73px;
+		margin-left: -55px;
+		display: none;
+	}
+
+	#cutoutEditButton
+	{
+		position: absolute;
+		left: 50%;
+		bottom: 32px;
+		margin-left: -55px;
+		display: none;
+	}
+
+	#sharingOverlay
+	{
+		display: none;
+
+		.dimmer
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0.5;
+		}
+
+		.content
+		{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 100%;
+			margin-left: -50%;
+			margin-top: -107px;
+
+			.ornament-big-top, .ornament-big-bottom
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -47px;
+			}
+
+			.ornament-big-bottom
+			{
+				margin-top: 20px;
+			}
+
+			.text
+			{
+				@extend .text.leaguegothic;
+				@extend .text.white;
+				@include text-gradient(#ffffff, #cccccc);
+				font-size: 35px;
+
+				display: block;
+				position: relative;
+				width: 100%;
+				text-align: center;
+				margin-top: 15px;
+			}
+
+			.text.expiry-warning
+			{
+				@extend .text.leaguegothic;
+				@extend .text.white;
+				@include text-gradient(#ffffff, #cccccc);
+				font-size: 12px;
+				letter-spacing: 1px;
+
+				position: relative;
+				width: 100%;
+				text-align: center;
+				margin-top: 4px;
+			}
+
+			.buttons
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -75px;
+				margin-top: 10px;
+				margin-bottom: 11px;
+
+				.button
+				{
+					margin-left: 1px;
+					margin-right: 1px;
+				}
+			}
+
+			.inputContainer
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -75px;
+
+				.background
+				{
+					position: absolute;
+				}
+
+				.icon
+				{
+					position: absolute;
+					margin-left: 16px;
+					margin-top: 9px;
+				}
+
+				#shareLinkInput
+				{
+					position: relative;
+					width: 102px;
+					height: 18px;
+					margin-left: 34px;
+					margin-top: 9px;
+					padding: 0;
+					text-align: left;
+					background: none;
+					border: none;
+
+					@extend .text.tradegothic;
+					@extend .text.white;
+					font-size: 14px;
+
+					.android &
+					{
+						padding-top: 1px;
+						margin-top: 11px;
+					}
+				}
+			}
+		}
+
+		#shareCloseButton
+		{
+			position: absolute;
+			left: 50%;
+			bottom: 32px;
+			margin-left: -55px;
+		}
+	}
+}

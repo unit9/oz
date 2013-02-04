@@ -1,0 +1,1723 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"target",
+				"targetPosition"
+			],
+			[
+				"Audio",
+				"AudioManager"
+			],
+			[
+				"render",
+				"renderTarget"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"add",
+				"add"
+			],
+			[
+				"loa",
+				"loadingPhase"
+			],
+			[
+				"total",
+				"totalLoadingPhases"
+			],
+			[
+				"progress",
+				"progressCallback"
+			],
+			[
+				"inner",
+				"innerWidth"
+			],
+			[
+				"sky",
+				"skyCube"
+			],
+			[
+				"flip",
+				"flipY"
+			],
+			[
+				"iflme",
+				"iflmesh"
+			],
+			[
+				"convertma",
+				"convertMaterial"
+			],
+			[
+				"index",
+				"indexBuffer"
+			],
+			[
+				"uv",
+				"uvs"
+			],
+			[
+				"colo",
+				"color_length"
+			],
+			[
+				"color",
+				"colors"
+			],
+			[
+				"norma",
+				"normals"
+			],
+			[
+				"subme",
+				"subMeshes"
+			],
+			[
+				"geom",
+				"geometry"
+			],
+			[
+				"no",
+				"normals"
+			],
+			[
+				"mate",
+				"materials"
+			],
+			[
+				"ligh",
+				"lightex"
+			],
+			[
+				"light",
+				"lightMap"
+			],
+			[
+				"materia",
+				"materialManager"
+			],
+			[
+				"opo",
+				"oPositionViewProj"
+			],
+			[
+				"frag",
+				"fragColorB"
+			],
+			[
+				"terra",
+				"terrainLoader"
+			],
+			[
+				"decomp",
+				"decompressLibrary"
+			],
+			[
+				"gett",
+				"getTime"
+			],
+			[
+				"fog",
+				"foggeom"
+			],
+			[
+				"rende",
+				"renderModel"
+			],
+			[
+				"ao",
+				"aotex"
+			],
+			[
+				"shadowmap",
+				"shadowMapEnabled"
+			],
+			[
+				"tree",
+				"tree"
+			],
+			[
+				"dep",
+				"depthTest"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"plante",
+				"plantedTrees"
+			],
+			[
+				"geo",
+				"geometry"
+			],
+			[
+				"VEctor",
+				"Vector3"
+			],
+			[
+				"gette",
+				"getTerrainSimpleMaterial"
+			],
+			[
+				"Vector",
+				"Vector3"
+			],
+			[
+				"enable",
+				"enableDiffuseR"
+			],
+			[
+				"fra",
+				"fragColor"
+			],
+			[
+				"enableDi",
+				"enableDiffuseB"
+			],
+			[
+				"chi",
+				"children"
+			],
+			[
+				"gl_fra",
+				"gl_fragColor1"
+			],
+			[
+				"color_le",
+				"color_length"
+			],
+			[
+				"clo",
+				"color_length"
+			],
+			[
+				"ifl",
+				"iflscene"
+			],
+			[
+				"cas",
+				"castShadow"
+			],
+			[
+				"height",
+				"heightMap"
+			],
+			[
+				"obje",
+				"objectTable"
+			],
+			[
+				"tra",
+				"traitTable"
+			],
+			[
+				"float64cac",
+				"float64CacheParseInt"
+			],
+			[
+				"float64CacheS",
+				"float64CacheS12"
+			],
+			[
+				"float64ca",
+				"float64CacheS3"
+			],
+			[
+				"float",
+				"float64CacheS3"
+			],
+			[
+				"otherpa",
+				"otherparent"
+			],
+			[
+				"prepend",
+				"prependNonJointParents"
+			],
+			[
+				"parent",
+				"parentmat"
+			],
+			[
+				"skel",
+				"skeletonJoint"
+			],
+			[
+				"get",
+				"getContent"
+			],
+			[
+				"find",
+				"findJointParent"
+			],
+			[
+				"floa",
+				"float64Cache"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"FAKE",
+				"fakeUV"
+			],
+			[
+				"on",
+				"onModelProgress"
+			],
+			[
+				"call",
+				"callbackProgress"
+			],
+			[
+				"model",
+				"modelsLoaded"
+			],
+			[
+				"IFLLi",
+				"IFLLibraryFuncs"
+			],
+			[
+				"getdata",
+				"getDataTexture"
+			],
+			[
+				"conve",
+				"convertTextureIndex"
+			],
+			[
+				"has",
+				"_hasOriginalByteArray"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"bindpo",
+				"bindpose"
+			],
+			[
+				"sub",
+				"subMeshes"
+			],
+			[
+				"face",
+				"faceMat"
+			],
+			[
+				"time",
+				"times"
+			],
+			[
+				"child",
+				"childID"
+			],
+			[
+				"joint",
+				"joints"
+			],
+			[
+				"skin",
+				"skinIndices"
+			],
+			[
+				"_conte",
+				"_contentByID"
+			],
+			[
+				"root",
+				"rootObject"
+			],
+			[
+				"trai",
+				"traitInfo"
+			],
+			[
+				"needtra",
+				"needTraitSnapshot"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"con",
+				"constructor"
+			],
+			[
+				"classa",
+				"classAlias"
+			],
+			[
+				"join",
+				"jointBindings"
+			],
+			[
+				"not",
+				"notNull"
+			],
+			[
+				"table",
+				"table-cell"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"bot",
+				"border-bottom"
+			],
+			[
+				"str",
+				"stringify"
+			],
+			[
+				"dis",
+				"disableButton"
+			],
+			[
+				"eve",
+				"events"
+			],
+			[
+				"app",
+				"approveTweet"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"fon",
+				"font-family"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"coun",
+				"counter3"
+			],
+			[
+				"counter",
+				"counter2"
+			],
+			[
+				"cou",
+				"counter1"
+			],
+			[
+				"count",
+				"counter1"
+			],
+			[
+				"current",
+				"current1"
+			],
+			[
+				"counte",
+				"counter3"
+			],
+			[
+				"par",
+				"parallax"
+			],
+			[
+				"scroll",
+				"scrollWatcher"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"visi",
+				"visibility	visibility: type"
+			],
+			[
+				"Fu",
+				"FuturaBT-Book"
+			],
+			[
+				"map",
+				"mapUrl"
+			],
+			[
+				"gro",
+				"groupId"
+			],
+			[
+				"image",
+				"imageCollection"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"PAGE_DG7_",
+				"PAGE_DG7_COLLECTION"
+			],
+			[
+				"group",
+				"groupId"
+			],
+			[
+				"las",
+				"lastIndexOf"
+			],
+			[
+				"lie",
+				"line-height"
+			],
+			[
+				"bac",
+				"background	background-color: name"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/www/index.html",
+			"settings":
+			{
+				"buffer_size": 1161,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/src/App.coffee",
+			"settings":
+			{
+				"buffer_size": 315,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/src/controllers/Mic.coffee",
+			"settings":
+			{
+				"buffer_size": 9838,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/toaster.coffee",
+			"settings":
+			{
+				"buffer_size": 875,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/www/css/main.css",
+			"settings":
+			{
+				"buffer_size": 6539,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Oz Compiler",
+	"command_palette":
+	{
+		"height": 71.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal pa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"fetc",
+				"Fetch"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"live",
+				"Package Control: Discover Packages"
+			],
+			[
+				"browser",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"open",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"brows",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"broweser",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"Fe",
+				"Fetch"
+			],
+			[
+				"fet",
+				"Fetch: Manage remote files"
+			],
+			[
+				"Fetc",
+				"Fetch: Manage remote files"
+			],
+			[
+				"synta",
+				"Set Syntax: HTML"
+			],
+			[
+				"live re",
+				"Package Control: Discover Packages"
+			],
+			[
+				"open ",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"Fet",
+				"Fetch"
+			],
+			[
+				"synphp",
+				"Set Syntax: PHP"
+			],
+			[
+				"syntax co",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"syco",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: prototype"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/toaster.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/cms/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/cms/www/template/templates.xml",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/misc_sound.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/www/js/lib/SoundJS-master/examples/PreloadAndPlay.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webgl360video/src/app.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/utils/preloader/AssetLoader.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/cms/www/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/model/AudioModel.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/www/js/lib/Three.FirstPersonControls.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/www/js/lib/THREEx.WindowResize.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/project/develop/coffee/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/project/develop/coffee/utils/BaseAssets.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/toaster.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/utils/audio/events/AudioManagerEvents.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/project/develop/coffee/AppView.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/cms/src/AppView.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/utils/preloader/events/PreloaderEvents.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/collection/AudioCollection.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/utils/singleton/Singleton.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioframework/src/utils/audio/AudioManager",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/SublimeOnSaveBuild.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/CakeFile",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/oz.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/funfair.sublime-project",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/SublimeOnSaveBuild/SublimeOnSaveBuild.sublime-settings",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/SublimeOnSaveBuild/README.md",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/CakeFile",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/oz.sublime-workspace",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/CoffeeScript.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/libs/workers.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/libs/PathControls.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/libs/ShaderExtras.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/app.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/camerapath.json",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/funfair.sublime-workspace",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/js/libs/EffectComposer.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/src/ifl/iflloader.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/_funfair/src/app.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/prototype_coffee/coffee/App.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/camerapath.json",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/SavePass.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/EffectComposer.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/CakeFile",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/FilmPass.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/workers.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/src/ifl/iflloader.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/src/app.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/index.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglmaterials/src/controllers/Scene3D.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglmaterials/src/App.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/jquery.min.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/ifl.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/funfair/js/libs/PathControls.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/toaster.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/src/App.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/src/controllers/Video3D.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/src/controllers/Cam.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/src/controllers/ShaderManager.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/src/ifl/iflloader.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderPhongColor.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderLambertColor.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/src/materialmanager.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/src/app.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/index.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/www/js/shaders/Vignette/Vignette.fs",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/www/js/shaders/Kaleidoscope/Kaleidoscope.vs",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/www/js/shaders/Kaleidoscope/Kaleidoscope.fs",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/webglshaders/www/js/shaders/Film/Film.fs",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/src/renderers/WebGLShaders.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderNormalColor.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/CakeFile",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderExtras.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderGrass.js",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_lod.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_buffergeometry.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/prototype/index.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_particles_dynamic.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_terrain_dynamic.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_particles_sprites.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_custom_attributes_particles.html",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/webgl_buffergeometry_particles.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/TerrainSplatShader.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/ShaderTerrain.js",
+		"/C/Users/daniele/Desktop/iFlash3D/trunk/website/tests/disney/index.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/audio/toaster.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/prototype2/index.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/libs/Detector.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/src/TerrainSplatShader.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/src/ifl/iflvertexattribute.coffee",
+		"/C/Users/daniele/Desktop/disney stuff/mrdoob-three.js-1f17717/examples/misc_camera_fly.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/app/app.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/js/app.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/balloon/baloon.sublime-project",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/ifl.sublime-project",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/CakeFile",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/workers.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/iflloader.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/index.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/amf/bytearray.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/ifl.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/Stats.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/workers_console.coffee",
+		"/C/Users/daniele/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/daniele/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/Detector.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/iflparser.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/app/iflloader.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/ifllibrary.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/ifl.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/namespace.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/rawinflate.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/app.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/jpgworker.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/libs/jpg.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/inflateworker.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/js/inflateworker.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/iflworker.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/app/app.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/iflworker",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/ifl/iflsubmesh.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/coffee.html",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/src/amf/amf.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/prototype_coffee/coffee/main.coffee",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/threejs/loaders/IFLLoader.js",
+		"/C/Users/daniele/Desktop/disney/trunk/website/prototypes/ifl/ifl.sublime-workspace"
+	],
+	"find":
+	{
+		"height": 149.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/silviopaganini/Dropbox/Workspace/_Projects/HiRes/dg_watches/src/coffee",
+			"/Users/silviopaganini/Dropbox/Workspace/_Projects/HiRes/dg_watches/",
+			"/Users/silviopaganini/Dropbox/Workspace/_Projects/HiRes/dg_watches/src",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"'A'",
+			"frequencies",
+			"display.draw",
+			"Infinity",
+			"note",
+			"frequencies",
+			"update",
+			"this.mouseX",
+			"this.theta",
+			"moveForward",
+			"this.object",
+			"spawn",
+			"build",
+			"CakeFile",
+			"show_open_files",
+			"]",
+			", ",
+			"[",
+			"]",
+			", ",
+			"[",
+			"composer",
+			"renderTarget",
+			"controls",
+			"animationParent",
+			"dstRange",
+			"debugPath",
+			"createPath",
+			"fileSize",
+			"progressCallback",
+			"progress",
+			"inflate",
+			"renderTarget",
+			"skyLoader",
+			"terrainLoader",
+			"readByte",
+			"tangen",
+			"convertte",
+			"geom",
+			"color_length",
+			"aout",
+			"zip_inflate_internal",
+			", 0",
+			"cast",
+			"lights:",
+			"envmap_fragment",
+			"vUv2",
+			"lightmap_fragment",
+			"lambert",
+			"specularmap_fragment",
+			"onModelProgress",
+			"terrainLoader",
+			"loadTexture",
+			"fog",
+			"foggeom",
+			"ground",
+			"depth",
+			"initSky",
+			"cube",
+			"foggeom",
+			"mesh",
+			"ismorph",
+			"isSkinnedMesh",
+			"isMorphMesh",
+			"k",
+			"trees",
+			"@xhr",
+			"callback",
+			"[0...",
+			"innerWidth",
+			"initComposer",
+			"initPostprocessingRenderTargets",
+			"depth",
+			"clear",
+			"stenc",
+			"bloom",
+			"screen",
+			"width",
+			"wid",
+			"width",
+			"composer",
+			"cast",
+			"rotation",
+			"trees",
+			"specular",
+			"normal",
+			"color_",
+			"enableDiffuseR",
+			"specula",
+			"interse",
+			"ray",
+			"buffer",
+			"uOpacity",
+			"refract",
+			"enableDiffuse",
+			"uNormalScale",
+			"useRefract",
+			"time",
+			"onCreatureShaderChange",
+			"tcube",
+			"getTerrainTexture",
+			"splat",
+			"tAO",
+			"udispla",
+			"tDIspla",
+			"VERTEX_TEXTURES",
+			"tDisplacement",
+			"uDisplacementBias",
+			"uDisplacementScale",
+			"enableDisplacement",
+			"uDisplacementScale",
+			"fog",
+			"tspecula",
+			"normalscale",
+			"displa",
+			"normalTex",
+			"tnormal",
+			"specularTex",
+			"tspecular",
+			"wrap",
+			"distance",
+			"shadows",
+			"renderer.sha",
+			"directiona",
+			"and",
+			"&",
+			"true",
+			"wrap"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\"]",
+			"\", \"",
+			"[\"",
+			"\"]",
+			"\", \"",
+			"[\"",
+			"geometry",
+			", 3",
+			"textureLoader",
+			"cloudsGeometry",
+			"isSkinnedMesh",
+			"xhr",
+			"",
+			"IFLParser.setKnownClass",
+			"#",
+			"object",
+			"",
+			":",
+			"",
+			"@",
+			"then return ",
+			"amf",
+			"",
+			"'",
+			".mp4",
+			"",
+			"video",
+			"MAX_LENGTH",
+			"twitter_chars.swf",
+			"",
+			"'${sitePath}${assetsPath}",
+			"\"${sitePath}${assetsPath}",
+			"${sitePath}${assetsPath}",
+			"params.imgPath  = \"images/groups/\" + group_id",
+			"params.imgPath  = \"images\"",
+			"params.imgPath  = \"\"",
+			"{{*=",
+			"{{=",
+			"}}",
+			"{{",
+			"",
+			"about",
+			"<title><![CDATA[D&amp;G Watches]]></title>"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/www/index.html",
+					"settings":
+					{
+						"buffer_size": 1161,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1022,
+								1022
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/src/App.coffee",
+					"settings":
+					{
+						"buffer_size": 315,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								315,
+								315
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/src/controllers/Mic.coffee",
+					"settings":
+					{
+						"buffer_size": 9838,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2612,
+								2612
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/toaster.coffee",
+					"settings":
+					{
+						"buffer_size": 875,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								605,
+								605
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audiowhistle/www/css/main.css",
+					"settings":
+					{
+						"buffer_size": 6539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2690,
+								2690
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1713.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 27.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.coffeecompile_output":
+	{
+		"height": 193.0
+	},
+	"output.exec":
+	{
+		"height": 210.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"rout",
+				"js/router.js"
+			],
+			[
+				"indes",
+				"bin/index.jsp"
+			],
+			[
+				"inde",
+				"bin/index.php"
+			],
+			[
+				"light",
+				"src/coffee/view/component/lights/LightImageChild.coffee"
+			],
+			[
+				"image",
+				"src/coffee/view/component/lights/LightImage.coffee"
+			],
+			[
+				"wrapp",
+				"src/coffee/view/wrapper/WrapperView.coffee"
+			],
+			[
+				"touch",
+				"src/coffee/utils/TouchWatcher.coffee"
+			],
+			[
+				"appvi",
+				"src/coffee/view/AppView.coffee"
+			],
+			[
+				"header",
+				"src/coffee/view/header/HeaderView.coffee"
+			],
+			[
+				"scro",
+				"src/coffee/utils/ScrollWatcher.coffee"
+			],
+			[
+				"wrap",
+				"src/coffee/view/wrapper/WrapperView.coffee"
+			],
+			[
+				"scrol",
+				"src/coffee/utils/ScrollWatcher.coffee"
+			],
+			[
+				"ligh",
+				"src/coffee/model/LightModel.coffee"
+			],
+			[
+				"it",
+				"bin/xml/it.xml"
+			],
+			[
+				"en",
+				"bin/xml/en.xml"
+			],
+			[
+				"xml",
+				"src/coffee/collection/XML.coffee"
+			],
+			[
+				"video",
+				"src/coffee/view/layout/video/VideoLayout.coffee"
+			],
+			[
+				"sty",
+				"bin/css/style.css"
+			],
+			[
+				"style",
+				"bin/css/style.css"
+			],
+			[
+				"wrapper",
+				"src/coffee/view/wrapper/WrapperView.coffee"
+			],
+			[
+				"app",
+				"src/coffee/App.coffee"
+			],
+			[
+				"her",
+				"src/coffee/view/layout/hero/HeroLayout.coffee"
+			],
+			[
+				"styl",
+				"bin/css/style.css"
+			],
+			[
+				"zoo",
+				"src/coffee/view/zoom/ZoomOverlay.coffee"
+			],
+			[
+				"menu",
+				"src/coffee/view/header/MenuBlock.coffee"
+			],
+			[
+				"he",
+				"src/coffee/view/header/HeaderView.coffee"
+			],
+			[
+				"coll",
+				"src/coffee/view/layout/collection/CollectionLayout.coffee"
+			],
+			[
+				"colle",
+				"src/coffee/view/layout/collection/CollectionLayout.coffee"
+			],
+			[
+				"ind",
+				"bin/index.php"
+			],
+			[
+				"abs",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"appro",
+				"src/coffee/router/AppRouter.coffee"
+			],
+			[
+				"group",
+				"src/coffee/collection/GroupCollection.coffee"
+			],
+			[
+				"pagemo",
+				"src/coffee/model/PageModel.coffee"
+			],
+			[
+				"pa",
+				"src/coffee/collection/PageCollection.coffee"
+			],
+			[
+				"pagem",
+				"src/coffee/model/PageModel.coffee"
+			],
+			[
+				"hero",
+				"src/coffee/view/layout/hero/HeroLayout.coffee"
+			],
+			[
+				"prod",
+				"src/coffee/collection/ProductCollection.coffee"
+			],
+			[
+				"wraper",
+				"src/coffee/view/wrapper/WrapperView.coffee"
+			],
+			[
+				"hea",
+				"src/coffee/view/header/HeaderView.coffee"
+			],
+			[
+				"pro",
+				"src/coffee/collection/ProductCollection.coffee"
+			],
+			[
+				"produ",
+				"src/coffee/collection/ProductCollection.coffee"
+			],
+			[
+				"index",
+				"bin/index.php"
+			],
+			[
+				"abstra",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"abst",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"abstr",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"appview",
+				"src/coffee/view/AppView.coffee"
+			],
+			[
+				"appv",
+				"src/coffee/view/AppView.coffee"
+			],
+			[
+				"zoom",
+				"src/coffee/view/zoom/ZoomOverlay.coffee"
+			],
+			[
+				"abtrs",
+				"src/flash/com/dg/watches/view/AbstractButtonView.as"
+			],
+			[
+				"abstrac",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"store",
+				"src/coffee/view/stores/StoresView.coffee"
+			],
+			[
+				"a",
+				"src/coffee/view/AppView.coffee"
+			],
+			[
+				"apc",
+				"src/coffee/AppConfig.coffee"
+			],
+			[
+				"wrapperv",
+				"src/coffee/view/wrapper/WrapperView.coffee"
+			],
+			[
+				"appr",
+				"src/coffee/router/AppRouter.coffee"
+			],
+			[
+				"par",
+				"src/coffee/view/component/particles/ParticlesCanvas.coffee"
+			],
+			[
+				"labe",
+				"src/coffee/collection/LabelCollection.coffee"
+			],
+			[
+				"appc",
+				"src/coffee/AppConfig.coffee"
+			],
+			[
+				"appcon",
+				"src/coffee/AppConfig.coffee"
+			],
+			[
+				"categoryitem",
+				"src/coffee/view/layout/collection/CategoryItemView.coffee"
+			],
+			[
+				"cate",
+				"src/coffee/view/layout/collection/CategoryView.coffee"
+			],
+			[
+				"detail",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"head",
+				"src/coffee/view/header/HeaderView.coffee"
+			],
+			[
+				"app.",
+				"src/coffee/App.coffee"
+			],
+			[
+				"thum",
+				"src/coffee/view/layout/details/ThumbnailView.coffee"
+			],
+			[
+				"deta",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"det",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"appco",
+				"src/coffee/AppConfig.coffee"
+			],
+			[
+				"footer",
+				"src/coffee/view/footer/FooterView.coffee"
+			],
+			[
+				"foot",
+				"src/coffee/view/footer/FooterView.coffee"
+			],
+			[
+				"part",
+				"src/coffee/view/component/particles/Particle.coffee"
+			],
+			[
+				"particl",
+				"src/coffee/view/component/particles/ParticlesCanvas.coffee"
+			],
+			[
+				"ap",
+				"src/coffee/App.coffee"
+			],
+			[
+				"details",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"collec",
+				"src/coffee/view/layout/collection/CollectionLayout.coffee"
+			],
+			[
+				"styk",
+				"scripts/yuicompressor-2.4.6/src/org/mozilla/javascript/Token.java"
+			],
+			[
+				"page",
+				"src/coffee/collection/PageCollection.coffee"
+			],
+			[
+				"thumb",
+				"src/coffee/view/layout/details/ThumbnailView.coffee"
+			],
+			[
+				"detai",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"socia",
+				"src/coffee/utils/Social.coffee"
+			],
+			[
+				"styles",
+				"bin/css/webfonts/svg/style_569.svg"
+			],
+			[
+				"produc",
+				"src/coffee/view/layout/collection/ProductView.coffee"
+			],
+			[
+				"soci",
+				"src/coffee/utils/Social.coffee"
+			],
+			[
+				"flash",
+				"src/coffee/utils/FlashEventsWatcher.coffee"
+			],
+			[
+				"social",
+				"src/coffee/utils/Social.coffee"
+			],
+			[
+				"seo",
+				"bin/php/seo.php"
+			],
+			[
+				"styke",
+				"scripts/yuicompressor-2.4.6/src/org/mozilla/javascript/Token.java"
+			],
+			[
+				"vide",
+				"src/coffee/view/layout/video/VideoLayout.coffee"
+			],
+			[
+				"dta",
+				"src/coffee/view/layout/details/DetailsLayout.coffee"
+			],
+			[
+				"lighti",
+				"src/coffee/view/component/lights/LightImageChild.coffee"
+			],
+			[
+				"canv",
+				"src/coffee/view/component/particles/ParticlesCanvas.coffee"
+			],
+			[
+				"so",
+				"src/coffee/utils/Social.coffee"
+			],
+			[
+				"flas",
+				"src/coffee/utils/FlashEventsWatcher.coffee"
+			],
+			[
+				"partic",
+				"src/coffee/view/component/particles/ParticlesCanvas.coffee"
+			],
+			[
+				"vid",
+				"src/coffee/view/layout/video/VideoLayout.coffee"
+			],
+			[
+				"partc",
+				"src/coffee/view/component/particles/ParticlesCanvas.coffee"
+			],
+			[
+				"htm",
+				"src/coffee/view/component/video/Html5VideoView.coffee"
+			],
+			[
+				"scroll",
+				"src/coffee/utils/ScrollWatcher.coffee"
+			],
+			[
+				"stouhc",
+				"src/coffee/utils/TouchWatcher.coffee"
+			],
+			[
+				"scr",
+				"src/coffee/utils/ScrollWatcher.coffee"
+			],
+			[
+				"tou",
+				"src/coffee/utils/TouchWatcher.coffee"
+			],
+			[
+				"ab",
+				"src/coffee/view/layout/AbstractLayoutView.coffee"
+			],
+			[
+				"",
+				"bin/index.php"
+			],
+			[
+				"storemode",
+				"src/coffee/model/StoreModel.coffee"
+			],
+			[
+				"app.js",
+				"bin/js/app.js"
+			],
+			[
+				"productvi",
+				"src/coffee/view/layout/collection/ProductView.coffee"
+			],
+			[
+				"itemm",
+				"src/coffee/view/header/ItemMenu.coffee"
+			],
+			[
+				"index.p",
+				"bin/index.php"
+			],
+			[
+				"menubl",
+				"src/coffee/view/header/MenuBlock.coffee"
+			],
+			[
+				"router",
+				"src/coffee/router/AppRouter.coffee"
+			],
+			[
+				"apps",
+				"src/coffee/AppStatus.coffee"
+			],
+			[
+				"player",
+				"src/coffee/view/layout/video/PlayerLayout.coffee"
+			],
+			[
+				"appsta",
+				"src/coffee/AppStatus.coffee"
+			],
+			[
+				"playe",
+				"src/coffee/view/layout/video/PlayerLayout.coffee"
+			],
+			[
+				"i",
+				"bin/index.php"
+			],
+			[
+				"chanel_smal",
+				"bin/watches-finejewelry/_css/chanel_small.css"
+			],
+			[
+				"con",
+				"htdocs/config.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 321.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,146 @@
+<html>
+<body>
+<script src="http://j.maxmind.com/app/country.js" charset="ISO-8859-1" type="text/javascript"></script>
+<script>
+
+    code = geoip_country_code()
+
+    switch(code.toLowerCase())
+    {
+        case "fr":
+            top.location.href = "http://www.disney.fr/le-monde-fantastique-d-oz/"
+            break;
+
+        case "gb":
+            top.location.href = "http://www.disney.co.uk/oz-the-great-and-powerful/"
+            break;
+       
+        case "nl":
+            top.location.href = "http://www.disney.nl/oz/"
+            break;
+
+        case "pl":
+            top.location.href = "http://www.disney.pl/oz/"
+            break;
+
+        case "it":
+            top.location.href = "http://www.disney.it/il-grande-e-potente-oz/"
+            break;
+
+        case "cn":
+        case "in":
+        case "id":
+        case "kr":
+        case "ph":
+        case "sg":
+        case "tw":
+        case "vn":
+            top.location.href = "http://disney.com/ozthegreat"
+            break;
+
+        case "th":
+            top.location.href = "https://www.facebook.com/WaltDisneyThailand"
+            break;
+
+        case "hk":
+            top.location.href = "https://www.facebook.com/DisneyMovies.HongKong"
+            break;
+
+        case "my":
+            top.location.href = "https://www.facebook.com/WaltDisneyStudiosMY"
+            break;
+
+
+        case "jp":
+            top.location.href = "http://www.disney.co.jp/movies/oz-hajimari/"
+            break;
+
+        
+        case "de":
+        case "at":
+            top.location.href = "http://www.disney.de/oz"
+            break;
+
+
+
+        // EU 
+
+        case "ch":
+        case "al":
+        case "ae":
+        case "bh":
+        case "be":
+        case "ba":
+        case "bg":
+        case "cy":
+        case "cz":
+        case "dk":
+        case "ee":
+        case "eg":
+        case "fi":
+        case "in":
+        case "il":
+        case "gr":
+        case "hr":
+        case "ke":
+        case "hu":
+        case "ie":
+        case "lv":
+        case "lb":
+        case "lt":
+        case "lu":
+        case "mt":
+        case "qa":
+        case "no":
+        case "pt":
+        case "ro":
+        case "ru":
+        case "rs":
+        case "sk":
+        case "za":
+        case "si":
+        case "tr":
+        case "se":
+        case "ua":
+            top.location.href = "http://www.disney.co.uk/oz-the-great-and-powerful/"
+            break;
+
+        // LatAm
+        case 'ar':
+        case 'bo':
+        case 'cl':
+        case 'co':
+        case 'ec':
+        case 'mx':
+        case 'pa':
+        case 'py':
+        case 'pe':
+        case 'uy':
+        case 'tt':
+        case 've':
+            top.location.href = "http://www.disneylatino.com/es/peliculas/index.jsp"
+            break;
+
+        case 'br':
+            top.location.href = "http://www.disney.com.br/pt/filmes/index.jsp"
+            break;
+
+        case "au":
+        case "nz":
+            top.location.href = "http://disney.com.au/Oz"
+            break;            
+
+        case "us":
+        case "ca":
+        case "es":
+            top.location.href = "http://disney.com/ozthegreat"
+            break;
+
+        default: 
+            top.location.href = "http://disney.com/ozthegreat"
+            break;
+    }
+
+</script>
+</body>
+</html>

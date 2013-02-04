@@ -1,0 +1,8 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteRule (api|css|img|js|locale|m|prototypes|sounds|models|locTool|videos|preview)/(.*)$ $1/$2 [NC,L,QSA]
+RewriteRule ^(.*)$ index.html [NC,L]
+
+AddType application/x-font-woff .woff
+AddType font/opentype .otf

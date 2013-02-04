@@ -1,0 +1,54 @@
+$errorWidth: 300px;
+
+#error
+{
+	display: none;	
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 999999;
+
+	@include background-image(url($urlImagesSimple + 'background/background-error-2x.jpg'));
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	.content
+	{
+		position: absolute;
+		width: $errorWidth;
+		left: 50%;
+		top: 50%;
+		margin-left: -$errorWidth / 2;
+		margin-top: -180px;
+		text-align: center;
+
+		.decorative
+		{
+			margin: 0 auto;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+		p
+		{
+			@extend .text.tradegothic;
+			@extend .text.white;
+			font-size: 14px;
+			width: $errorWidth;
+		}
+	}
+
+	.buttons
+	{
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+		margin-left: -115px;
+
+		button
+		{
+			display: none;
+		}
+	}
+}

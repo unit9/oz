@@ -1,0 +1,19 @@
+namespace "amf"
+	Amf3Types: 
+		kUndefinedType:		0
+		kNullType:			1
+		kFalseType:			2
+		kTrueType:			3
+		kIntegerType:		4
+		kDoubleType:		5
+		kStringType:		6
+		kXMLType:			7
+		kDateType:			8
+		kArrayType:			9
+		kObjectType:		10
+		kAvmPlusXmlType:	11
+		kByteArrayType:		12
+		kVectorIntType:		13
+		kVectorUintType:	14
+		kVectorNumberType:	15
+		kVectorObjectType:	16

@@ -1,0 +1,377 @@
+{
+  "start_loading": [
+    "Landing Page",
+    "Auto",
+    "Start Loading"
+  ],
+  "finish_loading": [
+    "Landing Page",
+    "Auto",
+    "Finish Loading"
+  ],
+  "click_enter": [
+    "Landing Page",
+    "Interaction",
+    "enter"
+  ],
+  "click_chrome_logo": [
+    "Landing Page",
+    "Interaction",
+    "chrome_logo"
+  ],
+  "click_friends_google": [
+    "Landing Page",
+    "Interaction",
+    "friends_google"
+  ],
+  "pause": [
+    "Global",
+    "Auto",
+    "pause"
+  ],
+  "resume": [
+    "Global",
+    "Auto",
+    "resume"
+  ],
+  "menu_click_cutout": [
+    "Menu",
+    "Interaction",
+    "cutout"
+  ],
+  "menu_click_music": [
+    "Menu",
+    "Interaction",
+    "music"
+  ],
+  "menu_click_zoetrope": [
+    "Menu",
+    "Interaction",
+    "zoetrope"
+  ],
+  "menu_click_storm": [
+    "Menu",
+    "Interaction",
+    "storm"
+  ],
+  "menu_click_official": [
+    "Menu",
+    "External_Link",
+    "official site"
+  ],
+  "menu_click_mpaa": [
+    "Menu",
+    "External_Link",
+    "mpaa"
+  ],
+  "menu_click_tech": [
+    "Menu",
+    "External_Link",
+    "technology"
+  ],
+  "menu_click_credits": [
+    "Menu",
+    "Interaction",
+    "credits"
+  ],
+  "menu_click_terms": [
+    "Menu",
+    "External_Link",
+    "terms"
+  ],
+  "menu_click_privacy": [
+    "Menu",
+    "External_Link",
+    "privacy"
+  ],
+  "menu_click_toggle_sound": [
+    "Menu",
+    "Interaction",
+    "toggle Sound"
+  ],
+  "scene3D_1_enterPage": [
+    "Scene3D 1",
+    "Auto",
+    "enter page"
+  ],
+  "scene3D_1_title_cutout": [
+    "Scene3D 1",
+    "Interaction",
+    "Floating Title Cutout"
+  ],
+  "scene3D_1_title_music": [
+    "Scene3D 1",
+    "Interaction",
+    "Floating Title Music"
+  ],
+  "cutout_allow_camera": [
+    "Cutout",
+    "Interaction",
+    "allow camera"
+  ],
+  "cutout_deny_camera": [
+    "Cutout",
+    "Interaction",
+    "deny camera"
+  ],
+  "cutout_enter_page": [
+    "Cutout",
+    "Auto",
+    "enter page"
+  ],
+  "cutout_take_picture": [
+    "Cutout",
+    "Interaction",
+    "take picture"
+  ],
+  "cutout_change_camera": [
+    "Cutout",
+    "Interaction",
+    "change camera"
+  ],
+  "cutout_take_another": [
+    "Cutout",
+    "Interaction",
+    "take another"
+  ],
+  "cutout_click_share": [
+    "Cutout",
+    "Interaction",
+    "share popup"
+  ],
+  "cutout_open_preview": [
+    "Cutout",
+    "Interaction",
+    "open preview"
+  ],
+  "cutout_close_section": [
+    "Cutout",
+    "Interaction",
+    "close section"
+  ],
+  "cutout_share_twitter": [
+    "Cutout",
+    "share",
+    "twitter"
+  ],
+  "cutout_share_renren": [
+    "Cutout",
+    "share",
+    "renren"
+  ],
+  "cutout_share_weibo": [
+    "Cutout",
+    "share",
+    "weibo"
+  ],
+  "cutout_share_fb": [
+    "Cutout",
+    "share",
+    "facebook"
+  ],
+  "cutout_share_gplus": [
+    "Cutout",
+    "share",
+    "gplus"
+  ],
+  "zoe_allow_camera": [
+    "Zoetrope",
+    "Interaction",
+    "allow camera"
+  ],
+  "zoe_deny_camera": [
+    "Zoetrope",
+    "Interaction",
+    "deny camera"
+  ],
+  "zoe_enter_page": [
+    "Zoetrope",
+    "Auto",
+    "enter page"
+  ],
+  "zoe_click_record": [
+    "Zoetrope",
+    "Interaction",
+    "start record"
+  ],
+  "zoe_stop_record": [
+    "Zoetrope",
+    "Interaction",
+    "stop record"
+  ],
+  "zoe_replace_image": [
+    "Zoetrope",
+    "Interaction",
+    "replace image"
+  ],
+  "zoe_create_another": [
+    "Zoetrope",
+    "Interaction",
+    "create another"
+  ],
+  "zoe_share": [
+    "Zoetrope",
+    "Interaction",
+    "share popup"
+  ],
+  "zoe_share_twitter": [
+    "Zoetrope",
+    "share",
+    "twitter"
+  ],
+  "zoe_share_fb": [
+    "Zoetrope",
+    "share",
+    "facebook"
+  ],
+  "zoe_share_gplus": [
+    "Zoetrope",
+    "share",
+    "gplus"
+  ],
+  "zoe_share_renren": [
+    "Zoetrope",
+    "share",
+    "renren"
+  ],
+  "zoe_share_weibo": [
+    "Zoetrope",
+    "share",
+    "weibo"
+  ],
+  "zoe_open_preview": [
+    "Zoetrope",
+    "Interaction",
+    "open preview"
+  ],
+  "zoe_close_section": [
+    "Zoetrope",
+    "Interaction",
+    "close section"
+  ],
+  "music_enter_page": [
+    "Music",
+    "Auto",
+    "enter page"
+  ],
+  "music_click_note": [
+    "Music",
+    "Interaction",
+    "note"
+  ],
+  "music_close_section": [
+    "Music",
+    "Interaction",
+    "close section"
+  ],
+  "music_click_play": [
+    "Music",
+    "Interaction",
+    "play tune"
+  ],
+  "music_click_pause": [
+    "Music",
+    "Interaction",
+    "pause tune"
+  ],
+  "music_share": [
+    "Music",
+    "Interaction",
+    "share popup"
+  ],
+  "music_share_twitter": [
+    "Music",
+    "share",
+    "twitter"
+  ],
+  "music_share_fb": [
+    "Music",
+    "share",
+    "facebook"
+  ],
+  "music_share_gplus": [
+    "Music",
+    "share",
+    "gplus"
+  ],
+  "music_share_renren": [
+    "Music",
+    "share",
+    "renren"
+  ],
+  "music_share_weibo": [
+    "Music",
+    "share",
+    "weibo"
+  ],
+  "scene3D_2_enter_page": [
+    "Scene3D 2",
+    "Auto",
+    "enter page"
+  ],
+  "scene3D_2_title_zoe": [
+    "Scene3D 2",
+    "Interaction",
+    "Floating Title Zoetrope"
+  ],
+  "scene3D_3_enter_page": [
+    "Scene3D 3",
+    "Auto",
+    "enter page"
+  ],
+  "scene3D_3_title_storm": [
+    "Scene3D 3",
+    "Interaction",
+    "Floating Title Storm"
+  ],
+  "storm_enter_page": [
+    "Storm",
+    "Auto",
+    "enter page"
+  ],
+  "storm_allow_pointerLock": [
+    "Storm",
+    "Interaction",
+    "allow pointer lock"
+  ],
+  "storm_deny_pointerLock": [
+    "Storm",
+    "Interaction",
+    "deny pointer lock"
+  ],
+  "storm_end": [
+    "Storm",
+    "Auto",
+    "end storm"
+  ],
+  "transition_start_video": [
+    "Storm",
+    "Auto",
+    "start video"
+  ],
+  "transition_end_video": [
+    "Storm",
+    "Auto",
+    "end video"
+  ],
+  "transition_close": [
+    "Storm",
+    "Auto",
+    "close page"
+  ],
+  "payoff_enter_page": [
+    "Pay Off",
+    "Auto",
+    "enter page"
+  ],
+  "payoff_playagain": [
+    "Pay Off",
+    "Interaction",
+    "play again"
+  ],
+  "payoff_watch_trailer": [
+    "Pay Off",
+    "Interaction",
+    "Watch Trailer"
+  ]
+}

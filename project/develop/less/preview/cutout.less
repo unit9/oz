@@ -1,0 +1,82 @@
+@import url("default.css");
+
+@bodyColor: #000;
+@bodyFontColor: #fff;
+@buttonColor: #bab9ae;
+
+body {
+	background: @bodyColor url(../../img/preview/cutout_background.png) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	color: @bodyFontColor;
+	width: 100%;
+	overflow: hidden;
+}
+
+@-webkit-keyframes arrival
+{
+	0%   {
+		top: -100%;
+		-webkit-transform: rotate(-100deg) scale(.8);
+	}
+	100% {
+		top: 50%;
+		-webkit-transform: rotate(5deg) scale(.8);
+	}
+}
+
+@widthImageCutout : 438px;
+@heightImageCutout : 526px;
+
+.wrapper
+{
+
+	width: 100%;
+	height: 100%;
+
+	.imgAnim
+	{
+		-webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+		top: 50%;
+		-webkit-transform: rotate(5deg) scale(.8);
+
+		img 
+		{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		width: @widthImageCutout;
+		height: @heightImageCutout;
+
+		position: relative;
+		margin: 0 auto;
+
+		display: none;
+		-webkit-transition: opacity 1s linear;
+
+		margin-top: -250px;
+	}
+
+	.imgLoaded
+	{
+		width: @widthImageCutout;
+		margin: -20px 0;
+		-webkit-mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
+	}
+
+	.img {
+		display: block;
+		-webkit-animation: arrival 1.5s;
+	}
+}
+
+
+
+
+//General responsive rules
+@import url("responsive.css");
+
+
+
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]-->
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ OG_TITLE }}</title>
+        <meta name="description" content="Disney OZ">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet" href="/m/stylesheets/assets.css" />
+        <link rel="stylesheet" href="/m/stylesheets/screen.css" />
+
+        <script type="text/javascript" src="/m/javascripts/min/lib/poof.min.js" root="/m/javascripts/min/" suffix=".min.js" main="OzMobileApplication" concatenated="true" debug="false"></script>
+
+        <script>var googleAppEngineRuntime = '{{googleAppEngineRuntime}}' === 'true';</script>
+
+    </head>
+    
+    <body>
+        
+        <div id="error"></div>
+
+        <!-- detection helpers -->
+        <div id="detection">
+            <div class="detection tablet"></div>
+            <div class="detection retina"></div>
+            <div class="detection sprite-url preventload"></div>
+        </div>
+
+        <video id="video">
+            <source src="/m/videos/trailer.mp4" type="video/mp4" />
+        </video>
+
+        <!-- splash screen -->
+        <div id="splash"></div>
+        
+        <!-- main content -->
+        <div id="wrapper" class="carnival">
+        
+            <div id="preloader">
+                <div class="text tradegothic" style="display: none;"></div>
+                <div class="text leaguegothic" style="display: none;"></div>
+                <div class="text univers" style="display: none;"></div>
+                <div class="text futura" style="display: none;"></div>
+            </div>
+
+            <header id="headerExtended" class="global extended"></header>
+    
+            <header id="headerSimple" class="global simple"></header>
+
+            <div id="cutoutControls"></div>
+
+            <section id="page"></section>
+
+            <footer id="footerExtended" class="global extended"></footer>
+    
+            <footer id="footerSimple" class="global simple"></footer>
+
+            <div id="orientationPrompt" class="carnival"></div>
+
+        </div>
+
+    </body>
+</html>

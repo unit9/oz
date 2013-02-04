@@ -1,0 +1,87 @@
+<!-- 
+     - What is "real"? How do you define "real"? 
+     - Welcome to the Matrix Neo
+ -->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="http://silviopaganini.github.com/bnkr/html/boilerplate/defaults/bootstrap/css/bootstrap.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis:300,500,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://silviopaganini.github.com/bnkr/html/boilerplate/defaults/css/normalize.css">
+        <link rel="stylesheet" href="http://silviopaganini.github.com/bnkr/html/boilerplate/defaults/css/main.css">
+
+        <script src="https://raw.github.com/unit9/bnkr/master/html/boilerplate/defaults/vendors/jquery-1.8.2.min.js"></script>
+        <!--<script src="js/app.js"></script>-->
+
+        <style>
+            .menu
+            {
+            }
+
+        </style>
+
+        <script>
+        function share(url)
+        {
+            var url  = url,
+                w    = 600,
+                h    = 300,
+                left = ( screen.availWidth  - w ) >> 1,
+                top  = ( screen.availHeight - h ) >> 1
+
+            window.open(url, '', 'top='+top+',left='+left+',width='+w+',height='+h+',location=no,menubar=no')
+            
+        }
+
+        //<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fgoogle.com&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=315427381855401" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+
+        $(document).ready(function(){
+            $('#fb').attr('src', '//www.facebook.com/plugins/like.php?send=false&layout=button_count&href=' + document.location.origin)    
+        })
+
+        
+
+        </script>
+
+        <script type="text/javascript" charset="utf-8">
+            var p = [], w = 130, h = 24, lk = {url:'' || location.href, title:'' || document.title, description:'', image:''}; 
+            for (var i in lk) {p.push (i + '=' + encodeURIComponent(lk [i] ||'' ));} 
+            console.log(p)
+            document.write('<iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://www.connect.renren.com/like/v2?'+ p.join ('&') +'"style="width: '+ w +'px; height: '+ h +'px; "/>');
+        </script> 
+        
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="top">
+            <span id="unit9Logo"><img src="https://raw.github.com/unit9/bnkr/master/html/boilerplate/defaults/img/unit9-logo.png"/></span>
+            <h3>Prototype title <sup>1.0</sup></h3>
+            <p>Short Description</p>
+        </div>
+
+        <div class="container">
+            <iframe id="fb" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"></iframe>
+
+            <div class="menu">
+                
+            </div>
+
+            <iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://www.connect.renren.com/like/v2? url=http%3A%2F%2Foz.local%3A8888%2Fprototypes%2Fshare%2F&amp;title=&amp;description=&amp;image=" style="width: 130px; height: 24px; "> 
+
+        </div>
+
+    </body>
+</html>

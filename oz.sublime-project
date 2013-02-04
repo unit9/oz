@@ -1,0 +1,37 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+    "build_systems":
+    [
+        {
+            "shell"       : "true",
+            "name"        : "Oz Compiler",
+            "working_dir" : "${project_path}",
+            "path"        : "/opt/local/bin/",
+            "cmd"         : ["cake build"]
+        },
+        {
+            "shell"       : "true",
+            "name"        : "Oz Compiler Usr",
+            "working_dir" : "${project_path}",
+            "path"        : "/usr/local/bin/",
+            "cmd"         : ["cake build"]
+        },
+        {
+            "shell"       : "true",
+            "name"        : "Oz Compiler Windows",
+            "working_dir" : "${project_path}",
+            "cmd"         : ["cake build"]
+        }        
+    ],
+   "settings":
+   [
+       {
+           "translate_tabs_to_spaces": true
+       }
+   ]
+}

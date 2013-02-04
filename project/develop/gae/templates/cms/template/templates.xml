@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<templates>
+
+    <template id="header">
+        <![CDATA[
+        <div class="header">
+
+            <div class="left">
+                <div class="title">Disney Oz | CMS <sup>2.0</sup></div>
+                <ul>
+                    
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+<!--             <div class="center">
+                
+                <div class="clearfix"></div>
+            </div>
+ -->
+            <div class="right">
+                <a href="http://www.unit9.com" target="_blank"><img src="/cms/image/unit9-logo.png"/></a>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="headerButton">
+        <![CDATA[
+        <li><a id="{{ id }}" href="{{ link }}">{{ label }}</a></li>
+        ]]>
+    </template>
+
+    <template id="logoutButton">
+        <![CDATA[
+        <li><a id="logout" href="/cms/logout">LOGOUT</a></li>
+        ]]>
+    </template>
+
+    <template id="pagination">
+        <![CDATA[
+        <div class="pagination">
+            <ul>
+                <li id="prev">&lt;</li>
+                <li id="next">&gt;</li>
+                <li class="field"><input id="searchID" type="text" value="SEARCH BY ID"></li>
+                <li id="search">SEARCH</li>
+            </ul>
+        </div>
+        ]]>
+    </template>
+
+    <template id="login">
+        <![CDATA[
+
+        <div class="login-box">
+
+            <div class="login-header">
+                <h3>Disney Oz | CMS <sup>1.0</sup></h3>
+                <a href="/cms/"><img src="/cms/image/unit9-logo.png"/></a>
+                <div class="clearfix"></div>
+            </div>
+            
+            <div class="form">
+
+                <form id="login" action="{{ action }}" method="post">
+
+                    <div>
+                        <label>E-MAIL</label>
+                        <input type="text" name="email" />
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div>
+                        <label>PASSWORD</label>
+                        <input type="password" name="password" />
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="actions">
+                        <label>&nbsp;</label>
+                        <input type="submit" value="LOGIN" />
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                </form>
+
+            </div>
+
+        </div>
+
+        ]]>
+    </template>
+
+    <template id="gallery">
+        <![CDATA[
+        <div class="gallery">
+            
+            <div class="content"></div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        ]]>
+    </template>
+
+    <template id="locale">
+        <![CDATA[
+        <div class="locale">
+            
+            <div class="content"></div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        ]]>
+    </template>
+
+    <template id="thumb">
+        <![CDATA[
+        <div id="{{ id }}" class="thumb">
+
+            <div class="rejected">
+
+            </div>
+
+            <div class="confirmation">
+
+                <div class="buttons">
+                    <p>Are you sure?</p>
+                    <div class="button yes">YES</div>
+                    <div class="button no">NO</div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="loader"></div>
+            </div>
+
+            <div class="loaderContainer">
+                <div class="container">
+                    <img src="/cms/image/loader.gif" />
+                </div>
+                <div class="loader"></div>
+            </div>
+
+            <div class="image"></div>
+            <div class="info">
+                
+                <label>ID</label><value>{{ id }}</value>
+                <div class="clearfix"></div>
+
+                <label><img src="/cms/image/uploaded.png" width="10" height="12" /></label><value>{{ uploaded_date }}</value>
+                <div class="clearfix"></div>
+
+                <label><img src="/cms/image/reviewed.png" width="10" height="12" /></label><value>{{ reviewed_date }}</value>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="tools">
+                <ul>
+                    <li>
+                        <a id="reject" href="{{ urlReject }}">
+                            <img src="/cms/image/icon-delete.png" width="10" height="12" /><span>REJECT</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        ]]>
+    </template>
+
+</templates>

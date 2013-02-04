@@ -1,0 +1,5 @@
+.particle
+{
+	@include transition-property(left, top, opacity);
+	@include transition-duration(5s);
+}

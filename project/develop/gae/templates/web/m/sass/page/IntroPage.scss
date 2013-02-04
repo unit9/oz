@@ -1,0 +1,53 @@
+$introPageWidth: 280px;
+
+.IntroPage
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	.icon.scroll-finger
+	{
+		position: absolute;
+		left: 50%;
+		top: 40%;
+		margin-left: -22px;
+		margin-top: -37px;
+
+		.chrome &
+		{
+			top: 50%;
+		}
+	}
+
+	.introContainer
+	{
+		position: absolute;
+		left: 50%;
+		bottom: 30px;
+		width: $introPageWidth;
+		margin-left: -$introPageWidth / 2;
+		margin-top: -140px;
+
+		.ornament-big-top, .ornament-big-bottom
+		{
+			position: relative;
+			left: 50%;
+			margin-left: -47px;
+			margin-top: 6px;
+		}
+
+		.intro
+		{
+			@extend .text.tradegothic;
+			@extend .text.white;
+			font-size: 15px;
+			line-height: 19px;
+			/*letter-spacing: 1px;*/
+
+			margin-top: 10px;
+			margin-bottom: 8px;
+			text-align: center;
+		}
+	}
+}

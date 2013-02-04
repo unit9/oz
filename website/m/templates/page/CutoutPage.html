@@ -1,0 +1,143 @@
+<div id="faceContainer"></div>
+
+<button id="uploadButton" class="button simple">
+	<span class="asset sprite icon camera"></span>
+	<input id="fileInput" class="fileInput" type="file" name="file" accept="image/*" />
+</button>
+
+<!-- user photo -->
+<img id="userPhoto"></div>
+
+<!-- cutout overlays -->
+<div id="cutoutOverlays">
+	<div class="render-fix left"></div>
+	<div id="cutout-overlay-1" class="overlay asset cutout overlay1"></div>
+	<div id="cutout-overlay-2" class="overlay asset cutout overlay2"></div>
+	<div id="cutout-overlay-3" class="overlay asset cutout overlay3"></div>
+	<div id="cutout-overlay-4" class="overlay asset cutout overlay4"></div>
+	<div id="cutout-overlay-5" class="overlay asset cutout overlay5"></div>
+	<div id="cutout-overlay-6" class="overlay asset cutout overlay6"></div>
+	<div class="render-fix right"></div>
+</div>
+
+<!-- user photo -->
+<!-- <canvas id="userPhotoCanvas"></canvas> -->
+<!-- <img id="userPhoto" /> -->
+
+<!-- intro overlay -->
+<div id="introOverlay">
+	
+	<div class="dimmer"></div>
+
+	<div class="container">
+
+		<div class="asset sprite decorative ornament-big-top"></div>
+
+		<div class="intro">
+			<p>{{#CutoutPage_intro}}</p>
+		</div>
+
+		<div class="asset sprite decorative ornament-big-bottom"></div>
+
+	</div>
+
+</div>
+
+<div id="introClickOverlay"></div>
+
+<!-- uploading overlay -->
+<div id="uploadingOverlay">
+	<div class="dimmer"></div>
+	<div class="preloaderContainer">
+		<div class="asset sprite preloader particles"></div>
+		<div class="spinnerContainer">
+			<div class="asset sprite preloader spinner"></div>
+		</div>
+		<div class="text progress">0</div>
+	</div>
+</div>
+
+<!-- reposition overlay -->
+<div id="repositionOverlay">
+	<div id="photoFrame">
+		<div class="asset sprite icon photo-corner top left"></div>
+		<div class="asset sprite icon photo-corner top right"></div>
+		<div class="asset sprite icon photo-corner bottom left"></div>
+		<div class="asset sprite icon photo-corner bottom right"></div>
+	</div>
+
+	<div id="repositionPrompt">
+		<div class="asset sprite decorative ornament-big-top"></div>
+		<div class="text reposition prompt">{{#CutoutPage_reposition}}</div>
+		<div class="asset sprite decorative ornament-big-bottom"></div>
+	</div>
+
+	<button id="repositionDoneButton" class="button simple">
+		<div class="asset sprite button background">
+			<div class="label"><div class="text">{{#CutoutPage_button_done}}</div></div>
+		</div>
+	</button>
+
+	<button id="reUploadButton" class="button simple">
+		<span class="asset sprite icon camera-small"></span>
+		<input id="fileInput" class="fileInput" type="file" name="file" accept="image/*" />
+	</button>
+</div>
+
+<!-- sharing overlay -->
+<button id="cutoutShareButton" class="button simple">
+	<div class="asset sprite button background">
+		<div class="label"><div class="text">{{#CutoutPage_button_share}}</div></div>
+	</div>
+</button>
+
+<button id="cutoutEditButton" class="button simple">
+	<div class="asset sprite button background">
+		<div class="label"><div class="text">{{#CutoutPage_button_edit}}</div></div>
+	</div>
+</button>
+
+<div id="sharingOverlay">
+	
+	<div class="dimmer"></div>
+	
+	<div class="content">
+		
+		<div class="asset sprite decorative ornament-big-top"></div>
+		<span class="text">{{#CutoutPage_share_title}}</span>
+		<span class="text expiry-warning">{{#CutoutPage_expiry_warning}}</span>
+
+		<div class="buttons">
+			
+			<button id="shareGoogleButton" class="button simple">
+				<span class="asset sprite button shareGoogle"></span>
+			</button>
+
+			<button id="shareFacebookButton" class="button simple">
+				<span class="asset sprite button shareFacebook"></span>
+			</button>
+
+			<button id="shareTwitterButton" class="button simple">
+				<span class="asset sprite button shareTwitter"></span>
+			</button>
+		</div>
+
+		<div class="inputContainer">
+			<div class="asset sprite background input"></div>
+			<div class="asset sprite icon link"></div>
+			<input id="shareLinkInput" type="text" />
+		</div>
+
+		<div class="asset sprite decorative ornament-big-bottom"></div>
+
+	</div>
+
+	<button id="shareCloseButton" class="button simple">
+		<div class="asset sprite button background">
+			<div class="label"><div class="text">{{#CutoutPage_button_close}}</div></div>
+		</div>
+	</button>
+</div>
+
+<div id="navigationProgress">
+</div>

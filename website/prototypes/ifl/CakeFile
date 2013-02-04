@@ -1,0 +1,83 @@
+fs     = require "fs"
+{exec} = require "child_process"
+
+libFiles  = [
+  "workers_console"
+  "namespace"
+  "amf/amf"
+  "amf/amf0types"
+  "amf/amf3types"
+  "amf/endian"
+  "amf/objectencoding"
+  "amf/bytearray"
+  "ifl/iflparser"
+  "ifl/iflid"
+  "ifl/iflindexbuffer"
+  "ifl/iflanimation"
+  "ifl/iflanimationsamplermatrix3d"
+  "ifl/iflanimationtrack"
+  "ifl/iflbitmap"
+  "ifl/iflcolor"
+  "ifl/iflfolder"
+  "ifl/iflnode"
+  "ifl/iflcamera"
+  "ifl/iflsubmesh"
+  "ifl/iflmesh"
+  "ifl/iflmeshcontainer"
+  "ifl/ifljoint"
+  "ifl/ifljointbind"
+  "ifl/ifllight"
+  "ifl/iflmaterial"
+  "ifl/ifllibrary"
+  "ifl/iflvertexattribute"
+  "ifl/iflvertexbuffer"
+  "ifl/iflvertexbufferdecomposed"
+];
+
+appFiles = [
+  "namespace"
+  "ifl/iflvertexattribute"
+  "ifl/iflloader"
+  "app/app"
+]
+
+
+
+task 'buildlib', 'Build library', ->
+  appContents = new Array remaining = libFiles.length
+  for file, index in libFiles then do (file, index) ->
+    fs.readFile "./src/#{file}.coffee", 'utf8', (err, fileContents) ->
+      throw err if err
+      appContents[index] = fileContents
+      process() if --remaining is 0
+  process = ->
+    fs.writeFile './js/libs/ifl.coffee', appContents.join('\n\n'), 'utf8', (err) ->
+      throw err if err
+      exec 'coffee --compile js/libs/ifl.coffee', (err, stdout, stderr) ->
+        throw err if err
+        console.log stdout + stderr
+        fs.unlink 'js/libs/ifl.coffee', (err) ->
+          throw err if err
+          console.log 'Done.'
+
+task 'buildapp', 'Build application', ->
+  appContents = new Array remaining = appFiles.length
+  for file, index in appFiles then do (file, index) ->
+    fs.readFile "./src/#{file}.coffee", 'utf8', (err, fileContents) ->
+      throw err if err
+      appContents[index] = fileContents
+      process() if --remaining is 0
+  process = ->
+    fs.writeFile './js/app.coffee', appContents.join('\n\n'), 'utf8', (err) ->
+      throw err if err
+      exec 'coffee --compile js/app.coffee', (err, stdout, stderr) ->
+        throw err if err
+        console.log stdout + stderr
+        fs.unlink 'js/app.coffee', (err) ->
+          throw err if err
+          console.log 'Done.'
+
+
+
+
+

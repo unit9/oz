@@ -1,0 +1,25 @@
+body {
+	overflow: hidden;
+}
+
+.container {
+	background: url(../img/home-background.jpg);
+	-webkit-background-size: cover;
+	margin: 0;
+	height: 100%;
+	display: table;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.innerCanvas {
+	display: table-cell;
+	top: 50%;
+}
+
+canvas {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -50px 0 0 -50px;
+}

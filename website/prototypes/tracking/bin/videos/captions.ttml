@@ -1,0 +1,12 @@
+<tt xmlns="http://www.w3.org/ns/ttml" xml:lang="en">
+    <body>
+        <div>
+            <p begin="00:00:02.00" end="00:00:07.10">
+                <b>Test:</b> Captions
+            </p>
+            <p begin="00:00:16.10" end="00:00:20.10">
+                Captions are <i>nice</i>
+            </p>
+        </div>
+    </body>
+</tt>

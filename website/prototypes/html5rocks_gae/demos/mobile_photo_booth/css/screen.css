@@ -1,0 +1,56 @@
+body {
+	background-color: black;
+	overflow: hidden;
+}
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: url('/demos/mobile_photo_booth/img/overlay.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.preview img {
+	position: absolute;
+}
+
+.frame {
+	position: absolute;
+	border: 1px dashed white;
+}
+
+.uploadOverlay {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	margin-left: -200px;
+	margin-top: -44px;
+	text-align: center;
+}
+
+.uploadOverlay button {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-left: -87px;
+}
+
+.uploadOverlay button input {
+	position: absolute;
+	opacity: 0;
+	width: 87px;
+	height: 87px;
+}
+
+.uploadOverlay button .camera-icon {
+	position: absolute;
+	background: url('/demos/mobile_photo_booth/img/camera-icon.png');
+	width: 87px;
+	height: 87px;
+}

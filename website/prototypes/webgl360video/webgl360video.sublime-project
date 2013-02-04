@@ -1,0 +1,17 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":["cake","buildapp"],
+			"name": "webgl360video CoffeeScript",
+			"shell":"true",
+			"working_dir": "${project_path}"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}

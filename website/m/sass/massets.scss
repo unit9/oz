@@ -1,0 +1,109 @@
+@import "compass/css3/images";
+
+/**
+ * @author Maciej Zasada maciej@unit9.com
+ *
+ * This is a set of mixins providing reponsive design and retina support to assets.
+ * 
+ * instructions:
+ * Please make sure the config below is correct.
+ */
+
+// *** CONFIG *** //
+
+$sprite-name-mobile:		$mobile-sprites;
+$sprite-name-mobile-2x:		$mobile2x-sprites;
+$sprite-name-tablet:		$tablet-sprites;
+$sprite-name-tablet-2x:		$tablet2x-sprites;
+
+$exclude-from-sprite: 'background-main', 'background-error', 'ornament-bottom-error', 'preloader-card', 'fx-particle', 'cutout-overlay-1', 'cutout-overlay-2', 'cutout-overlay-3', 'cutout-overlay-4', 'cutout-overlay-5', 'cutout-overlay-6', 'background-video', 'background-video-blurred', 'ornament-error';
+
+// *** END OF CONFIG *** //
+
+
+$sprite-url-mobile:		sprite-url($sprite-name-mobile);
+$sprite-url-mobile-2x:	sprite-url($sprite-name-mobile-2x);
+$sprite-url-tablet:		sprite-url($sprite-name-tablet);
+$sprite-url-tablet-2x:	sprite-url($sprite-name-tablet-2x);
+
+@mixin asset-responsive-retina($path, $name, $ext: 'png', $useSprite: true)
+{
+	@include background-image-retina($path, $name, '', $ext);
+	width: image-width($path + '/' + $name + '.' + $ext);
+	height: image-height($path + '/' + $name + '.' + $ext);
+
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
+	{
+		@include background-image-retina($path, $name, $fileNameSuffixTablet, $ext);
+		width: image-width($path + '/' + $name + $fileNameSuffixTablet + '.' + $ext);
+		height: image-height($path + '/' + $name + $fileNameSuffixTablet + '.' + $ext);
+	}
+
+	$ignore-sprite: false;
+	@each $ignore-sprite-name in $exclude-from-sprite
+	{
+		@if $ignore-sprite-name == $name
+		{
+			$ignore-sprite: true;
+		}
+	}
+
+	@if $ignore-sprite == false
+	{
+		&.sprite
+		{
+			@include background-sprite($name);
+		}
+	}
+}
+
+@mixin background-image-simple($path, $name, $suffix, $ext)
+{
+	@include background-image(url($path + '/' + $name + $suffix + '.' + $ext));
+	background-repeat: no-repeat;
+}
+
+@mixin background-image-retina($path, $name, $suffix, $ext: 'png')
+{
+	@include background-image-simple($path, $name, $suffix, $ext);
+
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+	//@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina*/
+	{
+		@include background-image-simple($path, $name, $suffix + $fileNameSuffixRetina, $ext);
+		background-size: 100% auto;
+	}
+}
+
+@mixin background-sprite($name)
+{
+	/* mobile */
+	@include background-image($sprite-url-mobile);
+	background-position: sprite-position($sprite-name-mobile, $name);
+	background-size: image-width(sprite-path($sprite-name-mobile)) image-height(sprite-path($sprite-name-mobile));
+
+	/* mobile retina */
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+	//@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 120dpi)	// on some devices retina assets look much better even though the screen is not retina
+	{
+		@include background-image($sprite-url-mobile-2x);
+		background-position: round(nth(sprite-position($sprite-name-mobile-2x, $name), 1) / 2) round(nth(sprite-position($sprite-name-mobile-2x, $name), 2) / 2);
+		background-size: round(image-width(sprite-path($sprite-name-mobile-2x)) * 0.5) round(image-height(sprite-path($sprite-name-mobile-2x)) * 0.5);
+	}
+
+	/* tablet */
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight)
+	{
+		@include background-image($sprite-url-tablet);
+		background-position: sprite-position($sprite-name-tablet, $name);
+		background-size: image-width(sprite-path($sprite-name-tablet)) image-height(sprite-path($sprite-name-tablet));
+	}
+
+	/* tablet retina */
+	@media (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight) and (-webkit-min-device-pixel-ratio: 2), (min-device-width: $responsiveTabletMinDeviceWidth) and (min-device-height: $responsiveTabletMinDeviceHeight) and (max-device-width: $responsiveTabletMaxDeviceWidth) and (max-device-height: $responsiveTabletMaxDeviceHeight) and (min-resolution: 192dpi)
+	{
+		@include background-image($sprite-url-tablet-2x);
+		background-position: round(nth(sprite-position($sprite-name-tablet-2x, $name), 1) / 2) round(nth(sprite-position($sprite-name-tablet-2x, $name), 2) / 2);
+		background-size: round(image-width(sprite-path($sprite-name-tablet-2x)) * 0.5) round(image-height(sprite-path($sprite-name-tablet-2x)) * 0.5);
+	}
+}

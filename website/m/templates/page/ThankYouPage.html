@@ -1,0 +1,83 @@
+<div class="asset background video blurred"></div>
+
+<!-- <div class="asset logo oz"></div> -->
+
+<div class="thankYouContainer">
+
+	<div class="title">
+		<div class="text title">{{#ThankYouPage_title}}</div>
+		<div class="titleContainer"><span class="asset sprite decorative dividerLeft"></span><div class="text subtitle">{{#ThankYouPage_subtitle}}</div><span class="asset sprite decorative dividerRight"></span></div>
+	</div>
+
+	<div class="message">
+		<p>{{#ThankYouPage_message}}</p>
+	</div>
+
+	<div class="asset sprite decorative ornament-big-bottom"></div>
+
+	<button id="watchTrailerButton" class="button simple">
+		<div class="asset sprite button background">
+			<div class="label">
+				<div class="text">{{#ThankYouPage_button_video}}</div>
+			</div>
+		</div>
+	</button>
+	
+	<button id="reminderButton" class="button simple">
+		<div class="asset sprite button background-big">
+			<div class="label">
+				<div class="text">{{#ThankYouPage_button_reminder}}</div>
+			</div>
+		</div>
+	</button>
+
+	<button id="globalShareButton" class="button simple">
+		<div class="asset sprite button background">
+			<div class="label">
+				<div class="text">{{#CutoutPage_button_share}}</div>
+			</div>
+		</div>
+	</button>
+
+</div>
+
+<div id="globalShareOverlay">
+	
+	<div class="dimmer"></div>
+	
+	<div class="content">
+		
+		<div class="asset sprite decorative ornament-big-top"></div>
+		<span class="text">{{#CutoutPage_share_title}}</span>
+
+		<div class="buttons">
+			
+			<button id="globalShareGoogleButton" class="button simple">
+				<span class="asset sprite button shareGoogle"></span>
+			</button>
+
+			<button id="globalShareFacebookButton" class="button simple">
+				<span class="asset sprite button shareFacebook"></span>
+			</button>
+
+			<button id="globalShareTwitterButton" class="button simple">
+				<span class="asset sprite button shareTwitter"></span>
+			</button>
+		</div>
+
+		<div class="inputContainer">
+			<div class="asset sprite background input"></div>
+			<div class="asset sprite icon link"></div>
+			<input id="globalShareLinkInput" type="text" value="{{@window.location.protocol}}//{{@window.location.host}}" />
+		</div>
+
+		<div class="asset sprite decorative ornament-big-bottom"></div>
+
+	</div>
+
+	<button id="globalShareCloseButton" class="button simple">
+		<div class="asset sprite button background">
+			<div class="label"><div class="text">{{#CutoutPage_button_close}}</div></div>
+		</div>
+	</button>
+</div>

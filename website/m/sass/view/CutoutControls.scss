@@ -1,0 +1,48 @@
+@import "compass/css3/transition";
+
+#cutoutControls
+{
+	:nth-child(n)
+	{
+		z-index: 999;
+	}
+
+	.arrow-left, .arrow-right
+	{
+		position: absolute;
+		top: 50%;
+		margin-top: -9px;
+	}
+
+	.arrow-left
+	{
+		left: 14px;
+	}
+
+	.arrow-right
+	{
+		right: 14px;
+	}
+
+	nav#cutoutNavigation
+	{
+		position: absolute;
+		left: 50%;
+		top: 0px;
+		margin-left: -54px;
+		margin-top: 25px;
+		display: none;
+
+		ul
+		{
+			@include horizontal-list;
+
+			li
+			{
+				margin-left: 3px;
+				margin-right: 3px;
+				padding: 0;
+			}
+		}
+	}
+}

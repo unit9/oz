@@ -1,0 +1,232 @@
+@font-face {
+  font-family: 'TradeGothic';
+  src: url('/css/tradegothicltstdbdcn20.ttf') format('truetype');
+}
+
+@bodyColor: #000;
+@bodyFontColor: #fff;
+@buttonColor: #bab9ae;
+
+html {
+    width: 100%;
+}
+
+.errorContainer
+{
+    display: table;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    div:first-child:not(.ssAsset)
+    {
+        display: table-cell;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .ssAsset
+    {
+        margin: 0 auto;
+    }
+
+    p
+    {
+        display : inline-block;
+        text-transform: uppercase;
+    }
+}
+
+.header {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 5%;
+    font-size: 13px;
+    color: @bodyFontColor;
+    display: table;
+
+    .innerFooterCenter {
+
+        div
+        {
+            margin: 0 auto;
+        }
+
+        display: table-cell;
+        vertical-align: bottom;
+
+        img {
+            width: 36px;
+            height: 13px;
+            opacity: 0.53;
+        }
+
+        span {
+            color: rgba(150, 150, 150, 1);
+        }
+
+        span:nth-child(2) {
+            color: #FFF;
+
+            font-size: 42px;
+            display: block;
+            margin: 2px auto -1px auto;
+        }
+
+    }
+}
+
+.ratings
+{
+    position: absolute;
+    display: table;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+
+    font-family: TradeGothic;
+
+    a 
+    {
+        font-size: 11px;
+        color: #FFF;
+        opacity: .25;
+        text-transform: uppercase;
+        text-decoration: none;
+        -webkit-transition: opacity 0.2s linear;
+
+        &:hover
+        {
+            opacity: 1;
+            cursor : pointer;
+        }
+    }
+
+    div
+    {
+        margin: 0 auto;
+    }
+
+
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    left: 0px;
+    height: auto;
+
+    .footer-logos {
+        position: absolute;
+        width: 70px;
+        z-index: 2;
+        left: 20px;
+        bottom: 0;
+
+        a {
+            float: left;
+            margin: -20px 10px 0 0;
+            opacity: .6;
+            -webkit-transition: opacity 0.3s linear;
+            overflow-x: hidden;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+
+        a:not(:first-child) {
+            margin: 9px 10px 0 0;
+        }
+
+        a img {
+            width: 100%;
+            display: block;
+        }
+        
+        a:nth-child(2) img {
+            margin-left: -9px;
+        }
+
+        a:last-child img {
+            margin-left: -8px;
+        }
+
+
+    }
+
+    
+
+    .footer-share {
+
+        position: absolute;
+        width: 100px;
+        height: auto;
+        bottom: 0px;
+        right: 0;
+        z-index: 2;
+        overflow: hidden;
+
+        div, iframe {
+            float: right;
+            margin: 0;
+            padding: 0;
+            width: auto;
+        }
+
+        iframe {
+            width: 90px !important;
+        }
+
+        div:first-child {
+            text-align: right;
+        }
+
+        .fb-like {
+            height:21px;
+            margin: 10px 0 0 0;
+        }
+
+        a[href='https://twitter.com/share'] {
+            display: none !important;
+        }
+
+    }
+}
+
+.buttonContainer
+{
+    display: table;
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    width:100%;
+}
+
+.buttonCell
+{
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+.extra-page-button {
+    color: @bodyFontColor;
+    padding: 5px 40px 3px 40px;
+    background: url(/img/preview/pattern_button.png) repeat;
+    background-color: transparent;
+    border: 2px solid @buttonColor;
+    -webkit-border-radius: 20px;
+    cursor: pointer;
+    opacity: .6;
+    -webkit-transition: opacity 0.3s linear;
+    text-transform: uppercase;
+    text-decoration: none;
+    -webkit-transform: rotate(0);
+}
+
+.extra-page-button:hover {
+    opacity: 1;
+}

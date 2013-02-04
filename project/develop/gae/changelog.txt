@@ -1,0 +1,58 @@
+Date: Thu 31 Jan 2013 14:59:40 GMT
+Version: 3
+URL: http://10.u9ozdev.appspot.com
+
+daniele(#2457): fixed initial optimization glitch
+daniele(#2458): closer sun in scene 2, maybe that's the problem
+daniele(#2459): trying another position for sun in scene 2
+daniele(#2460): another position for sun in scene 2
+daniele(#2461): - cutout  framing changed- trying other fixes for scene 2 lens flare
+daniele(#2463): camera pos adjust for cutout right
+fabio.azevedo(#2464): changed 'landing_start' sound event to as soon as the sound engine is loaded.
+daniele(#2465): disabled custom webgl renderer for bug hunting sun in scene 2
+daniele(#2466): re-enabled custom renderer
+daniele(#2467): tests
+daniele(#2468): disabled occlusion stuff in scene 2 debug mode for lens flare bug hunting
+artjom(#2469): change app version
+daniele(#2470): disabled frustum hack in scene 2
+kamil.cholewinski(#2471): Per-IP upload limits. Raise the limits a lil. Fail instead of sleeping.
+daniele(#2472): another test for sun in carnival 2
+artjom(#2473): add warmup and cache expiration time
+daniele(#2474): another test for sun in carnival 2
+daniele(#2475): another test for sun in carnival 2
+daniele(#2476): another test for sun in carnival 2
+daniele(#2477): another test for sun in carnival 2
+daniele(#2478): another test for sun in carnival 2
+daniele(#2479): another test for sun in carnival 2
+daniele(#2480): another test for sun in carnival 2
+daniele(#2481): another test for sun in carnival 2
+daniele(#2482): another test for sun in carnival 2
+daniele(#2483): another test for sun in carnival 2
+kamil.cholewinski(#2484): Default, hardcoded translations.
+daniele(#2485): another test for sun in carnival 2
+daniele(#2486): another test for sun in carnival 2
+daniele(#2487): removed unused classes, maybe fixed sun problem in scene 2, possibly related to dust systems wrong initialization
+
+===============
+
+Thu 31 Jan 2013 17:31:54 GMT
+Version: \nURL: http://X.u9ozdev.appspot.com
+silvio(#2498): performance on Loading Card
+\n===============\n
+Fri  1 Feb 2013 14:25:37 GMT
+Version: \nURL: http://X.u9ozdev.appspot.com
+fabio.azevedo(#2534): fix cms double quote escape
+\n===============\n
+Fri  1 Feb 2013 14:38:54 GMT
+Version: \nURL: http://X.u9ozdev.appspot.com
+daniele(#2536): lowres kettle textures
+kettle(#2537): - grass update
+\n===============\n
+Fri  1 Feb 2013 15:38:13 GMT
+Version: \nURL: http://X.u9ozdev.appspot.com
+silvio(#2545): new bubble videos 
+\n===============\n
+Fri  1 Feb 2013 18:03:55 GMT
+Version: \nURL: http://X.u9ozdev.appspot.com
+daniele(#2567): included seedrandom in vendors
+\n===============\n

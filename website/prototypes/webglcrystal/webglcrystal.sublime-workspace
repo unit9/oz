@@ -1,0 +1,744 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wi",
+				"wirefram"
+			],
+			[
+				"plane",
+				"planeGeom"
+			],
+			[
+				"tDe",
+				"tDiffuse"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"gl_F",
+				"gl_FragColor"
+			],
+			[
+				"gl_Fra",
+				"gl_FragCoord"
+			],
+			[
+				"gl_",
+				"gl_FragCoord"
+			],
+			[
+				"resolut",
+				"resolution"
+			],
+			[
+				"tDif",
+				"tDiffuse"
+			],
+			[
+				"vec",
+				"vec2"
+			],
+			[
+				"inner",
+				"innerWidth"
+			],
+			[
+				"inne",
+				"innerWidth"
+			],
+			[
+				"swi",
+				"switch"
+			],
+			[
+				"atr",
+				"attributes"
+			],
+			[
+				"attri",
+				"attributes"
+			],
+			[
+				"shader",
+				"shaderMaterial"
+			],
+			[
+				"material",
+				"materials"
+			],
+			[
+				"mater",
+				"materials"
+			],
+			[
+				"movieScree",
+				"movieScreen"
+			],
+			[
+				"TH",
+				"THREE"
+			],
+			[
+				"ARE",
+				"AREA_HEIGHT"
+			],
+			[
+				"visibl",
+				"visibility"
+			],
+			[
+				"AREA",
+				"AREA_HEIGH"
+			],
+			[
+				"snap",
+				"snapshot"
+			],
+			[
+				"T",
+				"THREE"
+			],
+			[
+				"flange",
+				"flangeSpeed"
+			],
+			[
+				"flangeDept",
+				"flangeDepth"
+			],
+			[
+				"flangeSpee",
+				"flangeSpeed"
+			],
+			[
+				"flangeFeed",
+				"flangeFeedback"
+			],
+			[
+				"flangeDep",
+				"flangeDepth"
+			],
+			[
+				"distort",
+				"distortionDriv"
+			],
+			[
+				"current",
+				"currentEffect"
+			],
+			[
+				"currentEffe",
+				"currentEffec"
+			],
+			[
+				"double",
+				"doublerDela"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"ava",
+				"average"
+			],
+			[
+				"leng",
+				"length"
+			],
+			[
+				"curren",
+				"currentEffectNode"
+			],
+			[
+				"audioInpu",
+				"audioInput"
+			],
+			[
+				"audio",
+				"audioContext"
+			],
+			[
+				"audioIN",
+				"audioInput"
+			],
+			[
+				"audioIn",
+				"audioInput"
+			],
+			[
+				"enable",
+				"enableMouse"
+			],
+			[
+				"SOME_T",
+				"SOME_TEST"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"Zoe",
+				"Zoetrope"
+			],
+			[
+				"crea",
+				"createSphere"
+			],
+			[
+				"fra",
+				"fragmentShader"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "toaster.coffee",
+			"settings":
+			{
+				"buffer_size": 859,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 1408,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/App.coffee",
+			"settings":
+			{
+				"buffer_size": 557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/controllers/ShaderManager.coffee",
+			"settings":
+			{
+				"buffer_size": 8213,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 71.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Coffe",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"GL",
+				"Set Syntax: GLSL"
+			],
+			[
+				"GLSL",
+				"Set Syntax: GLSL"
+			],
+			[
+				"GLS",
+				"Set Syntax: GLSL"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"fetch",
+				"Fetch: File"
+			],
+			[
+				"fech",
+				"Fetch: Manage"
+			],
+			[
+				"instalce",
+				"Package Control: Install Package"
+			],
+			[
+				"terminal",
+				"Preferences: Terminal Settings – Default"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 118.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglcrystal/src/controllers/Video3D.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_loader_scene.html",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/scenes/test_scene.js",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_materials_cubemap_refraction.html",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_geometry_convex.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/webglshaders.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_geometry_cube.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglcrystal/www/js/shaders/Displacement/Displacement.fs",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_geometries.html",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_materials_cubemap_balls_refraction.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/www/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Kaleidoscope/Kaleidoscope.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/lib/three.min.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/lib/THREEx.WindowResize.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/lib/Three.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Kaleidoscope/Kaleidoscope.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Vignette/Vignette.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Colorify/Colorify.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Colorify/Colorify.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Dof/Dof.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/BleachPass/BleachPass.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/BleachPass/BleachPass.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Color/Color.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_postprocessing.html",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_test_memory.html",
+		"/Users/fabioazevedo/Documents/Workspace/libs/threejs/examples/webgl_test_memory2.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Wave/Wave.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Dotscreen/Dotscreen.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Star/Star.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Wave/Wave.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Displacement/Displacement.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Dotscreen/Dotscreen.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Start/Star.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Start/Star.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Basic/Basic.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Displacement/Displacement.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/src/controllers/Shader.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/src/controllers/Shader",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/src/controllers/Video3DB.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Basic/Basic.fs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Displacement.vs",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/www/js/shaders/Displacement.fs",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/shaders/texture-only.shader",
+		"/Users/fabioazevedo/Desktop/three.js tutorial.html",
+		"/Applications/MAMP/htdocs/www/disney/src/step00/js/main.js",
+		"/Applications/MAMP/htdocs/www/disney/src/step00/index.html",
+		"/Applications/MAMP/htdocs/www/disney/src/step00/css/main.css",
+		"/Applications/MAMP/htdocs/www/examples/canvas_materials_video.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/webglshaders/toaster.coffee",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/src/App.coffee",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/index.html",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/effects.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/vendors/waveshaper.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/toaster.coffee",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/vendors/jungle.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/src/controllers/SphereSpectrum.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/www/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/src/controllers/Mic.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/audioprocess.sublime-project",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/effect.js",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/visualizer/base.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audio/src/view/FilterController.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/controllers/Zoetrope.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/zoetrope/Zoetrope.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/App.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/zoetrope/Cam.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/views/Cam.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/Loader.coffee",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/Terminal/Default (OSX).sublime-keymap",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/Terminal/Terminal.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/zoetrope_coffee.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/core/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/Loader",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/vendors/jspdf.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/libs/jspdf.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/libs/jspdf.plugin.addimage.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/STEP02.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/css/zoetrope.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/www/disney/step02/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/disneylab.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney oz/website/prototypes/prototype_coffee/proto-coffee.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/js/main.js",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/css/main.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"map",
+			"Texture",
+			"cube_refraction",
+			"basic_refraction",
+			"callbackFinished",
+			"result.materials",
+			"materials",
+			"glass",
+			"materials",
+			"result",
+			"geometry",
+			"\"",
+			"\",",
+			"\"",
+			"\",",
+			"\"",
+			"\",",
+			"\"",
+			"\",",
+			"\";",
+			"tColor",
+			"\"",
+			"\",",
+			"Invalid shader ID",
+			"resol",
+			"Invalid",
+			"time",
+			"shaderMaterial",
+			"console.log",
+			"@uniforms",
+			"uniforms",
+			"composer1",
+			"shader",
+			"movieScreen",
+			"videoTexture",
+			"normal",
+			"uniforms",
+			"160",
+			"AREA_WIDHT",
+			"setupWebGL",
+			"startRender",
+			"container",
+			"        document.body.appendChild @container\ntrigger",
+			"videoImage",
+			"@videoImageContext.",
+			"@videoImage.",
+			"videoImage",
+			"TrackballControls",
+			"93.152.127.34",
+			"TrackBall",
+			"fldelay",
+			"createFlange",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\ndistortion",
+			"distortion",
+			"waveshaper",
+			"        waveshaper.input\ncreateDistortion",
+			"createDistortion",
+			"createDoubler",
+			"doublerDelay",
+			"doubler",
+			"doublerDelay",
+			"currentEffect",
+			"delayTime",
+			"clearfix",
+			"createAnalyser",
+			"console.log",
+			"delayTime",
+			"console.log",
+			"delayTime",
+			"createDoubler",
+			"effect",
+			"Jungle",
+			"createDoubler",
+			"controls",
+			"analyserView",
+			"analyser",
+			"AnalyserView",
+			"analyserView1",
+			"updateAnalysers",
+			"dregen",
+			"document.getElementById(\"dregen\")",
+			"currentEffectNode",
+			"createDelayNode",
+			"createDelay",
+			"audioInput",
+			"effectInput",
+			"currentEffectNode",
+			"analyser2",
+			"createDelay",
+			"createGainNode",
+			"analyser1",
+			"        \n",
+			"wetGain",
+			"createDelay",
+			"createDet",
+			"dtime",
+			"createDelay",
+			"changeEffect",
+			"analyserView1",
+			"crossfade",
+			"audioContext",
+			"convertTOMono",
+			"\n#",
+			"overflow",
+			"create",
+			"addCanvas",
+			"this.canvas",
+			"@canvas",
+			"strema",
+			"addImage",
+			"output = functio",
+			"output",
+			"100",
+			"style",
+			"sampler2DShadow",
+			"shader",
+			"innerWidth",
+			"zelia",
+			"WIDTH"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"tDiffuse",
+			"",
+			"texture",
+			"AREA_WIDTH",
+			"@video.canvasContext.",
+			"@video.canvas.",
+			"video.canvas",
+			"videoImage"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "toaster.coffee",
+					"settings":
+					{
+						"buffer_size": 859,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								859,
+								859
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/index.html",
+					"settings":
+					{
+						"buffer_size": 1408,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/App.coffee",
+					"settings":
+					{
+						"buffer_size": 557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								552,
+								552
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/controllers/ShaderManager.coffee",
+					"settings":
+					{
+						"buffer_size": 8213,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								930,
+								930
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 3.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 251.0,
+	"status_bar_visible": true
+}

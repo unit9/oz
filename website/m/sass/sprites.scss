@@ -1,0 +1,24 @@
+/*$mobile-layout:		smart;
+$mobile2x-layout:	smart;
+$tablet-layout:		smart;
+$tablet2x-layout:	smart;*/
+
+$mobile-layout:		horizontal;
+$mobile2x-layout:	horizontal;
+$tablet-layout:		horizontal;
+$tablet2x-layout:	horizontal;
+
+$mobile-spacing:	2px;
+$mobile2x-spacing:	2px;
+$tablet-spacing:	2px;
+$tablet2x-spacing:	2px;
+
+@import "sprites/mobile/*.png";
+@import "sprites/mobile2x/*.png";
+@import "sprites/tablet/*.png";
+@import "sprites/tablet2x/*.png";
+
+@include all-mobile-sprites(true);
+@include all-mobile2x-sprites(true);
+@include all-tablet-sprites(true);
+@include all-tablet2x-sprites(true);

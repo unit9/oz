@@ -1,0 +1,30 @@
+{
+	"folders":
+	[
+        {
+            "path": "../../../../website/preview"
+        },
+        {
+            "path": "../../../../website/js"
+        },
+        {
+            "path": "../../../../website/img"
+        },
+        {
+            "path": "../../../../website/css/"
+        },
+        {
+            "path": "../"
+        },
+        {
+            "path": "../../less/preview"
+        },
+        {
+            "path": "../../coffee/utils"
+        }
+	],
+
+    "tab_size": 4,
+    
+    "translate_tabs_to_spaces": false
+}

@@ -1,0 +1,18 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd"			: ["cake buildapp"],
+			"name"			: "fresnel_shader CoffeeScript",
+			"shell"			: "true",
+			"working_dir"	: "${project_path}",
+			"path"			: "/usr/local/bin/"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}

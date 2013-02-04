@@ -1,0 +1,475 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"flange",
+				"flangeSpeed"
+			],
+			[
+				"flangeDept",
+				"flangeDepth"
+			],
+			[
+				"flangeSpee",
+				"flangeSpeed"
+			],
+			[
+				"flangeFeed",
+				"flangeFeedback"
+			],
+			[
+				"flangeDep",
+				"flangeDepth"
+			],
+			[
+				"distort",
+				"distortionDriv"
+			],
+			[
+				"current",
+				"currentEffect"
+			],
+			[
+				"currentEffe",
+				"currentEffec"
+			],
+			[
+				"double",
+				"doublerDela"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"ava",
+				"average"
+			],
+			[
+				"leng",
+				"length"
+			],
+			[
+				"curren",
+				"currentEffectNode"
+			],
+			[
+				"audioInpu",
+				"audioInput"
+			],
+			[
+				"audio",
+				"audioContext"
+			],
+			[
+				"audioIN",
+				"audioInput"
+			],
+			[
+				"audioIn",
+				"audioInput"
+			],
+			[
+				"enable",
+				"enableMouse"
+			],
+			[
+				"SOME_T",
+				"SOME_TEST"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"Zoe",
+				"Zoetrope"
+			],
+			[
+				"crea",
+				"createSphere"
+			],
+			[
+				"fra",
+				"fragmentShader"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 1224,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/App.coffee",
+			"settings":
+			{
+				"buffer_size": 3234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/controllers/Mic.coffee",
+			"settings":
+			{
+				"buffer_size": 7882,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"fetch",
+				"Fetch: File"
+			],
+			[
+				"fech",
+				"Fetch: Manage"
+			],
+			[
+				"instalce",
+				"Package Control: Install Package"
+			],
+			[
+				"terminal",
+				"Preferences: Terminal Settings – Default"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 118.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/index.html",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/effects.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/vendors/waveshaper.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/toaster.coffee",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/vendors/jungle.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/src/controllers/SphereSpectrum.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/www/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/src/controllers/Mic.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audioprocess/audioprocess.sublime-project",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/effect.js",
+		"/Users/fabioazevedo/Desktop/Audio-Input-Effects/js/visualizer/base.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/audio/src/view/FilterController.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/controllers/Zoetrope.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/zoetrope/Zoetrope.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/App.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/zoetrope/Cam.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/views/Cam.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/www/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/Loader.coffee",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/Terminal/Default (OSX).sublime-keymap",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/fabioazevedo/Library/Application Support/Sublime Text 2/Packages/Terminal/Terminal.sublime-settings",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/zoetrope_coffee.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/core/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/src/Loader",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/www/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope_coffee/vendors/jspdf.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/css/main.css",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/libs/jspdf.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/js/libs/jspdf.plugin.addimage.js",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/STEP02.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disneyOz/website/prototypes/zoetrope/css/zoetrope.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/www/disney/step02/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/disneylab.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney oz/website/prototypes/prototype_coffee/proto-coffee.sublime-project",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/js/main.js",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/lab/disney/src/css/main.css"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fldelay",
+			"createFlange",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\n                @currentEffectNode = @createFlange()\ndistortion",
+			"                @currentEffectNode = @createFlange()\ndistortion",
+			"distortion",
+			"waveshaper",
+			"        waveshaper.input\ncreateDistortion",
+			"createDistortion",
+			"createDoubler",
+			"doublerDelay",
+			"doubler",
+			"doublerDelay",
+			"currentEffect",
+			"delayTime",
+			"clearfix",
+			"createAnalyser",
+			"console.log",
+			"delayTime",
+			"console.log",
+			"delayTime",
+			"createDoubler",
+			"effect",
+			"Jungle",
+			"createDoubler",
+			"controls",
+			"analyserView",
+			"analyser",
+			"AnalyserView",
+			"analyserView1",
+			"updateAnalysers",
+			"dregen",
+			"document.getElementById(\"dregen\")",
+			"currentEffectNode",
+			"createDelayNode",
+			"createDelay",
+			"audioInput",
+			"effectInput",
+			"currentEffectNode",
+			"analyser2",
+			"createDelay",
+			"createGainNode",
+			"analyser1",
+			"        \n",
+			"wetGain",
+			"createDelay",
+			"createDet",
+			"dtime",
+			"createDelay",
+			"changeEffect",
+			"analyserView1",
+			"crossfade",
+			"audioContext",
+			"convertTOMono",
+			"\n#",
+			"overflow",
+			"create",
+			"addCanvas",
+			"this.canvas",
+			"@canvas",
+			"strema",
+			"addImage",
+			"output = functio",
+			"output",
+			"100",
+			"style",
+			"sampler2DShadow",
+			"shader",
+			"innerWidth",
+			"zelia",
+			"WIDTH"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "www/index.html",
+					"settings":
+					{
+						"buffer_size": 1224,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1011,
+								1011
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/App.coffee",
+					"settings":
+					{
+						"buffer_size": 3234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1678,
+								1678
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 248.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/controllers/Mic.coffee",
+					"settings":
+					{
+						"buffer_size": 7882,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7660,
+								7660
+							]
+						],
+						"settings":
+						{
+							"glsv_configured": true,
+							"glsv_enabled": 1.0,
+							"glsv_spec": 0.0,
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3221.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 240.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>IFL3Djs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+            font-family: Monospace;
+            background-color: #000000;
+            margin: 0px;
+            overflow: hidden;
+            }
+            a { color: skyblue }
+        </style>
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+        
+    </head>
+    <body>
+
+        <script type="x-shader/x-vertex" id="vertexshader">
+
+            uniform float amplitude;
+            attribute float size;
+            attribute vec3 customColor;
+
+            varying vec3 vColor;
+
+            void main() {
+
+                vColor = customColor;
+
+                vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+                // gl_PointSize = 200.0;
+                gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
+
+                gl_Position = projectionMatrix * mvPosition;
+
+            }
+
+        </script>
+
+        <script type="x-shader/x-fragment" id="fragmentshader">
+
+            uniform vec3 color;
+            uniform sampler2D texture;
+
+            varying vec3 vColor;
+
+            void main() {
+
+                gl_FragColor = vec4( color * vColor, 1.0 );
+                gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+
+            }
+
+        </script>
+
+        <script type="text/javascript" src="js/libs/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+        
+                
+        <script type="text/javascript" src="js/libs/three.min.js"></script>
+        <script type="text/javascript" src="js/libs/ShaderExtras.js"></script>
+        <script type="text/javascript" src="js/libs/ShaderNormalColor.js"></script>
+        <script type="text/javascript" src="js/libs/ShaderLambertColor.js"></script>
+        <script type="text/javascript" src="js/libs/ShaderPhongColor.js"></script>
+
+        <script type='text/javascript' src="js/libs/EffectComposer.js"></script>
+        <script type='text/javascript' src="js/libs/RenderPass.js"></script>
+        <script type='text/javascript' src="js/libs/BloomPass.js"></script>
+        <script type='text/javascript' src="js/libs/ShaderPass.js"></script>
+        <script type='text/javascript' src="js/libs/MaskPass.js"></script>
+        <script type='text/javascript' src="js/libs/SavePass.js"></script>
+        <script type='text/javascript' src="js/libs/FilmPass.js"></script>
+
+        <script type="text/javascript" src="js/libs/Stats.js"></script>
+        <script type="text/javascript" src="js/libs/Detector.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>      
+    </body>
+</html>

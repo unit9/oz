@@ -1,0 +1,3 @@
+$ ->
+
+    appView = new AppView

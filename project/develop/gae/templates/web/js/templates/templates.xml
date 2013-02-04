@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<templates>
+
+    <template id="loadingCard">
+        <![CDATA[
+        <div>
+            <div class="cardImg">
+                <span class="percLoadingTop">98</span>
+                <!--<span class="loadingCopyTop">{{loading}}</span>-->
+                <span class="percLoadingBottom">98</span>
+                <!--<span class="loadingCopyBottom">{{loading}}</span>-->
+            </div>
+            <div class="cardImgBack"></div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="openingTitles">
+        <![CDATA[
+        <div>
+            <div class="openingTitlesHeader"><span>{{title}}</span></div>
+            <div class="openingTitlesCTA"><span class="cta"><p>{{cta}}</p><span></div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="menu">
+        <![CDATA[
+
+        <div>
+            <div class="menu_buttons">
+                <span class="button" deep="official">{{official}}</span>
+                <!--<span class="button_sep"> | </span>
+                <span class="button" deep="tech">{{tech}}</span>-->
+                <span class="button_sep"> | </span>
+                <span class="button" deep="credits">{{credits}}</span>
+                <span class="button_sep"> | </span>
+                <span class="button" deep="terms">{{terms}}</span>
+                <span class="button_sep"> | </span>
+                <span class="button" deep="privacy">{{privacy}}</span>
+            </div>
+            <div class="open_menu"><span>{{open}}</span></div>
+
+        </div>
+
+        ]]>
+    </template>
+
+    <template id="credits">
+        <![CDATA[
+        <div class="credits">
+
+        </div>
+        ]]>
+    </template>
+
+    <template id="legal">
+        <![CDATA[
+        <div class="terms">
+
+            <div class="title">TERMS & CONDITIONS</div>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis condimentum purus, eget luctus lectus scelerisque eget. Integer placerat nisl at dolor faucibus quis elementum ante luctus. Integer quis nulla nisi. Suspendisse vel odio lorem. Integer enim mi, dictum non placerat quis, pharetra a urna. In turpis purus, dapibus eu posuere at, scelerisque nec justo. Ut gravida sapien id turpis facilisis bibendum. Fusce in elit ut mauris posuere pulvinar in in ipsum. Nullam pharetra, sapien in pellentesque egestas, sapien lacus auctor ante, non tristique lacus justo ut diam. Curabitur magna mi, ornare vel suscipit ac, ultricies in nisl. Phasellus posuere vulputate orci et consequat. Ut fringilla porttitor augue a accumsan.</p>
+                <p>
+                    Etiam ac mauris massa, at iaculis eros. Suspendisse tempus condimentum enim sed interdum. Etiam bibendum mattis sem, ultrices ullamcorper elit iaculis ac. Nulla vehicula, dui at posuere fermentum, metus nunc bibendum velit, ac feugiat felis tortor at dui. Nunc suscipit, nisi id ultricies lobortis, arcu ligula tincidunt quam, et eleifend leo quam sed enim. Aliquam erat volutpat. Vivamus viverra, odio a feugiat mattis, massa ante luctus sem, eget luctus risus massa ut dolor. Integer ligula nibh, vehicula vel dignissim in, semper et sem.
+                </p>
+                <p>
+                    Etiam pharetra posuere libero at tristique. Cras ut turpis ac ligula facilisis euismod. Donec eu orci vel massa porta eleifend sed sed nibh. Suspendisse non dui non arcu feugiat venenatis id quis eros. Ut porttitor, sapien eget suscipit semper, nunc mi varius lectus, in egestas nisi justo vitae mauris. Etiam a nisi diam. Nullam diam orci, tincidunt nec suscipit ac, faucibus ac purus. In quam nisi, consequat eu ornare vitae, molestie in metus. Curabitur consequat nunc ac sapien lobortis quis rhoncus nibh dapibus. Nulla volutpat quam erat. Nunc ullamcorper malesuada malesuada.
+                </p>
+                <p>
+                    Ut pellentesque dui quis neque semper congue. Sed condimentum ultrices sapien, a laoreet lectus commodo blandit. Ut vel orci vel neque sodales dictum. Integer eu lacinia nibh. Nullam eu nulla vel velit lacinia adipiscing. Nulla egestas ullamcorper malesuada. Praesent ornare, magna at tincidunt pretium, urna quam ornare purus, vehicula fermentum neque dui sit amet magna. Cras egestas nibh nec orci accumsan elementum fringilla sem dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla tincidunt suscipit tellus, at pellentesque leo pretium ullamcorper. Aenean id enim sed magna vestibulum feugiat vitae vel lacus.
+                </p>
+                <p>
+                    Nulla sagittis dui non turpis consequat pretium porttitor elit sagittis. Etiam accumsan, dui ac malesuada hendrerit, justo leo iaculis leo, a accumsan justo erat eget augue. Aliquam ullamcorper placerat mi in tincidunt. Pellentesque ullamcorper massa eget ante adipiscing et porta odio gravida. Vivamus pulvinar lobortis hendrerit. Sed ut nisl dui, vel ultrices lacus. Maecenas hendrerit mi vel ante bibendum in vulputate elit gravida.
+                </p>
+            </div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="trailer">
+        <![CDATA[
+        <div>
+            <div class='lead'>Trailer</div>
+            <div class='copy'><iframe width="100%" height="100%" src="http://www.youtube.com/embed/_1NGnVLDPog" frameborder="0" allowfullscreen></iframe></div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="sharebox">
+        <![CDATA[
+        <div>
+            <div class="shareIconsRow">
+                
+            </div>
+            <div class="shareTitle">{{ title }}</div>
+            <div class="shareSub">{{ sub }}</div>
+            <div class="shareLinkContainer">
+                <div class="abstractbutton shareLink btanimated">
+                    <input type="text" value="{{ link }}" style="-webkit-user-select: text;" readonly/>
+                </div>
+            </div>
+            <div class="shareBack abstractbutton btanimated">{{ shareBack }}</div>
+            <div class="shareLegal">{{ shareLegal }}</div>
+            
+        </div>
+        ]]>
+    </template>
+
+    <template id="musicbox-table">
+        <![CDATA[
+        <div class='box-container'>
+            <div class='decorated-box'>
+
+                <div class="center_bar"></div>
+                
+                <div id='r2' class='row'>
+                    <div id='c22' class='cell'>
+                        <div class="grid-mask"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ]]>
+    </template>
+
+    <template id="musicbox-grid">
+        <![CDATA[
+        <div class="music-grid-table"> 
+            <table>
+
+            </table>
+        </div>
+        ]]>
+    </template>
+    
+</templates>

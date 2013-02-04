@@ -1,0 +1,235 @@
+.ThankYouPage
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	overflow: hidden;
+
+	.background.video
+	{
+		position: absolute;
+		width: 100% !important;
+		height: 100% !important;
+
+		background-position: 10% 50% !important;
+		background-size: cover !important;
+		background-repeat: no-repeat;
+
+		&.blurred
+		{
+			/*-webkit-filter: blur(6px);*/
+		}
+	}
+
+	.logo.oz
+	{
+		position: absolute;
+		left: 50%;
+		top: 10px;
+		margin-left: -26px;
+	}
+
+	.thankYouContainer
+	{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 100%;
+		margin-left: -50%;
+		margin-top: -155px;
+
+		.title
+		{
+			position: relative;
+			width: 100%;
+			margin-top: 9px;
+			text-align: center;
+
+			.text.title
+			{
+				position: relative;
+				width: 100%;
+				text-align: center;
+
+				@extend .text.leaguegothic;
+				@extend .text.white;
+				font-size: 49px;
+			}
+
+			.titleContainer
+			{
+				margin: 0 auto;
+
+				span
+				{
+					position: relative;
+					display: inline-block;
+					top: -6px;
+				}
+
+				.text.subtitle
+				{
+					display: inline-block;
+					margin-left: 8px;
+					margin-right: 8px;
+					margin-top: 4px;
+
+					@extend .text.univers;
+					@extend .text.white;
+					font-size: 30px;
+					letter-spacing: 2px;
+				}
+			}
+		}
+
+		.message
+		{
+			@extend .text.tradegothic;
+			@extend .text.white;
+
+			margin-top: 13px;
+			text-align: center;
+			font-size: 15px;
+			letter-spacing: 1px;
+			line-height: 17px;
+		}
+
+		.ornament-big-bottom
+		{
+			margin: 0 auto;
+			margin-top: 13px;
+			margin-bottom: 22px;
+		}
+
+		.button
+		{
+			display: block;
+			position: relative;
+			left: 50%;
+			margin-left: -44px;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		#reminderButton
+		{
+			margin-left: -64px;
+		}
+	}
+
+	#globalShareOverlay
+	{
+		display: none;
+
+		.dimmer
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0.85;
+		}
+
+		.content
+		{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 100%;
+			margin-left: -50%;
+			margin-top: -116px;
+
+			.ornament-big-top, .ornament-big-bottom
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -47px;
+			}
+
+			.ornament-big-bottom
+			{
+				margin-top: 18px;
+			}
+
+			.text
+			{
+				@extend .text.leaguegothic;
+				@extend .text.white;
+				@include text-gradient(#ffffff, #cccccc);
+				font-size: 35px;
+
+				position: relative;
+				display: block;
+				width: 100%;
+				text-align: center;
+				margin-top: 15px;
+			}
+
+			.buttons
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -75px;
+				margin-top: 10px;
+				margin-bottom: 11px;
+
+				.button
+				{
+					margin-left: 1px;
+					margin-right: 1px;
+				}
+			}
+
+			.inputContainer
+			{
+				position: relative;
+				left: 50%;
+				margin-left: -75px;
+
+				.background
+				{
+					position: absolute;
+				}
+
+				.icon
+				{
+					position: absolute;
+					margin-left: 16px;
+					margin-top: 9px;
+				}
+
+				#globalShareLinkInput
+				{
+					position: relative;
+					width: 102px;
+					height: 18px;
+					margin-left: 34px;
+					margin-top: 9px;
+					padding: 0;
+					text-align: left;
+					background: none;
+					border: none;
+
+					@extend .text.tradegothic;
+					@extend .text.white;
+					font-size: 14px;
+
+					.android &
+					{
+						padding-top: 1px;
+						margin-top: 11px;
+					}
+				}
+			}
+		}
+
+		#globalShareCloseButton
+		{
+			position: absolute;
+			left: 50%;
+			bottom: 32px;
+			margin-left: -55px;
+		}
+	}
+}

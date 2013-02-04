@@ -1,0 +1,27 @@
+application: u9html5rocks
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /demos/mobile_photo_booth/js
+  static_dir: demos/mobile_photo_booth/js
+
+- url: /demos/mobile_photo_booth/css
+  static_dir: demos/mobile_photo_booth/css
+  mime_type: text/css
+
+- url: /demos/mobile_photo_booth/img
+  static_dir: demos/mobile_photo_booth/img
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"

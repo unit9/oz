@@ -1,0 +1,2549 @@
+<?xml version="1.0"?>
+<root fileName="config.xml">
+  <config serverPath="">
+    <swffiles>
+      <file autoload="1">sounds_0.swf</file>
+      <file autoload="0">sounds_1.swf</file>
+      <file autoload="0">sounds_2.swf</file>
+      <file autoload="0">sounds_3.swf</file>
+      <file autoload="0">sounds_4.swf</file>
+      <file autoload="0">sounds_5.swf</file>
+    </swffiles>
+  </config>
+  <global>
+    <variables>
+      <item id="checkDelay" val="50"/>
+      <item id="developerMode" val="1"/>
+      <item id="doLog" val="1"/>
+      <item id="FPVersion" val="9"/>
+      <item id="logButtonNotifications" val="1"/>
+      <item id="logErrors" val="1"/>
+      <item id="logHost" val="127.0.0.1"/>
+      <item id="logNotifications" val="1"/>
+      <item id="logTarget" val="ltarthropod"/>
+      <item id="logTCPPort" val="5637"/>
+      <item id="logWarnings" val="1"/>
+      <item id="mp3Load" val="0"/>
+      <item id="noCache" val="0"/>
+      <item id="python" val="1"/>
+    </variables>
+  </global>
+  <busData fileName="bus.xml">
+    <master volume="1" pan="0"/>
+    <bus name="main" volume="1" parent="_MasterBus"/>
+    <bus name="top" volume="1.5" parent="main"/>
+    <bus name="submain" volume="1" parent="top"/>
+    <bus name="music" volume="1" parent="submain"/>
+    <bus name="fx" volume="1" parent="submain"/>
+	    <bus name="carnival" volume="0" parent="fx"/>
+	    <bus name="organ" volume="2" pan="-14" panY="22" panZ="-65" parent="carnival" groupName="organ"/>
+	    <bus name="projector" volume="1" pan="135" panY="17" panZ="-62" parent="carnival" groupName="projector"/>
+	    <bus name="carnivalamb" volume="2" parent="carnival" groupName="carnival"/>
+		    <bus name="scene1" volume="1" parent="carnivalamb"/>
+		    	<bus name="market1" volume="0.5" parent="carnivalamb"/>
+		    	<bus name="market2" volume="0.3" parent="carnivalamb"/>
+			    <bus name="farleft" volume="1" pan="-100" panY="17" panZ="-30" parent="scene1"/>
+			    <bus name="farright" volume="1" pan="-15" panY="17" panZ="-35" parent="scene1"/>		    
+			    <bus name="farfarright" volume="1" pan="100" panY="17" panZ="-30" parent="scene1"/>
+			    <bus name="centerleft" volume="1" pan="-85" panY="17" panZ="-50" parent="scene1"/>
+			    <bus name="farcenterleft" volume="0.3" pan="-70" panY="30" panZ="-60" parent="scene1"/>
+			    <bus name="centerup" volume="1" pan="-20" panY="30" panZ="-50" parent="scene1"/>
+			    <bus name="centerlow" volume="0.6" pan="-35" panY="0" panZ="-40" parent="scene1"/>
+			    <bus name="centerright" volume="0.5" pan="-15" panY="17" panZ="40" parent="scene1"/>
+		<bus name="scene2" volume="0" parent="carnivalamb"/>
+	    		<bus name="scene2tree" volume="1" pan="20" panY="17" panZ="-50" parent="scene2"/>
+		<bus name="scene3" volume="0" parent="carnivalamb"/>
+	    		<bus name="tentflap" volume="2" pan="-72" panY="17" panZ="-60" parent="scene3"/> 
+	    		<bus name="trees" volume="0.8" pan="160" panY="17" panZ="-30" parent="scene3"/>    		
+		<bus name="storm" volume="0" parent="fx"/>
+		<bus name="stormspin" volume="0" pan="-10" panY="20" panZ="-30" parent="fx"/>
+		<bus name="insidetornado" volume="0" parent="fx"/>
+  </busData>
+  <groupData>
+	<group name="carnival">
+		<volume>1</volume>
+		<effects>
+			<effect id="Biquad" instance="filter" type="insert">
+				<param key="type" value="LOWPASS" />
+				<param key="frequency" value="20000" />
+				<param key="Q" value="0" />
+				<param key="gain" value="1" />
+			</effect>
+		</effects>	
+	</group>
+	<group name="organ">
+		<volume>1</volume>
+		<effects>
+			<effect id="Biquad" instance="organfilter" type="insert">
+				<param key="type" value="LOWPASS" />
+				<param key="frequency" value="20000" />
+				<param key="Q" value="0" />
+				<param key="gain" value="1" />
+			</effect>
+		</effects>	
+	</group>
+	<group name="projector">
+		<volume>1</volume>
+		<effects>
+			<effect id="Biquad" instance="projectorfilter" type="insert">
+				<param key="type" value="LOWPASS" />
+				<param key="frequency" value="20000" />
+				<param key="Q" value="0" />
+				<param key="gain" value="1" />
+			</effect>
+		</effects>	
+	</group>
+  </groupData>
+  <soundData fileName="sounds.xml">
+  	<sound>
+        <name>FX_TornadoMusic</name>
+        <length>49000</length>
+        <load>4</load>
+        <start>1042560</start>
+        <duration>2933221</duration>
+        <src>sounds_4</src>
+    </sound>
+    <sound>
+        <name>sounds_0</name>
+        <length>0</length>
+        <load>0</load>
+    </sound>
+    <sound>
+        <name>sounds_1</name>
+        <length>0</length>
+        <load>1</load>
+    </sound>
+    <sound>
+        <name>sounds_2</name>
+        <length>0</length>
+        <load>2</load>
+    </sound>
+    <sound>
+        <name>sounds_3</name>
+        <length>0</length>
+        <load>3</load>
+    </sound>
+    <sound>
+        <name>sounds_4</name>
+        <length>0</length>
+        <load>4</load>
+    </sound>
+    <sound>
+        <name>sounds_5</name>
+        <length>0</length>
+        <load>5</load>
+    </sound>
+    <sound>
+        <name>AMB_Endmusic_57000</name>
+        <length>57000</length>
+        <load>stream</load>
+    </sound>
+    <sound>
+        <name>AMB_LandingGlitter_11000</name>
+        <length>11000</length>
+        <start>0</start>
+        <duration>573300</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_CardFlip_1</name>
+        <length>1593</length>
+        <start>573696</start>
+        <duration>15716</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_CardFlip_2</name>
+        <length>1593</length>
+        <start>589824</start>
+        <duration>21710</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_CardFlip_3</name>
+        <length>1593</length>
+        <start>611712</start>
+        <duration>25788</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_CardIn</name>
+        <length>1593</length>
+        <start>638208</start>
+        <duration>54632</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_CardLoadingFinished</name>
+        <length>1593</length>
+        <start>693504</start>
+        <duration>79231</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_Click</name>
+        <length>1000</length>
+        <start>772992</start>
+        <duration>30671</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>FX_Hover</name>
+        <length>235</length>
+        <start>804096</start>
+        <duration>16930</duration>
+        <src>sounds_0</src>
+    </sound>
+    <sound>
+        <name>AMB_MarketAmb1_5000</name>
+        <length>5000</length>
+        <load>0</load>
+        <start>0</start>
+        <duration>225873</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>AMB_MarketAmb2_8000</name>
+        <length>8000</length>
+        <load>0</load>
+        <start>226944</start>
+        <duration>361497</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>AMB_RustlingLeaves_5125</name>
+        <length>5125</length>
+        <load>0</load>
+        <start>588672</start>
+        <duration>231525</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>AMB_WindInFlags_7181</name>
+        <length>7181</length>
+        <load>0</load>
+        <start>820224</start>
+        <duration>316688</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_1</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>1137024</start>
+        <duration>67710</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_2</name>
+        <length>1802</length>
+        <load>0</load>
+        <start>1204992</start>
+        <duration>76280</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_3</name>
+        <length>1332</length>
+        <load>0</load>
+        <start>1282176</start>
+        <duration>55476</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_4</name>
+        <length>1724</length>
+        <load>0</load>
+        <start>1338624</start>
+        <duration>72812</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_5</name>
+        <length>1880</length>
+        <load>0</load>
+        <start>1412352</start>
+        <duration>79746</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_6</name>
+        <length>1227</length>
+        <load>0</load>
+        <start>1492992</start>
+        <duration>51315</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Birds_7</name>
+        <length>1044</length>
+        <load>0</load>
+        <start>1544832</start>
+        <duration>42994</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CameraChange_1</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>1588608</start>
+        <duration>71401</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CameraChange_2</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>1660032</start>
+        <duration>62284</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CameraFlash</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>1723392</start>
+        <duration>59867</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Chimes_1</name>
+        <length>3892</length>
+        <load>0</load>
+        <start>1783296</start>
+        <duration>169097</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Chimes_2</name>
+        <length>4728</length>
+        <load>0</load>
+        <start>1952640</start>
+        <duration>205457</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Chimes_3</name>
+        <length>3970</length>
+        <load>0</load>
+        <start>2158848</start>
+        <duration>172584</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Chimes_4</name>
+        <length>3944</length>
+        <load>0</load>
+        <start>2331648</start>
+        <duration>171145</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_1</name>
+        <length>1567</length>
+        <load>0</load>
+        <start>2503296</start>
+        <duration>66151</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_2</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>2570112</start>
+        <duration>67770</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_3</name>
+        <length>2768</length>
+        <load>0</load>
+        <start>2638080</start>
+        <duration>118689</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_4</name>
+        <length>3552</length>
+        <load>0</load>
+        <start>2757888</start>
+        <duration>154351</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_5</name>
+        <length>2560</length>
+        <load>0</load>
+        <start>2912256</start>
+        <duration>110251</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Creak_6</name>
+        <length>2560</length>
+        <load>0</load>
+        <start>3022848</start>
+        <duration>110251</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CrowClose_1</name>
+        <length>1985</length>
+        <load>0</load>
+        <start>3133440</start>
+        <duration>85234</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CrowClose_2</name>
+        <length>2246</length>
+        <load>0</load>
+        <start>3218688</start>
+        <duration>95967</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CrowClose_3</name>
+        <length>2977</length>
+        <load>0</load>
+        <start>3315456</start>
+        <duration>128188</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CrowFar_1</name>
+        <length>1854</length>
+        <load>0</load>
+        <start>3444480</start>
+        <duration>78341</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_CrowFar_2</name>
+        <length>2089</length>
+        <load>0</load>
+        <start>3523968</start>
+        <duration>89829</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_DistantStorm_1</name>
+        <length>8907</length>
+        <load>0</load>
+        <start>3613824</start>
+        <duration>390264</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_DistantStorm_2</name>
+        <length>4179</length>
+        <load>0</load>
+        <start>4004352</start>
+        <duration>181287</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_DistantStorm_3</name>
+        <length>4623</length>
+        <load>0</load>
+        <start>4186368</start>
+        <duration>201272</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_DistantStorm_4</name>
+        <length>9534</length>
+        <load>0</load>
+        <start>4387968</start>
+        <duration>417593</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_DistantStorm_5</name>
+        <length>8933</length>
+        <load>0</load>
+        <start>4806144</start>
+        <duration>391388</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_InteractSignature</name>
+        <length>1593</length>
+        <load>0</load>
+        <start>5197824</start>
+        <duration>136739</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_1</name>
+        <length>2899</length>
+        <load>0</load>
+        <start>5334912</start>
+        <duration>124528</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_2</name>
+        <length>3082</length>
+        <load>0</load>
+        <start>5460480</start>
+        <duration>133596</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_3</name>
+        <length>4022</length>
+        <load>0</load>
+        <start>5594112</start>
+        <duration>174938</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_4</name>
+        <length>4101</length>
+        <load>0</load>
+        <start>5769216</start>
+        <duration>177621</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_5</name>
+        <length>4310</length>
+        <load>0</load>
+        <start>5947776</start>
+        <duration>187393</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_MetalSqueek_6</name>
+        <length>2142</length>
+        <load>0</load>
+        <start>6135552</start>
+        <duration>91253</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Ozzification_1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>6227712</start>
+        <duration>141120</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Ozzification_2</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>6369408</start>
+        <duration>154350</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Ozzification_3</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>6523776</start>
+        <duration>154350</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_OzzificationOut</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>6678144</start>
+        <duration>82523</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_ScaredBirds_1</name>
+        <length>4075</length>
+        <load>0</load>
+        <start>6761088</start>
+        <duration>176400</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Windgust_1</name>
+        <length>4075</length>
+        <load>0</load>
+        <start>6938496</start>
+        <duration>176400</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Windgust_2</name>
+        <length>4075</length>
+        <load>0</load>
+        <start>7115904</start>
+        <duration>176400</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Windgust_3</name>
+        <length>3552</length>
+        <load>0</load>
+        <start>7293312</start>
+        <duration>154350</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>FX_Windgust_4</name>
+        <length>4571</length>
+        <load>0</load>
+        <start>7447680</start>
+        <duration>198451</duration>
+        <src>sounds_1</src>
+    </sound>
+    <sound>
+        <name>AMB_ProjectorRunning_7415</name>
+        <length>7415</length>
+        <start>0</start>
+        <duration>328545</duration>
+        <src>sounds_2</src>
+    </sound>
+    <sound>
+        <name>AMB_CarnivalStormTentFlap_7000</name>
+        <length>7000</length>
+        <start>0</start>
+        <duration>321635</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>AMB_CarnivalStormWindHowl_7000</name>
+        <length>7000</length>
+        <start>322560</start>
+        <duration>321257</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>AMB_LeafTreesWind_6000</name>
+        <length>6000</length>
+        <start>643968</start>
+        <duration>277830</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>FX_BallonClick</name>
+        <length>1000</length>
+        <start>922752</start>
+        <duration>399999</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>FX_Crow_1</name>
+        <length>1985</length>
+        <start>1323648</start>
+        <duration>97895</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>FX_Crow_3</name>
+        <length>1985</length>
+        <start>1421568</start>
+        <duration>95016</duration>
+        <src>sounds_3</src>
+    </sound>
+    <sound>
+        <name>AMB_InsideTornado_8000</name>
+        <length>8050</length>
+        <load>4</load>
+        <start>0</start>
+        <duration>371835</duration>
+        <src>sounds_4</src>
+    </sound>
+    <sound>
+        <name>AMB_TornadoMain_7499</name>
+        <length>7499</length>
+        <load>0</load>
+        <start>372096</start>
+        <duration>335160</duration>
+        <src>sounds_4</src>
+    </sound>
+    <sound>
+        <name>AMB_TornadoSpin_7499</name>
+        <length>7499</length>
+        <load>0</load>
+        <start>707328</start>
+        <duration>335160</duration>
+        <src>sounds_4</src>
+    </sound>
+    <sound>
+        <name>AMB_OrganMechanics_6500</name>
+        <length>6500</length>
+        <load>4</load>
+        <start>0</start>
+        <duration>291060</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganA1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>291456</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganB1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>321408</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganC1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>351360</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganC2</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>381312</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganD1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>411264</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganD2</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>441216</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganE1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>471168</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganE2</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>501120</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganF1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>531072</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>FX_OrganG1</name>
+        <length>1000</length>
+        <load>0</load>
+        <start>561024</start>
+        <duration>29401</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_1</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>590976</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_10</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>650880</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_11</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>710784</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_12</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>770688</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_13</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>830592</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_14</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>890496</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_15</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>950400</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_16</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1010304</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_2</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1070208</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_3</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1130112</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_4</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1190016</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_5</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1249920</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_6</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1309824</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_7</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1369728</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_8</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1429632</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <sound>
+        <name>OrganLoop_9</name>
+        <length>180,3</length>
+        <load>0</load>
+        <start>1489536</start>
+        <duration>58801</duration>
+        <src>sounds_5</src>
+    </sound>
+    <soundObject>
+      <name>AMB_Endmusic</name>
+      <mode>loop</mode>
+      <volume>0.3</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_Endmusic_57000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_InsideTornado</name>
+      <mode>pattern</mode>
+      <volume>0.4</volume>
+      <pan>0</pan>
+      <parentBus>insidetornado</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_InsideTornado_8000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_LeafTreesWind</name>
+      <mode>pattern</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>trees</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_LeafTreesWind_6000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_LandingGlitter</name>
+      <mode>pattern</mode>
+      <volume>0.7</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_LandingGlitter_11000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_ProjectorRunning</name>
+      <mode>pattern</mode>
+      <volume>0.8</volume>
+      <pan>0</pan>
+      <parentBus>projector</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_ProjectorRunning_7415</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_CarnivalStormWindHowl</name>
+      <mode>pattern</mode>
+      <volume>6</volume>
+      <pan>0</pan>
+      <parentBus>farright</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_CarnivalStormWindHowl_7000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_CarnivalStormTentFlap</name>
+      <mode>pattern</mode>
+      <volume>0.4</volume>
+      <pan>0</pan>
+      <parentBus>tentflap</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_CarnivalStormTentFlap_7000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_MarketAmb1</name>
+      <mode>pattern</mode>
+      <volume>0.2</volume>
+      <pan>0</pan>
+      <parentBus>market1</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_MarketAmb1_5000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_MarketAmb2</name>
+      <mode>pattern</mode>
+      <volume>0.2</volume>
+      <pan>0</pan>
+      <parentBus>market2</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_MarketAmb2_8000</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_RustlingLeaves</name>
+      <mode>pattern</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>farleft</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_RustlingLeaves_5125</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_RustlingLeaves2</name>
+      <mode>pattern</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>scene2tree</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_RustlingLeaves_5125</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_WindInFlags</name>
+      <mode>pattern</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>farcenterleft</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_WindInFlags_7181</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_OrganMechanics</name>
+      <mode>pattern</mode>
+      <volume>0.7</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_OrganMechanics_6500</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_TornadoMain</name>
+      <mode>pattern</mode>
+      <volume>0.5</volume>
+      <pan>0</pan>
+      <parentBus>storm</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_TornadoMain_7499</sound>
+    </soundObject>
+    <soundObject>
+      <name>AMB_TornadoSpin</name>
+      <mode>pattern</mode>
+      <volume>1.5</volume>
+      <pan>0</pan>
+      <parentBus>stormspin</parentBus>
+      <loop>1</loop>
+      <sound offset="0">AMB_TornadoSpin_7499</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Birds</name>
+      <mode>randompatternamb</mode>
+      <max>7000</max>
+      <min>1000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>farleft</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_Birds_1</sound>
+      <sound offset="0">FX_Birds_2</sound>
+      <sound offset="0">FX_Birds_3</sound>
+      <sound offset="0">FX_Birds_4</sound>
+      <sound offset="0">FX_Birds_5</sound>
+      <sound offset="0">FX_Birds_6</sound>
+      <sound offset="0">FX_Birds_7</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Chimes</name>
+      <mode>randompatternamb</mode>
+      <max>20000</max>
+      <min>7000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>centerleft</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_Chimes_1</sound>
+      <sound offset="0">FX_Chimes_2</sound>
+      <sound offset="0">FX_Chimes_3</sound>
+      <sound offset="0">FX_Chimes_4</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Creak</name>
+      <mode>randompatternamb</mode>
+      <max>20000</max>
+      <min>7000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>centerright</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_Creak_1</sound>
+      <sound offset="0">FX_Creak_2</sound>
+      <sound offset="0">FX_Creak_3</sound>
+      <sound offset="0">FX_Creak_4</sound>
+      <sound offset="0">FX_Creak_5</sound>
+      <sound offset="0">FX_Creak_6</sound>
+      <sound offset="0">FX_MetalSqueek_6</sound>
+      <sound offset="0">FX_MetalSqueek_5</sound>
+      <sound offset="0">FX_MetalSqueek_4</sound>
+      <sound offset="0">FX_MetalSqueek_3</sound>
+      <sound offset="0">FX_MetalSqueek_2</sound>
+      <sound offset="0">FX_MetalSqueek_1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CrowClose</name>
+      <mode>randompatternamb</mode>
+      <max>25000</max>
+      <min>10000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>centerright</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_CrowClose_1</sound>
+      <sound offset="0">FX_CrowClose_2</sound>
+      <sound offset="0">FX_CrowClose_3</sound>
+      <sound offset="0">FX_CrowFar_1</sound>
+      <sound offset="0">FX_CrowFar_2</sound>
+      <sound offset="0">FX_ScaredBirds_1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CrowStorm</name>
+      <mode>randompatternamb</mode>
+      <max>25000</max>
+      <min>10000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>trees</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_Crow_1</sound>
+      <sound offset="0">FX_Crow_3</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_DistantStorm</name>
+      <mode>randompatternamb</mode>
+      <max>15000</max>
+      <min>4000</min>
+      <volume>2.5</volume>
+      <pan>0</pan>
+      <parentBus>farright</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_DistantStorm_1</sound>
+      <sound offset="0">FX_DistantStorm_2</sound>
+      <sound offset="0">FX_DistantStorm_3</sound>
+      <sound offset="0">FX_DistantStorm_4</sound>
+      <sound offset="0">FX_DistantStorm_5</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_InteractSignature</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_InteractSignature</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_BallonClick</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>music</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_BallonClick</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CameraChange_1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CameraChange_1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CameraChange_2</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CameraChange_2</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CameraFlash</name>
+      <mode>steptrig</mode>
+      <volume>0.9</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CameraFlash</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CardIn</name>
+      <mode>steptrig</mode>
+      <volume>top</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CardIn</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CardFlip</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CardFlip_1</sound>
+      <sound offset="0">FX_CardFlip_2</sound>
+      <sound offset="0">FX_CardFlip_3</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_CardLoadingFinished</name>
+      <mode>steptrig</mode>
+      <volume>top</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_CardLoadingFinished</sound>
+    </soundObject>
+
+    <soundObject>
+      <name>FX_Hover</name>
+      <mode>steptrig</mode>
+      <volume>0.15</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_Hover</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Click</name>
+      <mode>steptrig</mode>
+      <volume>0.3</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_Click</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_TornadoMusic</name>
+      <mode>pattern</mode>
+      <volume>1.1</volume>
+      <pan>0</pan>
+      <parentBus>music</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_TornadoMusic</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Windgust</name>
+      <mode>randompatternamb</mode>
+      <max>14000</max>
+      <min>7000</min>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>centerup</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_Windgust_1</sound>
+      <sound offset="0">FX_Windgust_2</sound>
+      <sound offset="0">FX_Windgust_3</sound>
+      <sound offset="0">FX_Windgust_4</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OzzificationOut</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_OzzificationOut</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_Ozzification</name>
+      <mode>randomtrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>top</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_Ozzification_1</sound>
+      <sound offset="0">FX_Ozzification_2</sound>
+      <sound offset="0">FX_Ozzification_3</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_1</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_2</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_2</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_3</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_3</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_4</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_4</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_5</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_5</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_6</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_6</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_7</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_7</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_8</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_8</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_9</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_9</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_10</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_10</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_11</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_11</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_12</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_12</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_13</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_13</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_14</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_14</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_15</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>1</loop>
+      <sound offset="180,0">OrganLoop_15</sound>
+    </soundObject>
+    <soundObject>
+      <name>OrganLoop_16</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">OrganLoop_16</sound>
+    </soundObject>
+
+    <soundObject>
+      <name>FX_OrganA1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganA1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganB1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganB1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganC1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganC1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganC2</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganC2</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganD1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganD1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganD2</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganD2</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganE1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganE1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganE2</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganE2</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganF1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganF1</sound>
+    </soundObject>
+    <soundObject>
+      <name>FX_OrganG1</name>
+      <mode>steptrig</mode>
+      <volume>1</volume>
+      <pan>0</pan>
+      <parentBus>organ</parentBus>
+      <loop>0</loop>
+      <sound offset="180,0">FX_OrganG1</sound>
+    </soundObject>
+    <arrangement>
+      <name>Scene1</name>
+      <domain>scene1</domain>
+      <retrigg>0</retrigg>
+      <soundObject>FX_Birds</soundObject>
+      <soundObject>AMB_MarketAmb2</soundObject>
+      <soundObject>AMB_MarketAmb1</soundObject>
+      <soundObject>FX_Windgust</soundObject>
+      <soundObject>FX_Creak</soundObject>
+      <soundObject>FX_Chimes</soundObject>
+      <soundObject>AMB_RustlingLeaves</soundObject>
+      <soundObject>AMB_WindInFlags</soundObject>
+      <soundObject>FX_DistantStorm</soundObject>
+      <soundObject>FX_CrowClose</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>TornadoMusic</name>
+      <domain>main</domain>
+      <retrigg>0</retrigg>
+      <soundObject>FX_TornadoMusic</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>Scene2</name>
+      <domain>scene2</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_ProjectorRunning</soundObject>
+      <soundObject>AMB_RustlingLeaves2</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>Scene3</name>
+      <domain>scene3</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_CarnivalStormWindHowl</soundObject>
+      <soundObject>AMB_CarnivalStormTentFlap</soundObject>
+      <soundObject>AMB_LeafTreesWind</soundObject>
+      <soundObject>FX_CrowStorm</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>OrganMechanics</name>
+      <domain>organ</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_OrganMechanics</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>Storm</name>
+      <domain>storm</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_TornadoMain</soundObject>
+      <soundObject>AMB_TornadoSpin</soundObject>
+      <soundObject>AMB_InsideTornado</soundObject>
+      <soundObject>FX_DistantStorm</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>Landing</name>
+      <domain>landing</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_LandingGlitter</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>EndMusic</name>
+      <domain>endmusic</domain>
+      <retrigg>0</retrigg>
+      <soundObject>AMB_Endmusic</soundObject>
+    </arrangement>
+  </soundData>
+  <eventData fileName="event.xml">
+  	<action>
+      <event>ozzification_on</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_Ozzification"/>
+        </target>        
+      </targets>
+    </action>
+    <action>
+      <event>ozzification_off</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OzzificationOut"/>
+        </target>        
+      </targets>
+    </action>
+    <action>
+      <event>storm_scene_pause</event>
+      <targets>
+        <target id="PauseArrAction">
+          <arg key="name" value="TornadoMusic"/>
+        </target>        
+      </targets>
+    </action>
+    <action>
+      <event>storm_scene_resume</event>
+      <targets>
+        <target id="ResumeArrAction">
+          <arg key="name" value="TornadoMusic"/>
+        </target>        
+      </targets>
+    </action>
+  	<action>
+      <event>musicbox_play</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="OrganMechanics"/>
+        </target>        
+      </targets>
+    </action>
+    <action>
+      <event>landing_start</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="Landing"/>
+        </target>        
+      </targets>
+    </action>
+    <action>
+      <event>landing_end</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="landing"/>
+          <arg key="fadeOutTime" value="200"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_pause</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="organ"/>
+          <arg key="fadeOutTime" value="200"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>landing_show</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="Landing"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>landing_end</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="landing"/>
+          <arg key="fadeOutTime" value="500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="market2"/>
+          <arg key="vol" value="0.3"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="market1"/>
+          <arg key="vol" value="0.5"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnival"/>
+          <arg key="vol" value="3"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>end_scene_start</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="EndMusic"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>end_scene_end</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="endmusic"/>
+          <arg key="fadeOutTime" value="1500"/>
+        </target>
+      </targets>
+    </action>
+  	<action>
+      <event>storm_start</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="TornadoMusic"/>
+        </target>        
+		<target id="BusVolumeAction">
+          <arg key="name" value="insidetornado"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="0"/>
+        </target>
+		<target id="BusPanAction">
+          <arg key="name" value="farright"/>
+          <arg key="pan" value="20"/>
+          <arg key="panY" value="17"/>
+          <arg key="panZ" value="-30"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="storm"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="Storm"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene1"/>
+          <arg key="fadeOutTime" value="2500"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene3"/>
+          <arg key="fadeOutTime" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="stormspin"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="20000"/>
+        </target>       
+      </targets>
+    </action>
+    <action>
+      <event>storm_end</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="main"/>
+          <arg key="fadeOutTime" value="2500"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="storm"/>
+          <arg key="fadeOutTime" value="3500"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>storm_exit</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="stormspin"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="insidetornado"/>
+          <arg key="vol" value="0.2"/>
+          <arg key="time" value="10000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>scene_carnival_start</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="Scene1"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene3"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="OrganMechanics"/>
+        </target>  
+        <target id="BusVolumeAction">
+          <arg key="name" value="farleft"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="centerleft"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="centerright"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene3"/>
+          <arg key="fadeOutTime" value="2500"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene2"/>
+          <arg key="fadeOutTime" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene2"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusPanAction">
+          <arg key="name" value="organ"/>
+          <arg key="pan" value="-14"/>
+          <arg key="panY" value="22"/>
+          <arg key="panZ" value="-65"/>
+          <arg key="time" value="500"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>scene_carnival2_start</event>
+      <targets>
+      	 <target id="PlayArrAction">
+          <arg key="name" value="Scene1"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="Scene2"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="OrganMechanics"/>
+        </target>  
+        <target id="BusVolumeAction">
+          <arg key="name" value="market2"/>
+          <arg key="vol" value="0.5"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="market1"/>
+          <arg key="vol" value="0.5"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnival"/>
+          <arg key="vol" value="3"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene2"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene3"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene3"/>
+          <arg key="fadeOutTime" value="2500"/>
+        </target>
+        
+        <target id="BusPanAction">
+          <arg key="name" value="farright"/>
+          <arg key="pan" value="-15"/>
+          <arg key="panY" value="17"/>
+          <arg key="panZ" value="-35"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusPanAction">
+          <arg key="name" value="organ"/>
+          <arg key="pan" value="-14"/>
+          <arg key="panY" value="22"/>
+          <arg key="panZ" value="-65"/>
+          <arg key="time" value="500"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>scene_carnival3_start</event>
+      <targets>
+      	<target id="PlayArrAction">
+          <arg key="name" value="Scene3"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="Scene1"/>
+        </target>
+        <target id="PlayArrAction">
+          <arg key="name" value="OrganMechanics"/>
+        </target>  
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnival"/>
+          <arg key="vol" value="3"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="market2"/>
+          <arg key="vol" value="0.8"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="market1"/>
+          <arg key="vol" value="0.6"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="farleft"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="centerleft"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="centerright"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="2500"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene3"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="2000"/>
+        </target>
+        
+        <target id="BusPanAction">
+          <arg key="name" value="farright"/>
+          <arg key="pan" value="120"/>
+          <arg key="panY" value="17"/>
+          <arg key="panZ" value="-70"/>
+          <arg key="time" value="1000"/>
+        </target>
+        
+        <target id="BusPanAction">
+          <arg key="name" value="organ"/>
+          <arg key="pan" value="-130"/>
+          <arg key="panY" value="17"/>
+          <arg key="panZ" value="-60"/>
+          <arg key="time" value="500"/>
+        </target>
+        
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene2"/>
+          <arg key="fadeOutTime" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene2"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>storm_zoom_in</event>
+      <targets>
+      	<target id="StartSOAction">
+          <arg key="name" value="FX_InteractSignature"/>
+        </target>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_BallonClick"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="organfilter"/>
+          <arg key="group" value="organ"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>zoetrope_zoom_in</event>
+      <targets>
+      	<target id="StartSOAction">
+          <arg key="name" value="FX_InteractSignature"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene1"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>zoetrope_start</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene2"/>
+          <arg key="fadeOutTime" value="500"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>zoetrope_recording_start</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="Scene2"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>zoetrope_recording_stop</event>
+      <targets>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="scene2"/>
+          <arg key="fadeOutTime" value="20"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>zoetrope_end</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="Scene2"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="scene1"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="2"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_start</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnivalamb"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="organ"/>
+          <arg key="fadeOutTime" value="100"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>sound_on</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="main"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>sound_off</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="main"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>trailer_start</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="top"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>trailer_end</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="top"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>loading_start</event>
+      <targets>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="projectorfilter"/>
+          <arg key="group" value="projector"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="organfilter"/>
+          <arg key="group" value="organ"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>loading_end</event>
+      <targets>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="projectorfilter"/>
+          <arg key="group" value="projector"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="organfilter"/>
+          <arg key="group" value="organ"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>card_out</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_CardLoadingFinished"/>
+          <arg key="delay" value="400"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>cutout_zoom_in</event>
+      <targets>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="organfilter"/>
+          <arg key="group" value="organ"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_InteractSignature"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>cutout_end</event>
+      <targets>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="organfilter"/>
+          <arg key="group" value="organ"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>cutout_photo</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_CameraFlash"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>cutout_switch</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_CameraChange_1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>card_flip</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_CardFlip"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>card_in</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_CardIn"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_shared</event>
+      <targets>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="100"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnival"/>
+          <arg key="vol" value="3"/>
+          <arg key="time" value="100"/>
+        </target>
+        <target id="BusPanAction">
+          <arg key="name" value="organ"/>
+          <arg key="pan" value="0"/>
+          <arg key="panY" value="0"/>
+          <arg key="panZ" value="0"/>
+          <arg key="time" value="100"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_zoom_in</event>
+      <targets>
+      	<target id="StartSOAction">
+          <arg key="name" value="FX_InteractSignature"/>
+        </target>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="250"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="1"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_end</event>
+      <targets>
+        <target id="EffectParamAction">
+          <arg key="name" value="filter"/>
+          <arg key="group" value="carnival"/>
+          <arg key="value" value="20000"/>
+          <arg key="time" value="1500"/>
+          <arg key="param" value="frequency"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="organ"/>
+          <arg key="fadeOutTime" value="200"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="carnivalamb"/>
+          <arg key="vol" value="2"/>
+          <arg key="time" value="1000"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="2"/>
+          <arg key="time" value="1000"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>btn_generic_over</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_Hover"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>btn_generic_click</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_Click"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>btn_enter_click</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_Click"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_c1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganC1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_d1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganD1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_e1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganE1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_f1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganF1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_g1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganG1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_a1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganA1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_b1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganB1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_c2</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganC2"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_d2</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganD2"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_e2</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="FX_OrganE2"/>
+        </target>
+      </targets>
+    </action>
+    
+    <action>
+      <event>musicbox_loop_1</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_2</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_2"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_3</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_3"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_4</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_4"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_5</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_5"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_6</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_6"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_7</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_7"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_8</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_8"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_9</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_9"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_10</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_10"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_11</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_11"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_12</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_12"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_13</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_13"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_14</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_14"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_15</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_15"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>musicbox_loop_16</event>
+      <targets>
+        <target id="StartSOAction">
+          <arg key="name" value="OrganLoop_16"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>load_scene_1</event>
+      <targets>
+        <target id="LoadSWFAction">
+          <arg key="name" value="sounds_1"/>
+          <arg key="parameterSWFPath" value="1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>load_scene_2</event>
+      <targets>
+        <target id="LoadSWFAction">
+          <arg key="name" value="sounds_2"/>
+          <arg key="parameterSWFPath" value="1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>load_scene_3</event>
+      <targets>
+        <target id="LoadSWFAction">
+          <arg key="name" value="sounds_3"/>
+          <arg key="parameterSWFPath" value="1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>load_scene_4</event>
+      <targets>
+        <target id="LoadSWFAction">
+          <arg key="name" value="sounds_4"/>
+          <arg key="parameterSWFPath" value="1"/>
+        </target>
+      </targets>
+    </action>
+    <action>
+      <event>load_scene_5</event>
+      <targets>
+        <target id="LoadSWFAction">
+          <arg key="name" value="sounds_5"/>
+          <arg key="parameterSWFPath" value="1"/>
+        </target>
+      </targets>
+    </action>
+  </eventData>
+</root>

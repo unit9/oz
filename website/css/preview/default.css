@@ -1,0 +1,173 @@
+@font-face {
+  font-family: 'TradeGothic';
+  src: url('/css/tradegothicltstdbdcn20.ttf') format('truetype');
+}
+html {
+  width: 100%;
+}
+.errorContainer {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.errorContainer div:first-child:not(.ssAsset) {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+.errorContainer .ssAsset {
+  margin: 0 auto;
+}
+.errorContainer p {
+  display: inline-block;
+  text-transform: uppercase;
+}
+.header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 5%;
+  font-size: 13px;
+  color: #ffffff;
+  display: table;
+}
+.header .innerFooterCenter {
+  display: table-cell;
+  vertical-align: bottom;
+}
+.header .innerFooterCenter div {
+  margin: 0 auto;
+}
+.header .innerFooterCenter img {
+  width: 36px;
+  height: 13px;
+  opacity: 0.53;
+}
+.header .innerFooterCenter span {
+  color: #969696;
+}
+.header .innerFooterCenter span:nth-child(2) {
+  color: #FFF;
+  font-size: 42px;
+  display: block;
+  margin: 2px auto -1px auto;
+}
+.ratings {
+  position: absolute;
+  display: table;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  font-family: TradeGothic;
+}
+.ratings a {
+  font-size: 11px;
+  color: #FFF;
+  opacity: .25;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-transition: opacity 0.2s linear;
+}
+.ratings a:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.ratings div {
+  margin: 0 auto;
+}
+footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  left: 0px;
+  height: auto;
+}
+footer .footer-logos {
+  position: absolute;
+  width: 70px;
+  z-index: 2;
+  left: 20px;
+  bottom: 0;
+}
+footer .footer-logos a {
+  float: left;
+  margin: -20px 10px 0 0;
+  opacity: .6;
+  -webkit-transition: opacity 0.3s linear;
+  overflow-x: hidden;
+}
+footer .footer-logos a:hover {
+  opacity: 1;
+}
+footer .footer-logos a:not(:first-child) {
+  margin: 9px 10px 0 0;
+}
+footer .footer-logos a img {
+  width: 100%;
+  display: block;
+}
+footer .footer-logos a:nth-child(2) img {
+  margin-left: -9px;
+}
+footer .footer-logos a:last-child img {
+  margin-left: -8px;
+}
+footer .footer-share {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  bottom: 0px;
+  right: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+footer .footer-share div,
+footer .footer-share iframe {
+  float: right;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+footer .footer-share iframe {
+  width: 90px !important;
+}
+footer .footer-share div:first-child {
+  text-align: right;
+}
+footer .footer-share .fb-like {
+  height: 21px;
+  margin: 10px 0 0 0;
+}
+footer .footer-share a[href='https://twitter.com/share'] {
+  display: none !important;
+}
+.buttonContainer {
+  display: table;
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  width: 100%;
+}
+.buttonCell {
+  display: table-cell;
+  vertical-align: bottom;
+}
+.extra-page-button {
+  color: #ffffff;
+  padding: 5px 40px 3px 40px;
+  background: url(/img/preview/pattern_button.png) repeat;
+  background-color: transparent;
+  border: 2px solid #bab9ae;
+  -webkit-border-radius: 20px;
+  cursor: pointer;
+  opacity: .6;
+  -webkit-transition: opacity 0.3s linear;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-transform: rotate(0);
+}
+.extra-page-button:hover {
+  opacity: 1;
+}
