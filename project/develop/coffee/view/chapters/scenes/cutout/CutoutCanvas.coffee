@@ -28,6 +28,8 @@ class CutoutCanvas extends Abstract
     colorCorrectCanvas : null
     colorCorrectCtx : null
 
+    portrait : null
+
     paused : true
 
     init : =>
@@ -123,6 +125,9 @@ class CutoutCanvas extends Abstract
 
     getPhoto : (canvas = false, oz = false) =>
 
+        if canvas == true
+            @portrait = null
+
         @camCanvas = @createTextureWebCam(@camCtx, @camCanvas, oz)
 
         @renderTexture()
@@ -141,7 +146,12 @@ class CutoutCanvas extends Abstract
             @photoCanvas.width = @textureSize[0]
             @photoCanvas.height = @textureSize[1]
 
-            imgData = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[1], @textureSize[0]
+            if canvas
+                imgData = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[1], @textureSize[0]
+                @portrait = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[1], @textureSize[0]
+            else 
+                imgData = @portrait
+
             @photoCtxTemp.putImageData imgData, 0,0
 
             @photoCtx.translate(@photoCanvas.height - 166, 0)
@@ -156,7 +166,12 @@ class CutoutCanvas extends Abstract
             @photoCanvas.width = @textureSize[0]
             @photoCanvas.height = @textureSize[1]
 
-            imgData = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[0], @textureSize[1]
+            if canvas
+                imgData = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[0], @textureSize[1]
+                @portrait = @camCtx.getImageData @coord.xx, @coord.yy, @textureSize[0], @textureSize[1]
+            else 
+                imgData = @portrait
+
             @photoCtxTemp.putImageData imgData, 0, 0
             @photoCtx.drawImage @photoCanvasTemp, 0, 0
 
@@ -165,11 +180,13 @@ class CutoutCanvas extends Abstract
         if canvas
             return @photoCanvas
         else 
+            @portrait = null
             return @image = @photoCanvas.toDataURL("image/jpeg").slice "data:image/jpeg;base64,".length
 
 
     dispose : =>
         $(@canvas).remove()
+        @portrait = null
         @photoCanvas = @photoCtx = @photoCanvasTemp = @photoCtxTemp = null
         null
 

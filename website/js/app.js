@@ -4360,16 +4360,16 @@
     };
 
     BrowserDetection.prototype.compare = function() {
-      if (this.browser === 'Chrome' && this.webGL) {
+      if (this.browser === 'Chrome' && (this.webGL && this.webGLAdvanced)) {
         return this.onSuccess();
-      } else if (this.browser === 'Chrome' && !this.webGL) {
-        return this.onError({
-          message: 'Chrome_NoWebGL_message',
-          buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
-        });
       } else if (this.browser === 'Chrome' && (this.webGL && !this.webGLAdvanced)) {
         return this.onError({
           message: 'Chrome_NoWebGLAdvancedFeats_message',
+          buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
+        });
+      } else if (this.browser === 'Chrome' && !this.webGL) {
+        return this.onError({
+          message: 'Chrome_NoWebGL_message',
           buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
         });
       } else if (this.browser === 'Firefox' && (this.webGL && this.webGLAdvanced)) {
@@ -9536,6 +9536,8 @@
 
     Cutout.prototype.camSize = null;
 
+    Cutout.prototype.currentPic = null;
+
     Cutout.prototype.polaroid = null;
 
     Cutout.prototype.init = function() {
@@ -9973,6 +9975,8 @@
 
     CutoutCanvas.prototype.colorCorrectCtx = null;
 
+    CutoutCanvas.prototype.portrait = null;
+
     CutoutCanvas.prototype.paused = true;
 
     CutoutCanvas.prototype.init = function() {
@@ -10071,6 +10075,9 @@
       if (oz == null) {
         oz = false;
       }
+      if (canvas === true) {
+        this.portrait = null;
+      }
       this.camCanvas = this.createTextureWebCam(this.camCtx, this.camCanvas, oz);
       this.renderTexture();
       this.photoCanvas = document.createElement('canvas');
@@ -10082,7 +10089,12 @@
         this.photoCanvasTemp.height = this.textureSize[0];
         this.photoCanvas.width = this.textureSize[0];
         this.photoCanvas.height = this.textureSize[1];
-        imgData = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[1], this.textureSize[0]);
+        if (canvas) {
+          imgData = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[1], this.textureSize[0]);
+          this.portrait = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[1], this.textureSize[0]);
+        } else {
+          imgData = this.portrait;
+        }
         this.photoCtxTemp.putImageData(imgData, 0, 0);
         this.photoCtx.translate(this.photoCanvas.height - 166, 0);
         this.photoCtx.rotate(90 * (Math.PI / 180));
@@ -10092,7 +10104,12 @@
         this.photoCanvasTemp.height = this.textureSize[1];
         this.photoCanvas.width = this.textureSize[0];
         this.photoCanvas.height = this.textureSize[1];
-        imgData = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[0], this.textureSize[1]);
+        if (canvas) {
+          imgData = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[0], this.textureSize[1]);
+          this.portrait = this.camCtx.getImageData(this.coord.xx, this.coord.yy, this.textureSize[0], this.textureSize[1]);
+        } else {
+          imgData = this.portrait;
+        }
         this.photoCtxTemp.putImageData(imgData, 0, 0);
         this.photoCtx.drawImage(this.photoCanvasTemp, 0, 0);
       }
@@ -10100,12 +10117,14 @@
       if (canvas) {
         return this.photoCanvas;
       } else {
+        this.portrait = null;
         return this.image = this.photoCanvas.toDataURL("image/jpeg").slice("data:image/jpeg;base64,".length);
       }
     };
 
     CutoutCanvas.prototype.dispose = function() {
       $(this.canvas).remove();
+      this.portrait = null;
       this.photoCanvas = this.photoCtx = this.photoCanvasTemp = this.photoCtxTemp = null;
       return null;
     };

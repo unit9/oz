@@ -15,7 +15,7 @@ class AppViewMusic extends Abstract
 
         # Init SoundController
         SoundController.active = true
-        SoundController.init true
+        SoundController.init false
 
         @addInterface()
 

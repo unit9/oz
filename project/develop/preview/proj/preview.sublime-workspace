@@ -519,62 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/App.coffee",
-			"settings":
-			{
-				"buffer_size": 2981,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SSAsset.coffee",
-			"settings":
-			{
-				"buffer_size": 1728,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/cutout/AppViewCutout.coffee",
-			"settings":
-			{
-				"buffer_size": 848,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/default.less",
-			"settings":
-			{
-				"buffer_size": 3780,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/zoe.less",
-			"settings":
-			{
-				"buffer_size": 820,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/zoe/index.html",
-			"settings":
-			{
-				"buffer_size": 2692,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/music/AppViewMusic.coffee",
-			"settings":
-			{
-				"buffer_size": 4122,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Oz Compiler",
 	"command_palette":
@@ -724,16 +668,22 @@
 	},
 	"file_history":
 	[
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/music/AppViewMusic.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/zoe/index.html",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/zoe.less",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/default.less",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/cutout/AppViewCutout.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/App.coffee",
+		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SSAsset.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/audio/SoundController.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/music/AppViewMusic.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/music.less",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/responsive.less",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/js/ss/extra_pages.json",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/CakeFile",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/zoe/AppViewZoe.coffee",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/zoe.less",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/default.less",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/cutout/ThumbCutout.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/cutout.less",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/music/AppViewMusic.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/zoe/ThumbZoe.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/oz.sublime-project",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/js/previewR.js",
@@ -749,7 +699,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/previewR.js",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/default.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/music.less",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/music/AppViewMusic.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/App.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/ErrorMessage.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/zoe/AppViewZoe.coffee",
@@ -758,8 +707,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Footer/Fragments/FooterLogos.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/collection/CollectionAssets.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/zoe/ThumbZoe.coffee",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/cutout/AppViewCutout.coffee",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/App.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Footer/Footer.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/css/styles.css",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/css/normalise.css",
@@ -788,7 +735,6 @@
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SimpleButton.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/AbstractButton.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/css/preview/responsive.css",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SSAsset.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/proj/preview.sublime-project",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Footer/Fragments/FooterCenter.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Footer/Fragments/FooterLogos.coffee",
@@ -797,7 +743,6 @@
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/coffee/utils/BaseAssets.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Footer/Fragments/FooterShare.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/coffee/utils/preloader/AssetLoader.coffee",
-		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/zoe/index.html",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/AbstractScene.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/AppView.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/Base3DChapter.coffee",
@@ -844,7 +789,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/LandingPause.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/SSAsset.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/LandingFinal.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/audio/SoundController.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/preloader/AssetLoader.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/BaseAssets.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/audio/AudioManager.coffee",
@@ -878,6 +822,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"SoundController",
 			"encodeURI",
 			"body",
 			"SSAsset",
@@ -1004,8 +949,7 @@
 			"@paused",
 			"paused",
 			"cutou",
-			"cutout",
-			"cut"
+			"cutout"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1060,225 +1004,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/App.coffee",
-					"settings":
-					{
-						"buffer_size": 2981,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								676,
-								676
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SSAsset.coffee",
-					"settings":
-					{
-						"buffer_size": 1728,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1642,
-								1642
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/cutout/AppViewCutout.coffee",
-					"settings":
-					{
-						"buffer_size": 848,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								128,
-								128
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/default.less",
-					"settings":
-					{
-						"buffer_size": 3780,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3210,
-								3210
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1906.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/zoe.less",
-					"settings":
-					{
-						"buffer_size": 820,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								617,
-								617
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/zoe/index.html",
-					"settings":
-					{
-						"buffer_size": 2692,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2185,
-								2185
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/music/AppViewMusic.coffee",
-					"settings":
-					{
-						"buffer_size": 4122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"glsv_configured": true,
-							"glsv_enabled": 1.0,
-							"glsv_spec": 0.0,
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1327,6 +1054,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"soun",
+				"utils/audio/SoundController.coffee"
+			],
 			[
 				"ssa",
 				"preview/view/default/Abstract/SSAsset.coffee"
@@ -1834,10 +1565,6 @@
 			[
 				"browserdetection",
 				"project/develop/coffee/utils/BrowserDetection.coffee"
-			],
-			[
-				"string.",
-				"website/locale/en/strings.txt"
 			]
 		],
 		"width": 0.0

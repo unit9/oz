@@ -31,9 +31,7 @@
 
     function CollectionAssets() {
       this.getImage = __bind(this.getImage, this);
-
-      this.get = __bind(this.get, this);
-      return CollectionAssets.__super__.constructor.apply(this, arguments);
+      this.get = __bind(this.get, this);      return CollectionAssets.__super__.constructor.apply(this, arguments);
     }
 
     CollectionAssets.prototype.model = AssetModel;
@@ -257,7 +255,8 @@
     };
 
     SoundController.onloadcomplete = function() {
-      return SoundController.loaded = true;
+      SoundController.loaded = true;
+      return SoundController.send('landing_start');
     };
 
     SoundController.onbatchloaded = function() {
@@ -392,9 +391,7 @@
 
     function AppViewCutout() {
       this.oz = __bind(this.oz, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return AppViewCutout.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return AppViewCutout.__super__.constructor.apply(this, arguments);
     }
 
     AppViewCutout.prototype.initialize = function() {
@@ -432,11 +429,8 @@
 
     function ThumbCutout() {
       this.oz = __bind(this.oz, this);
-
       this.initAnimation = __bind(this.initAnimation, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ThumbCutout.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ThumbCutout.__super__.constructor.apply(this, arguments);
     }
 
     ThumbCutout.prototype.initialize = function(id) {
@@ -489,55 +483,30 @@
 
     function Abstract() {
       this.oz = __bind(this.oz, this);
-
       this.onAssetsComplete = __bind(this.onAssetsComplete, this);
-
       this.onUnLock = __bind(this.onUnLock, this);
-
       this.onLock = __bind(this.onLock, this);
-
       this.onLockMouseMove = __bind(this.onLockMouseMove, this);
-
       this.pointerLockChange = __bind(this.pointerLockChange, this);
-
       this.releasePointLock = __bind(this.releasePointLock, this);
-
       this.pointLock = __bind(this.pointLock, this);
-
       this.onAssetsProgress = __bind(this.onAssetsProgress, this);
-
       this.onAssetsInitLoading = __bind(this.onAssetsInitLoading, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.mouseEnabled = __bind(this.mouseEnabled, this);
-
       this.show = __bind(this.show, this);
-
       this.hide = __bind(this.hide, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.remove = __bind(this.remove, this);
-
       this.addChild = __bind(this.addChild, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.move = __bind(this.move, this);
-
       this.empty = __bind(this.empty, this);
-
       this.render = __bind(this.render, this);
-
       this.pause = __bind(this.pause, this);
-
       this.resume = __bind(this.resume, this);
-
       this.update = __bind(this.update, this);
-
-      this.init = __bind(this.init, this);
-      return Abstract.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Abstract.__super__.constructor.apply(this, arguments);
     }
 
     Abstract.prototype.el = null;
@@ -877,31 +846,18 @@
 
     function AbstractButton() {
       this.oz = __bind(this.oz, this);
-
       this.show = __bind(this.show, this);
-
       this.hide = __bind(this.hide, this);
-
       this.pause = __bind(this.pause, this);
-
       this.resume = __bind(this.resume, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.changeLabel = __bind(this.changeLabel, this);
-
       this.onclick = __bind(this.onclick, this);
-
       this.onout = __bind(this.onout, this);
-
       this.onover = __bind(this.onover, this);
-
       this.disable = __bind(this.disable, this);
-
       this.enable = __bind(this.enable, this);
-
-      this.init = __bind(this.init, this);
-      return AbstractButton.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return AbstractButton.__super__.constructor.apply(this, arguments);
     }
 
     AbstractButton.prototype.el = null;
@@ -1049,15 +1005,10 @@
 
     function SimpleButton() {
       this.dispose = __bind(this.dispose, this);
-
       this.onclick = __bind(this.onclick, this);
-
       this.onout = __bind(this.onout, this);
-
       this.onover = __bind(this.onover, this);
-
-      this.init = __bind(this.init, this);
-      return SimpleButton.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return SimpleButton.__super__.constructor.apply(this, arguments);
     }
 
     SimpleButton.prototype.initialize = function(_id, _label, transitionClass) {
@@ -1102,23 +1053,14 @@
 
     function SSAsset() {
       this.oz = __bind(this.oz, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.center = __bind(this.center, this);
-
       this.removeClass = __bind(this.removeClass, this);
-
       this.addClass = __bind(this.addClass, this);
-
       this.css = __bind(this.css, this);
-
       this.out = __bind(this.out, this);
-
       this.over = __bind(this.over, this);
-
-      this.init = __bind(this.init, this);
-      return SSAsset.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return SSAsset.__super__.constructor.apply(this, arguments);
     }
 
     SSAsset.prototype.ss = null;
@@ -1206,8 +1148,7 @@
     __extends(Button, _super);
 
     function Button() {
-      this.initialize = __bind(this.initialize, this);
-      return Button.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Button.__super__.constructor.apply(this, arguments);
     }
 
     Button.prototype.className = 'extra-page-button';
@@ -1251,9 +1192,7 @@
 
     function ErrorMessage() {
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ErrorMessage.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ErrorMessage.__super__.constructor.apply(this, arguments);
     }
 
     ErrorMessage.prototype.tagName = 'div';
@@ -1294,11 +1233,8 @@
 
     function Footer() {
       this.onWindowResize = __bind(this.onWindowResize, this);
-
       this.renderShare = __bind(this.renderShare, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Footer.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Footer.__super__.constructor.apply(this, arguments);
     }
 
     Footer.prototype.tagName = 'footer';
@@ -1335,8 +1271,7 @@
     __extends(FooterLogos, _super);
 
     function FooterLogos() {
-      this.initialize = __bind(this.initialize, this);
-      return FooterLogos.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return FooterLogos.__super__.constructor.apply(this, arguments);
     }
 
     FooterLogos.prototype.className = 'footer-logos';
@@ -1381,13 +1316,9 @@
 
     function FooterShare() {
       this.oz = __bind(this.oz, this);
-
       this.addWeibo = __bind(this.addWeibo, this);
-
       this.addRenRen = __bind(this.addRenRen, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return FooterShare.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return FooterShare.__super__.constructor.apply(this, arguments);
     }
 
     FooterShare.prototype.className = 'footer-share';
@@ -1489,8 +1420,7 @@
     __extends(Header, _super);
 
     function Header() {
-      this.oz = __bind(this.oz, this);
-      return Header.__super__.constructor.apply(this, arguments);
+      this.oz = __bind(this.oz, this);      return Header.__super__.constructor.apply(this, arguments);
     }
 
     Header.prototype.className = 'header';
@@ -1524,9 +1454,7 @@
 
     function Ratings() {
       this.oz = __bind(this.oz, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Ratings.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Ratings.__super__.constructor.apply(this, arguments);
     }
 
     Ratings.prototype.tagName = 'div';
@@ -1560,13 +1488,9 @@
 
     function Locale() {
       this.get = __bind(this.get, this);
-
       this.loadBackup = __bind(this.loadBackup, this);
-
       this.onSuccess = __bind(this.onSuccess, this);
-
-      this.init = __bind(this.init, this);
-      _.extend(this, Backbone.Events);
+      this.init = __bind(this.init, this);      _.extend(this, Backbone.Events);
     }
 
     Locale.prototype.init = function() {
@@ -1617,23 +1541,14 @@
 
     function AppViewMusic() {
       this.oz = __bind(this.oz, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.activate = __bind(this.activate, this);
-
       this.onAllSoundsLoaded = __bind(this.onAllSoundsLoaded, this);
-
       this.soudControllerLoaded = __bind(this.soudControllerLoaded, this);
-
       this.tooglePlay = __bind(this.tooglePlay, this);
-
       this.addInterface = __bind(this.addInterface, this);
-
       this.addSpinner = __bind(this.addSpinner, this);
-
-      this.init = __bind(this.init, this);
-      return AppViewMusic.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return AppViewMusic.__super__.constructor.apply(this, arguments);
     }
 
     AppViewMusic.prototype.soundsLoaded = false;
@@ -1649,7 +1564,7 @@
       this.header = new Header;
       this.$el.append(this.header.$el);
       SoundController.active = true;
-      SoundController.init(true);
+      SoundController.init(false);
       this.addInterface();
       this.buttonContainer = this.$el.append('<div class="buttonContainer"><div class="buttonCell" /></div>');
       this.button = new Button(this.oz().locale.get('musicSharePageButton'), '/music');
@@ -1800,13 +1715,9 @@
 
     function MusicBox() {
       this.dispose = __bind(this.dispose, this);
-
       this.restore = __bind(this.restore, this);
-
       this.render = __bind(this.render, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return MusicBox.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return MusicBox.__super__.constructor.apply(this, arguments);
     }
 
     MusicBox.prototype.data = null;
@@ -1854,21 +1765,13 @@
 
     function MusicBoxGrid() {
       this.newTooltip = __bind(this.newTooltip, this);
-
       this.cellHoverOff = __bind(this.cellHoverOff, this);
-
       this.cellHoverOn = __bind(this.cellHoverOn, this);
-
       this.activateCell = __bind(this.activateCell, this);
-
       this.cellClick = __bind(this.cellClick, this);
-
       this.playing = __bind(this.playing, this);
-
       this.buildTable = __bind(this.buildTable, this);
-
-      this.init = __bind(this.init, this);
-      return MusicBoxGrid.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return MusicBoxGrid.__super__.constructor.apply(this, arguments);
     }
 
     MusicBoxGrid.prototype.animating = false;
@@ -1959,25 +1862,15 @@
 
     function MusicBoxTable() {
       this.dispose = __bind(this.dispose, this);
-
       this.playLoopSound = __bind(this.playLoopSound, this);
-
       this.doLoopAudio = __bind(this.doLoopAudio, this);
-
       this.stop = __bind(this.stop, this);
-
       this.play = __bind(this.play, this);
-
       this.togglePlay = __bind(this.togglePlay, this);
-
       this.exportJson = __bind(this.exportJson, this);
-
       this.render = __bind(this.render, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return MusicBoxTable.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return MusicBoxTable.__super__.constructor.apply(this, arguments);
     }
 
     MusicBoxTable.prototype.template = "        <div class='box-container'>            <div class='decorated-box'>                <div class='center_bar'></div>                                <div id='r1' class='row'>                    <div id='c11' class='cell'></div>                    <div id='c12' class='cell'></div>                    <div id='c13' class='cell'></div>                </div>                <div id='r2' class='row'>                    <div id='c21' class='cell'></div>                    <div id='c22' class='cell'>                        <div class='grid-mask'></div>                    </div>                    <div id='c23' class='cell'></div>                </div>                <div id='r3' class='row'>                    <div id='c31' class='cell'></div>                    <div id='c32' class='cell'></div>                    <div id='c33' class='cell'></div>                </div>            </div>            <div class='musicbox_button_container'>            </div>        </div>        ";
@@ -2267,11 +2160,8 @@
 
     function Tune(sampleRate, frequency, pan, length) {
       this.getMix = __bind(this.getMix, this);
-
       this._generate = __bind(this._generate, this);
-
-      this.generate = __bind(this.generate, this);
-      this.sampleRate = isNaN(sampleRate) || sampleRate === null ? this.sampleRate : sampleRate;
+      this.generate = __bind(this.generate, this);      this.sampleRate = isNaN(sampleRate) || sampleRate === null ? this.sampleRate : sampleRate;
       this.frequency = isNaN(frequency) || frequency === null ? this.frequency : frequency;
       this.pan = isNaN(pan) || pan === null ? this.pan : pan;
       this.length = isNaN(length) || length === null ? this.length : length;
@@ -2310,9 +2200,7 @@
 
     function AppViewZoe() {
       this.oz = __bind(this.oz, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return AppViewZoe.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return AppViewZoe.__super__.constructor.apply(this, arguments);
     }
 
     AppViewZoe.prototype.initialize = function() {
@@ -2350,17 +2238,11 @@
 
     function ThumbZoe() {
       this.loadComplete = __bind(this.loadComplete, this);
-
       this.getWidth = __bind(this.getWidth, this);
-
       this.getHeight = __bind(this.getHeight, this);
-
       this.animate = __bind(this.animate, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ThumbZoe.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ThumbZoe.__super__.constructor.apply(this, arguments);
     }
 
     ThumbZoe.prototype.tagName = 'div';

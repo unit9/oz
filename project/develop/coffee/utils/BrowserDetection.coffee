@@ -21,19 +21,20 @@ class BrowserDetection
         @compare()
 
     compare: =>
-        if @browser == 'Chrome' and @webGL
+        if @browser == 'Chrome' and ( @webGL && @webGLAdvanced )
+            # all good
             @onSuccess()
-
-        else if @browser == 'Chrome' and !@webGL
-            # chrome with no webgl
-            @onError
-                message : 'Chrome_NoWebGL_message'
-                buttons : ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
 
         else if @browser == 'Chrome' and ( @webGL && !@webGLAdvanced )
             # chrome with webgl but no advanced feats (shitty chromebook) 
             @onError
                 message : 'Chrome_NoWebGLAdvancedFeats_message'
+                buttons : ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
+
+        else if @browser == 'Chrome' and !@webGL
+            # chrome with no webgl
+            @onError
+                message : 'Chrome_NoWebGL_message'
                 buttons : ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
 
         else if @browser == 'Firefox' and ( @webGL && @webGLAdvanced )

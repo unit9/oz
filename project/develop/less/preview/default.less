@@ -96,6 +96,10 @@ html {
         text-transform: uppercase;
         text-decoration: none;
         -webkit-transition: opacity 0.2s linear;
+        -moz-transition: opacity 0.2s linear;
+        -o-transition: opacity 0.2s linear;
+        -ms-transition: opacity 0.2s linear;
+        transition: opacity 0.2s linear;
 
         &:hover
         {
@@ -131,6 +135,10 @@ footer {
             margin: -20px 10px 0 0;
             opacity: .6;
             -webkit-transition: opacity 0.3s linear;
+            -moz-transition: opacity 0.3s linear;
+            -o-transition: opacity 0.3s linear;
+            -ms-transition: opacity 0.3s linear;
+            transition: opacity 0.3s linear;
             overflow-x: hidden;
         }
 
@@ -218,13 +226,28 @@ footer {
     background: url(/img/preview/pattern_button.png) repeat;
     background-color: transparent;
     border: 2px solid @buttonColor;
+
     -webkit-border-radius: 20px;
+    -o-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    border-radius: 20px;
+
     cursor: pointer;
     opacity: .6;
     -webkit-transition: opacity 0.3s linear;
+    -o-transition: opacity 0.3s linear;
+    -moz-transition: opacity 0.3s linear;
+    -ms-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+
     text-transform: uppercase;
     text-decoration: none;
     -webkit-transform: rotate(0);
+    -o-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
 }
 
 .extra-page-button:hover {

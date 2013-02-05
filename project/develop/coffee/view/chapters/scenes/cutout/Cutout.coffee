@@ -15,6 +15,8 @@ class Cutout extends AbstractScene
     textureSize      : null
     camSize          : null
 
+    currentPic  : null
+
     polaroid : null
     
     # assetsBatch : ['cutoutAssets']

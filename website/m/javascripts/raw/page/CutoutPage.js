@@ -203,6 +203,7 @@ Package('page',
 					if(this.userPhoto)
 					{
 						this.$userPhoto.attr('src', this.userPhoto.src);
+						PhotoPositionController.getInstance().init(this.userPhoto, this.$photoFrame, this.$userPhoto);
 						this.$photoFrame.show();
 						this.setPhotoPositioningMode();
 						this.hideUploadButton();

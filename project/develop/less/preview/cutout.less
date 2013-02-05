@@ -7,6 +7,10 @@
 body {
 	background: @bodyColor url(../../img/preview/cutout_background.png) no-repeat center center fixed; 
 	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	background-size: cover;
 	color: @bodyFontColor;
 	width: 100%;
 	overflow: hidden;
@@ -17,10 +21,18 @@ body {
 	0%   {
 		top: -100%;
 		-webkit-transform: rotate(-100deg) scale(.8);
+		-moz-transform: rotate(-100deg) scale(.8);
+		-o-transform: rotate(-100deg) scale(.8);
+		-ms-transform: rotate(-100deg) scale(.8);
+		transform: rotate(-100deg) scale(.8);
 	}
 	100% {
 		top: 50%;
 		-webkit-transform: rotate(5deg) scale(.8);
+		-moz-transform: rotate(5deg) scale(.8);
+		-o-transform: rotate(5deg) scale(.8);
+		-ms-transform: rotate(5deg) scale(.8);
+		transform: rotate(5deg) scale(.8);
 	}
 }
 
@@ -35,9 +47,19 @@ body {
 
 	.imgAnim
 	{
-		-webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
 		top: 50%;
+
+		-webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+		-moz-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+		-o-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+		-ms-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+		filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+
 		-webkit-transform: rotate(5deg) scale(.8);
+		-moz-transform: rotate(5deg) scale(.8);
+		-o-transform: rotate(5deg) scale(.8);
+		-ms-transform: rotate(5deg) scale(.8);
+		transform: rotate(5deg) scale(.8);
 
 		img 
 		{
@@ -54,6 +76,10 @@ body {
 
 		display: none;
 		-webkit-transition: opacity 1s linear;
+		-moz-transition: opacity 1s linear;
+		-o-transition: opacity 1s linear;
+		-ms-transition: opacity 1s linear;
+		transition: opacity 1s linear;
 
 		margin-top: -250px;
 	}
@@ -63,11 +89,19 @@ body {
 		width: @widthImageCutout;
 		margin: -20px 0;
 		-webkit-mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
+		-moz-mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
+		-o-mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
+		-ms-mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
+		mask-box-image: url('/img/preview/cutout_polaroid_mask_prev.png');
 	}
 
 	.img {
 		display: block;
 		-webkit-animation: arrival 1.5s;
+		-moz-animation: arrival 1.5s;
+		-o-animation: arrival 1.5s;
+		-ms-animation: arrival 1.5s;
+		animation: arrival 1.5s;
 	}
 }
 

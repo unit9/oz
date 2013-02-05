@@ -92,13 +92,7 @@ Package('view',
 			{
 				event.preventDefault();
 				Analytics.getInstance().trackGoogleAnalyticsEvent(Analytics.GA_EVENTS.landingpage_useraction_clickgetchrome);
-				if(Detection.getInstance().iOS)
-				{
-					window.location.href = 'itms-apps://itunes.apple.com/app/chrome/id535886823';
-				} else
-				{
-					window.open('https://itunes.apple.com/us/app/chrome/id535886823', '_blank');
-				}
+				window.open(this.$getChromeButton.find('a').attr('href'), '_blank');
 			},
 
 			onContinueButtonClick : function(event)

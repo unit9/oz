@@ -117,16 +117,16 @@
     };
 
     BrowserDetection.prototype.compare = function() {
-      if (this.browser === 'Chrome' && this.webGL) {
+      if (this.browser === 'Chrome' && (this.webGL && this.webGLAdvanced)) {
         return this.onSuccess();
-      } else if (this.browser === 'Chrome' && !this.webGL) {
-        return this.onError({
-          message: 'Chrome_NoWebGL_message',
-          buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
-        });
       } else if (this.browser === 'Chrome' && (this.webGL && !this.webGLAdvanced)) {
         return this.onError({
           message: 'Chrome_NoWebGLAdvancedFeats_message',
+          buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
+        });
+      } else if (this.browser === 'Chrome' && !this.webGL) {
+        return this.onError({
+          message: 'Chrome_NoWebGL_message',
           buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
         });
       } else if (this.browser === 'Firefox' && (this.webGL && this.webGLAdvanced)) {

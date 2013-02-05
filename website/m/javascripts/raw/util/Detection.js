@@ -20,7 +20,6 @@ Package('util',
 				el_gr : 'el',
 				cs_cz : 'cs',
 				ca_es : 'ca',
-				pt_br : 'pt-pt',
 				uk_ua : 'uk'
 			}
 		},
@@ -82,7 +81,7 @@ Package('util',
 				console.log('### LANGUAGE 0: ', this.language);
 
 				var languageComponents = this.language.split('-');
-				if(languageComponents.length === 2 && languageComponents[0] === languageComponents[1])
+				if(languageComponents.length === 2 && languageComponents[0] === languageComponents[1] && this.language !== 'pt-pt')
 				{
 					this.language = languageComponents[0];
 				}
