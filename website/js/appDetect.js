@@ -30,8 +30,11 @@
 
     function Locale() {
       this.get = __bind(this.get, this);
+
       this.loadBackup = __bind(this.loadBackup, this);
-      this.onSuccess = __bind(this.onSuccess, this);      _.extend(this, Backbone.Events);
+
+      this.onSuccess = __bind(this.onSuccess, this);
+      _.extend(this, Backbone.Events);
       this.lang = (navigator.language || navigator.userLanguage).toLowerCase();
       $.ajax({
         url: "/api/localisation/desktop/" + this.lang,
@@ -77,63 +80,27 @@
   })();
 
   BrowserDetection = (function() {
-    var browser, browserVersion, webGL;
 
-    browser = null;
+    BrowserDetection.prototype.browser = null;
 
-    browserVersion = null;
+    BrowserDetection.prototype.browserVersion = null;
 
-    webGL = false;
+    BrowserDetection.prototype.webGL = false;
+
+    BrowserDetection.prototype.webGLContextCreationSuccessful = false;
 
     function BrowserDetection() {
+      this.testWebGLCompatibility = __bind(this.testWebGLCompatibility, this);
+
       this.onError = __bind(this.onError, this);
+
       this.onSuccess = __bind(this.onSuccess, this);
+
       this.compare = __bind(this.compare, this);
-      var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
       this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
-      webGLContextCreationSuccessful = false;
-      try {
-        _canvas = document.createElement('canvas');
-        if (!(_gl = _canvas.getContext('experimental-webgl', {
-          alpha: 1,
-          premultipliedAlpha: true,
-          antialias: false,
-          stencil: true,
-          preserveDrawingBuffer: false
-        }))) {
-          webGLContextCreationSuccessful = false;
-        } else {
-          _glExtensionCompressedTextureS3TC = _gl.getExtension('WEBGL_compressed_texture_s3tc') || _gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || _gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
-          formats = _gl.getParameter(_gl.COMPRESSED_TEXTURE_FORMATS);
-          dxt5Supported = false;
-          dxt3Supported = false;
-          dxt1Supported = false;
-          dxt1Supported2 = false;
-          if (formats != null) {
-            for (_i = 0, _len = formats.length; _i < _len; _i++) {
-              format = formats[_i];
-              if (format === _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT) {
-                dxt5Supported = true;
-              }
-              if (format === _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT) {
-                dxt1Supported = true;
-              }
-              if (format === _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT) {
-                dxt1Supported2 = true;
-              }
-              if (format === _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT) {
-                dxt3Supported = true;
-              }
-            }
-          }
-          _glExtensionTextureFilterAnisotropic = _gl.getExtension('EXT_texture_filter_anisotropic') || _gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || _gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
-          webGLContextCreationSuccessful = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1Supported2;
-        }
-      } catch (error) {
-        webGLContextCreationSuccessful = false;
-      }
-      webGL = Modernizr.webgl && webGLContextCreationSuccessful;
+      this.webGLContextCreationSuccessful = this.testWebGLCompatibility();
+      this.webGL = Modernizr.webgl && this.webGLContextCreationSuccessful;
     }
 
     BrowserDetection.prototype.init = function() {
@@ -141,19 +108,19 @@
     };
 
     BrowserDetection.prototype.compare = function() {
-      if (this.browser === 'Chrome' && webGL) {
+      if (this.browser === 'Chrome' && this.webGL) {
         return this.onSuccess();
-      } else if (this.browser === 'Chrome' && !webGL) {
+      } else if (this.browser === 'Chrome' && !this.webGL) {
         return this.onError({
           message: 'Chrome_NoWebGL_message',
           buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
         });
-      } else if (this.browser === 'Firefox' && webGL) {
+      } else if (this.browser === 'Firefox' && this.webGL) {
         return this.onError({
           message: 'FF4_Safari_WebGLmessage',
           buttons: ['FF4_Safari_WebGL_button1', 'FF4_Safari_WebGL_button2']
         });
-      } else if (this.browser === 'Firefox' && !webGL) {
+      } else if (this.browser === 'Firefox' && !this.webGL) {
         return this.onError({
           message: 'FF4_noWebGL_message',
           buttons: ['FF4_noWebGL_button1', 'FF4_noWebGL_button2']
@@ -161,26 +128,25 @@
       } else if (this.browser === 'Explorer' && (this.browserVersion === 6 || this.browserVersion === 7 || this.browserVersion === 8 || this.browserVersion === 9)) {
         return this.onError({
           message: 'Explorer_OldVersion_message',
-          buttons: ['Explorer_OldVersion_button1', 'FF4_noWebGL_button2']
+          buttons: ['Explorer_OldVersion_button1']
         });
-      } else if (this.browser === 'Safari' && webGL) {
+      } else if (this.browser === 'Safari' && this.webGL) {
         return this.onError({
           message: 'FF4_Safari_WebGLmessage',
           buttons: ['FF4_Safari_WebGL_button1', 'FF4_Safari_WebGL_button2']
         });
-      } else if (this.browser === 'Safari' && !webGL) {
+      } else if (this.browser === 'Safari' && !this.webGL) {
         return this.onError({
-          message: 'Safari_message',
-          buttons: ['Safari_button1', 'FF4_noWebGL_button2']
+          message: 'FF4_noWebGL_message',
+          buttons: ['Safari_button1']
         });
       } else {
         if (!window.WebGLRenderingContext) {
-          this.onError({
+          return this.onError({
             message: 'NoWebGLRenderingContext_message',
             buttons: ['NoWebGLRenderingContext_button1', 'NoWebGLRenderingContext_button2']
           });
-        }
-        if (!webGLContextCreationSuccessful) {
+        } else if (!this.webGLContextCreationSuccessful) {
           return this.onError({
             message: 'NoWebGL_message',
             buttons: ['NoWebGL_button1', 'NoWebGL_button2']
@@ -197,6 +163,53 @@
     };
 
     BrowserDetection.prototype.onError = function(error) {};
+
+    BrowserDetection.prototype.testWebGLCompatibility = function() {
+      var dxt1Supported, dxt1rgbaSupported, dxt3Supported, dxt5Supported, format, formats, result, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
+      result = false;
+      try {
+        _canvas = document.createElement('canvas');
+        if (!(_gl = _canvas.getContext('experimental-webgl', {
+          alpha: 1,
+          premultipliedAlpha: true,
+          antialias: false,
+          stencil: true,
+          preserveDrawingBuffer: false
+        }))) {
+          result = false;
+        } else {
+          _glExtensionCompressedTextureS3TC = _gl.getExtension('WEBGL_compressed_texture_s3tc') || _gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || _gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
+          formats = _gl.getParameter(_gl.COMPRESSED_TEXTURE_FORMATS);
+          dxt5Supported = false;
+          dxt3Supported = false;
+          dxt1Supported = false;
+          dxt1rgbaSupported = false;
+          if (formats != null) {
+            for (_i = 0, _len = formats.length; _i < _len; _i++) {
+              format = formats[_i];
+              switch (format) {
+                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT:
+                  dxt5Supported = true;
+                  break;
+                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT:
+                  dxt1Supported = true;
+                  break;
+                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT:
+                  dxt1rgbaSupported = true;
+                  break;
+                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT:
+                  dxt3Supported = true;
+              }
+            }
+          }
+          _glExtensionTextureFilterAnisotropic = _gl.getExtension('EXT_texture_filter_anisotropic') || _gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || _gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
+          result = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1rgbaSupported;
+        }
+      } catch (error) {
+        result = false;
+      }
+      return result;
+    };
 
     return BrowserDetection;
 
@@ -321,6 +334,11 @@
         case "NoWebGLRenderingContext_button2":
         case "NoWebGL_button2":
           return 'http://www.html5rocks.com/tutorials/casestudies/oz/';
+        case 'Chrome_NoWebGL_button1':
+        case 'FF4_noWebGL_button1':
+        case 'NoWebGLRenderingContext_button1':
+        case 'NoWebGL_button1':
+          return 'http://www.youtube.com/watch?v=VSyai9suXWc&feature=youtu.be';
         default:
           return url;
       }
