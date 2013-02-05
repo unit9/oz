@@ -127,7 +127,7 @@ threejs_files = [
     #"website/js/vendor/three/src/extras/cameras/CombinedCamera.js"
     #"website/js/vendor/three/src/extras/cameras/CubeCamera.js"
     "website/js/vendor/three/src/extras/controls/FirstPersonControls.js"
-    "website/js/vendor/three/src/extras/controls/FlyControls.js"
+    # "website/js/vendor/three/src/extras/controls/FlyControls.js"
     #"website/js/vendor/three/src/extras/controls/OrbitControls.js"
     #"website/js/vendor/three/src/extras/controls/PathControls.js"
     #"website/js/vendor/three/src/extras/controls/RollControls.js"

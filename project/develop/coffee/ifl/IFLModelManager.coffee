@@ -195,6 +195,11 @@ class IFLModelManager
     #console.log response
     @modelLibraries[@urlLoading] = loader.library
     loader.finalCallBack(loader,data)
+    
+    loader.finalCallBack = null
+    loader.callback = null
+    loader.callbackProgress = null
+
     if @state!=@BatchState.COMPLETED
       @resume()
     

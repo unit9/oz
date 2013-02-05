@@ -14,8 +14,8 @@ class Carnival2 extends Base3DChapter
     mouseUpObjects : null
     lastMouseX : 0
     lastMouseY : 0
-    mouseDownPoint : new THREE.Vector2
-    mouseUpPoint : new THREE.Vector2
+    mouseDownPoint : null
+    mouseUpPoint : null
 
     isGoingToInteractive : false   
     currentView : null
@@ -41,7 +41,7 @@ class Carnival2 extends Base3DChapter
     pickVector : null
     pickRay : null
     sceneDescendants : null    
-    dustSettings : []
+    dustSettings : null
 
     sceneLoadedPerc : 0
     sceneLoaded : false
@@ -53,12 +53,13 @@ class Carnival2 extends Base3DChapter
 
         # Add Instructions Over
         # @addChapterInstructions()
-
+        @dustSettings = []
         IFLModelManager.getInstance().cacheTextures(@oz().appView.enablePrefetching)
         IFLModelManager.getInstance().prefetchEnabled = @oz().appView.enablePrefetching
         
         super
-
+        @mouseDownPoint = new THREE.Vector2
+        @mouseUpPoint = new THREE.Vector2
         @pickVector = new THREE.Vector3
         @pickRay = new THREE.Ray
 
@@ -92,12 +93,10 @@ class Carnival2 extends Base3DChapter
 
         # @controls = new THREE.OrbitControls(@camera,@oz().appView.wrapper.el)
         if @oz().appView.debugMode
-            @controls = new THREE.FlyControls(@camera,@oz().appView.wrapper.el)
-            @controls.movementSpeed = 100
-            @controls.rollSpeed = 0.005*100
+            @controls = new THREE.FirstPersonControls(@camera,@oz().appView.wrapper.el)
+            @controls.movementSpeed = 20
+            @controls.lookSpeed = 0.005 * 5
             @controls.enabled = false
-            @controls.dragToLook = true
-            @camera.useQuaternion = false
 
         @materialManager = new IFLMaterialManager
         @materialManager.forcePNGTextures = !@oz().appView.ddsSupported
@@ -512,7 +511,7 @@ class Carnival2 extends Base3DChapter
         @gui.add(@mouseInteraction,"maxYLookDeviation",0,100).name("Maximum Y Look")
         @gui.add(@mouseInteraction,"maxXLookDeviation",0,100).name("Maximum X Look")
         @gui.add({value:false},"value").name("Show Camera Paths").onChange @onShowDebugPathChange
-        @gui.add(@controls,"enabled").name("Exit Camera Path").onChange (value)=>@camera.useQuaternion = value
+        @gui.add(@controls,"enabled").name("Exit Camera Path")#.onChange (value)=>@camera.useQuaternion = value
         # @gui.add({value:2},"value",0,2).name("Texture Quality").step(1).onChange @onTextureQualityChange
         @   
 

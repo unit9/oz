@@ -42,6 +42,7 @@ class IFLLoader
 
     debugWarnings : false
     disposed : false
+    finalCallBack : null
 
     constructor: ->
         @texCache = {}
@@ -1074,19 +1075,22 @@ class IFLLoader
         try @xhr?.abort()
         try @worker?.terminate()
 
-        # delete @matCache
-        # delete @texCache
-        # delete @geometryLib
-        # delete @customMaterialInstancer
-        # delete @library
-        # delete @callback
-        # delete @callbackProgress
-        # delete @sky
+        delete @worker
+        delete @matCache
+        delete @texCache
+        delete @geometryLib
+        delete @customMaterialInstancer
+        delete @library
+        delete @callback
+        delete @callbackProgress
+        delete @sky
+        delete @finalCallBack
         # try @deepDelete @
+
+        @disposed = true
+        
         for obj of @
             delete @[obj]
-        console.log "LOADER DISPOSED"
-        @disposed = true
         return null
     # deepDelete:(obj)->
     #     for prop of obj

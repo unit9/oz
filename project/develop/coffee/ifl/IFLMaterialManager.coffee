@@ -693,4 +693,9 @@ class IFLMaterialManager
         @texLib = null
         @onProgress = null
         @onComplete = null
+        @params.onProgress = null
+        @params.onComplete = null
+        @params = null
+        for obj of @
+            delete @[obj]        
         return null

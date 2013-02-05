@@ -56,6 +56,7 @@ class Base3DChapter extends AbstractChapter
     elasticVirtMouseY : null
     lastKeyPress : 0
     pickableObjects : null
+    emptyRenderPluginPost : null
 
 
     # optimized intersects object stuff with custom array
@@ -92,6 +93,9 @@ class Base3DChapter extends AbstractChapter
 
 
     init:=>
+
+        @emptyRenderPluginPost = []
+        
         @clock =  new THREE.Clock()
         @pickMouse = 
             x:0
@@ -564,7 +568,7 @@ class Base3DChapter extends AbstractChapter
                 @controls.update( @delta )     
         return null   
 
-    emptyRenderPluginPost : []
+    
 
     doRender:->
 
@@ -783,7 +787,7 @@ class Base3DChapter extends AbstractChapter
             $('body').css('cursor','auto')
 
 
-    pickingIntersections : []
+    # pickingIntersections : []
 
     checkPicking:->
         return unless @sceneDescendants?
@@ -869,15 +873,15 @@ class Base3DChapter extends AbstractChapter
             break if memory.geometries == 0
             @renderer.deallocateObject( object )
 
-
-        # delete @autoPerformance
-        # delete @clock
-        # delete @camera
-        # delete @scene
-        # delete @renderer
-        # delete @hud
-        # delete @composer
-        # delete @gui
+        @emptyRenderPluginPost = null
+        delete @autoPerformance
+        delete @clock
+        delete @camera
+        delete @scene
+        delete @renderer
+        delete @hud
+        delete @composer
+        delete @gui
         @oz().appView.remove @guicontainer  
 
         for obj of @
