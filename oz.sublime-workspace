@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getHTML5RocksUrl"
+			],
+			[
 				"back",
 				"background"
 			],
@@ -54,10 +58,6 @@
 			[
 				"font",
 				"font-size"
-			],
-			[
-				"get",
-				"getPartner"
 			],
 			[
 				"margo",
@@ -680,27 +680,34 @@
 	},
 	"file_history":
 	[
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/credits.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/index.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/.gitignore",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/AppView.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/LandingFinal.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/AppDetect.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/locale/en/strings.txt",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/appDetect.js",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/player/VideoPlayer.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/official.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/footer/ShareMenu.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/BrowserDetection.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/.htaccess",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/credits.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/footer/MainMenu.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/oz.sublime-project",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/templates/templates.xml",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/styles.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/css/styles.css",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/Credits.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/credits.html",
 		"/Users/silviopaganini/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/locale/en/strings.txt",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/AppDetect.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/footer/MainMenu.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/official.html",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/CakeFile",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/oz.sublime-project",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/prototypes/mapMenu/src/Abstract.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/abstract/AbstractScene.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/player/VideoPlayer.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/cutout/Cutout.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/music/MusicBox.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/music/music/MusicBoxTable.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/cutout/CutoutPolaroid.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/LandingFinal.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/CheckBox.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/ParticleCard.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/Particle.coffee",
@@ -709,8 +716,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/Logo.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/privacy.html",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/tou.html",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/footer/ShareMenu.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/AppView.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/StaticOverlay.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/SubLoader.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/OpeningTitles.coffee",
@@ -719,7 +724,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/zoetrope/Zoetrope.coffee",
 		"/Users/silviopaganini/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/locale_en-us (7).json",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/music/MusicBoxTable.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/index.html",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/static/LandingAgree.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/data/credits.json",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/assetList.json",
@@ -733,7 +737,6 @@
 		"/private/etc/hosts",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/components/ShareBox.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/prototypes/cutout/src/view/CutoutView.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/templates/templates.xml",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/deploy.sh",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/ifl/IFLLoader.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/models/s001_settings.json",
@@ -804,10 +807,7 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/data/tracking.json",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/r.production.js",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/app.js",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/rDetect.js",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/mergejs.cmd",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/mergejs.sh",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/crossdomain.xml"
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/rDetect.js"
 	],
 	"find":
 	{
@@ -815,7 +815,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 95.0,
 		"where_history":
 		[
 			"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee,/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less,/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/templates,/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/models",
@@ -841,6 +841,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"switch",
 			"title",
 			"7",
 			".staticOverlay ",
@@ -967,8 +968,7 @@
 			"counter",
 			"zoebottom",
 			"zoeheader",
-			"zoetropeContainer",
-			"navContainer"
+			"zoetropeContainer"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1086,6 +1086,58 @@
 		"selected_items":
 		[
 			[
+				"appdete",
+				"project/develop/coffee/AppDetect.coffee"
+			],
+			[
+				"appde",
+				"website/js/appDetect.js"
+			],
+			[
+				"string",
+				"website/locale/en/strings.txt"
+			],
+			[
+				"shar",
+				"project/develop/coffee/view/footer/ShareMenu.coffee"
+			],
+			[
+				"appvi",
+				"project/develop/coffee/AppView.coffee"
+			],
+			[
+				"landin",
+				"project/develop/coffee/view/static/LandingFinal.coffee"
+			],
+			[
+				"browser",
+				"project/develop/coffee/utils/BrowserDetection.coffee"
+			],
+			[
+				"videopl",
+				"project/develop/coffee/view/components/player/VideoPlayer.coffee"
+			],
+			[
+				"mainme",
+				"project/develop/coffee/view/footer/MainMenu.coffee"
+			],
+			[
+				"str",
+				"website/locale/en/strings.txt"
+			],
+			[
+				"video",
+				"project/develop/coffee/view/components/player/VideoPlayer.coffee"
+			],
+			[
+				"main",
+				"project/develop/coffee/view/footer/MainMenu.coffee"
+			],
+			[
+				"templa",
+				"website/js/templates/templates.xml"
+			],
+			[
 				"sty",
 				"project/develop/less/styles.less"
 			],
@@ -1096,14 +1148,6 @@
 			[
 				"credit",
 				"project/develop/coffee/view/static/Credits.coffee"
-			],
-			[
-				"string",
-				"website/locale/en/strings.txt"
-			],
-			[
-				"mainme",
-				"project/develop/coffee/view/footer/MainMenu.coffee"
 			],
 			[
 				"st",
@@ -1206,10 +1250,6 @@
 				"website/index.html"
 			],
 			[
-				"main",
-				"project/develop/coffee/view/footer/MainMenu.coffee"
-			],
-			[
 				"basea",
 				"project/develop/coffee/utils/BaseAssets.coffee"
 			],
@@ -1304,10 +1344,6 @@
 			[
 				"styl",
 				"project/develop/less/styles.less"
-			],
-			[
-				"templa",
-				"website/js/templates/templates.xml"
 			],
 			[
 				"cutoutpo",
@@ -1406,10 +1442,6 @@
 				"project/develop/coffee/utils/Locale.coffee"
 			],
 			[
-				"videopl",
-				"project/develop/coffee/view/components/player/VideoPlayer.coffee"
-			],
-			[
 				"strings",
 				"website/locale/en/strings.txt"
 			],
@@ -1472,10 +1504,6 @@
 			[
 				"log",
 				"project/develop/coffee/view/components/Logo.coffee"
-			],
-			[
-				"landin",
-				"project/develop/coffee/view/static/LandingPause.coffee"
 			],
 			[
 				"pause",
@@ -1568,34 +1596,6 @@
 			[
 				"cutout.c",
 				"project/develop/coffee/view/chapters/scenes/cutout/Cutout.coffee"
-			],
-			[
-				"cuto",
-				"project/develop/coffee/view/chapters/scenes/cutout/Cutout.coffee"
-			],
-			[
-				"zoem",
-				"project/develop/coffee/view/chapters/scenes/zoetrope/ZoetropeMakeMovie.coffee"
-			],
-			[
-				"cutout.coff",
-				"project/develop/coffee/view/chapters/scenes/cutout/Cutout.coffee"
-			],
-			[
-				"cutou.c",
-				"website/prototypes/cutout/src/view/CutoutView.coffee"
-			],
-			[
-				"appq",
-				"project/develop/coffee/AppQuality.coffee"
-			],
-			[
-				"r.j",
-				"website/js/r.js"
-			],
-			[
-				"loadng",
-				"project/develop/coffee/view/chapters/scenes/loading/LoadingCard.coffee"
 			]
 		],
 		"width": 0.0

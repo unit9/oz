@@ -130,6 +130,7 @@
     "sound_button_label": "SOUND",
     "sound_button_on": "ON",
     "sound_button_off": "OFF",
-    "share_error_message": "Oops! Something went wrong, please try again later."
+    "share_error_message": "Oops! Something went wrong, please try again later.", 
+    "Chrome_NoWebGLAdvancedFeats_message" : "This app is not currently supported on this device but the Chrome gnomes are hard at work to make it work soon."
   }
 }

@@ -85,12 +85,16 @@
 
     BrowserDetection.prototype.browserVersion = null;
 
+    BrowserDetection.prototype.gl = null;
+
     BrowserDetection.prototype.webGL = false;
 
-    BrowserDetection.prototype.webGLContextCreationSuccessful = false;
+    BrowserDetection.prototype.webGLContext = false;
+
+    BrowserDetection.prototype.webGLAdvanced = false;
 
     function BrowserDetection() {
-      this.testWebGLCompatibility = __bind(this.testWebGLCompatibility, this);
+      this.testWebGLContext = __bind(this.testWebGLContext, this);
 
       this.onError = __bind(this.onError, this);
 
@@ -99,8 +103,13 @@
       this.compare = __bind(this.compare, this);
       this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
-      this.webGLContextCreationSuccessful = this.testWebGLCompatibility();
-      this.webGL = Modernizr.webgl && this.webGLContextCreationSuccessful;
+      try {
+        this.webGLContext = this.testWebGLContext();
+        this.webGLAdvanced = this.testWebGLAdvancedFeats();
+      } catch (error) {
+
+      }
+      this.webGL = Modernizr.webgl && this.webGLContext;
     }
 
     BrowserDetection.prototype.init = function() {
@@ -115,12 +124,17 @@
           message: 'Chrome_NoWebGL_message',
           buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
         });
-      } else if (this.browser === 'Firefox' && this.webGL) {
+      } else if (this.browser === 'Chrome' && (this.webGL && !this.webGLAdvanced)) {
+        return this.onError({
+          message: 'Chrome_NoWebGLAdvancedFeats_message',
+          buttons: ['Chrome_NoWebGL_button1', 'Chrome_NoWebGL_button2']
+        });
+      } else if (this.browser === 'Firefox' && (this.webGL && this.webGLAdvanced)) {
         return this.onError({
           message: 'FF4_Safari_WebGLmessage',
           buttons: ['FF4_Safari_WebGL_button1', 'FF4_Safari_WebGL_button2']
         });
-      } else if (this.browser === 'Firefox' && !this.webGL) {
+      } else if (this.browser === 'Firefox' && (!this.webGL || !this.webGLAdvanced)) {
         return this.onError({
           message: 'FF4_noWebGL_message',
           buttons: ['FF4_noWebGL_button1', 'FF4_noWebGL_button2']
@@ -130,12 +144,12 @@
           message: 'Explorer_OldVersion_message',
           buttons: ['Explorer_OldVersion_button1']
         });
-      } else if (this.browser === 'Safari' && this.webGL) {
+      } else if (this.browser === 'Safari' && (this.webGL && this.webGLAdvanced)) {
         return this.onError({
           message: 'FF4_Safari_WebGLmessage',
           buttons: ['FF4_Safari_WebGL_button1', 'FF4_Safari_WebGL_button2']
         });
-      } else if (this.browser === 'Safari' && !this.webGL) {
+      } else if (this.browser === 'Safari' && (!this.webGL || !this.webGLAdvanced)) {
         return this.onError({
           message: 'FF4_noWebGL_message',
           buttons: ['Safari_button1']
@@ -146,7 +160,7 @@
             message: 'NoWebGLRenderingContext_message',
             buttons: ['NoWebGLRenderingContext_button1', 'NoWebGLRenderingContext_button2']
           });
-        } else if (!this.webGLContextCreationSuccessful) {
+        } else if (!this.webGLContext) {
           return this.onError({
             message: 'NoWebGL_message',
             buttons: ['NoWebGL_button1', 'NoWebGL_button2']
@@ -164,12 +178,12 @@
 
     BrowserDetection.prototype.onError = function(error) {};
 
-    BrowserDetection.prototype.testWebGLCompatibility = function() {
-      var dxt1Supported, dxt1rgbaSupported, dxt3Supported, dxt5Supported, format, formats, result, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
+    BrowserDetection.prototype.testWebGLContext = function() {
+      var result, _canvas;
       result = false;
       try {
         _canvas = document.createElement('canvas');
-        if (!(_gl = _canvas.getContext('experimental-webgl', {
+        if (!(this.gl = _canvas.getContext('experimental-webgl', {
           alpha: 1,
           premultipliedAlpha: true,
           antialias: false,
@@ -178,37 +192,45 @@
         }))) {
           result = false;
         } else {
-          _glExtensionCompressedTextureS3TC = _gl.getExtension('WEBGL_compressed_texture_s3tc') || _gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || _gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
-          formats = _gl.getParameter(_gl.COMPRESSED_TEXTURE_FORMATS);
-          dxt5Supported = false;
-          dxt3Supported = false;
-          dxt1Supported = false;
-          dxt1rgbaSupported = false;
-          if (formats != null) {
-            for (_i = 0, _len = formats.length; _i < _len; _i++) {
-              format = formats[_i];
-              switch (format) {
-                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT:
-                  dxt5Supported = true;
-                  break;
-                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT:
-                  dxt1Supported = true;
-                  break;
-                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT:
-                  dxt1rgbaSupported = true;
-                  break;
-                case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT:
-                  dxt3Supported = true;
-              }
-            }
-          }
-          _glExtensionTextureFilterAnisotropic = _gl.getExtension('EXT_texture_filter_anisotropic') || _gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || _gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
-          result = _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1rgbaSupported;
+          result = true;
         }
       } catch (error) {
         result = false;
       }
       return result;
+    };
+
+    BrowserDetection.prototype.testWebGLAdvancedFeats = function() {
+      var dxt1Supported, dxt1rgbaSupported, dxt3Supported, dxt5Supported, format, formats, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
+      if (!(this.gl != null)) {
+        return false;
+      }
+      _glExtensionCompressedTextureS3TC = this.gl.getExtension('WEBGL_compressed_texture_s3tc') || this.gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || this.gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
+      formats = this.gl.getParameter(this.gl.COMPRESSED_TEXTURE_FORMATS);
+      dxt5Supported = false;
+      dxt3Supported = false;
+      dxt1Supported = false;
+      dxt1rgbaSupported = false;
+      if (formats != null) {
+        for (_i = 0, _len = formats.length; _i < _len; _i++) {
+          format = formats[_i];
+          switch (format) {
+            case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT:
+              dxt5Supported = true;
+              break;
+            case _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT:
+              dxt1Supported = true;
+              break;
+            case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT:
+              dxt1rgbaSupported = true;
+              break;
+            case _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT:
+              dxt3Supported = true;
+          }
+        }
+      }
+      _glExtensionTextureFilterAnisotropic = this.gl.getExtension('EXT_texture_filter_anisotropic') || this.gl.getExtension('MOZ_EXT_texture_filter_anisotropic') || this.gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
+      return _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1rgbaSupported;
     };
 
     return BrowserDetection;
