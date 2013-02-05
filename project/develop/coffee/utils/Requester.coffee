@@ -39,6 +39,12 @@ class Requester
     @shortURL : ( url, done, fail ) =>
 
         #### USAGE: Requester.shortURL 'http://unit9.com', @end, @fail
+
+        event = {result: {id : url}}
+
+        done(event)
+
+        return
         
         @request
             url         : "https://www.googleapis.com/urlshortener/v1/url",
