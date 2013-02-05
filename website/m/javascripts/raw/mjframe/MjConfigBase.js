@@ -1,10 +1,5 @@
 /*global Package */
-/*global Load */
-/*global Import */
 /*global Class */
-
-/*global console */
-/*global alert */
 
 Package('mjframe',
 [
@@ -55,14 +50,16 @@ Package('mjframe',
 			{
 				var commonConfig = this._class.configCommon;
 				var envConfig = this.getEnvConfig();
+				var name;
+				
 				if(envConfig)
 				{
-					for(var name in commonConfig)
+					for(name in commonConfig)
 					{
 						this[name] = commonConfig[name];
 					}
 
-					for(var name in envConfig)
+					for(name in envConfig)
 					{
 						this[name] = envConfig[name];
 					}

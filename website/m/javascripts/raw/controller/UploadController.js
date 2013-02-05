@@ -1,5 +1,4 @@
 /*global Package */
-/*global Import */
 /*global Class */
 
 /*global MjConfig */
@@ -8,8 +7,6 @@
 
 Package('controller',
 [
-	Import('view.StatsView'),
-
 	Class('public singleton UploadController',
 	{
 		_public_static:

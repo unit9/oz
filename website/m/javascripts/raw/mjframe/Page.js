@@ -1,3 +1,4 @@
+/*global Poof */
 /*global Package */
 /*global Import */
 /*global Class */
@@ -6,6 +7,7 @@
 /*global Copy */
 /*global View */
 /*global NavigationManager */
+/*global LayoutAnimation */
 
 Package('mjframe',
 [
@@ -134,7 +136,6 @@ Package('mjframe',
 
 			onCopyLocaleChange : function(event)
 			{
-				event = null;	// supress CodeKit warnings;
 				window.console.log('locale change');
 			},
 

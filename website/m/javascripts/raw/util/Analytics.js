@@ -15,8 +15,6 @@ Package('util',
 				test: 'test'
 			},
 
-			// Analytics.getInstance().trackGoogleAnalyticsEvent(Analytics.GA_EVENTS.page_type_action);
-
 			GA_EVENTS:
 			{
 				preloader_automatic_loadingstart : {category: 'Preloader', action: 'Automatic', label: 'Start Loading'},

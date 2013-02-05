@@ -25,7 +25,6 @@ Package('controller',
 		{
 			photo : null,
 			$frame : null,
-			// $canvas : null,
 			$photo : null,
 
 			enabled : false,
@@ -56,12 +55,10 @@ Package('controller',
 			{
 			},
 
-			// init : function(photo, $frame, $canvas)
 			init : function(photo, $frame, $photo)
 			{
 				this.photo = photo;
 				this.$frame = $frame;
-				// this.$canvas = $canvas;
 				this.$photo = $photo;
 				this.$frame.hide();
 				this.$photo.hide();
@@ -175,13 +172,6 @@ Package('controller',
 
 			apply : function()
 			{
-				// var boundingBox = this.getFrameBoundingBox();
-
-				// var offsetX = boundingBox.centerX - this.$canvas.offset().left - this.$canvas.width() * 0.5 + 2;
-				// var offsetY = boundingBox.centerY - this.$canvas.offset().top - this.$canvas.height() * 0.5 + 2;
-
-				// CutoutFaceController.getInstance().draw(offsetX, offsetY, this.width, this.height, this.rotation);
-
 				this.$photo.css('left', parseInt(this.$frame.css('left'), 10));
 				this.$photo.css('top', parseInt(this.$frame.css('top'), 10));
 				this.$photo.width(this.$frame.width());

@@ -202,7 +202,7 @@ Package('page',
 				{
 					if(this.userPhoto)
 					{
-						this.setUserPhoto(this.userPhoto);
+						this.$userPhoto.attr('src', this.userPhoto.src);
 						this.$photoFrame.show();
 						this.setPhotoPositioningMode();
 						this.hideUploadButton();
@@ -250,10 +250,6 @@ Package('page',
 			loadUserPhoto : function(photoData)
 			{
 				this.$userPhoto.attr('src', photoData.url).load(Poof.retainContext(this, this.onPhotoLoadComplete));
-
-				// this.userPhoto = new Image();
-				// this.userPhoto.onload = Poof.retainContext(this, this.onPhotoLoadComplete);
-				// this.userPhoto.src = photoData.url;
 			},
 
 			showIntroOverlay : function()

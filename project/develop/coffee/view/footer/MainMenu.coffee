@@ -37,7 +37,7 @@ class MainMenu extends Abstract
                         window.open '/pp.html'
                     when "tech"
                         Analytics.track 'menu_click_tech'
-                        window.open 'http://www.html5rocks.com/en/tutorials/casestudies/oz/'
+                        window.open 'http://www.html5rocks.com/tutorials/casestudies/oz/'
                     when 'official'
                         Analytics.track 'menu_click_official'
                         window.open '/official.html'

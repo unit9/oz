@@ -16,7 +16,6 @@ Poof.loadCondition = function()
 
 Package('',
 [
-	/* load all libraries */
 	Load('/m/javascripts/min/lib/jquery-1.8.3.min.js'),
 	Load('/m/javascripts/min/lib/jquery.easing.1.3.min.js'),
 	Load('/m/javascripts/min/lib/jQueryRotate.2.2.min.js'),
@@ -28,7 +27,6 @@ Package('',
 	Load('/m/javascripts/min/lib/modernizr.custom.27513.min.js'),
 	Load('/m/javascripts/min/lib/TweenLite.min.js'),
 
-	/* import classes */
 	Import('mjframe.Application'),
 	Import('util.Detection'),
 	Import('copy.OzMobileRemoteCopy'),
@@ -51,7 +49,6 @@ Package('',
 	{
 		_public:
 		{
-			debugMode : false,
 			$wrapper : null,
 
 			OzMobileApplication : function()
@@ -60,11 +57,6 @@ Package('',
 				window.PLATFORM = 'mobile';	// force mobile
 
 				this.initCore();
-
-				if(window.location.search.indexOf('?debug=true') !== -1 || window.location.search.indexOf('&debug=true') !== -1)
-				{
-					this.initDebugMode();
-				}
 
 				this.initMobile();
 				PreloadController.getInstance().on(PreloadController.EVENT_PRELOADER_COMPLETE, Poof.retainContext(this, this.onPreloaderPreloadComplete));
@@ -86,11 +78,6 @@ Package('',
 				NavigationManager.getInstance().on(NavigationManager.EVENT_URL_CHANGE, Poof.retainContext(this, this.onUrlChange));
 
 				return true;
-			},
-
-			initDebugMode : function()
-			{
-				this.debugMode = true;
 			},
 
 			initMobile : function()
