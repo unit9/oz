@@ -4652,9 +4652,7 @@
     Requester.shortURL = function(url, done, fail) {
       var event;
       event = {
-        result: {
-          id: url
-        }
+        id: url
       };
       done(event);
       return;

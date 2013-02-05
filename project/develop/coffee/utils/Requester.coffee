@@ -40,7 +40,7 @@ class Requester
 
         #### USAGE: Requester.shortURL 'http://unit9.com', @end, @fail
 
-        event = {result: {id : url}}
+        event = {id : url}
 
         done(event)
 

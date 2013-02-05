@@ -3,6 +3,7 @@ var paths = {
     "jquery"         : "vendor/jquery-1.8.3.min",
     "underscore"     : "vendor/underscore-1.3.3.min",
     "backbone"       : "vendor/backbone-0.9.2.min",
+    "json2"          : "vendor/json2",
     "BrowserDetect"  : "vendor/BrowserDetect"
 };
 
