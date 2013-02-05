@@ -4411,7 +4411,7 @@
       } else if (this.browser === 'Explorer' && (this.browserVersion === 6 || this.browserVersion === 7 || this.browserVersion === 8 || this.browserVersion === 9)) {
         return this.onError({
           message: 'Explorer_OldVersion_message',
-          buttons: ['Explorer_OldVersion_button1']
+          buttons: ['Explorer_OldVersion_button1', 'FF4_noWebGL_button2']
         });
       } else if (this.browser === 'Safari' && webGL) {
         return this.onError({
@@ -4421,7 +4421,7 @@
       } else if (this.browser === 'Safari' && !webGL) {
         return this.onError({
           message: 'Safari_message',
-          buttons: ['Safari_button1']
+          buttons: ['Safari_button1', 'FF4_noWebGL_button2']
         });
       } else {
         if (!window.WebGLRenderingContext) {
@@ -16678,10 +16678,19 @@
     };
 
     VideoPlayer.prototype.getLocalisedVideo = function() {
-      var locale;
+      var country, locale;
       locale = (navigator.language || navigator.userLanguage).toLowerCase();
-      if (locale !== 'en-gb') {
-        locale = locale.split('-')[0];
+      country = geoip_country_code().toLowerCase();
+      switch (country) {
+        case 'gb':
+          locale = 'gb';
+          break;
+        case 'au':
+        case 'nz':
+          locale = 'au';
+          break;
+        case 'es':
+          locale = 'us';
       }
       switch (locale) {
         case 'pt':
@@ -16700,8 +16709,10 @@
           return '/videos/bubbles_nl.webm';
         case 'no':
           return '/videos/bubbles_no.webm';
-        case 'en-gb':
+        case 'gb':
           return '/videos/bubbles_en-gb.webm';
+        case 'au':
+          return '/videos/bubbles_au.webm';
         default:
           return '/videos/bubbles_en.webm';
       }
@@ -19057,6 +19068,7 @@
     AppView.prototype.secLoadingProgress = null;
 
     AppView.prototype.render = function() {
+      var script;
       this.deepLink = ['', 'cutout', 'music', 'zoetrope', 'storm'];
       this.setElement($('body'));
       this.renderCanvas3D = document.createElement("canvas");
@@ -19083,6 +19095,11 @@
                   @displayQuality = "hi"
       */
 
+      script = document.createElement('script');
+      script.src = 'http://j.maxmind.com/app/country.js';
+      script.charset = 'ISO-8859-1';
+      script.type = "text/javascript";
+      document.getElementsByTagName('head')[0].appendChild(script);
       this.textureQuality = (window || document).textureQuality;
       this.displayQuality = (window || document).displayQuality;
       this.dofEnabled = (window || document).dof;

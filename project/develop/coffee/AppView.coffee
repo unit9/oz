@@ -73,6 +73,14 @@ class AppView extends Abstract
             @displayQuality = "hi"
         ###
 
+        #### ADD GEOIP for videos
+
+        script = document.createElement('script')
+        script.src = 'http://j.maxmind.com/app/country.js'
+        script.charset = 'ISO-8859-1'
+        script.type = "text/javascript"
+        document.getElementsByTagName('head')[0].appendChild script
+
         @textureQuality = (window || document).textureQuality
         @displayQuality = (window || document).displayQuality
         @dofEnabled     = (window || document).dof

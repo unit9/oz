@@ -30,11 +30,8 @@
 
     function Locale() {
       this.get = __bind(this.get, this);
-
       this.loadBackup = __bind(this.loadBackup, this);
-
-      this.onSuccess = __bind(this.onSuccess, this);
-      _.extend(this, Backbone.Events);
+      this.onSuccess = __bind(this.onSuccess, this);      _.extend(this, Backbone.Events);
       this.lang = (navigator.language || navigator.userLanguage).toLowerCase();
       $.ajax({
         url: "/api/localisation/desktop/" + this.lang,
@@ -90,11 +87,8 @@
 
     function BrowserDetection() {
       this.onError = __bind(this.onError, this);
-
       this.onSuccess = __bind(this.onSuccess, this);
-
       this.compare = __bind(this.compare, this);
-
       var dxt1Supported, dxt1Supported2, dxt3Supported, dxt5Supported, format, formats, webGLContextCreationSuccessful, _canvas, _gl, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
       this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
@@ -167,7 +161,7 @@
       } else if (this.browser === 'Explorer' && (this.browserVersion === 6 || this.browserVersion === 7 || this.browserVersion === 8 || this.browserVersion === 9)) {
         return this.onError({
           message: 'Explorer_OldVersion_message',
-          buttons: ['Explorer_OldVersion_button1']
+          buttons: ['Explorer_OldVersion_button1', 'FF4_noWebGL_button2']
         });
       } else if (this.browser === 'Safari' && webGL) {
         return this.onError({
@@ -177,7 +171,7 @@
       } else if (this.browser === 'Safari' && !webGL) {
         return this.onError({
           message: 'Safari_message',
-          buttons: ['Safari_button1']
+          buttons: ['Safari_button1', 'FF4_noWebGL_button2']
         });
       } else {
         if (!window.WebGLRenderingContext) {
@@ -300,7 +294,7 @@
             b.click(window.tryAnyway);
           } else {
             b.attr({
-              href: c,
+              href: window.getHTML5RocksUrl(button, c),
               target: '_blank'
             });
           }
@@ -320,19 +314,18 @@
       }
       return _results;
     };
+    window.getHTML5RocksUrl = function(label, url) {
+      switch (label) {
+        case "Chrome_NoWebGL_button2":
+        case "FF4_noWebGL_button2":
+        case "NoWebGLRenderingContext_button2":
+        case "NoWebGL_button2":
+          return 'http://www.html5rocks.com/tutorials/casestudies/oz/';
+        default:
+          return url;
+      }
+    };
     window.showTechOrTrailer = function(label) {
-      if (label.indexOf('Chrome_NoWebGL_button2') > -1) {
-        return false;
-      }
-      if (label.indexOf('FF4_noWebGL_button2') > -1) {
-        return false;
-      }
-      if (label.indexOf('NoWebGLRenderingContext_button2') > -1) {
-        return false;
-      }
-      if (label.indexOf('NoWebGL_button2') > -1) {
-        return false;
-      }
       return true;
     };
     window.tryAnyway = function(event) {

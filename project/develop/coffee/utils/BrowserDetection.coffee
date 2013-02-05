@@ -72,7 +72,7 @@ class BrowserDetection
         else if @browser == 'Explorer' and ( @browserVersion == 6 || @browserVersion == 7 || @browserVersion == 8 || @browserVersion == 9 )
             @onError
                 message : 'Explorer_OldVersion_message'
-                buttons : ['Explorer_OldVersion_button1']
+                buttons : ['Explorer_OldVersion_button1', 'FF4_noWebGL_button2']
 
         else if @browser == 'Safari' and webGL
             @onError
@@ -82,7 +82,7 @@ class BrowserDetection
         else if @browser == 'Safari' and !webGL 
             @onError
                 message : 'Safari_message'
-                buttons : ['Safari_button1']
+                buttons : ['Safari_button1', 'FF4_noWebGL_button2']
 
         else 
             if !window.WebGLRenderingContext

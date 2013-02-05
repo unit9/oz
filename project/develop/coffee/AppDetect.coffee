@@ -81,9 +81,8 @@ $ ->
                     b.click window.tryAnyway
                 else 
                     b.attr
-                        href : c
+                        href : window.getHTML5RocksUrl(button, c)
                         target : '_blank'
-
 
                 b.html "<button class='abstractbutton'>#{window.error.locale.get(button)}</button>"
                 $('#detect .btnContainer').append b
@@ -94,23 +93,21 @@ $ ->
                     $(b).css
                         "padding" : "7px 20px 8px 20px"
 
+    window.getHTML5RocksUrl = (label, url) =>
+
+        switch label
+            when "Chrome_NoWebGL_button2", "FF4_noWebGL_button2", "NoWebGLRenderingContext_button2", "NoWebGL_button2"
+                return 'http://www.html5rocks.com/tutorials/casestudies/oz/'
+
+            when 'Chrome_NoWebGL_button1', 'FF4_noWebGL_button1', 'NoWebGLRenderingContext_button1', 'NoWebGL_button1'
+                return 'http://www.youtube.com/watch?v=VSyai9suXWc&feature=youtu.be'
+
+            else 
+                return url
+
+
     window.showTechOrTrailer = (label) =>
-
-        if(label.indexOf('Chrome_NoWebGL_button2') > -1)
-            return false
-
-        if(label.indexOf('FF4_noWebGL_button2') > -1)
-            return false
-
-        if(label.indexOf('NoWebGLRenderingContext_button2') > -1)
-            return false
-
-        if(label.indexOf('NoWebGL_button2') > -1)
-            return false
-
         return true
-
-
 
     window.tryAnyway = (event) =>
         event.preventDefault()

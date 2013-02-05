@@ -37,8 +37,18 @@ class VideoPlayer extends AbstractScene
     getLocalisedVideo : =>
         locale = (navigator.language || navigator.userLanguage).toLowerCase()
 
-        if locale != 'en-gb'
-            locale = locale.split('-')[0]
+        country = geoip_country_code().toLowerCase()
+
+        switch(country)
+            when 'gb'
+                locale = 'gb'
+
+            when 'au', 'nz'
+                locale = 'au'
+
+            when 'es'
+                locale = 'us'
+
 
         switch(locale)
             
@@ -66,8 +76,11 @@ class VideoPlayer extends AbstractScene
             when 'no'
                 return '/videos/bubbles_no.webm'
 
-            when 'en-gb'
+            when 'gb'
                 return '/videos/bubbles_en-gb.webm'
+
+            when 'au'
+                return '/videos/bubbles_au.webm'
 
             else 
                 return '/videos/bubbles_en.webm'
