@@ -6,6 +6,7 @@ class BrowserDetection
     webGL           : false
     webGLContext    : false
     webGLAdvanced   : false
+    forcePass       : false
 
     constructor: ->
         @browser = BrowserDetect.browser
@@ -21,7 +22,7 @@ class BrowserDetection
         @compare()
 
     compare: =>
-        if @browser == 'Chrome' and ( @webGL && @webGLAdvanced )
+        if ( @browser == 'Chrome' and ( @webGL && @webGLAdvanced ) ) || ( @forcePass == true )
             # all good
             @onSuccess()
 

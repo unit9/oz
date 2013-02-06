@@ -32,6 +32,8 @@ class ErrorMessage extends Abstract
         @footer = new Footer
         @$el.append @footer.$el
 
+        $('#polite').remove()
+
     onEnterFrame: =>
         @
 

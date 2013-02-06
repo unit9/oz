@@ -874,15 +874,18 @@ class Base3DChapter extends AbstractChapter
             @renderer.deallocateObject( object )
 
         @emptyRenderPluginPost = null
-        delete @autoPerformance
-        delete @clock
-        delete @camera
-        delete @scene
-        delete @renderer
-        delete @hud
-        delete @composer
-        delete @gui
-        @oz().appView.remove @guicontainer  
+        @autoPerformance = null
+        @clock = null
+        @camera  = null
+        @scene  = null
+        @renderer = null
+        @hud  = null
+        @composer = null
+        @gui  = null
+        @oz().appView.remove @guicontainer
+        @guicontainer = null
+
+        @releasePointLock()
 
         for obj of @
             try @[obj].dispose()
@@ -892,7 +895,7 @@ class Base3DChapter extends AbstractChapter
         # console.info "[Base3DChapter] Textures left after Dispose: #{memory.textures}"
         # console.info "[Base3DChapter] Geometries left after Dispose: #{memory.geometries}"
         # console.info "[Base3DChapter] Programs left after Dispose: #{memory.programs}"
-        @
+        return null
 
 
     # deepDelete:(obj)->

@@ -21,6 +21,7 @@ class ThumbCutout extends Backbone.View
                 
                 @fullImg.append @polaroid
                 @initAnimation()
+                $('#polite').remove()
 
             @polaroid.src = '/img/preview/cutout_polaroid.png'
 

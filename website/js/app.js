@@ -4392,6 +4392,8 @@
 
     BrowserDetection.prototype.webGLAdvanced = false;
 
+    BrowserDetection.prototype.forcePass = false;
+
     function BrowserDetection() {
       this.testWebGLContext = __bind(this.testWebGLContext, this);
 
@@ -4416,7 +4418,7 @@
     };
 
     BrowserDetection.prototype.compare = function() {
-      if (this.browser === 'Chrome' && (this.webGL && this.webGLAdvanced)) {
+      if ((this.browser === 'Chrome' && (this.webGL && this.webGLAdvanced)) || (this.forcePass === true)) {
         return this.onSuccess();
       } else if (this.browser === 'Chrome' && (this.webGL && !this.webGLAdvanced)) {
         return this.onError({
@@ -6655,22 +6657,24 @@
         this.renderer.deallocateObject(object);
       }
       this.emptyRenderPluginPost = null;
-      delete this.autoPerformance;
-      delete this.clock;
-      delete this.camera;
-      delete this.scene;
-      delete this.renderer;
-      delete this.hud;
-      delete this.composer;
-      delete this.gui;
+      this.autoPerformance = null;
+      this.clock = null;
+      this.camera = null;
+      this.scene = null;
+      this.renderer = null;
+      this.hud = null;
+      this.composer = null;
+      this.gui = null;
       this.oz().appView.remove(this.guicontainer);
+      this.guicontainer = null;
+      this.releasePointLock();
       for (obj in this) {
         try {
           this[obj].dispose();
         } catch (_error) {}
         delete this[obj];
       }
-      return this;
+      return null;
     };
 
     return Base3DChapter;
@@ -6796,14 +6800,25 @@
 
     Carnival.prototype.initialOptimization = false;
 
+    Carnival.prototype.sceneLoadedPerc = 0;
+
+    Carnival.prototype.sceneLoaded = false;
+
+    Carnival.prototype.textureLoadedPerc = 0;
+
+    Carnival.prototype.textureLoaded = false;
+
+    Carnival.prototype.loadingDone = false;
+
     Carnival.prototype.init = function() {
-      this.mouseDownPoint = new THREE.Vector2();
-      this.mouseUpPoint = new THREE.Vector2();
-      this.dandelionsSettings = [];
-      this.dustSettings = [];
+      Carnival.__super__.init.apply(this, arguments);
       this.addChapterInstructions();
       IFLModelManager.getInstance().cacheTextures(this.oz().appView.enablePrefetching);
       IFLModelManager.getInstance().prefetchEnabled = this.oz().appView.enablePrefetching;
+      this.mouseDownPoint = new THREE.Vector2;
+      this.mouseUpPoint = new THREE.Vector2;
+      this.dandelionsSettings = [];
+      this.dustSettings = [];
       this.animatedSprites = [];
       this.dustSystems = [];
       this.mouseDownObjects = [];
@@ -6811,7 +6826,6 @@
       this.mouseOverObjects = [];
       this.pickVector = new THREE.Vector3;
       this.pickRay = new THREE.Ray;
-      Carnival.__super__.init.call(this);
       this.renderer.gammaInput = false;
       this.renderer.gammaOutput = false;
       this.renderer.sortObjects = false;
@@ -6883,11 +6897,12 @@
 
     Carnival.prototype.render = function() {
       Carnival.__super__.render.apply(this, arguments);
-      return $.ajax({
+      $.ajax({
         url: "/models/s001_settings.json",
         dataType: 'json',
         success: this.onSettingsLoaded
       });
+      return null;
     };
 
     Carnival.prototype.onSettingsLoaded = function(settings) {
@@ -6899,6 +6914,10 @@
       for (i = _j = 0, _ref1 = settings.lookAt.length; _j < _ref1; i = _j += 3) {
         this.mouseInteraction.cameraLookatPoints.push(new THREE.Vector3(settings.lookAt[i], settings.lookAt[i + 1], settings.lookAt[i + 2]));
       }
+      if (this.oz().appView.debugMode) {
+        this.createDebugPath(this.mouseInteraction.cameraPositionPoints);
+        this.createDebugPath(this.mouseInteraction.cameraLookatPoints);
+      }
       settings.renderer = this.renderer;
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
@@ -6906,18 +6925,8 @@
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
-      return this;
+      return null;
     };
-
-    Carnival.prototype.sceneLoadedPerc = 0;
-
-    Carnival.prototype.sceneLoaded = false;
-
-    Carnival.prototype.textureLoadedPerc = 0;
-
-    Carnival.prototype.textureLoaded = false;
-
-    Carnival.prototype.loadingDone = false;
 
     Carnival.prototype.onTextureProgress = function(percent) {
       this.textureLoadedPerc = percent;
@@ -7742,6 +7751,7 @@
 
     Carnival.prototype.dispose = function() {
       var obj, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4;
+      this.enableRender = false;
       if ((_ref = this.materialManager) != null) {
         _ref.dispose(this.renderer);
       }
@@ -7895,10 +7905,10 @@
     Carnival2.prototype.loadingDone = false;
 
     Carnival2.prototype.init = function() {
-      this.dustSettings = [];
+      Carnival2.__super__.init.apply(this, arguments);
       IFLModelManager.getInstance().cacheTextures(this.oz().appView.enablePrefetching);
       IFLModelManager.getInstance().prefetchEnabled = this.oz().appView.enablePrefetching;
-      Carnival2.__super__.init.apply(this, arguments);
+      this.dustSettings = [];
       this.mouseDownPoint = new THREE.Vector2;
       this.mouseUpPoint = new THREE.Vector2;
       this.pickVector = new THREE.Vector3;
@@ -7972,16 +7982,17 @@
       this.onResize();
       this.lastMouseY = this.mouseY + this.APP_HALF_Y;
       this.lastMouseX = this.mouseX + this.APP_HALF_X;
-      return this;
+      return null;
     };
 
     Carnival2.prototype.render = function() {
       Carnival2.__super__.render.apply(this, arguments);
-      return $.ajax({
+      $.ajax({
         url: "/models/s002_settings.json",
         dataType: 'json',
         success: this.onSettingsLoaded
       });
+      return null;
     };
 
     Carnival2.prototype.onSettingsLoaded = function(settings) {
@@ -7993,6 +8004,10 @@
       for (i = _j = 0, _ref1 = settings.lookAt.length; _j < _ref1; i = _j += 3) {
         this.mouseInteraction.cameraLookatPoints.push(new THREE.Vector3(settings.lookAt[i], settings.lookAt[i + 1], settings.lookAt[i + 2]));
       }
+      if (this.oz().appView.debugMode) {
+        this.createDebugPath(this.mouseInteraction.cameraPositionPoints);
+        this.createDebugPath(this.mouseInteraction.cameraLookatPoints);
+      }
       settings.renderer = this.renderer;
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
@@ -8000,25 +8015,25 @@
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onTextureProgress = function(percent) {
       this.textureLoadedPerc = percent;
       this.advanceLoading();
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onTextureComplete = function() {
       this.textureLoaded = true;
       this.advanceLoading();
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onSceneProgress = function(loaded, total) {
       this.sceneLoadedPerc = loaded / total;
       this.advanceLoading();
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onSceneLoaded = function(loader, loadedScene) {
@@ -8030,13 +8045,14 @@
       this.sceneLoaded = true;
       this.loader = loader;
       this.advanceLoading();
-      return this;
+      return null;
     };
 
     Carnival2.prototype.show = function() {
       this.instanceWorld();
       this.oz().appView.showMenu();
-      return Carnival2.__super__.show.apply(this, arguments);
+      Carnival2.__super__.show.apply(this, arguments);
+      return null;
     };
 
     Carnival2.prototype.advanceLoading = function() {
@@ -8046,8 +8062,9 @@
       if (this.textureLoaded === true && this.sceneLoaded === true && !this.loadingDone) {
         this.loadingDone = true;
         this.onWorldProgress(1);
-        return this.onWorldLoaded();
+        this.onWorldLoaded();
       }
+      return null;
     };
 
     Carnival2.prototype.instanceWorld = function() {
@@ -8137,7 +8154,8 @@
         }
       }
       this.enableRender = true;
-      return this.onResize();
+      this.onResize();
+      return null;
     };
 
     Carnival2.prototype.initProjection = function() {
@@ -8168,7 +8186,8 @@
       this.projection.position.set(144.999, 16.892, -126.195);
       this.projection.rotation.set(-Math.PI, -0.171845118, 0);
       this.animatedSprites.push(this.projection);
-      return this.scene.add(this.projection);
+      this.scene.add(this.projection);
+      return null;
     };
 
     Carnival2.prototype.initOcclusionScene = function() {
@@ -8210,7 +8229,8 @@
       this.occlusionComposer.addPass(this.occlusion_hblur);
       this.occlusionComposer.addPass(this.occlusion_vblur);
       this.occlusionComposer.addPass(this.occlusion_hblur);
-      return this.occlusionComposer.addPass(this.occlusion_vblur);
+      this.occlusionComposer.addPass(this.occlusion_vblur);
+      return null;
     };
 
     Carnival2.prototype.initDustSystems = function() {
@@ -8286,7 +8306,7 @@
         value: false
       }, "value").name("Show Camera Paths").onChange(this.onShowDebugPathChange);
       this.gui.add(this.controls, "enabled").name("Exit Camera Path");
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onWindEnabledChange = function(value) {
@@ -8294,7 +8314,8 @@
       val = !(value != null) ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
       this.windGenerator.enabled = val;
-      return this.loader.geometryAttributeEnabled("color", val);
+      this.loader.geometryAttributeEnabled("color", val);
+      return null;
     };
 
     Carnival2.prototype.onShowDebugPathChange = function(value) {
@@ -8303,7 +8324,7 @@
       } else {
         this.scene.remove(this.debugPaths);
       }
-      return this;
+      return null;
     };
 
     Carnival2.prototype.createDebugPath = function(arr) {
@@ -8325,7 +8346,7 @@
         linegeom.vertices.push(point);
       }
       this.debugPaths.add(root);
-      return this;
+      return null;
     };
 
     Carnival2.prototype.initSun = function() {
@@ -8362,7 +8383,7 @@
         return object.lensFlares[3].rotation = object.positionScreen.x * 0.5 + 45 * Math.PI / 180;
       };
       this.scene.add(this.lensFlare);
-      return this;
+      return null;
     };
 
     Carnival2.prototype.onEnterFrame = function() {
@@ -8382,8 +8403,9 @@
       this.updateOcclusionScene();
       this.doRender();
       if (this.capturer) {
-        return this.capturer.capture(this.oz().appView.renderCanvas3D);
+        this.capturer.capture(this.oz().appView.renderCanvas3D);
       }
+      return null;
     };
 
     Carnival2.prototype.handleMultiCamera = function() {
@@ -8613,6 +8635,7 @@
 
     Carnival2.prototype.dispose = function() {
       var obj, _i, _j, _len, _len1, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      this.enableRender = false;
       if ((_ref = this.materialManager) != null) {
         _ref.dispose(this.renderer);
       }
@@ -8760,12 +8783,22 @@
 
     Carnival3.prototype.sceneDescendants = null;
 
+    Carnival3.prototype.sceneLoadedPerc = 0;
+
+    Carnival3.prototype.sceneLoaded = false;
+
+    Carnival3.prototype.textureLoadedPerc = 0;
+
+    Carnival3.prototype.textureLoaded = false;
+
+    Carnival3.prototype.loadingDone = false;
+
     Carnival3.prototype.init = function() {
+      Carnival3.__super__.init.apply(this, arguments);
       IFLModelManager.getInstance().cacheTextures(this.oz().appView.enablePrefetching);
       IFLModelManager.getInstance().prefetchEnabled = this.oz().appView.enablePrefetching;
-      this.mouseDownPoint = new THREE.Vector2();
       this.mouseUpPoint = new THREE.Vector2();
-      Carnival3.__super__.init.apply(this, arguments);
+      this.mouseDownPoint = new THREE.Vector2();
       this.pickVector = new THREE.Vector3;
       this.pickRay = new THREE.Ray;
       this.animatedSprites = [];
@@ -8843,11 +8876,12 @@
 
     Carnival3.prototype.render = function() {
       Carnival3.__super__.render.apply(this, arguments);
-      return $.ajax({
+      $.ajax({
         url: "/models/s003_settings.json",
         dataType: 'json',
         success: this.onSettingsLoaded
       });
+      return null;
     };
 
     Carnival3.prototype.onSettingsLoaded = function(settings) {
@@ -8859,6 +8893,10 @@
       for (i = _j = 0, _ref1 = settings.lookAt.length; _j < _ref1; i = _j += 3) {
         this.mouseInteraction.cameraLookatPoints.push(new THREE.Vector3(settings.lookAt[i], settings.lookAt[i + 1], settings.lookAt[i + 2]));
       }
+      if (this.oz().appView.debugMode) {
+        this.createDebugPath(this.mouseInteraction.cameraPositionPoints);
+        this.createDebugPath(this.mouseInteraction.cameraLookatPoints);
+      }
       settings.renderer = this.renderer;
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
@@ -8866,18 +8904,8 @@
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
-      return this;
+      return null;
     };
-
-    Carnival3.prototype.sceneLoadedPerc = 0;
-
-    Carnival3.prototype.sceneLoaded = false;
-
-    Carnival3.prototype.textureLoadedPerc = 0;
-
-    Carnival3.prototype.textureLoaded = false;
-
-    Carnival3.prototype.loadingDone = false;
 
     Carnival3.prototype.onTextureProgress = function(percent) {
       this.textureLoadedPerc = percent;
@@ -9412,6 +9440,7 @@
 
     Carnival3.prototype.dispose = function() {
       var obj, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4;
+      this.enableRender = false;
       this.disposed = true;
       if ((_ref = this.materialManager) != null) {
         _ref.dispose(this.renderer);
@@ -18547,7 +18576,7 @@
           'width': '100px'
         });
         this.$facebookContainer.css({
-          'margin-left': '10px'
+          'margin-left': '20px'
         });
         this.$twitterContainer = $("<div class='twitterShare'></div>");
         this.$twitterBtn = $('<a/>');

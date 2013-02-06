@@ -50,14 +50,13 @@ class Carnival2 extends Base3DChapter
     loadingDone : false
 
     init:->
-
-        # Add Instructions Over
-        # @addChapterInstructions()
-        @dustSettings = []
-        IFLModelManager.getInstance().cacheTextures(@oz().appView.enablePrefetching)
-        IFLModelManager.getInstance().prefetchEnabled = @oz().appView.enablePrefetching
         
         super
+
+        IFLModelManager.getInstance().cacheTextures(@oz().appView.enablePrefetching)
+        IFLModelManager.getInstance().prefetchEnabled = @oz().appView.enablePrefetching
+
+        @dustSettings = []
         @mouseDownPoint = new THREE.Vector2
         @mouseUpPoint = new THREE.Vector2
         @pickVector = new THREE.Vector3
@@ -157,13 +156,12 @@ class Carnival2 extends Base3DChapter
 
         @lastMouseY = @mouseY + @APP_HALF_Y
         @lastMouseX = @mouseX + @APP_HALF_X
-        @
+        return null
 
     render:=>
         super
-        $.ajax( {url : "/models/s002_settings.json", dataType: 'json', success : @onSettingsLoaded });         
-
-
+        $.ajax( {url : "/models/s002_settings.json", dataType: 'json', success : @onSettingsLoaded });     
+        return null
 
     onSettingsLoaded:(settings)=>
         @settings = settings
@@ -177,8 +175,9 @@ class Carnival2 extends Base3DChapter
             @mouseInteraction.cameraLookatPoints.push(new THREE.Vector3(settings.lookAt[i],settings.lookAt[i+1],settings.lookAt[i+2]))
         
 
-        # @createDebugPath(@mouseInteraction.cameraPositionPoints)
-        # @createDebugPath(@mouseInteraction.cameraLookatPoints)
+        if @oz().appView.debugMode
+            @createDebugPath(@mouseInteraction.cameraPositionPoints)
+            @createDebugPath(@mouseInteraction.cameraLookatPoints)
 
         settings.renderer = @renderer
         settings.onProgress = @onTextureProgress
@@ -187,27 +186,36 @@ class Carnival2 extends Base3DChapter
 
         @materialManager.init(settings)
         @materialManager.load()
+
+        # @loader = new IFLLoader()
+        # @loader.enableMaterialCache = false
+        # @loader.enableTextureCache = false
+        # @loader.pickableObjects = @settings.pickables
+        # @loader.customMaterialInstancer = @materialManager.instanceMaterial
+        # @loader.doCreateModel = false
+        # @loader.load(@settings.modelURL,@onSceneLoaded,@onSceneProgress)
+
         IFLModelManager.getInstance().load(@settings.pickables, @materialManager.instanceMaterial, @settings.modelURL, @onSceneLoaded, @onSceneProgress)
-        # @initDustSystems()
-        @
+        return null
 
 
 
     onTextureProgress:(percent) =>
         @textureLoadedPerc = percent
         @advanceLoading()
-        @
+        return null
 
     onTextureComplete:() =>
         @textureLoaded = true
         @advanceLoading()
-        @
+        return null
 
     onSceneProgress : (loaded,total) => 
         # l : total = x : 100
         @sceneLoadedPerc = loaded / total
         @advanceLoading()
-        @
+        return null
+
     onSceneLoaded:(loader,loadedScene) =>
         # console.log "Carnival2 world loaded", @oz().appView.firstTime
         
@@ -219,13 +227,14 @@ class Carnival2 extends Base3DChapter
         @sceneLoaded = true
         @loader = loader
         @advanceLoading()
-        @
+        return null
 
     show:()=>
         # console.log "Carnival2 Show"
         @instanceWorld()
         @oz().appView.showMenu()
         super
+        return null
     
     advanceLoading : ()=>
         total = @sceneLoadedPerc * 0.5 + @textureLoadedPerc * 0.5
@@ -236,6 +245,7 @@ class Carnival2 extends Base3DChapter
             # @instanceWorld()
             @onWorldProgress(1)
             @onWorldLoaded()
+        return null
 
     instanceWorld:=>
         # console.log "Carnival2 instance world"
@@ -330,6 +340,7 @@ class Carnival2 extends Base3DChapter
         @onResize()
         # @loader?.dispose()
         # @loader = null
+        return null
 
        
 
@@ -375,6 +386,7 @@ class Carnival2 extends Base3DChapter
         @animatedSprites.push @projection
 
         @scene.add @projection
+        return null
 
     initOcclusionScene:->
 
@@ -431,7 +443,8 @@ class Carnival2 extends Base3DChapter
         @occlusionComposer.addPass( @occlusion_hblur );
         @occlusionComposer.addPass( @occlusion_vblur );
         @occlusionComposer.addPass( @occlusion_hblur );
-        @occlusionComposer.addPass( @occlusion_vblur );    
+        @occlusionComposer.addPass( @occlusion_vblur ); 
+        return null   
 
     
 
@@ -513,7 +526,7 @@ class Carnival2 extends Base3DChapter
         @gui.add({value:false},"value").name("Show Camera Paths").onChange @onShowDebugPathChange
         @gui.add(@controls,"enabled").name("Exit Camera Path")#.onChange (value)=>@camera.useQuaternion = value
         # @gui.add({value:2},"value",0,2).name("Texture Quality").step(1).onChange @onTextureQualityChange
-        @   
+        return null   
 
     onWindEnabledChange:(value)=>
 
@@ -522,13 +535,14 @@ class Carnival2 extends Base3DChapter
         @materialManager.vertexColorsEnabled(val)
         @windGenerator.enabled = val
         @loader.geometryAttributeEnabled("color",val)
+        return null
 
     onShowDebugPathChange:(value)=>
         if value
             @scene.add @debugPaths
         else
             @scene.remove @debugPaths
-        @
+        return null
 
     createDebugPath:(arr)->
 
@@ -547,7 +561,7 @@ class Carnival2 extends Base3DChapter
             linegeom.vertices.push(point)
         
         @debugPaths.add root
-        @
+        return null
 
 
     initSun:()->
@@ -578,7 +592,7 @@ class Carnival2 extends Base3DChapter
 
         @scene.add @lensFlare
 
-        @  
+        return null
 
     onEnterFrame : =>
         # console.log "CARNIVAL 2 ENTERFRAME"
@@ -605,6 +619,8 @@ class Carnival2 extends Base3DChapter
 
         if @capturer
             @capturer.capture( @oz().appView.renderCanvas3D )
+            
+        return null
 
     handleMultiCamera:->
         if !@isGoingToInteractive
@@ -816,6 +832,8 @@ class Carnival2 extends Base3DChapter
         @
 
     dispose:=>
+        @enableRender = false
+
         @materialManager?.dispose( @renderer )
         delete @materialManager
         

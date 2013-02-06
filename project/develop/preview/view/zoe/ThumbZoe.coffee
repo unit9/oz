@@ -42,7 +42,6 @@ class ThumbZoe extends Backbone.View
 
             setInterval @animate, 150
 
-
             @loadComplete()
         
         if window.location.href.indexOf(':8888') > -1 or window.location.href.indexOf('unit9') > -1
@@ -67,4 +66,5 @@ class ThumbZoe extends Backbone.View
         return @__w
 
     loadComplete: =>
+        $('#polite').remove()
 

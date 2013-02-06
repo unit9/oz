@@ -447,7 +447,8 @@
         _this.polaroid.onload = function() {
           _this.thumb.addClass('imgLoaded');
           _this.fullImg.append(_this.polaroid);
-          return _this.initAnimation();
+          _this.initAnimation();
+          return $('#polite').remove();
         };
         return _this.polaroid.src = '/img/preview/cutout_polaroid.png';
       });
@@ -1216,7 +1217,8 @@
       cont.append(bottom.$el);
       this.$el.append(container);
       this.footer = new Footer;
-      return this.$el.append(this.footer.$el);
+      this.$el.append(this.footer.$el);
+      return $('#polite').remove();
     };
 
     ErrorMessage.prototype.onEnterFrame = function() {
@@ -1632,6 +1634,7 @@
       this.buttons.append(this.playPause);
       this.container.append(this.buttons);
       this.$el.append(this.container);
+      $('#polite').remove();
       return this.addSpinner();
     };
 
@@ -2310,7 +2313,9 @@
       return this.__w;
     };
 
-    ThumbZoe.prototype.loadComplete = function() {};
+    ThumbZoe.prototype.loadComplete = function() {
+      return $('#polite').remove();
+    };
 
     return ThumbZoe;
 

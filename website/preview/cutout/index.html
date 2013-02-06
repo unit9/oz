@@ -30,7 +30,7 @@
         <meta property="og:title" content="{{ OG_TITLE }}" />
         <meta property="og:url" content="{{ OG_URL }}">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="{{ OG_URL }}/img/social/fb.png"/>  <!-- TODO: change this -->
+        <meta property="og:image" content="{{ OG_URL }}/img/social/cutout_FB.png"/>  <!-- TODO: change this -->
         <meta property="og:description" content="{{ OG_DESCRIPTION }}" />
         <meta property="og:site_name" content="{{ OG_SITE_NAME }}"/>
 
@@ -42,12 +42,13 @@
         <meta name="twitter:url" content="{{ OG_URL }}">
         <meta name="twitter:title" content="{{ OG_TITLE }}">
         <meta name="twitter:description" content="{{ OG_DESCRIPTION }}">
-        <meta name="twitter:image" content="{{ OG_URL }}/img/social/twitter.png"> <!-- TODO: change this -->
+        <meta name="twitter:image" content="{{ OG_URL }}/img/social/Cutout_twitter.png"> <!-- TODO: change this -->
 
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/normalise.css">
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/preview/cutout.css">
+        <link rel="stylesheet" href="/css/spinner.css">
         
         <script src="/js/vendor/require.js"></script>
         <script data-main="/js/preview" src="/js/previewR.js"></script>    
@@ -59,6 +60,24 @@
         <![endif]-->    
         <div class="wrapper">
             <img src="">
+        </div>
+
+        <div id="polite" style="opacity: .5;width: 100%;height: 100%;position: absolute;top: 50%;left: 50%;margin-left: -17px;margin-top: -17px;">
+        <div style="display: table-cell;vertical-align:middle;">
+            <div class="spinner" style="width: 34px; height: 34px">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div class="bar4"></div>
+                <div class="bar5"></div>
+                <div class="bar6"></div>
+                <div class="bar7"></div>
+                <div class="bar8"></div>
+                <div class="bar9"></div>
+                <div class="bar10"></div>
+                <div class="bar11"></div>
+                <div class="bar12"></div>
+            </div>
         </div>
     </body>
 </html>

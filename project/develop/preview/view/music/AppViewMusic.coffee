@@ -106,6 +106,8 @@ class AppViewMusic extends Abstract
 
         @$el.append @container
 
+        $('#polite').remove()
+
         @addSpinner()
 
     tooglePlay : =>

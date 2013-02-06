@@ -1,10 +1,11 @@
 $ ->
-
-    #coffee --watch --join ./website/js/appDetect.js --compile ./project/develop/coffee/model/LocaleModel.coffee ./project/develop/coffee/utils/Locale.coffee ./project/develop/coffee/utils/BrowserDetection.coffee ./project/develop/coffee/AppDetect.coffee
+    #coffee --watch --join ./website/js/appDetect.js --compile ./project/develop/coffee/utils/QueryString.coffee ./project/develop/coffee/model/LocaleModel.coffee ./project/develop/coffee/utils/Locale.coffee ./project/develop/coffee/utils/BrowserDetection.coffee ./project/develop/coffee/AppDetect.coffee
 
     window.error = {}
     window.detection = new BrowserDetection 
+    window.detection.forcePass = if QueryString.get("forcepass") == "on" then true else false
     window.errorMessage = {}
+
 
     window.detection.onSuccess = () =>
 

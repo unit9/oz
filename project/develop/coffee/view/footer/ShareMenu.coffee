@@ -47,7 +47,7 @@ class ShareMenu extends Abstract
                 'width' : '100px'
 
             @$facebookContainer.css
-                'margin-left' : '10px'
+                'margin-left' : '20px'
 
 
             @$twitterContainer = $("<div class='twitterShare'></div>")

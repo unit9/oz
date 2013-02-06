@@ -9,7 +9,7 @@
 output = '../../../website/js/preview.js'
 outputGae = '../gae/templates/web/js/preview.js'
 #output = '../gae/templates/web/js/preview.js'
-output_min = '../../../website/js/preview.min.js'
+#output_min = '../../../website/js/preview.min.js'
 
 files = [
   'model',

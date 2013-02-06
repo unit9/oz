@@ -44,17 +44,22 @@ class Carnival3 extends Base3DChapter
     pickRay : null
     sceneDescendants : null       
 
+    sceneLoadedPerc : 0
+    sceneLoaded : false
+    textureLoadedPerc : 0
+    textureLoaded : false
+    loadingDone : false    
+
     init:->
 
-        # Add Instructions Over
-        # @addChapterInstructions()
+        super
+        
         IFLModelManager.getInstance().cacheTextures(@oz().appView.enablePrefetching)
         IFLModelManager.getInstance().prefetchEnabled = @oz().appView.enablePrefetching
-        @mouseDownPoint = new THREE.Vector2()
+
+
         @mouseUpPoint = new THREE.Vector2()
-
-        super
-
+        @mouseDownPoint = new THREE.Vector2()
         @pickVector = new THREE.Vector3
         @pickRay = new THREE.Ray        
         @animatedSprites = []
@@ -150,7 +155,8 @@ class Carnival3 extends Base3DChapter
 
     render:=>
         super
-        $.ajax( {url : "/models/s003_settings.json", dataType: 'json', success : @onSettingsLoaded });         
+        $.ajax( {url : "/models/s003_settings.json", dataType: 'json', success : @onSettingsLoaded });   
+        return null      
 
 
 
@@ -163,8 +169,9 @@ class Carnival3 extends Base3DChapter
         for i in [0...settings.lookAt.length] by 3
             @mouseInteraction.cameraLookatPoints.push(new THREE.Vector3(settings.lookAt[i],settings.lookAt[i+1],settings.lookAt[i+2]))
         
-        # @createDebugPath(@mouseInteraction.cameraPositionPoints)
-        # @createDebugPath(@mouseInteraction.cameraLookatPoints)
+        if @oz().appView.debugMode
+            @createDebugPath(@mouseInteraction.cameraPositionPoints)
+            @createDebugPath(@mouseInteraction.cameraLookatPoints)
 
         settings.renderer = @renderer
         settings.onProgress = @onTextureProgress
@@ -173,15 +180,21 @@ class Carnival3 extends Base3DChapter
 
         @materialManager.init(settings)
         @materialManager.load()
-        IFLModelManager.getInstance().load(@settings.pickables, @materialManager.instanceMaterial, @settings.modelURL, @onSceneLoaded, @onSceneProgress)
-        # @initDustSystems()
-        @
 
-    sceneLoadedPerc : 0
-    sceneLoaded : false
-    textureLoadedPerc : 0
-    textureLoaded : false
-    loadingDone : false
+
+        # @loader = new IFLLoader()
+        # @loader.enableMaterialCache = false
+        # @loader.enableTextureCache = false
+        # @loader.pickableObjects = @settings.pickables
+        # @loader.customMaterialInstancer = @materialManager.instanceMaterial
+        # @loader.doCreateModel = false
+        # @loader.load(@settings.modelURL,@onSceneLoaded,@onSceneProgress)
+
+        IFLModelManager.getInstance().load(@settings.pickables, @materialManager.instanceMaterial, @settings.modelURL, @onSceneLoaded, @onSceneProgress)
+        return null
+
+
+
 
     onTextureProgress:(percent) =>
         @textureLoadedPerc = percent
@@ -688,6 +701,7 @@ class Carnival3 extends Base3DChapter
         @
 
     dispose:=>
+        @enableRender = false
         @disposed = true
 
         @materialManager?.dispose( @renderer )
