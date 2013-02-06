@@ -49,7 +49,7 @@
       ]);
     }
 
-    IFLBasicShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "#ifdef USE_COLOR", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "uniform float windScale;", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "vec4 wpos = modelMatrix * vec4( position, 1.0 );", "wpos.z = -wpos.z;", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D(tWindForce,windUV).x;", "float windVertexScale = color.r;", "float windMod = ((1.0 - vWindForce)*windVertexScale) * windScale;", "vec4 pos = vec4(position , 1.0);", "pos.x += windMod * windDirection.x;", "pos.y += windMod * windDirection.y;", "pos.z += windMod * windDirection.z;", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "}"].join("\n");
+    IFLBasicShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "uniform float windScale;", "#endif", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "vec4 wpos = modelMatrix * vec4( position, 1.0 );", "wpos.z = -wpos.z;", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D(tWindForce,windUV).x;", "float windVertexScale = color.r;", "float windMod = ((1.0 - vWindForce)*windVertexScale) * windScale;", "vec4 pos = vec4(position , 1.0);", "pos.x += windMod * windDirection.x;", "pos.y += windMod * windDirection.y;", "pos.z += windMod * windDirection.z;", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "}"].join("\n");
 
     IFLBasicShader.prototype.fragmentShader = ["uniform vec3 diffuse;", "uniform float opacity;", "uniform float diffuseMultiplier;", "uniform float lightMapMultiplier;", "uniform bool additiveLightMap;", THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], "void main() {", "gl_FragColor = vec4( diffuse, opacity );", "#ifdef USE_MAP", "vec4 tex = texture2D( map, vUv );", "gl_FragColor = gl_FragColor * vec4( tex.xyz * diffuseMultiplier, tex.w );", "#endif", "#ifdef USE_LIGHTMAP", "vec4 map2col = texture2D( lightMap, vUv2 ) * lightMapMultiplier;", "if(additiveLightMap){", "gl_FragColor += map2col;", "} else {", "gl_FragColor *= map2col;", "gl_FragColor.w = map2col.w;", "}", "#endif", THREE.ShaderChunk["alphatest_fragment"], THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
 
@@ -335,7 +335,7 @@
       ]);
     }
 
-    IFLPhongFresnelShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "varying vec3 vReflect;", "uniform sampler2D tAux;", "varying float vFresnel;", "uniform float mFresnelPower;", "#ifdef USE_COLOR", "uniform float windScale;", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["morphnormal_vertex"], THREE.ShaderChunk["skinbase_vertex"], THREE.ShaderChunk["skinnormal_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], THREE.ShaderChunk["morphtarget_vertex"], THREE.ShaderChunk["skinning_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D( tWindForce , windUV ).x;", "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;", "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "#if defined( USE_ENVMAP )", "vec3 nWorld = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * objectNormal;", "vReflect = reflect( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ) );", "#endif", "float fresnelFactor;", "#ifdef USE_MAP", "fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "#else", "fresnelFactor = 1.0;", "#endif", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal ) ), fresnelPow );", "vFresnel = clamp( fresnel, 0.0, 1.0 );", "}"].join("\n");
+    IFLPhongFresnelShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "varying vec3 vReflect;", "uniform sampler2D tAux;", "varying float vFresnel;", "uniform float mFresnelPower;", "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "uniform float windScale;", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "#endif", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["morphnormal_vertex"], THREE.ShaderChunk["skinbase_vertex"], THREE.ShaderChunk["skinnormal_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], THREE.ShaderChunk["morphtarget_vertex"], THREE.ShaderChunk["skinning_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D( tWindForce , windUV ).x;", "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;", "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "#if defined( USE_ENVMAP )", "vec3 nWorld = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * objectNormal;", "vReflect = reflect( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ) );", "#endif", "float fresnelFactor;", "#ifdef USE_MAP", "fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "#else", "fresnelFactor = 1.0;", "#endif", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal ) ), fresnelPow );", "vFresnel = clamp( fresnel, 0.0, 1.0 );", "}"].join("\n");
 
     IFLPhongFresnelShader.prototype.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["specularmap_pars_fragment"], "uniform vec3 diffuse;", "uniform float opacity;", "uniform vec3 ambient;", "uniform vec3 emissive;", "uniform vec3 specular;", "uniform float shininess;", "uniform float diffuseMultiplier;", "uniform float envmapMultiplier;", "uniform float lightMapMultiplier;", "varying float vFresnel;", "#ifdef USE_ENVMAP", "varying vec3 vReflect;", "uniform float reflectivity;", "uniform samplerCube envMap;", "uniform float flipEnvMap;", "uniform int combine;", "#endif", "void main() {", "gl_FragColor = vec4( diffuse, opacity );", "#ifdef USE_MAP", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#endif", "#ifdef USE_LIGHTMAP", "vec4 map2col = texture2D( lightMap, vUv2 );", "gl_FragColor *= map2col * lightMapMultiplier;", "gl_FragColor.w = map2col.w;", "#endif", THREE.ShaderChunk["alphatest_fragment"], THREE.ShaderChunk["specularmap_fragment"], "#ifdef USE_ENVMAP", "#ifdef DOUBLE_SIDED", "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );", "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;", "#else", "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#endif", "float fresnel;", "#ifdef DOUBLE_SIDED", "fresnel = flipNormal * vFresnel;", "#else", "fresnel = vFresnel;", "#endif", "#ifdef USE_SPECULARMAP", "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );", "#else", "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz,  fresnel * specularStrength  );", "#endif", "#endif", THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
 
@@ -842,7 +842,7 @@
       ]);
     }
 
-    IFLWindyParticlesShader.prototype.vertexShader = ["uniform float size;", "uniform float scale;", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "uniform float windScale;", "uniform float time;", "attribute float speed;", "varying float fSpeed;", THREE.ShaderChunk["color_pars_vertex"], THREE.ShaderChunk["shadowmap_pars_vertex"], "void main() {", "vec4 mvPosition;", "vec4 wpos = modelMatrix * vec4( position, 1.0 );", "wpos.z = -wpos.z;", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D(tWindForce,windUV).x;", "float windMod = (1.0 - vWindForce) * windScale;", "vec4 pos = vec4(position , 1.0);", "pos.x += windMod * windDirection.x;", "pos.y += windMod * windDirection.y;", "pos.z += windMod * windDirection.z;", "mvPosition = modelViewMatrix *  pos;", "fSpeed = speed;", "float fSize = size * (1.0 + sin(time * speed));", "#ifdef USE_SIZEATTENUATION", "gl_PointSize = fSize * ( scale / length( mvPosition.xyz ) );", "#else", "gl_PointSize = fSize;", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], THREE.ShaderChunk["shadowmap_vertex"], "}"].join("\n");
+    IFLWindyParticlesShader.prototype.vertexShader = ["uniform float size;", "uniform float scale;", "#ifdef VERTEX_TEXTURES", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "uniform sampler2D tWindForce;", "uniform float windScale;", "#endif", "uniform float time;", "attribute float speed;", "varying float fSpeed;", THREE.ShaderChunk["color_pars_vertex"], THREE.ShaderChunk["shadowmap_pars_vertex"], "void main() {", "vec4 pos = vec4(position , 1.0);", "vec4 mvPosition;", "#ifdef VERTEX_TEXTURES", "vec4 wpos = modelMatrix * vec4( position, 1.0 );", "wpos.z = -wpos.z;", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D(tWindForce,windUV).x;", "float windMod = (1.0 - vWindForce) * windScale;", "pos.x += windMod * windDirection.x;", "pos.y += windMod * windDirection.y;", "pos.z += windMod * windDirection.z;", "#endif", "mvPosition = modelViewMatrix *  pos;", "fSpeed = speed;", "float fSize = size * (1.0 + sin(time * speed));", "#ifdef USE_SIZEATTENUATION", "gl_PointSize = fSize * ( scale / length( mvPosition.xyz ) );", "#else", "gl_PointSize = fSize;", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], THREE.ShaderChunk["shadowmap_vertex"], "}"].join("\n");
 
     IFLWindyParticlesShader.prototype.fragmentShader = ["uniform vec3 psColor;", "uniform float opacity;", "uniform float diffuseMultiplier;", "uniform float alphaMultiplier;", "varying float fSpeed;", "uniform float time;", THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_particle_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["shadowmap_pars_fragment"], "void main() {", "gl_FragColor = vec4( psColor, opacity );", "#ifdef USE_MAP", "gl_FragColor = texture2D( map, vec2( gl_PointCoord.x, 1.0 - gl_PointCoord.y ) ) * diffuseMultiplier;", "gl_FragColor.w = alphaMultiplier * (1.0 + sin(time * fSpeed));", "#endif", THREE.ShaderChunk["alphatest_fragment"], THREE.ShaderChunk["color_fragment"], THREE.ShaderChunk["shadowmap_fragment"], THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
 
@@ -2354,6 +2354,8 @@
 
     IFLMaterialManager.prototype.forcePNGTextures = false;
 
+    IFLMaterialManager.prototype.enableTextureFiltering = true;
+
     function IFLMaterialManager(params) {
       this.vertexColorsEnabled = __bind(this.vertexColorsEnabled, this);
 
@@ -2431,20 +2433,26 @@
             this.loadTextures[index] = url = url.substr(0, ddsPathIndex) + ".png";
           }
         }
+        tex = null;
         if (url.indexOf("/") !== -1) {
           if (url.indexOf(".dds") !== -1) {
-            CustomImageUtils.loadCompressedTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
+            tex = CustomImageUtils.loadCompressedTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
           } else {
             tex = CustomImageUtils.loadTexture("" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, index);
             tex.flipY = false;
           }
         } else {
           if (url.indexOf(".dds") !== -1) {
-            CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
+            tex = CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, false, index);
           } else {
             tex = CustomImageUtils.loadTexture("" + this.ddsBasePath + "/" + url, null, this.onTextureComplete, this.onTextureProgress, this.onTextureError, index);
             tex.flipY = false;
           }
+        }
+        if (!this.enableTextureFiltering) {
+          tex.magFilter = THREE.LinearFilter;
+          tex.minFilter = THREE.LinearFilter;
+          tex.anisotropy = 0;
         }
       }
       return null;
@@ -2493,24 +2501,28 @@
       if (index !== -1) {
         return this.loadedTextures[index];
       }
+      tex = null;
       if (texName.indexOf("/") !== -1) {
         if (texName.indexOf(".dds") !== -1) {
-          return CustomImageUtils.loadCompressedTexture("" + texName);
+          tex = CustomImageUtils.loadCompressedTexture("" + texName);
         } else {
           tex = CustomImageUtils.loadTexture("" + texName);
           tex.flipY = false;
-          return tex;
         }
       } else {
         if (texName.indexOf(".dds") !== -1) {
-          return CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + texName);
+          tex = CustomImageUtils.loadCompressedTexture("" + this.ddsBasePath + "/" + texName);
         } else {
           tex = CustomImageUtils.loadTexture("" + this.ddsBasePath + "/" + texName);
           tex.flipY = false;
-          return tex;
         }
       }
-      return null;
+      if (!this.enableTextureFiltering) {
+        tex.magFilter = THREE.LinearFilter;
+        tex.minFilter = THREE.LinearFilter;
+        tex.anisotropy = 0;
+      }
+      return tex;
     };
 
     IFLMaterialManager.prototype.instanceMaterial = function(subMesh, meshname) {
@@ -2588,7 +2600,9 @@
       difftexR = this.getPreloadedTexture("terrain_diffuseR.dds");
       difftexG = this.getPreloadedTexture("terrain_diffuseG.dds");
       difftexB = this.getPreloadedTexture("terrain_diffuseB.dds");
-      difftex.anisotropy = difftexR.anisotropy = difftexG.anisotropy = difftexB.anisotropy = 16;
+      if (this.enableTextureFiltering) {
+        difftex.anisotropy = difftexR.anisotropy = difftexG.anisotropy = difftexB.anisotropy = 16;
+      }
       this.texLib.push(difftex);
       this.texLib.push(difftexR);
       this.texLib.push(difftexG);
@@ -5897,6 +5911,8 @@
       this.initGUI = __bind(this.initGUI, this);
 
       this.init = __bind(this.init, this);
+
+      this.onRenderingError = __bind(this.onRenderingError, this);
       return Base3DChapter.__super__.constructor.apply(this, arguments);
     }
 
@@ -6004,6 +6020,13 @@
       return true;
     };
 
+    Base3DChapter.prototype.onRenderingError = function() {
+      if (!this.oz().appView.debugMode) {
+        top.location.href = "/error_gc.html";
+      }
+      return null;
+    };
+
     Base3DChapter.prototype.init = function() {
       var _this = this;
       this.emptyRenderPluginPost = [];
@@ -6023,7 +6046,8 @@
         canvas: this.oz().appView.renderCanvas3D,
         antialias: false
       });
-      this.oz().appView.ddsSupported = THREE.WebGLRenderer.DDSSupported;
+      this.renderer.onError = this.onRenderingError;
+      this.oz().appView.ddsSupported = THREE.WebGLRenderer.DDSSupported && (QueryString.get("dds") !== "off");
       this.renderer.autoClear = false;
       this.renderer.setSize(this.APP_WIDTH, this.APP_HEIGHT);
       this.renderer.setClearColorHex(0x000000, 1);
@@ -6647,6 +6671,7 @@
       this.renderer.deallocateObject(this.dofpost.quad);
       this.renderer.deallocateMaterial(this.dofpost.materialBokeh);
       this.renderer.deallocateMaterial(this.dofpost.material_depth);
+      this.renderer.onError = null;
       memory = this.renderer.info.memory;
       descendants = this.scene.getDescendants();
       for (_i = 0, _len = descendants.length; _i < _len; _i++) {
@@ -6854,7 +6879,6 @@
         this.controls.enabled = false;
       }
       this.materialManager = new IFLMaterialManager;
-      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported;
       this.hotspotManager = new IFLHotspotManager;
       this.params.cameraFOV = this.camera.fov;
       this.params.fogcolor = "#2c2016";
@@ -6922,6 +6946,8 @@
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
       settings.textureQuality = this.oz().appView.ddsSupported ? this.oz().appView.textureQuality : "low";
+      this.materialManager.enableTextureFiltering = THREE.WebGLRenderer.AnisotropySupported || (QueryString.get("anisotropy") === "off");
+      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported || !THREE.WebGLRenderer.AnisotropySupported;
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
@@ -7944,7 +7970,6 @@
         this.controls.enabled = false;
       }
       this.materialManager = new IFLMaterialManager;
-      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported;
       this.hotspotManager = new IFLHotspotManager;
       this.params.cameraFOV = this.camera.fov;
       this.params.fogcolor = "#180f20";
@@ -8012,6 +8037,8 @@
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
       settings.textureQuality = this.oz().appView.ddsSupported ? this.oz().appView.textureQuality : "low";
+      this.materialManager.enableTextureFiltering = THREE.WebGLRenderer.AnisotropySupported || (QueryString.get("anisotropy") === "off");
+      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported || !THREE.WebGLRenderer.AnisotropySupported;
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
@@ -8832,7 +8859,6 @@
         this.controls.enabled = false;
       }
       this.materialManager = new IFLMaterialManager;
-      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported;
       this.hotspotManager = new IFLHotspotManager;
       this.params.cameraFOV = this.camera.fov;
       this.params.fogcolor = "#180f20";
@@ -8901,6 +8927,8 @@
       settings.onProgress = this.onTextureProgress;
       settings.onComplete = this.onTextureComplete;
       settings.textureQuality = this.oz().appView.ddsSupported ? this.oz().appView.textureQuality : "low";
+      this.materialManager.enableTextureFiltering = THREE.WebGLRenderer.AnisotropySupported || (QueryString.get("anisotropy") === "off");
+      this.materialManager.forcePNGTextures = !this.oz().appView.ddsSupported || !THREE.WebGLRenderer.AnisotropySupported;
       this.materialManager.init(settings);
       this.materialManager.load();
       IFLModelManager.getInstance().load(this.settings.pickables, this.materialManager.instanceMaterial, this.settings.modelURL, this.onSceneLoaded, this.onSceneProgress);
@@ -18093,6 +18121,9 @@
     };
 
     WebCam.prototype.flipImage = function() {
+      if (!this.canvas) {
+        return;
+      }
       this.ctx.drawImage(this.dom(), -this.canvas.width, 0);
       return this.canvas;
     };

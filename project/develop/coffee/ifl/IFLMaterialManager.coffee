@@ -21,6 +21,7 @@ class IFLMaterialManager
     textureQuality : null
     loadingPercentages : null
     forcePNGTextures : false
+    enableTextureFiltering : true
 
     constructor:(params)->
         @init(params) if params?
@@ -78,21 +79,27 @@ class IFLMaterialManager
                 if ddsPathIndex != -1
                     @loadTextures[index] = url = url.substr(0,ddsPathIndex) + ".png";
 
+            tex = null
 
             if url.indexOf("/") != -1
                 # load full path texture
                 if url.indexOf(".dds") != -1
-                    CustomImageUtils.loadCompressedTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
+                    tex = CustomImageUtils.loadCompressedTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
                 else
                     tex = CustomImageUtils.loadTexture( "#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, index  );
                     tex.flipY = false   
             else
                 # load basepath texture
                 if url.indexOf(".dds") != -1
-                    CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
+                    tex = CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, false, index );
                 else
                     tex = CustomImageUtils.loadTexture( "#{@ddsBasePath}/#{url}", null, @onTextureComplete, @onTextureProgress, @onTextureError, index  );
-                    tex.flipY = false   
+                    tex.flipY = false 
+
+            if !@enableTextureFiltering
+                tex.magFilter = THREE.LinearFilter
+                tex.minFilter = THREE.LinearFilter
+                tex.anisotropy = 0
 
 
         return null
@@ -239,25 +246,30 @@ class IFLMaterialManager
 
         # load texture otherwise
 
+        tex = null
+
         if texName.indexOf("/") != -1
             #custom path
             if texName.indexOf(".dds") != -1
-                return CustomImageUtils.loadCompressedTexture( "#{texName}" )
+                tex = CustomImageUtils.loadCompressedTexture( "#{texName}" )
             else
                 tex = CustomImageUtils.loadTexture( "#{texName}" )
                 tex.flipY = false
-                return tex
         
         else
             #preloaded path
             if texName.indexOf(".dds") != -1
-                return CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{texName}" )
+                tex = CustomImageUtils.loadCompressedTexture( "#{@ddsBasePath}/#{texName}" )
             else
                 tex = CustomImageUtils.loadTexture( "#{@ddsBasePath}/#{texName}" )
                 tex.flipY = false
-                return tex
 
-        return null
+        if !@enableTextureFiltering
+            tex.magFilter = THREE.LinearFilter
+            tex.minFilter = THREE.LinearFilter
+            tex.anisotropy = 0
+
+        return tex
             
 
     # loadNextTexture:(texture)=>
@@ -353,7 +365,8 @@ class IFLMaterialManager
 
         # difftex.magFilter = difftexR.magFilter = difftexG.magFilter = difftexB.magFilter = THREE.LinearFilter
         # difftex.minFilter = difftexR.minFilter = difftexG.minFilter = difftexB.minFilter = THREE.NearestMipMapNearestFilter
-        difftex.anisotropy = difftexR.anisotropy = difftexG.anisotropy = difftexB.anisotropy = 16
+        if @enableTextureFiltering
+            difftex.anisotropy = difftexR.anisotropy = difftexG.anisotropy = difftexB.anisotropy = 16
 
         @texLib.push difftex
         @texLib.push difftexR

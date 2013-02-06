@@ -124,10 +124,10 @@ class BrowserDetection
         if formats?
             for format in formats
                 switch format
-                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT then dxt5Supported = true
-                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT  then dxt1Supported = true
+                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT  then dxt5Supported     = true
+                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGB_S3TC_DXT1_EXT   then dxt1Supported     = true
                     when _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT1_EXT  then dxt1rgbaSupported = true
-                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT  then dxt3Supported = true
+                    when _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT3_EXT  then dxt3Supported     = true
         
         # test anisotropic texture support
         _glExtensionTextureFilterAnisotropic = (
@@ -135,9 +135,20 @@ class BrowserDetection
             @gl.getExtension( 'MOZ_EXT_texture_filter_anisotropic' ) || 
             @gl.getExtension( 'WEBKIT_EXT_texture_filter_anisotropic' ) )
 
+
+        # @gl.activeTexture( @gl.TEXTURE0 + 0 )
+        # err = @gl.getError()
+        # if err != 0
+        #     return false
+        
+        # @gl.bindTexture( @gl.TEXTURE_2D, @gl.createTexture() )
+        # err = @gl.getError()
+        # if err != 0
+        #     return false
+
+        # @gl.compressedTexImage2D( @gl.TEXTURE_2D, 0, _glExtensionCompressedTextureS3TC.COMPRESSED_RGBA_S3TC_DXT5_EXT, 16, 16, 0,  new Uint8Array(16*16) )
+        # err = @gl.getError()
+        # if err != 0
+        #     return false
+
         return _glExtensionCompressedTextureS3TC && _glExtensionTextureFilterAnisotropic && dxt5Supported && dxt3Supported && dxt1Supported && dxt1rgbaSupported
-
-
-
-
-

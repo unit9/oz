@@ -28,12 +28,16 @@ class IFLWindyParticlesShader
         "uniform float size;"
         "uniform float scale;"
 
-        "uniform vec2 windMin;"
-        "uniform vec2 windSize;"
-        "uniform vec3 windDirection;"
-        "uniform sampler2D tWindForce;"
-        "uniform float windScale;"
+        "#ifdef VERTEX_TEXTURES"
+            "uniform vec2 windMin;"
+            "uniform vec2 windSize;"
+            "uniform vec3 windDirection;"
+            "uniform sampler2D tWindForce;"
+            "uniform float windScale;"
+        "#endif"
+
         "uniform float time;"
+
 
         "attribute float speed;"
         "varying float fSpeed;"
@@ -48,18 +52,20 @@ class IFLWindyParticlesShader
         "void main() {"
 
             # THREE.ShaderChunk[ "color_vertex" ]
-
-            "vec4 mvPosition;"
-            "vec4 wpos = modelMatrix * vec4( position, 1.0 );"
-            "wpos.z = -wpos.z;"
-            "vec2 totPos = wpos.xz - windMin;"
-            "vec2 windUV = totPos / windSize;"
-            "float vWindForce = texture2D(tWindForce,windUV).x;"
-            "float windMod = (1.0 - vWindForce) * windScale;"
             "vec4 pos = vec4(position , 1.0);"
-            "pos.x += windMod * windDirection.x;"
-            "pos.y += windMod * windDirection.y;"
-            "pos.z += windMod * windDirection.z;"
+            "vec4 mvPosition;"
+
+            "#ifdef VERTEX_TEXTURES"
+                "vec4 wpos = modelMatrix * vec4( position, 1.0 );"
+                "wpos.z = -wpos.z;"
+                "vec2 totPos = wpos.xz - windMin;"
+                "vec2 windUV = totPos / windSize;"
+                "float vWindForce = texture2D(tWindForce,windUV).x;"
+                "float windMod = (1.0 - vWindForce) * windScale;"
+                "pos.x += windMod * windDirection.x;"
+                "pos.y += windMod * windDirection.y;"
+                "pos.z += windMod * windDirection.z;"
+            "#endif"
 
             "mvPosition = modelViewMatrix *  pos;"
 

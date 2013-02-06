@@ -1,5 +1,5 @@
 var paths = {
-    "three"                 : "vendor/three/three.min",
+    "three"                 : "vendor/three/three.merged",
     "jquery.pause"          : "vendor/jquery.pause.min",
     "transit"               : "vendor/jquery.transit.min",
     "tween"                 : "vendor/Tween",
@@ -14,7 +14,7 @@ var paths = {
     "gsap"                  : "vendor/gsap/jquery.gsap.min",
     "seedrandom"            : "vendor/seedrandom-min",
     "ccapture"              : "vendor/CCapture",
-    "whammy"                : "vendor/Whammy",
+    "whammy"                : "vendor/Whammy"
 };
 
 // var threeModules = [

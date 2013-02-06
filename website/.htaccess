@@ -2,6 +2,12 @@ Options +FollowSymlinks
 RewriteEngine on
 
 RewriteRule (api|css|img|js|locale|m|prototypes|sounds|models|locTool|videos|preview)/(.*)$ $1/$2 [NC,L,QSA]
+RewriteRule ^error_gc.html error_gc.html [NC,L]
+RewriteRule ^error_404.html error_404.html [NC,L]
+RewriteRule ^credits.html credits.html [NC,L]
+RewriteRule ^official.html official.html [NC,L]
+RewriteRule ^privacy.html privacy.html [NC,L]
+RewriteRule ^tou.html tou.html [NC,L]
 RewriteRule ^(.*)$ index.html [NC,L]
 
 AddType application/x-font-woff .woff

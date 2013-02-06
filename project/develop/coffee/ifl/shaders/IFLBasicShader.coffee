@@ -25,11 +25,13 @@ class IFLBasicShader
         THREE.ShaderChunk[ "color_pars_vertex" ]
         
         "#ifdef USE_COLOR"
-            "uniform vec2 windMin;"
-            "uniform vec2 windSize;"
-            "uniform vec3 windDirection;"
-            "uniform sampler2D tWindForce;"
-            "uniform float windScale;"
+            "#ifdef VERTEX_TEXTURES"
+                "uniform vec2 windMin;"
+                "uniform vec2 windSize;"
+                "uniform vec3 windDirection;"
+                "uniform sampler2D tWindForce;"
+                "uniform float windScale;"
+            "#endif"
         "#endif"        
 
 
@@ -40,21 +42,26 @@ class IFLBasicShader
             THREE.ShaderChunk[ "color_vertex" ],
 
             "vec4 mvPosition;"
+
+
             "#ifdef USE_COLOR"
-                "vec4 wpos = modelMatrix * vec4( position, 1.0 );"
-                "wpos.z = -wpos.z;"
-                "vec2 totPos = wpos.xz - windMin;"
-                "vec2 windUV = totPos / windSize;"
-                "float vWindForce = texture2D(tWindForce,windUV).x;"
-                "float windVertexScale = color.r;"
+                "#ifdef VERTEX_TEXTURES"
+                    "vec4 wpos = modelMatrix * vec4( position, 1.0 );"
+                    "wpos.z = -wpos.z;"
+                    "vec2 totPos = wpos.xz - windMin;"
+                    "vec2 windUV = totPos / windSize;"
+                    "float vWindForce = texture2D(tWindForce,windUV).x;"
+                    "float windVertexScale = color.r;"
 
-                "float windMod = ((1.0 - vWindForce)*windVertexScale) * windScale;"
-                "vec4 pos = vec4(position , 1.0);"
-                "pos.x += windMod * windDirection.x;"
-                "pos.y += windMod * windDirection.y;"
-                "pos.z += windMod * windDirection.z;"
-
-                "mvPosition = modelViewMatrix *  pos;"
+                    "float windMod = ((1.0 - vWindForce)*windVertexScale) * windScale;"
+                    "vec4 pos = vec4(position , 1.0);"
+                    "pos.x += windMod * windDirection.x;"
+                    "pos.y += windMod * windDirection.y;"
+                    "pos.z += windMod * windDirection.z;"
+                    "mvPosition = modelViewMatrix *  pos;"
+                "#else"
+                    "mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+                "#endif"
             "#else"
                 "mvPosition = modelViewMatrix * vec4( position, 1.0 );",
             "#endif"

@@ -56,6 +56,7 @@ class WebCam
         @videoDom.get()[0]
 
     flipImage : =>
+        return if !@canvas
         @ctx.drawImage @dom(), -@canvas.width, 0
         # return 
         #@ctx.getImageData 0, 0, @canvas.width, @canvas.height

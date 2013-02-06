@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Oz The Great and Powerful | Find Your Way To Oz</title>
+        <link rel="stylesheet" href="/css/normalise.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>
+        function sendReport(data)
+        {
+            console.log(data);
+
+           $.ajax({
+                url         : '/api/report',
+                type        :  'POST',
+                dataType    : "json",
+                data        : data,
+                done        : function()
+                {
+                    $('#sendReport button').html('THANKS! YOUR REPORT WILL BE ANALIZED!')
+                    $('#sendReport button').click(function(){return})
+                    $('#sendReport button').css({'cursor': 'default'})
+                }
+
+            })
+        }
+
+         var main = function(){
+            var gl, webgl={supported:false}, data={webgl:webgl};
+            var canvas = document.getElementsByTagName('canvas')[0];
+            var getWebgl = function(name){
+                try{
+                    gl = canvas.getContext(name);
+                    if(gl){
+                        data.webgl.name = name;
+                        data.webgl.supported = true;
+                    }
+                }
+                catch(error){
+                    data.webgl.error = error;
+                }
+            }
+            if(canvas && canvas.getContext){
+                getWebgl('webgl');
+                if(!gl) getWebgl('experimental-webgl');
+            }
+
+            var checkFBO = function(){
+                var result = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+                switch(result){
+                    case gl.FRAMEBUFFER_UNSUPPORTED:
+                    case gl.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
+                    case gl.FRAMEBUFFER_INCOMPLETE_DIMENSIONS:
+                    case gl.FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
+                        return false;
+                }
+                return true;
+            }
+
+            var fboResult = function(result, name){
+                if(checkFBO()){
+                    result[name] = true;
+                    return true;
+                }
+                else{
+                    result[name] = false;
+                    return false;
+                }
+            }
+
+            var setupRenderbuffer = function(renderbuffer, format){
+                gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+                gl.renderbufferStorage(gl.RENDERBUFFER, format, 64, 64);
+                gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+            }
+
+            var testFloatFBO = function(result){
+                result.color = false;
+                result.color_depth = false;
+                result.color_stencil = false;
+                result.color_depthstencil = false;
+                result.color_depth_stencil = false;
+
+                var buffer = gl.createFramebuffer();
+                var texture = gl.createTexture();
+
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 64, 64, 0, gl.RGBA, gl.FLOAT, null);
+                gl.bindTexture(gl.TEXTURE_2D, null);
+
+                gl.bindFramebuffer(gl.FRAMEBUFFER, buffer);
+                gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+                if(fboResult(result, 'color')){
+                    var renderbuffer = gl.createRenderbuffer();
+                    var renderbuffer2 = gl.createRenderbuffer();
+
+                    gl.bindRenderbuffer(gl.RENDERBUFFER, renderbuffer);
+
+                    setupRenderbuffer(renderbuffer, gl.DEPTH_COMPONENT16);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+                    fboResult(result, 'color_depth');
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, null);
+                    
+                    setupRenderbuffer(renderbuffer, gl.STENCIL_INDEX8);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+                    fboResult(result, 'color_stencil');
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, gl.RENDERBUFFER, null);
+                    
+                    setupRenderbuffer(renderbuffer, gl.DEPTH_COMPONENT16);
+                    setupRenderbuffer(renderbuffer2, gl.STENCIL_INDEX8);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderbuffer2);
+                    fboResult(result, 'color_depth_stencil');
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, null);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.STENCIL_ATTACHMENT, gl.RENDERBUFFER, null);
+                    
+                    setupRenderbuffer(renderbuffer, gl.DEPTH_STENCIL);
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, renderbuffer);
+                    fboResult(result, 'color_depthstencil');
+                    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, null);
+
+                    gl.deleteRenderbuffer(renderbuffer);
+                    gl.deleteRenderbuffer(renderbuffer2);
+                }
+                gl.deleteTexture(texture);
+                gl.deleteFramebuffer(buffer);
+            }
+
+            if(gl){
+                webgl.extensions = {
+                    supported: gl.getSupportedExtensions(),
+                    capabilities: {},
+                };
+
+                webgl.params = {};
+
+                gl.enable(gl.SAMPLE_ALPHA_TO_COVERAGE);
+                gl.enable(gl.SAMPLE_COVERAGE);
+                for(var name in gl){
+                    if(name.match(/BITS|ALIASED|COMPRESSED|MAX|^SAMPLE(_BUF|_COVERAGE_|S)|VERSION$|VENDOR|RENDERER/)){
+                        var param = gl.getParameter(gl[name]);
+                        if(param instanceof Float32Array || param instanceof Int32Array){
+                            var value = [];
+                            for(var i=0; i<param.length; i++){
+                                value.push(param[i]);
+                            }
+                        }
+                        else{
+                            var value = param;
+                        }
+                        webgl.params[name] = value;
+                    }
+                }
+                var anisotropic_tested = false;
+                for(var i=0; i<webgl.extensions.supported.length; i++){
+                    var extname = webgl.extensions.supported[i];
+                    if(anisotropic_tested === false && extname.match('texture_filter_anisotropic')){
+                        anisotropic_tested = true;
+                        var ext = gl.getExtension(extname);
+                        webgl.extensions.capabilities[extname] = {MAX_TEXTURE_MAX_ANISOTROPY_EXT: gl.getParameter(ext.MAX_TEXTURE_MAX_ANISOTROPY_EXT)};
+                    }
+                    if(extname.match('texture_float')){
+                        var result = webgl.extensions.capabilities[extname] = {}
+                        gl.getExtension(extname);
+                        testFloatFBO(result);
+                    }
+                }
+            }
+
+            var vendors = [null, 'webkit', 'moz', 'ms', 'o'];
+            var vendorName = function(name, vendor){
+                if(vendor && vendor.length > 0){
+                    return vendor + name[0].toUpperCase() + name.substr(1);
+                }
+                else{
+                    return name;
+                }
+            }
+            var isPresent = function(obj, name){
+                if(obj){
+                    for(var i=0; i<vendors.length; i++){
+                        var vendor = vendors[i];
+                        if(obj[vendorName(name, vendor)] !== undefined){
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            //data.fullscreen = isPresent(document, 'cancelFullScreen');
+            //data.pointerlock = isPresent(navigator.pointer, 'isLocked');
+            //data.gamepads = isPresent(navigator, 'gamepads');
+
+            data.requestAnimationFrame = isPresent(window, 'requestAnimationFrame');
+
+            var hash = document.location.hash.substr(1).split('|');
+            if(hash.length == 1){
+                var flags = '';
+                data.location = hash[0];
+            }
+            else{
+                var flags = hash[0];
+                data.location = hash[1];
+            }
+            data.fullscreen = flags.indexOf('fullscreen') >= 0;
+            data.pointerlock = flags.indexOf('pointerlock') >= 0;
+            data.gamepads = flags.indexOf('gamepads') >= 0;
+
+            var postJSON = function(data){
+                var data_string = JSON.stringify(data);
+                if(window.XMLHttpRequest){
+                    var request = new XMLHttpRequest();
+                }
+                else{
+                    var request = new ActiveXObject('Microsoft.XMLHTTP');
+                }
+                request.open('POST', '/collect/', true);
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(data_string);
+            }
+            
+            var cookie = function(name, value, options) {
+                if (typeof value != 'undefined') {
+                    options = options || {};
+                    if (value === null) {
+                        value = '';
+                        options.expires = -1;
+                    }
+                    var expires = '';
+                    if(options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)){
+                        var date;
+                        if (typeof options.expires == 'number') {
+                            date = new Date();
+                            date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+                        } else {
+                            date = options.expires;
+                        }
+                        expires = '; expires=' + date.toUTCString();
+                    }
+                    var path = options.path ? '; path=' + (options.path) : '';
+                    var domain = options.domain ? '; domain=' + (options.domain) : '';
+                    var secure = options.secure ? '; secure' : '';
+                    document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
+                }
+                else{
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = cookies[i].replace(/^\s+|\s+$/g, '');
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+            };
+
+            function randomString() {
+                var chars = '0123456789abcdef';
+                var result = '';
+
+                for (var i=0; i<32; i++) {
+                    var index = Math.floor(Math.random() * 16);
+                    result += chars[index];
+                }
+                return result;
+            }
+
+            var now = Date.now();
+            var user = cookie('user');
+            if(!user){
+                user = now + '_' + randomString();
+                cookie('user', user, {expires:360*5});
+            }
+
+            data.client_time = now;
+            data.user = user;
+
+            // postJSON(data);
+
+            sendReport(JSON.stringify(data.webgl));
+        }
+
+        </script>
+    </head>
+    <body>
+        <canvas></canvas>
+        <div id="detect" style="display:table;">
+            <div class='errorContainer'>
+                <div class="title">FIND YOUR WAY TO OZ</div>
+                <div class="flourish"><img src="/img/error/top.png"></div>
+                <div class="errorMessage"><span style="font-size:15px; max-width:400px;">SORRY, THERE MAY BE AN ISSUE WITH SUPPORT FOR YOUR SYSTEM.<br>USE THE BUTTON BELOW TO SUBMIT YOUR SYSTEM DETAILS SO THAT THE TEAM CAN INVESTIGATE FURTHER. NO PERSONAL DETAILS WILL BE SENT.<br>YOU MAY ALSO TRY RESTARTING YOUR BROWSER.</span></div>
+                <div class="btnContainer"><a id="sendReport" onclick="main();" style="text-decoration: none;cursor:pointer;"><button class="abstractbutton">CLICK TO SEND REPORT</button></a></div>
+                <div class="flourish"><img src="/img/error/bottom.png"></div>
+                <div class="errorFooter"><img src="/img/error/logo_oz.png"><a href="http://www.chromeexperiments.com" target="_blank"/><img src="/img/error/logo_chrome.png"></a><a href="http://www.google.com" target="_blank"/><img src="/img/error/logo_google.png"></a></div>
+            </div>
+        </div>
+    </body>
+</html>

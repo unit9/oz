@@ -99,7 +99,6 @@ class Carnival3 extends Base3DChapter
 
 
         @materialManager = new IFLMaterialManager
-        @materialManager.forcePNGTextures = !@oz().appView.ddsSupported
         
         @hotspotManager = new IFLHotspotManager
 
@@ -177,6 +176,9 @@ class Carnival3 extends Base3DChapter
         settings.onProgress = @onTextureProgress
         settings.onComplete = @onTextureComplete
         settings.textureQuality = if @oz().appView.ddsSupported then @oz().appView.textureQuality else "low"
+
+        @materialManager.enableTextureFiltering = THREE.WebGLRenderer.AnisotropySupported || (QueryString.get("anisotropy") == "off")
+        @materialManager.forcePNGTextures = !@oz().appView.ddsSupported || !THREE.WebGLRenderer.AnisotropySupported
 
         @materialManager.init(settings)
         @materialManager.load()

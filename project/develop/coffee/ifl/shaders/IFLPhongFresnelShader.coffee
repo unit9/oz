@@ -47,11 +47,13 @@ class IFLPhongFresnelShader
 
 
         "#ifdef USE_COLOR"
-            "uniform float windScale;"
-            "uniform vec2 windMin;"
-            "uniform vec2 windSize;"
-            "uniform vec3 windDirection;"
-            "uniform sampler2D tWindForce;"
+            "#ifdef VERTEX_TEXTURES"
+                "uniform float windScale;"
+                "uniform vec2 windMin;"
+                "uniform vec2 windSize;"
+                "uniform vec3 windDirection;"
+                "uniform sampler2D tWindForce;"
+            "#endif"
         "#endif"
 
 
@@ -75,14 +77,18 @@ class IFLPhongFresnelShader
             
             "vec4 mvPosition;"
             "#ifdef USE_COLOR"
-                "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );"
-                "vec2 totPos = wpos.xz - windMin;"
-                "vec2 windUV = totPos / windSize;"
+                "#ifdef VERTEX_TEXTURES"
+                    "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );"
+                    "vec2 totPos = wpos.xz - windMin;"
+                    "vec2 windUV = totPos / windSize;"
 
-                "float vWindForce = texture2D( tWindForce , windUV ).x;"
-                "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;"
-                "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);"
-                "mvPosition = modelViewMatrix *  pos;"
+                    "float vWindForce = texture2D( tWindForce , windUV ).x;"
+                    "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;"
+                    "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);"
+                    "mvPosition = modelViewMatrix *  pos;"
+                "#else"
+                    "mvPosition = modelViewMatrix * vec4( position, 1.0 );",
+                "#endif"
             "#else"
                 "mvPosition = modelViewMatrix * vec4( position, 1.0 );",
             "#endif"

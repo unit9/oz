@@ -90,7 +90,12 @@ class Base3DChapter extends AbstractChapter
         return true
 
 
-
+    onRenderingError:=>
+        if !@oz().appView.debugMode
+            # A shader compilation error occurred
+            # redirect the user to the error page 
+            top.location.href = "/error_gc.html"
+        return null
 
     init:=>
 
@@ -115,8 +120,9 @@ class Base3DChapter extends AbstractChapter
             canvas : @oz().appView.renderCanvas3D
             antialias : false
 
+        @renderer.onError = @onRenderingError
 
-        @oz().appView.ddsSupported = THREE.WebGLRenderer.DDSSupported
+        @oz().appView.ddsSupported = THREE.WebGLRenderer.DDSSupported && (QueryString.get("dds") != "off")
 
 
         @renderer.autoClear = false
@@ -865,6 +871,7 @@ class Base3DChapter extends AbstractChapter
 
         # if we do this, the next scene will not work... -_-
         # THREE.SceneUtils.traverseHierarchy( @scene, (child)=> try @renderer.deallocateObject( child ) )
+        @renderer.onError = null
         
         memory = @renderer.info.memory
         descendants = @scene.getDescendants()
