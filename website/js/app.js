@@ -548,8 +548,20 @@
 
     function IFLTerrainLambertShader() {
       this.uniforms = THREE.UniformsUtils.merge([
-        THREE.UniformsLib["common"], THREE.UniformsLib["fog"], THREE.UniformsLib["shadowmap"], {
+        THREE.UniformsLib["common"], THREE.UniformsLib["fog"], {
           "tBlendmap": {
+            type: "t",
+            value: null
+          },
+          "tDiffuseR": {
+            type: "t",
+            value: null
+          },
+          "tDiffuseG": {
+            type: "t",
+            value: null
+          },
+          "tDiffuseB": {
             type: "t",
             value: null
           },
@@ -569,54 +581,6 @@
             type: "v4",
             value: new THREE.Vector4(1, 1, 1, 1)
           },
-          "enableDiffuseR": {
-            type: "i",
-            value: 0
-          },
-          "enableDiffuseG": {
-            type: "i",
-            value: 0
-          },
-          "enableDiffuseB": {
-            type: "i",
-            value: 0
-          },
-          "tDiffuseR": {
-            type: "t",
-            value: null
-          },
-          "tDiffuseG": {
-            type: "t",
-            value: null
-          },
-          "tDiffuseB": {
-            type: "t",
-            value: null
-          },
-          "enableSpecularR": {
-            type: "i",
-            value: 0
-          },
-          "enableSpecularG": {
-            type: "i",
-            value: 0
-          },
-          "enableSpecularB": {
-            type: "i",
-            value: 0
-          },
-          "tSpecularR": {
-            type: "t",
-            value: null
-          },
-          "tSpecularG": {
-            type: "t",
-            value: null
-          },
-          "tSpecularB": {
-            type: "t",
-            value: null
-          },
           "ambient": {
             type: "c",
             value: new THREE.Color(0xffffff)
@@ -633,9 +597,9 @@
       ]);
     }
 
-    IFLTerrainLambertShader.prototype.vertexShader = ["#define LAMBERT", THREE.ShaderChunk["map_pars_vertex"], "uniform vec4 offsetRepeatR;", "uniform vec4 offsetRepeatG;", "uniform vec4 offsetRepeatB;", "varying vec2 vUvUnscaled;", "varying vec2 vUvR;", "varying vec2 vUvG;", "varying vec2 vUvB;", THREE.ShaderChunk["envmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], THREE.ShaderChunk["morphtarget_pars_vertex"], THREE.ShaderChunk["skinning_pars_vertex"], "void main() {", "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP )", "vUv  = uv * offsetRepeat.zw + offsetRepeat.xy;", "vUvR = uv * offsetRepeatR.zw + offsetRepeatR.xy;", "vUvG = uv * offsetRepeatG.zw + offsetRepeatG.xy;", "vUvB = uv * offsetRepeatB.zw + offsetRepeatB.xy;", "vUvUnscaled = uv;", "#endif", THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["morphnormal_vertex"], THREE.ShaderChunk["skinbase_vertex"], THREE.ShaderChunk["skinnormal_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], THREE.ShaderChunk["morphtarget_vertex"], THREE.ShaderChunk["skinning_vertex"], THREE.ShaderChunk["default_vertex"], THREE.ShaderChunk["worldpos_vertex"], THREE.ShaderChunk["envmap_vertex"], THREE.ShaderChunk["shadowmap_vertex"], "}"].join("\n");
+    IFLTerrainLambertShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "uniform vec4 offsetRepeatR;", "uniform vec4 offsetRepeatG;", "uniform vec4 offsetRepeatB;", "varying vec2 vUvUnscaled;", "varying vec2 vUvR;", "varying vec2 vUvG;", "varying vec2 vUvB;", "void main() {", "#if defined( USE_MAP ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( USE_SPECULARMAP )", "vUv  = uv * offsetRepeat.zw + offsetRepeat.xy;", "vUvR = uv * offsetRepeatR.zw + offsetRepeatR.xy;", "vUvG = uv * offsetRepeatG.zw + offsetRepeatG.xy;", "vUvB = uv * offsetRepeatB.zw + offsetRepeatB.xy;", "vUvUnscaled = uv;", "#endif", THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], THREE.ShaderChunk["default_vertex"], THREE.ShaderChunk["worldpos_vertex"], "}"].join("\n");
 
-    IFLTerrainLambertShader.prototype.fragmentShader = ["uniform float opacity;", THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], "uniform sampler2D tBlendmap;", "uniform bool enableDiffuseR;", "uniform bool enableDiffuseG;", "uniform bool enableDiffuseB;", "uniform sampler2D tDiffuseR;", "uniform sampler2D tDiffuseG;", "uniform sampler2D tDiffuseB;", "uniform float lightMapMultiplier;", "varying vec2 vUvUnscaled;", "varying vec2 vUvR;", "varying vec2 vUvG;", "varying vec2 vUvB;", "uniform sampler2D lightMap;", THREE.ShaderChunk["envmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["shadowmap_pars_fragment"], THREE.ShaderChunk["specularmap_pars_fragment"], "uniform bool enableSpecularR;", "uniform bool enableSpecularG;", "uniform bool enableSpecularB;", "uniform sampler2D tSpecularR;", "uniform sampler2D tSpecularG;", "uniform sampler2D tSpecularB;", "void main() {", "gl_FragColor = vec4( vec3 ( 1.0 ), opacity );", "#ifdef USE_MAP", "gl_FragColor = gl_FragColor * texture2D( map, vUv );", "#ifdef USE_COLOR", "#else", "vec4 vColor = texture2D( tBlendmap, vUvUnscaled );", "#endif", "vec4 fragColorR;", "fragColorR = texture2D( tDiffuseR, vUvR );", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorR.xyz, vColor.r );", "vec4 fragColorG;", "fragColorG = texture2D( tDiffuseG, vUvG );", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorG.xyz, vColor.g );", "vec4 fragColorB;", "#ifdef GAMMA_INPUT", "fragColorB = texture2D( tDiffuseB, vUvB );", "fragColorB.xyz *= fragColorB.xyz;", "#else", "fragColorB = texture2D( tDiffuseB, vUvB );", "#endif", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorB.xyz, vColor.b );", "#endif", THREE.ShaderChunk["alphatest_fragment"], "float specularStrength;", "#ifdef USE_SPECULARMAP", "vec4 texelSpecular = texture2D( specularMap, vUv );", "#ifdef USE_COLOR", "if( enableSpecularR )", "texelSpecular = vec4( mix( texelSpecular.xyz, texture2D( tSpecularR, vUv ).xyz, vColor.r ), 1.0);", "if( enableSpecularG )", "texelSpecular = vec4( mix( texelSpecular.xyz, texture2D( tSpecularG, vUv ).xyz, vColor.g ), 1.0);", "if( enableSpecularR )", "texelSpecular = vec4( mix( texelSpecular.xyz, texture2D( tSpecularB, vUv ).xyz, vColor.b ), 1.0);", "#endif", "#else", "specularStrength = 1.0;", "#endif", "#ifdef USE_LIGHTMAP", "gl_FragColor = gl_FragColor * ( texture2D( lightMap, vUvUnscaled ) * lightMapMultiplier );", "#endif", THREE.ShaderChunk["envmap_fragment"], THREE.ShaderChunk["shadowmap_fragment"], THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
+    IFLTerrainLambertShader.prototype.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], "uniform sampler2D tBlendmap;", "uniform sampler2D tDiffuseR;", "uniform sampler2D tDiffuseG;", "uniform sampler2D tDiffuseB;", "uniform sampler2D lightMap;", "uniform float opacity;", "uniform float lightMapMultiplier;", "varying vec2 vUvUnscaled;", "varying vec2 vUvR;", "varying vec2 vUvG;", "varying vec2 vUvB;", "void main() {", "gl_FragColor = vec4( vec3 ( 1.0 ), opacity );", "#ifdef USE_MAP", "gl_FragColor = gl_FragColor * texture2D( map, vUv );", "vec4 vColor = texture2D( tBlendmap, vUvUnscaled );", "vec4 fragColorR = texture2D( tDiffuseR, vUvR );", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorR.xyz, vColor.r );", "vec4 fragColorG = texture2D( tDiffuseG, vUvG );", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorG.xyz, vColor.g );", "vec4 fragColorB = texture2D( tDiffuseB, vUvB );", "gl_FragColor.xyz = mix( gl_FragColor.xyz, fragColorB.xyz, vColor.b );", "#endif", THREE.ShaderChunk["alphatest_fragment"], "float specularStrength = 1.0;", "#ifdef USE_LIGHTMAP", "gl_FragColor = gl_FragColor * ( texture2D( lightMap, vUvUnscaled ) * lightMapMultiplier );", "#endif", THREE.ShaderChunk["envmap_fragment"], THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
 
     return IFLTerrainLambertShader;
 
@@ -5896,7 +5860,7 @@
 
     Base3DChapter.prototype.onRenderingError = function(errorString) {
       if (!this.oz().appView.debugMode) {
-        top.location.href = "/error_gc.html?error=" + errorString;
+        top.location.href = "/error_gc.html?error=" + errorString + "_DISPLAY_QUALITY_" + this.oz().appView.displayQuality + "_TEXTURE_QUALITY_" + this.oz().appView.textureQuality;
       }
       return null;
     };
@@ -16214,7 +16178,7 @@
           });
         }
         _this.header.css({
-          'line-height': fontSize - 2 + "px"
+          'line-height': fontSize + 6 + "px"
         });
         return callback();
       }, 200);

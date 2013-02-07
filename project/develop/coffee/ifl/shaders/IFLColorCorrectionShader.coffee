@@ -37,7 +37,6 @@ class IFLColorCorrectionShader
 
         "uniform sampler2D tDiffuse;"
         "varying vec2 vUv;"
-        # "uniform sampler2D tSdiffuse;"
 
         # color correction
         "uniform vec3 powRGB;"

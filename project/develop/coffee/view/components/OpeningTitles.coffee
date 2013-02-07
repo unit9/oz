@@ -61,8 +61,6 @@ class OpeningTitles extends Abstract
                 fontSize--
                 @header.css {'font-size' : fontSize}
 
-            @header.css {'line-height' : fontSize - 2 + "px"}
-
             callback()
 
 

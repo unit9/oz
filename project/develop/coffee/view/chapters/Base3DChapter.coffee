@@ -94,7 +94,7 @@ class Base3DChapter extends AbstractChapter
         if !@oz().appView.debugMode
             # A shader compilation error occurred
             # redirect the user to the error page 
-            top.location.href = "/error_gc.html?error="+errorString
+            top.location.href = "/error_gc.html?error="+errorString+"_DISPLAY_QUALITY_"+@oz().appView.displayQuality+"_TEXTURE_QUALITY_"+@oz().appView.textureQuality
         return null
 
     init:=>
