@@ -131,6 +131,10 @@
     "sound_button_on": "ON",
     "sound_button_off": "OFF",
     "share_error_message": "Oops! Something went wrong, please try again later.", 
-    "Chrome_NoWebGLAdvancedFeats_message" : "This app is not currently supported on this device but the Chrome gnomes are hard at work to make it work soon."
+    "Chrome_NoWebGLAdvancedFeats_message" : "This app is not currently supported on this device but the Chrome gnomes are hard at work to make it work soon.",
+    "graphics_card_error_message" : "SORRY, THERE MAY BE AN ISSUE WITH SUPPORT FOR YOUR SYSTEM.<br>USE THE BUTTON BELOW TO SUBMIT YOUR SYSTEM DETAILS SO THAT THE TEAM CAN INVESTIGATE FURTHER.<br><br>NO PERSONAL DETAILS WILL BE SENT.<br>YOU MAY ALSO TRY RESTARTING YOUR BROWSER.", 
+    "graphics_card_error_message_button" : "CLICK TO SEND REPORT",
+    "graphics_card_error_message_thanks" : "THANKS! YOUR REPORT WILL BE ANALIZED!"
+
   }
 }

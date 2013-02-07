@@ -34,11 +34,11 @@
                 urlParams[decode(match[1])] = decode(match[2]);
 
 
-            $('#sendReport button').html('THANKS! YOUR REPORT WILL BE ANALIZED!')
+            $('#sendReport button').html($('#thanks_message').text())
             $('#sendReport button').click(function(){return})
             $('#sendReport button').css({'cursor': 'default'})
 
-
+            data.threejs_error = urlParams.error
            $.ajax({
                 url         : '/api/report/' + encodeURIComponent(urlParams.error),
                 type        :  'POST',
@@ -312,13 +312,15 @@
         <canvas></canvas>
         <div id="detect" style="display:table;">
             <div class='errorContainer'>
-                <div class="title">FIND YOUR WAY TO OZ</div>
+                <div class="title">{{ GC_ERROR_TITLE }}</div>
                 <div class="flourish"><img src="/img/error/top.png"></div>
-                <div class="errorMessage"><span style="font-size:15px; max-width:400px;">SORRY, THERE MAY BE AN ISSUE WITH SUPPORT FOR YOUR SYSTEM.<br>USE THE BUTTON BELOW TO SUBMIT YOUR SYSTEM DETAILS SO THAT THE TEAM CAN INVESTIGATE FURTHER.<br><br>NO PERSONAL DETAILS WILL BE SENT.<br>YOU MAY ALSO TRY RESTARTING YOUR BROWSER.</span></div>
-                <div class="btnContainer"><a id="sendReport" onclick="main();" style="text-decoration: none;cursor:pointer;"><button class="abstractbutton">CLICK TO SEND REPORT</button></a></div>
+                <div class="errorMessage"><span style="font-size:15px; max-width:400px;">{{ GC_ERROR_MSG }}</span></div>
+                <div class="btnContainer"><a id="sendReport" onclick="main();" style="text-decoration: none;cursor:pointer;"><button class="abstractbutton">{{ GC_ERROR_BUTTON }}</button></a></div>
                 <div class="flourish"><img src="/img/error/bottom.png"></div>
                 <div class="errorFooter"><img src="/img/error/logo_oz.png"><a href="http://www.chromeexperiments.com" target="_blank"/><img src="/img/error/logo_chrome.png"></a><a href="http://www.google.com" target="_blank"/><img src="/img/error/logo_google.png"></a></div>
             </div>
+
+            <div id="thanks_message" style="display:none;">{{ GC_ERROR_THANKS }}</div>
         </div>
     </body>
 </html>

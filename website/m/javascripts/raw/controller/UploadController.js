@@ -36,6 +36,7 @@ Package('controller',
 				{
 					dataType: 'json',
 					autoUpload : true,
+					formData: {temporary: '1'},
 
 					add : function(e, data)
 					{

@@ -16167,21 +16167,16 @@
     };
 
     OpeningTitles.prototype.render = function(callback) {
-      var _this = this;
-      setTimeout(function() {
-        var fontSize;
-        fontSize = parseInt(window.getComputedStyle(_this.header[0], null).fontSize);
-        while (parseInt(_this.header.find('span').width()) > 725) {
-          fontSize--;
-          _this.header.css({
-            'font-size': fontSize
-          });
-        }
-        _this.header.css({
-          'line-height': fontSize + 6 + "px"
+      var fontSize;
+      console.log(parseInt(this.header.find('span').width()));
+      fontSize = parseInt(window.getComputedStyle(this.header[0], null).fontSize);
+      while (parseInt(this.header.find('span').width()) > 725) {
+        fontSize--;
+        this.header.css({
+          'font-size': fontSize
         });
-        return callback();
-      }, 200);
+      }
+      callback();
       return null;
     };
 
