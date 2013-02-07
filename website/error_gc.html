@@ -2,27 +2,48 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Oz The Great and Powerful | Find Your Way To Oz</title>
+        <title>Oz The Great and Powerful | Find Your Way To Oz | Send your error report</title>
         <link rel="stylesheet" href="/css/normalise.css">
         <link rel="stylesheet" href="/css/styles.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+        <link rel="icon" href="{{ OG_URL }}/fav.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ OG_URL }}/fav.ico" type="image/x-icon" />
+
+        <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try{
+        var pageTracker = _gat._getTracker("UA-37524215-3");
+        pageTracker._trackPageview();
+        } catch(err) {}</script>
+
         <script>
         function sendReport(data)
         {
-            console.log(data);
+            var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+            urlParams = {};
+            while (match = search.exec(query))
+                urlParams[decode(match[1])] = decode(match[2]);
+
+
+            $('#sendReport button').html('THANKS! YOUR REPORT WILL BE ANALIZED!')
+            $('#sendReport button').click(function(){return})
+            $('#sendReport button').css({'cursor': 'default'})
+
 
            $.ajax({
-                url         : '/api/report',
+                url         : '/api/report/' + encodeURIComponent(urlParams.error),
                 type        :  'POST',
                 dataType    : "json",
-                data        : data,
-                done        : function()
-                {
-                    $('#sendReport button').html('THANKS! YOUR REPORT WILL BE ANALIZED!')
-                    $('#sendReport button').click(function(){return})
-                    $('#sendReport button').css({'cursor': 'default'})
-                }
-
+                data        : JSON.stringify(data)
             })
         }
 
@@ -282,7 +303,7 @@
 
             // postJSON(data);
 
-            sendReport(JSON.stringify(data.webgl));
+            sendReport(data.webgl);
         }
 
         </script>
@@ -293,7 +314,7 @@
             <div class='errorContainer'>
                 <div class="title">FIND YOUR WAY TO OZ</div>
                 <div class="flourish"><img src="/img/error/top.png"></div>
-                <div class="errorMessage"><span style="font-size:15px; max-width:400px;">SORRY, THERE MAY BE AN ISSUE WITH SUPPORT FOR YOUR SYSTEM.<br>USE THE BUTTON BELOW TO SUBMIT YOUR SYSTEM DETAILS SO THAT THE TEAM CAN INVESTIGATE FURTHER. NO PERSONAL DETAILS WILL BE SENT.<br>YOU MAY ALSO TRY RESTARTING YOUR BROWSER.</span></div>
+                <div class="errorMessage"><span style="font-size:15px; max-width:400px;">SORRY, THERE MAY BE AN ISSUE WITH SUPPORT FOR YOUR SYSTEM.<br>USE THE BUTTON BELOW TO SUBMIT YOUR SYSTEM DETAILS SO THAT THE TEAM CAN INVESTIGATE FURTHER.<br><br>NO PERSONAL DETAILS WILL BE SENT.<br>YOU MAY ALSO TRY RESTARTING YOUR BROWSER.</span></div>
                 <div class="btnContainer"><a id="sendReport" onclick="main();" style="text-decoration: none;cursor:pointer;"><button class="abstractbutton">CLICK TO SEND REPORT</button></a></div>
                 <div class="flourish"><img src="/img/error/bottom.png"></div>
                 <div class="errorFooter"><img src="/img/error/logo_oz.png"><a href="http://www.chromeexperiments.com" target="_blank"/><img src="/img/error/logo_chrome.png"></a><a href="http://www.google.com" target="_blank"/><img src="/img/error/logo_google.png"></a></div>

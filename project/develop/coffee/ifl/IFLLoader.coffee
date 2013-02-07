@@ -621,8 +621,8 @@ class IFLLoader
         try geometry.computeFaceNormals() catch e
              if @debugWarnings then console.warn "[#{@url}] error computing face normals for #{iflmesh._reference.id}" 
 
-        try geometry.computeTangents() catch e 
-            if @debugWarnings then console.warn "[#{@url}] error computing tangents for #{iflmesh._reference.id}" 
+        # try geometry.computeTangents() catch e 
+        #     if @debugWarnings then console.warn "[#{@url}] error computing tangents for #{iflmesh._reference.id}" 
 
         return geometry 
 

@@ -401,6 +401,7 @@ class IFLMaterialManager
             fragmentShader: shader.fragmentShader
             vertexShader: shader.vertexShader
             uniforms: uniforms
+            name : meshname+"_terrainshader"
             # lights: true
 
         material = new THREE.ShaderMaterial( parameters );
@@ -439,7 +440,7 @@ class IFLMaterialManager
         params = {}
         params.fragmentShader   = shader.fragmentShader
         params.vertexShader     = shader.vertexShader
-        params.uniforms         = uniforms   
+        params.uniforms         = uniforms
         
         material = new THREE.ShaderMaterial( params );
         material.side = THREE.DoubleSide
@@ -447,6 +448,7 @@ class IFLMaterialManager
         material.fog = true
         material.alphaTest = 0.5
         material.enableIllustration = false
+        material.name = meshname+"_basicshader"
 
         
         uniforms[ "diffuse" ].value             = new THREE.Color( 0xFFFFFF )
@@ -492,6 +494,7 @@ class IFLMaterialManager
         material.alphaTest = 0.5
         material.enableIllustration = false
         material.enableIllustration2 = false
+        material.name = meshname+"_basicdoublelightmapshader"
 
         
         uniforms[ "diffuse" ].value             = new THREE.Color( 0xFFFFFF )
@@ -543,6 +546,7 @@ class IFLMaterialManager
         material.enableIllustration = false
         material.enableIllustration2 = false
         material.switchUVs = false
+        material.name = meshname+"_fresneldoublelightmapshader"
 
         uniforms[ "diffuse" ].value                             = new THREE.Color( 0xFFFFFF ) 
         uniforms[ "ambient" ].value                             = new THREE.Color( 0xFFFFFF )
@@ -614,6 +618,7 @@ class IFLMaterialManager
         material.fog = true
         material.enableIllustration = false
         material.switchUVs = false
+        material.name = meshname+"_fresnelshader"
 
         uniforms[ "diffuse" ].value                             = new THREE.Color( 0xFFFFFF ) 
         uniforms[ "ambient" ].value                             = new THREE.Color( 0xFFFFFF )

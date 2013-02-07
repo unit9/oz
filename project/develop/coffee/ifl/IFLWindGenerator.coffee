@@ -33,7 +33,7 @@ class IFLWindGenerator
             uniforms: @noiseShader.uniforms
             lights:false
 
-        @noiseQuadTarget = new THREE.Mesh( new THREE.PlaneGeometry(window.innerWidth,window.innerHeight,100,100), @noiseMaterial )
+        @noiseQuadTarget = new THREE.Mesh( new THREE.PlaneGeometry(window.innerWidth,window.innerHeight,1,1), @noiseMaterial )
         @noiseQuadTarget.name = "noise_quad_target"
         @noiseQuadTarget.position.z = -9000
         @noiseScene.add( @noiseQuadTarget )

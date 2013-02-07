@@ -396,7 +396,6 @@
 
     AppViewCutout.prototype.initialize = function() {
       this.setElement($('body'));
-      console.log("LKASJDLKJSAD");
       this.header = new Header;
       this.$el.append(this.header.$el);
       if (window.location.href.indexOf(':8888') > -1) {

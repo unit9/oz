@@ -489,8 +489,8 @@ THREE.WebGLRenderer = function ( parameters ) {
 		geometry.__webglVertexBuffer = _gl.createBuffer();
 		geometry.__webglVertexBuffer.displayName = displayName+"_ParticleVertexBuffer"
 
-		geometry.__webglColorBuffer = _gl.createBuffer();
-		geometry.__webglColorBuffer.displayName = displayName+"_ParticleColorBuffer"
+		// geometry.__webglColorBuffer = _gl.createBuffer();
+		// geometry.__webglColorBuffer.displayName = displayName+"_ParticleColorBuffer"
 
 		_this.info.memory.geometries ++;
 
@@ -514,7 +514,11 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	};
 
-	function createMeshBuffers ( geometryGroup, displayName ) {
+	function createMeshBuffers ( geometryGroup, object ) {
+
+		var displayName = object.name;
+
+
 
 		geometryGroup.__webglVertexBuffer = _gl.createBuffer();
 		geometryGroup.__webglVertexBuffer.displayName = displayName+"_VertexBuffer";
@@ -522,30 +526,44 @@ THREE.WebGLRenderer = function ( parameters ) {
 		geometryGroup.__webglNormalBuffer = _gl.createBuffer();
 		geometryGroup.__webglNormalBuffer.displayName = displayName+"_NormalBuffer";
 
-		geometryGroup.__webglTangentBuffer = _gl.createBuffer();
-		geometryGroup.__webglTangentBuffer.displayName = displayName+"_TangentBuffer";
-
-		geometryGroup.__webglColorBuffer = _gl.createBuffer();
-		geometryGroup.__webglColorBuffer.displayName = displayName+"_ColorBuffer";
+		if (object.geometry.hasTangents || ( object.geometry.attributes != null && object.geometry.attributes.tangent != null) )
+		{
+			geometryGroup.__webglTangentBuffer = _gl.createBuffer();
+			geometryGroup.__webglTangentBuffer.displayName = displayName+"_TangentBuffer";
+		}
 
 		geometryGroup.__webglUVBuffer = _gl.createBuffer();
 		geometryGroup.__webglUVBuffer.displayName = displayName+"_UVBuffer";
 
-		geometryGroup.__webglUV2Buffer = _gl.createBuffer();
-		geometryGroup.__webglUV2Buffer.displayName = displayName+"_UV2Buffer";
 
-		geometryGroup.__webglSkinIndicesBuffer = _gl.createBuffer();
-		geometryGroup.__webglSkinIndicesBuffer.displayName = displayName+"_SkinIndicesBuffer";
+		if( object.material.vertexColors != 0 )
+		{
+			geometryGroup.__webglColorBuffer = _gl.createBuffer();
+			geometryGroup.__webglColorBuffer.displayName = displayName+"_ColorBuffer";
+		}
 
-		geometryGroup.__webglSkinWeightsBuffer = _gl.createBuffer();
-		geometryGroup.__webglSkinWeightsBuffer.displayName = displayName+"_SkinWeightsBuffer";
+
+		if ( object.geometry.faceVertexUvs.length > 1 )
+		{
+			geometryGroup.__webglUV2Buffer = _gl.createBuffer();
+			geometryGroup.__webglUV2Buffer.displayName = displayName+"_UV2Buffer";
+		}
+
+
+		if (object.material.skinning == true) 
+		{
+			geometryGroup.__webglSkinIndicesBuffer = _gl.createBuffer();
+			geometryGroup.__webglSkinIndicesBuffer.displayName = displayName+"_SkinIndicesBuffer";
+
+			geometryGroup.__webglSkinWeightsBuffer = _gl.createBuffer();
+			geometryGroup.__webglSkinWeightsBuffer.displayName = displayName+"_SkinWeightsBuffer";
+		}
 
 		geometryGroup.__webglFaceBuffer = _gl.createBuffer();
 		geometryGroup.__webglFaceBuffer.displayName = displayName+"_FaceBuffer";
 
-
-		geometryGroup.__webglLineBuffer = _gl.createBuffer();
-		geometryGroup.__webglLineBuffer.displayName = displayName+"_LineBuffer";
+		// geometryGroup.__webglLineBuffer = _gl.createBuffer();
+		// geometryGroup.__webglLineBuffer.displayName = displayName+"_LineBuffer";
 
 		// var m, ml;
 
@@ -1295,12 +1313,12 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 		}
 
-		if ( dirtyColors || object.sortParticles ) {
+		// if ( dirtyColors || object.sortParticles ) {
 
-			_gl.bindBuffer( _gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
-			_gl.bufferData( _gl.ARRAY_BUFFER, colorArray, hint );
+		// 	_gl.bindBuffer( _gl.ARRAY_BUFFER, geometry.__webglColorBuffer );
+		// 	_gl.bufferData( _gl.ARRAY_BUFFER, colorArray, hint );
 
-		}
+		// }
 
 		if ( customAttributes ) {
 
@@ -2390,8 +2408,8 @@ THREE.WebGLRenderer = function ( parameters ) {
 			_gl.bindBuffer( _gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglFaceBuffer );
 			_gl.bufferData( _gl.ELEMENT_ARRAY_BUFFER, faceArray, hint );
 
-			_gl.bindBuffer( _gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
-			_gl.bufferData( _gl.ELEMENT_ARRAY_BUFFER, lineArray, hint );
+			// _gl.bindBuffer( _gl.ELEMENT_ARRAY_BUFFER, geometryGroup.__webglLineBuffer );
+			// _gl.bufferData( _gl.ELEMENT_ARRAY_BUFFER, lineArray, hint );
 
 		}
 
@@ -4262,7 +4280,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 						if ( ! geometryGroup.__webglVertexBuffer ) {
 
-							createMeshBuffers( geometryGroup, object.name );
+							createMeshBuffers( geometryGroup, object );
 							initMeshBuffers( geometryGroup, object );
 
 							geometry.verticesNeedUpdate = true;
@@ -4712,7 +4730,8 @@ THREE.WebGLRenderer = function ( parameters ) {
 			perPixel: material.perPixel,
 			wrapAround: material.wrapAround,
 			doubleSided: material.side === THREE.DoubleSide,
-			flipSided: material.side === THREE.BackSide
+			flipSided: material.side === THREE.BackSide,
+			name : material.name
 
 		};
 
@@ -6151,7 +6170,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 		if ( !_gl.getProgramParameter( program, _gl.LINK_STATUS ) ) {
 
-			var errorString = "Could not initialise shader\n" + "VALIDATE_STATUS: " + _gl.getProgramParameter( program, _gl.VALIDATE_STATUS ) + ", gl error [" + _gl.getError() + "]"
+			var errorString = "Could not initialise shader ["+parameters.name+"] , VALIDATE_STATUS: " + _gl.getProgramParameter( program, _gl.VALIDATE_STATUS ) + ", gl error [" + _gl.getError() + "]"
 			console.error( errorString );
 			_this.onError( errorString );
 		}
@@ -6299,7 +6318,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 		if ( !_gl.getShaderParameter( shader, _gl.COMPILE_STATUS ) ) {
 
-			var errorString = _gl.getShaderInfoLog( shader )
+			var errorString = "SHADER COMPILATION ERROR: "+_gl.getShaderInfoLog( shader )
 			console.error( errorString );
 			_this.onError( errorString );
 			console.error( addLineNumbers( string ) );

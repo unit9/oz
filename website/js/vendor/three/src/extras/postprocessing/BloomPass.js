@@ -34,6 +34,8 @@ THREE.BloomPass = function ( strength, kernelSize, sigma, resolution ) {
 
 	} );
 
+	this.materialScreen.name = "postprocessing_screenshader";
+
 	// convolution material
 
 	var convolutionShader = THREE.ShaderExtras[ "convolution" ];
@@ -50,6 +52,8 @@ THREE.BloomPass = function ( strength, kernelSize, sigma, resolution ) {
 		fragmentShader: "#define KERNEL_SIZE " + kernelSize + "\n"   + convolutionShader.fragmentShader
 
 	} );
+
+	this.materialConvolution.name = "postprocessing_convolutionshader"
 
 	this.enabled = true;
 	this.needsSwap = false;

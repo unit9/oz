@@ -668,6 +668,15 @@
 	},
 	"file_history":
 	[
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/default.less",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/zoe/index.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/music/index.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/cutout/index.html",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/CakeFile",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/cutout/ThumbCutout.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/music/AppViewMusic.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/zoe/ThumbZoe.coffee",
+		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/ErrorMessage.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/music/AppViewMusic.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/zoe/index.html",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/zoe.less",
@@ -676,7 +685,6 @@
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/App.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/SSAsset.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/audio/SoundController.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/music/AppViewMusic.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/music.less",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/less/preview/responsive.less",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/js/ss/extra_pages.json",
@@ -695,22 +703,17 @@
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Abstract/Abstract.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/cutout/index.html",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/preview/music/index.html",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/CakeFile",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/previewR.js",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/default.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/music.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/App.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/ErrorMessage.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/zoe/AppViewZoe.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Abstract/SSAsset.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/cutout/AppViewCutout.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Footer/Fragments/FooterLogos.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/collection/CollectionAssets.coffee",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/zoe/ThumbZoe.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview/view/default/Footer/Footer.coffee",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/css/styles.css",
 		"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/website/css/normalise.css",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/cutout/ThumbCutout.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/responsive.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/cutout.less",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/zoe.less",
@@ -718,7 +721,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Footer/Fragments/Ratings.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Footer/Footer.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/less/preview/default.css",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/zoe/index.html",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/view/default/Footer/Fragments/FooterCenter.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/js/ss/extra_pages_1x.json",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/preview/proj/preview.sublime-project",
@@ -793,8 +795,6 @@
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/BaseAssets.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/utils/audio/AudioManager.coffee",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/index.html",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/cutout/index.html",
-		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/website/preview/music/index.html",
 		"/Users/silviopaganini/Dropbox/Workspace/_Projects/unit9/Jobs/Oz/trunk/project/develop/coffee/view/chapters/scenes/loading/LoadingCard.coffee"
 	],
 	"find":
@@ -803,7 +803,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 95.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/Users/fabioazevedo/Documents/Workspace/unit9/disney/oz/project/develop/preview",

@@ -21,6 +21,7 @@ THREE.DotScreenPass = function ( center, angle, scale ) {
 		fragmentShader: shader.fragmentShader
 
 	} );
+	this.material.name = "postprocessing_dotscreenshader";
 
 	this.enabled = true;
 	this.renderToScreen = false;

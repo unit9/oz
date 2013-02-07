@@ -7,15 +7,14 @@ class IFLBasicShader
             THREE.UniformsLib[ "common" ]
             THREE.UniformsLib[ "fog" ]
             {
-                "diffuseMultiplier"  : { type: "f", value: 1 }
-                "lightMapMultiplier"  : { type: "f", value: 1 }
-                "additiveLightMap"  : { type: "i", value: 0 }
-
-                "windMin": { type: "v2", value: new THREE.Vector2(-400,-800) }
-                "windSize": { type: "v2", value: new THREE.Vector2(1000,1000) }
-                "windDirection": { type: "v3", value: new THREE.Vector3(1,0,0) }
-                "tWindForce": { type: "t", value: null }
-                "windScale": { type: "f", value: 1.0 }                
+                "diffuseMultiplier"     : { type: "f",  value: 1 }
+                "lightMapMultiplier"    : { type: "f",  value: 1 }
+                "additiveLightMap"      : { type: "i",  value: 0 }
+                "windMin"               : { type: "v2", value: new THREE.Vector2(-400,-800) }
+                "windSize"              : { type: "v2", value: new THREE.Vector2(1000,1000) }
+                "windDirection"         : { type: "v3", value: new THREE.Vector3(1,0,0) }
+                "tWindForce"            : { type: "t",  value: null }
+                "windScale"             : { type: "f",  value: 1.0 }                
             }]
 
     vertexShader: [
@@ -32,8 +31,7 @@ class IFLBasicShader
                 "uniform sampler2D tWindForce;"
                 "uniform float windScale;"
             "#endif"
-        "#endif"        
-
+        "#endif"
 
         "void main() {"
 

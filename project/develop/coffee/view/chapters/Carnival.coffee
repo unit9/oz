@@ -500,6 +500,7 @@ class Carnival extends Base3DChapter
         mat  = new THREE.ShaderMaterial(params)
         mat.map = shader.uniforms["map"].value = @materialManager.getPreloadedTexture("organ_characters.dds") #THREE.ImageUtils.loadTexture("/models/textures/s001_b/preload_jpg/organ_characters.png")
         mat.map.wrapS = mat.map.wrapT = THREE.RepeatWrapping
+        mat.name = "scene1_organcharactersshader"
         shader.uniforms["diffuseMultiplier"].value = .5
 
         mat.transparent = true
@@ -546,6 +547,7 @@ class Carnival extends Base3DChapter
 
         for i in [0...num] by 1
             mat  = new THREE.ShaderMaterial(params)
+            mat.name = "scene1_birdshader"
             mat.map = shader.uniforms["map"].value = tex
             mat.transparent = true
             mat.time = 0
@@ -579,6 +581,7 @@ class Carnival extends Base3DChapter
             params.attributes       = { speed: { type: 'f', value: [] } }
 
             mat  = new THREE.ShaderMaterial(params)
+            mat.name = "scene1_dustshader"
             mat.map = shader.uniforms["map"].value = @materialManager.getPreloadedTexture("/models/textures/particles/dust#{i}.dds")
             mat.size = shader.uniforms["size"].value = Math.random()
             mat.scale = shader.uniforms["scale"].value = @APP_HEIGHT / 2

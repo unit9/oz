@@ -4,8 +4,6 @@ class AppViewCutout extends Backbone.View
 
         @setElement $('body')
 
-        console.log "LKASJDLKJSAD"
-
         @header = new Header
         @$el.append @header.$el
 

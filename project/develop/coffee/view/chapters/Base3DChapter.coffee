@@ -90,11 +90,11 @@ class Base3DChapter extends AbstractChapter
         return true
 
 
-    onRenderingError:=>
+    onRenderingError:(errorString)=>
         if !@oz().appView.debugMode
             # A shader compilation error occurred
             # redirect the user to the error page 
-            top.location.href = "/error_gc.html"
+            top.location.href = "/error_gc.html?error="+errorString
         return null
 
     init:=>
@@ -231,11 +231,16 @@ class Base3DChapter extends AbstractChapter
 
 
         colorCorrectionShader = new IFLColorCorrectionShader
+        colorCorrectionShader.name = "postprocessing_colorcorrectionshader"
         # colorCorrectionShader.uniforms["tSdiffuse"].value = @smallRenderTarget
         @colorCorrection = new THREE.ShaderPass( colorCorrectionShader );
         @colorCorrection.uniforms["enableVolumetricLight"].value = 0
 
-        @fxaa = new THREE.ShaderPass( THREE.ShaderExtras[ "fxaa" ] );
+
+        fxaashader = THREE.ShaderExtras[ "fxaa" ]
+        fxaashader.name = "postprocessing_fxaa"
+        @fxaa = new THREE.ShaderPass( fxaashader );
+
         @fxaa.enabled = if @oz().appView.displayQuality == "hi" then true else false
         # @fxaa.enabled = true
         @fxaa.uniforms['resolution'].value = new THREE.Vector2( 1 / @APP_WIDTH, 1 / @APP_HEIGHT )
@@ -276,6 +281,7 @@ class Base3DChapter extends AbstractChapter
             cameranear  : 0.1
 
         @dofpost.material_depth = new THREE.MeshDepthMaterial();
+        @dofpost.material_depth.name = "postprocessing_depthshader"
         # @dofpost.material_depth.alphaTest = 0.5
         @dofpost.scene = new THREE.Scene();
         @dofpost.camera = new THREE.OrthographicCamera( @APP_WIDTH / - 2, @APP_WIDTH / 2,  @APP_HEIGHT / 2, @APP_HEIGHT / - 2, -10000, 10000 );
@@ -310,6 +316,8 @@ class Base3DChapter extends AbstractChapter
             fragmentShader: bokeh_shader.fragmentShader
 
         } );
+
+        @dofpost.materialBokeh.name = "postprocessing_bokehshader"
 
         @dofpost.quad = new THREE.Mesh( new THREE.PlaneGeometry( @APP_WIDTH, @APP_HEIGHT ), @dofpost.materialBokeh );
         @dofpost.quad.position.z = - 1000;
