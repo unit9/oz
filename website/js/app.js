@@ -18473,6 +18473,9 @@
         return buttonReset.$el.width(w);
       }, 300);
       this.titles.$el.find('.openingTitlesCTA').addClass('openingTitlesCTAFinal');
+      this.titles.$el.find('.openingTitlesCTA').css({
+        'margin-top': '5px'
+      });
       this.titles.$el.find('.openingTitlesCTA').find('.cta p').css({
         "cursor": "default"
       });

@@ -45,7 +45,7 @@ class LandingFinal extends BaseLandingOpenings
         ,300
 
         @titles.$el.find('.openingTitlesCTA').addClass 'openingTitlesCTAFinal'
-        #@titles.$el.find('.openingTitlesCTA').css {'margin-top' : '-15px'}
+        @titles.$el.find('.openingTitlesCTA').css {'margin-top' : '5px'}
         @titles.$el.find('.openingTitlesCTA').find('.cta p').css {"cursor" : "default"}
 
         contFluf = $('<div class="ctaFlufFinal"/>')
