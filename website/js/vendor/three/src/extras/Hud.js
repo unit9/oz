@@ -59,9 +59,11 @@ var Hud = function(renderer, w, h, flipx, flipy) {
     this.renderTarget = null;
     // Scene
     this.defaultMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    this.defaultMaterial.name = "HUD_DefaultMaterial"
     this.plane = new THREE.PlaneGeometry(1, 1);
     this.plane.dynamic = true;
     this.quad  = new THREE.Mesh(this.plane, this.defaultMaterial);
+    this.quad.name = "HUD_Quad"
     this.quad.doubleSided = true;
     this.camera = new THREE.OrthographicCamera(0,w, 0,h, 1000, -1000);
     this.scene  = new THREE.Scene();

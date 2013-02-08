@@ -167,6 +167,7 @@ class IFLHotspotManager
                 diffX = localizedCanvas.width - localizedCanvasBounds.width
                 oX = diffX / localizedCanvas.width
                 tex = new THREE.Texture( localizedCanvas )
+                tex.name = config.name+"_localizedtex"
                 tex.needsUpdate = true
                 # tex.generateMipmaps = false
                 # tex.magFilter = THREE.LinearFilter

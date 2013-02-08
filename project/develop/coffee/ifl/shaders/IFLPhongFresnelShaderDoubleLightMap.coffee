@@ -40,32 +40,36 @@ class IFLPhongFresnelShaderDoubleLightMap extends IFLPhongFresnelShader
             THREE.ShaderChunk[ "fog_pars_fragment" ]
             THREE.ShaderChunk[ "specularmap_pars_fragment" ]
 
-            "uniform vec3 diffuse;"
-            "uniform float opacity;"
+
             "uniform float lightmapBlend;"
             "uniform sampler2D lightMap2;"
 
-            "uniform vec3 ambient;"
-            "uniform vec3 emissive;"
-            "uniform vec3 specular;"
-            "uniform float shininess;"
+            "uniform vec3 diffuse;"
             "uniform float diffuseMultiplier;"
             "uniform float envmapMultiplier;"
             "uniform float lightMapMultiplier;"
+            "uniform float mFresnelPower;"
+            "uniform sampler2D tAux;"
 
-            "uniform float vFresnel;"
+            "varying float vFresnel;"
+            "varying vec3 vMvPosition;"
+            "varying vec3 vTransformedNormal;"
+            "varying vec3 vReflect;",
 
             "#ifdef USE_ENVMAP",
-                "varying vec3 vReflect;",
                 "uniform float reflectivity;"
                 "uniform samplerCube envMap;"
                 "uniform float flipEnvMap;"
                 "uniform int combine;"
-            "#endif"        
+            "#endif"      
 
             "void main() {"
 
-                "gl_FragColor = vec4( diffuse, opacity );"
+                "gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );"
+                
+                "#ifdef USE_MAP"
+                    "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
+                "#endif"
 
 
                 "#ifdef USE_MAP"
@@ -91,11 +95,18 @@ class IFLPhongFresnelShaderDoubleLightMap extends IFLPhongFresnelShader
 
 
                     # FRESNEL
-                    "float fresnel;"
-                    "#ifdef DOUBLE_SIDED"
-                        "fresnel = flipNormal * vFresnel;" 
+                    "float fresnel = 0.0;"
+
+                    "#ifdef VERTEX_TEXTURES"
+                        "#ifdef DOUBLE_SIDED"
+                            "fresnel = flipNormal * vFresnel;" 
+                        "#else"
+                            "fresnel = vFresnel;" 
+                        "#endif"
                     "#else"
-                        "fresnel = vFresnel;" 
+                        "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
+                        "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
+                        "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
                     "#endif"
 
                     # combine using fresnel term and specularStrength instaead of simple "specular"

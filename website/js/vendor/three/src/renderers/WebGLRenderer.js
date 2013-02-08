@@ -489,6 +489,9 @@ THREE.WebGLRenderer = function ( parameters ) {
 		geometry.__webglVertexBuffer = _gl.createBuffer();
 		geometry.__webglVertexBuffer.displayName = displayName+"_ParticleVertexBuffer"
 
+		// if ( !displayName )
+		// 	console.warn("No Display Name")
+
 		// geometry.__webglColorBuffer = _gl.createBuffer();
 		// geometry.__webglColorBuffer.displayName = displayName+"_ParticleColorBuffer"
 
@@ -496,19 +499,31 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	};
 
-	function createLineBuffers ( geometry ) {
+	function createLineBuffers ( geometry, displayName ) {
+
+		// if ( !displayName )
+		// 	console.warn("No Display Name")
 
 		geometry.__webglVertexBuffer = _gl.createBuffer();
+		geometry.__webglVertexBuffer.displayName = displayName+"_LineVertexBuffer"
+
 		geometry.__webglColorBuffer = _gl.createBuffer();
+		geometry.__webglColorBuffer.displayName = displayName+"_LineColorBuffer"
 
 		_this.info.memory.geometries ++;
 
 	};
 
-	function createRibbonBuffers ( geometry ) {
+	function createRibbonBuffers ( geometry, displayName ) {
+
+		// if ( !displayName )
+		// 	console.warn("No Display Name")
 
 		geometry.__webglVertexBuffer = _gl.createBuffer();
+		geometry.__webglVertexBuffer.displayName = displayName+"_RibbonVertexBuffer";
+		
 		geometry.__webglColorBuffer = _gl.createBuffer();
+		geometry.__webglColorBuffer.displayName = displayName+"_RibbonColorBuffer";
 
 		_this.info.memory.geometries ++;
 
@@ -518,10 +533,14 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 		var displayName = object.name;
 
+		// if ( !displayName )
+		// 	console.warn("No Display Name")		
 
 
 		geometryGroup.__webglVertexBuffer = _gl.createBuffer();
 		geometryGroup.__webglVertexBuffer.displayName = displayName+"_VertexBuffer";
+
+
 
 		geometryGroup.__webglNormalBuffer = _gl.createBuffer();
 		geometryGroup.__webglNormalBuffer.displayName = displayName+"_NormalBuffer";
@@ -712,6 +731,8 @@ THREE.WebGLRenderer = function ( parameters ) {
 					attribute.array = new Float32Array( nvertices * size );
 
 					attribute.buffer = _gl.createBuffer();
+					// if ( !object.name )
+					// 	console.warn("No Display Name")					
 					attribute.buffer.displayName = object.name+"_CustomAttributeBuffer"
 					attribute.buffer.belongsToAttribute = a;
 
@@ -901,6 +922,8 @@ THREE.WebGLRenderer = function ( parameters ) {
 					attribute.array = new Float32Array( nvertices * size );
 
 					attribute.buffer = _gl.createBuffer();
+					// if ( !object.name )
+					// 	console.warn("No Display Name")
 					attribute.buffer.displayName = object.name+"_CustomAttributeBuffer"
 					attribute.buffer.belongsToAttribute = a;
 
@@ -989,7 +1012,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	//
 
-	function initDirectBuffers( geometry ) {
+	function initDirectBuffers( geometry, displayName ) {
 
 		var a, attribute, type;
 
@@ -1008,6 +1031,9 @@ THREE.WebGLRenderer = function ( parameters ) {
 			attribute = geometry.attributes[ a ];
 
 			attribute.buffer = _gl.createBuffer();
+			// if(!displayName)
+			// 	console.warn("No Display Name")
+			attribute.buffer.displayName = displayName+"_"+a+"_directbuffer"
 
 			_gl.bindBuffer( type, attribute.buffer );
 			_gl.bufferData( type, attribute.array, _gl.STATIC_DRAW );
@@ -3049,10 +3075,17 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	this.renderBufferImmediate = function ( object, program, material ) {
 
-		if ( object.hasPositions && ! object.__webglVertexBuffer ) object.__webglVertexBuffer = _gl.createBuffer();
-		if ( object.hasNormals && ! object.__webglNormalBuffer ) object.__webglNormalBuffer = _gl.createBuffer();
-		if ( object.hasUvs && ! object.__webglUvBuffer ) object.__webglUvBuffer = _gl.createBuffer();
-		if ( object.hasColors && ! object.__webglColorBuffer ) object.__webglColorBuffer = _gl.createBuffer();
+		// if ( object.hasPositions && ! object.__webglVertexBuffer ) 
+		// 	object.__webglVertexBuffer = _gl.createBuffer();
+
+		// if ( object.hasNormals && ! object.__webglNormalBuffer ) 
+		// 	object.__webglNormalBuffer = _gl.createBuffer();
+
+		// if ( object.hasUvs && ! object.__webglUvBuffer ) 
+		// 	object.__webglUvBuffer = _gl.createBuffer();
+
+		// if ( object.hasColors && ! object.__webglColorBuffer ) 
+		// 	object.__webglColorBuffer = _gl.createBuffer();
 
 		if ( object.hasPositions ) {
 
@@ -4297,7 +4330,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 				} else if ( geometry instanceof THREE.BufferGeometry ) {
 
-					initDirectBuffers( geometry );
+					initDirectBuffers( geometry, object.name );
 
 				}
 
@@ -4307,7 +4340,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 				if( ! geometry.__webglVertexBuffer ) {
 
-					createRibbonBuffers( geometry );
+					createRibbonBuffers( geometry, object.name );
 					initRibbonBuffers( geometry );
 
 					geometry.verticesNeedUpdate = true;
@@ -4321,7 +4354,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 				if( ! geometry.__webglVertexBuffer ) {
 
-					createLineBuffers( geometry );
+					createLineBuffers( geometry, object.name );
 					initLineBuffers( geometry, object );
 
 					geometry.verticesNeedUpdate = true;
@@ -4345,7 +4378,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 					} else if ( geometry instanceof THREE.BufferGeometry ) {
 
-						initDirectBuffers( geometry );
+						initDirectBuffers( geometry, object.name );
 
 					}
 
@@ -6012,6 +6045,11 @@ THREE.WebGLRenderer = function ( parameters ) {
 		//
 
 		program = _gl.createProgram();
+		
+		// if(!parameters.name)
+		// 	console.warn("No Display Name")
+
+		program.displayName = parameters.name
 
 		var prefix_vertex = [
 
@@ -6077,30 +6115,30 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 			"#endif",
 
-			"#ifdef USE_MORPHTARGETS",
+			// "#ifdef USE_MORPHTARGETS",
 
-				"attribute vec3 morphTarget0;",
-				"attribute vec3 morphTarget1;",
-				"attribute vec3 morphTarget2;",
-				"attribute vec3 morphTarget3;",
+			// 	"attribute vec3 morphTarget0;",
+			// 	"attribute vec3 morphTarget1;",
+			// 	"attribute vec3 morphTarget2;",
+			// 	"attribute vec3 morphTarget3;",
 
-				"#ifdef USE_MORPHNORMALS",
+			// 	"#ifdef USE_MORPHNORMALS",
 
-					"attribute vec3 morphNormal0;",
-					"attribute vec3 morphNormal1;",
-					"attribute vec3 morphNormal2;",
-					"attribute vec3 morphNormal3;",
+			// 		"attribute vec3 morphNormal0;",
+			// 		"attribute vec3 morphNormal1;",
+			// 		"attribute vec3 morphNormal2;",
+			// 		"attribute vec3 morphNormal3;",
 
-				"#else",
+			// 	"#else",
 
-					"attribute vec3 morphTarget4;",
-					"attribute vec3 morphTarget5;",
-					"attribute vec3 morphTarget6;",
-					"attribute vec3 morphTarget7;",
+			// 		"attribute vec3 morphTarget4;",
+			// 		"attribute vec3 morphTarget5;",
+			// 		"attribute vec3 morphTarget6;",
+			// 		"attribute vec3 morphTarget7;",
 
-				"#endif",
+			// 	"#endif",
 
-			"#endif",
+			// "#endif",
 
 			"#ifdef USE_SKINNING",
 
@@ -6393,6 +6431,9 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 			texture.__webglInit = true;
 			texture.__webglTexture = _gl.createTexture();
+			// if ( !texture.name )
+			// 	console.warn("No Display Name")			
+			texture.__webglTexture.displayName = texture.name
 
 			_this.info.memory.textures ++;
 
@@ -7027,10 +7068,10 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	// default plugins (order is important)
 
-	this.shadowMapPlugin = new THREE.ShadowMapPlugin();
-	this.addPrePlugin( this.shadowMapPlugin );
+	// this.shadowMapPlugin = new THREE.ShadowMapPlugin();
+	// this.addPrePlugin( this.shadowMapPlugin );
 
-	this.addPostPlugin( new THREE.SpritePlugin() );
+	// this.addPostPlugin( new THREE.SpritePlugin() );
 	this.addPostPlugin( new THREE.LensFlarePlugin() );
 
 };

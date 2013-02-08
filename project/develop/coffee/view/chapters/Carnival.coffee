@@ -630,6 +630,7 @@ class Carnival extends Base3DChapter
 
 
             particlesystem = new THREE.ParticleSystem( geom , mat )
+            particlesystem.name = "dustSystem_#{i}"
             @dustSystems.push particlesystem
             @scene.add particlesystem
 
@@ -651,6 +652,7 @@ class Carnival extends Base3DChapter
         dandelionMaterial.scale = dandelionShader.uniforms["scale"].value = @APP_HEIGHT / 2
         dandelionMaterial.transparent = true
         dandelionMaterial.sizeAttenuation = true
+        dandelionMaterial.name = "dandelion_shader"
 
         @materialManager.matLib.push dandelionMaterial
         @materialManager.texLib.push dandelionMaterial.map        
@@ -674,6 +676,7 @@ class Carnival extends Base3DChapter
             @dandelionsSettings.push setting
 
         @dandelionParticleSystem = new THREE.ParticleSystem( dandelionGeometry , dandelionMaterial )
+        @dandelionParticleSystem.name = "dandelion_particlesystem";
         @scene.add @dandelionParticleSystem
 
         @
@@ -717,6 +720,7 @@ class Carnival extends Base3DChapter
 
         linegeom = new THREE.Geometry
         linerenderable = new THREE.Line(linegeom)
+        linerenderable.name = "debugpath"
         root.add linerenderable
 
         

@@ -35,7 +35,9 @@ THREE.LensFlarePlugin = function ( ) {
 		// buffers
 
 		_lensFlare.vertexBuffer     = _gl.createBuffer();
+		_lensFlare.vertexBuffer.displayName = "LensFlare_VertexBuffer";
 		_lensFlare.elementBuffer    = _gl.createBuffer();
+		_lensFlare.elementBuffer.displayName = "LensFlare_ElementBuffer";
 
 		_gl.bindBuffer( _gl.ARRAY_BUFFER, _lensFlare.vertexBuffer );
 		_gl.bufferData( _gl.ARRAY_BUFFER, _lensFlare.vertices, _gl.STATIC_DRAW );
@@ -46,7 +48,9 @@ THREE.LensFlarePlugin = function ( ) {
 		// textures
 
 		_lensFlare.tempTexture      = _gl.createTexture();
+		_lensFlare.tempTexture.displayName = "LensFlare_tempTexture";
 		_lensFlare.occlusionTexture = _gl.createTexture();
+		_lensFlare.occlusionTexture.displayName = "LensFlare_occlusionTexture";
 
 		_gl.bindTexture( _gl.TEXTURE_2D, _lensFlare.tempTexture );
 		_gl.texImage2D( _gl.TEXTURE_2D, 0, _gl.RGB, 16, 16, 0, _gl.RGB, _gl.UNSIGNED_BYTE, null );
@@ -66,11 +70,13 @@ THREE.LensFlarePlugin = function ( ) {
 
 			_lensFlare.hasVertexTexture = false;
 			_lensFlare.program = createProgram( THREE.ShaderFlares[ "lensFlare" ] );
+			_lensFlare.program.displayName = "LensFlareShader"
 
 		} else {
 
 			_lensFlare.hasVertexTexture = true;
 			_lensFlare.program = createProgram( THREE.ShaderFlares[ "lensFlareVertexTexture" ] );
+			_lensFlare.program.displayName = "LensFlareVertexTextureShader"
 
 		}
 

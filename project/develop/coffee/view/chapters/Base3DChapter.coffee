@@ -320,6 +320,7 @@ class Base3DChapter extends AbstractChapter
         @dofpost.materialBokeh.name = "postprocessing_bokehshader"
 
         @dofpost.quad = new THREE.Mesh( new THREE.PlaneGeometry( @APP_WIDTH, @APP_HEIGHT ), @dofpost.materialBokeh );
+        @dofpost.quad.name = "postprocessing_dof_quad"
         @dofpost.quad.position.z = - 1000;
         @dofpost.scene.add( @dofpost.quad );        
 

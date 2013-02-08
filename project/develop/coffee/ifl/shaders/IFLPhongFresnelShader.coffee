@@ -31,18 +31,20 @@ class IFLPhongFresnelShader
         THREE.ShaderChunk[ "lightmap_pars_vertex" ]
         THREE.ShaderChunk[ "color_pars_vertex" ]
 
-        "uniform sampler2D tAux;"
         "uniform float mFresnelPower;"
+        "uniform float windScale;"
+        "uniform vec2 windMin;"
+        "uniform vec2 windSize;"
+        "uniform vec3 windDirection;"
 
-        "varying vec3 vReflect;"
         "varying float vFresnel;"
+        "varying vec3 vReflect;"
+        "varying vec3 vMvPosition;"
+        "varying vec3 vTransformedNormal;"            
 
-        "#ifdef USE_COLOR"
-            "#ifdef VERTEX_TEXTURES"
-                "uniform float windScale;"
-                "uniform vec2 windMin;"
-                "uniform vec2 windSize;"
-                "uniform vec3 windDirection;"
+        "#ifdef VERTEX_TEXTURES"
+            "uniform sampler2D tAux;"
+            "#ifdef USE_COLOR"
                 "uniform sampler2D tWindForce;"
             "#endif"
         "#endif"
@@ -85,19 +87,16 @@ class IFLPhongFresnelShader
                 "vReflect = vec3(0.0,0.0,0.0);" 
             "#endif"
 
-
-
-            "float fresnelFactor;"
-            "#ifdef USE_MAP"
-                "fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"
-            "#else"
-                "fresnelFactor = 1.0;"
+            # fresnel
+            "#ifdef VERTEX_TEXTURES"
+                "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"
+                "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
+                "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal.xyz ) ), fresnelPow );" 
+                "vFresnel = clamp( fresnel, 0.0, 1.0 );"
             "#endif"
 
-            "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
-
-            "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal ) ), fresnelPow );" 
-            "vFresnel = clamp( fresnel, 0.0, 1.0 );"
+            "vMvPosition = normalize(mvPosition.xyz);"
+            "vTransformedNormal = normalize(transformedNormal.xyz);"
         "}"
 
     ].join("\n")
@@ -115,12 +114,15 @@ class IFLPhongFresnelShader
         "uniform float diffuseMultiplier;"
         "uniform float envmapMultiplier;"
         "uniform float lightMapMultiplier;"
+        "uniform float mFresnelPower;"
+        "uniform sampler2D tAux;"
 
-        
         "varying float vFresnel;"
+        "varying vec3 vMvPosition;"
+        "varying vec3 vTransformedNormal;"
+        "varying vec3 vReflect;",
 
         "#ifdef USE_ENVMAP",
-            "varying vec3 vReflect;",
             "uniform float reflectivity;"
             "uniform samplerCube envMap;"
             "uniform float flipEnvMap;"
@@ -128,53 +130,46 @@ class IFLPhongFresnelShader
         "#endif"
 
 
-        "void main() {",
+        "void main() {"
+            "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
 
-
-
-            "#ifdef USE_MAP",
-                "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
-            "#else"
-                "gl_FragColor = vec4( diffuse );"
-            "#endif"
-
-            "#ifdef USE_LIGHTMAP",
+            "#ifdef USE_LIGHTMAP"
                 "vec4 map2col = texture2D( lightMap, vUv2 );"
                 "gl_FragColor *= map2col * lightMapMultiplier;"
                 "gl_FragColor.w = map2col.w;"
-
             "#endif"
 
             THREE.ShaderChunk[ "alphatest_fragment" ]
             THREE.ShaderChunk[ "specularmap_fragment" ]
 
-            "#ifdef USE_ENVMAP"
-
-                "#ifdef DOUBLE_SIDED"
-                    "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
-                    "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;"
-                "#else"
-                    "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
-                "#endif"
+            "#ifdef DOUBLE_SIDED"
+                "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
+                "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;"
+            "#else"
+                "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
+            "#endif"
 
 
-                # FRESNEL
-                "float fresnel;"
+            # FRESNEL
+            "float fresnel = 0.0;"
+
+            "#ifdef VERTEX_TEXTURES"
+
                 "#ifdef DOUBLE_SIDED"
                     "fresnel = flipNormal * vFresnel;" 
                 "#else"
                     "fresnel = vFresnel;" 
                 "#endif"
 
-                # combine using fresnel term and specularStrength instaead of simple "specular"
-                # also multiply specular color to final result
-                "#ifdef USE_SPECULARMAP"
-                    "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );"
-                "#else"
-                    "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz,  fresnel * specularStrength  );"
-                "#endif"
+            "#else"
+                "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
+                "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
+                "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
             "#endif"
 
+            # combine using fresnel term and specularStrength instaead of simple "specular"
+            # also multiply specular color to final result
+            "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );"
 
             THREE.ShaderChunk[ "fog_fragment" ]
 

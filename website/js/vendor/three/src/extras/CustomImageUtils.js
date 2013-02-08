@@ -18,6 +18,7 @@ CustomImageUtils = {
 		
 		var image = new Image();
 		var texture = new THREE.Texture( image, mapping );
+		texture.name = "PNG_"+url
 
 		if(CustomImageUtils.loadedTextures[url]!=undefined) {
 			
@@ -71,6 +72,7 @@ CustomImageUtils = {
 		
 		var texture = new THREE.CompressedTexture();
 		texture.mapping = mapping;
+		texture.name = "DDS_"+url
 
 		if(CustomImageUtils.loadedCompressedTextures[url] != undefined) {
 
