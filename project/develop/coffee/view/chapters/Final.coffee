@@ -49,7 +49,7 @@ class Final extends AbstractScene
 
                 landing  = new LandingFinal "finalHeader", "finalSub"
                 @content.addChild landing
-                landing.render @fadeIn
+                landing.render @fadeIn, true
 
                 # Show footer elements
                 @oz().appView.logo.showGoogleLogos()

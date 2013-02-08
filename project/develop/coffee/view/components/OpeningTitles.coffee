@@ -52,19 +52,19 @@ class OpeningTitles extends Abstract
         null
 
 
-    render : (callback)=>
+    render : (callback, timed = false)=>
 
-        console.log parseInt(@header.find('span').width())
+        setTimeout =>
         
-        fontSize = parseInt(window.getComputedStyle(@header[0], null).fontSize)
+            fontSize = parseInt(window.getComputedStyle(@header[0], null).fontSize)
 
-        while parseInt(@header.find('span').width()) > 725
-            fontSize--
-            @header.css {'font-size' : fontSize}
+            while parseInt(@header.find('span').width()) > 725
+                fontSize--
+                @header.css {'font-size' : fontSize}
 
-        callback()
+            callback()
 
-
+        , (if timed then 200 else 0)
         null
    
 

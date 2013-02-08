@@ -9370,7 +9370,7 @@
           });
           landing = new LandingFinal("finalHeader", "finalSub");
           this.content.addChild(landing);
-          landing.render(this.fadeIn);
+          landing.render(this.fadeIn, true);
           this.oz().appView.logo.showGoogleLogos();
           this.oz().appView.footer.showMenu(true);
       }
@@ -16166,17 +16166,22 @@
       return null;
     };
 
-    OpeningTitles.prototype.render = function(callback) {
-      var fontSize;
-      console.log(parseInt(this.header.find('span').width()));
-      fontSize = parseInt(window.getComputedStyle(this.header[0], null).fontSize);
-      while (parseInt(this.header.find('span').width()) > 725) {
-        fontSize--;
-        this.header.css({
-          'font-size': fontSize
-        });
+    OpeningTitles.prototype.render = function(callback, timed) {
+      var _this = this;
+      if (timed == null) {
+        timed = false;
       }
-      callback();
+      setTimeout(function() {
+        var fontSize;
+        fontSize = parseInt(window.getComputedStyle(_this.header[0], null).fontSize);
+        while (parseInt(_this.header.find('span').width()) > 725) {
+          fontSize--;
+          _this.header.css({
+            'font-size': fontSize
+          });
+        }
+        return callback();
+      }, (timed ? 200 : 0));
       return null;
     };
 
@@ -18527,10 +18532,10 @@
         'margin-top': '0px'
       });
       $(this.titles.$el.children()[0]).css({
-        'margin-top': '-45px'
+        'margin-top': '-40px'
       });
       this.titles.$el.find('.openingTitlesCTA').css({
-        'margin-top': '-5px'
+        'margin-top': '-40px'
       });
       this.titles.$el.find('.openingTitlesCTA').find('.left').css({
         'margin-top': '0px'

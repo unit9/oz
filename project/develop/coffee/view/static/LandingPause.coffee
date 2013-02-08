@@ -13,10 +13,10 @@ class LandingPause extends BaseLandingOpenings
         @titles.$el.find('.openingTitlesCTA').find('.cta').css {'margin-top' : '0px'}
         
         $(@titles.$el.children()[0]).css
-            'margin-top' : '-45px'
+            'margin-top' : '-40px'
 
         @titles.$el.find('.openingTitlesCTA').css
-            'margin-top' : '-5px'
+            'margin-top' : '-40px'
 
         @titles.$el.find('.openingTitlesCTA').find('.left').css
             'margin-top' : '0px'

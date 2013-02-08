@@ -99,7 +99,7 @@
         <name>FX_TornadoMusic</name>
         <length>49000</length>
         <load>4</load>
-        <start>1042560</start>
+        <start>2613888</start>
         <duration>2933221</duration>
         <src>sounds_4</src>
     </sound>
@@ -645,28 +645,91 @@
     </sound>
     <sound>
         <name>AMB_InsideTornado_8000</name>
-        <length>8050</length>
+        <length>8000</length>
         <load>4</load>
         <start>0</start>
-        <duration>371835</duration>
+        <duration>352800</duration>
         <src>sounds_4</src>
     </sound>
     <sound>
         <name>AMB_TornadoMain_7499</name>
         <length>7499</length>
         <load>0</load>
-        <start>372096</start>
+        <start>353664</start>
         <duration>335160</duration>
         <src>sounds_4</src>
     </sound>
     <sound>
-        <name>AMB_TornadoSpin_7499</name>
-        <length>7499</length>
-        <load>0</load>
-        <start>707328</start>
-        <duration>335160</duration>
-        <src>sounds_4</src>
-    </sound>
+	  <name>FX_StormJunk_1</name>
+	  <start>688896</start>
+	  <duration>179499</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_2</name>
+	  <start>868608</start>
+	  <duration>240398</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_3</name>
+	  <start>1109376</start>
+	  <duration>181314</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_4</name>
+	  <start>1291392</start>
+	  <duration>146871</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_5</name>
+	  <start>1438848</start>
+	  <duration>271037</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_6</name>
+	  <start>1710720</start>
+	  <duration>187767</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormJunk_7</name>
+	  <start>1898496</start>
+	  <duration>247445</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormOrgan_1</name>
+	  <start>2146176</start>
+	  <duration>150051</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormOrgan_2</name>
+	  <start>2297088</start>
+	  <duration>148386</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+	<sound>
+	  <name>FX_StormOrgan_3</name>
+	  <start>2445696</start>
+	  <duration>167533</duration>
+	  <length>2000</length>
+	  <src>sounds_4</src>
+	</sound>
+
     <sound>
         <name>AMB_OrganMechanics_6500</name>
         <length>6500</length>
@@ -895,7 +958,7 @@
     <soundObject>
       <name>AMB_InsideTornado</name>
       <mode>pattern</mode>
-      <volume>0.4</volume>
+      <volume>0.55</volume>
       <pan>0</pan>
       <parentBus>insidetornado</parentBus>
       <loop>1</loop>
@@ -1008,15 +1071,6 @@
       <parentBus>storm</parentBus>
       <loop>1</loop>
       <sound offset="0">AMB_TornadoMain_7499</sound>
-    </soundObject>
-    <soundObject>
-      <name>AMB_TornadoSpin</name>
-      <mode>pattern</mode>
-      <volume>1.5</volume>
-      <pan>0</pan>
-      <parentBus>stormspin</parentBus>
-      <loop>1</loop>
-      <sound offset="0">AMB_TornadoSpin_7499</sound>
     </soundObject>
     <soundObject>
       <name>FX_Birds</name>
@@ -1210,7 +1264,7 @@
     <soundObject>
       <name>FX_TornadoMusic</name>
       <mode>pattern</mode>
-      <volume>1.1</volume>
+      <volume>1</volume>
       <pan>0</pan>
       <parentBus>music</parentBus>
       <loop>0</loop>
@@ -1485,6 +1539,44 @@
       <loop>0</loop>
       <sound offset="180,0">FX_OrganG1</sound>
     </soundObject>
+    <soundObject>
+      <name>Stormjunk_6</name>
+      <mode>steptrig</mode>
+      <volume>0.48</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>0</loop>
+      <sound offset="0">FX_StormJunk_6</sound>
+    </soundObject>
+    <soundObject>
+      <name>StormObjects</name>
+      <mode>randompatternamb</mode>
+      <max>1000</max>
+      <min>2500</min>
+      <volume>0.7</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_StormJunk_1</sound>
+      <sound offset="0">FX_StormJunk_2</sound>
+      <sound offset="0">FX_StormJunk_3</sound>
+      <sound offset="0">FX_StormJunk_4</sound>
+      <sound offset="0">FX_StormJunk_5</sound>
+      <sound offset="0">FX_StormJunk_7</sound>
+    </soundObject>
+    <soundObject>
+      <name>StormOrgan</name>
+      <mode>randompatternamb</mode>
+      <max>3000</max>
+      <min>5000</min>
+      <volume>0.9</volume>
+      <pan>0</pan>
+      <parentBus>fx</parentBus>
+      <loop>1</loop>
+      <sound offset="0">FX_StormOrgan_1</sound>
+      <sound offset="0">FX_StormOrgan_2</sound>
+      <sound offset="0">FX_StormOrgan_3</sound>
+    </soundObject>
     <arrangement>
       <name>Scene1</name>
       <domain>scene1</domain>
@@ -1533,9 +1625,15 @@
       <domain>storm</domain>
       <retrigg>0</retrigg>
       <soundObject>AMB_TornadoMain</soundObject>
-      <soundObject>AMB_TornadoSpin</soundObject>
       <soundObject>AMB_InsideTornado</soundObject>
       <soundObject>FX_DistantStorm</soundObject>
+    </arrangement>
+    <arrangement>
+      <name>StormObjects</name>
+      <domain>stormobjects</domain>
+      <retrigg>0</retrigg>
+      <soundObject>StormObjects</soundObject>
+      <soundObject>StormOrgan</soundObject>
     </arrangement>
     <arrangement>
       <name>Landing</name>
@@ -1726,6 +1824,17 @@
       </targets>
     </action>
     <action>
+      <event>storm_inside</event>
+      <targets>
+        <target id="PlayArrAction">
+          <arg key="name" value="StormObjects"/>
+        </target>
+        <target id="StartSOAction">
+          <arg key="name" value="Stormjunk_6"/>
+        </target>
+      </targets>
+    </action>
+    <action>
       <event>storm_exit</event>
       <targets>
         <target id="BusVolumeAction">
@@ -1737,6 +1846,10 @@
           <arg key="name" value="insidetornado"/>
           <arg key="vol" value="0.2"/>
           <arg key="time" value="10000"/>
+        </target>
+        <target id="FadeAndStopDomainAction">
+          <arg key="name" value="stormobjects"/>
+          <arg key="fadeOutTime" value="3500"/>
         </target>
       </targets>
     </action>
@@ -1932,6 +2045,11 @@
         </target>
         <target id="StartSOAction">
           <arg key="name" value="FX_BallonClick"/>
+        </target>
+        <target id="BusVolumeAction">
+          <arg key="name" value="organ"/>
+          <arg key="vol" value="0"/>
+          <arg key="time" value="1000"/>
         </target>
         <target id="EffectParamAction">
           <arg key="name" value="filter"/>
