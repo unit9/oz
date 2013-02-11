@@ -197,7 +197,7 @@
           value: 0.5
         },
         "enableVolumetricLight": {
-          type: "i",
+          type: "f",
           value: 0
         },
         "tVolumetricLight": {
@@ -213,7 +213,7 @@
 
     IFLColorCorrectionShader.prototype.vertexShader = ["varying vec2 vUv;", "void main() {", "vUv = uv;", "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", "}"].join("\n");
 
-    IFLColorCorrectionShader.prototype.fragmentShader = ["uniform sampler2D tDiffuse;", "varying vec2 vUv;", "uniform vec3 powRGB;", "uniform vec3 mulRGB;", "uniform vec4 saturation;", "uniform float vignetteOffset;", "uniform float vignetteDarkness;", "uniform bool enableVolumetricLight;", "uniform float volumetricLightX;", "uniform float volumetricLightY;", "uniform sampler2D tVolumetricLight;", "const int iSamples = 10;", "uniform sampler2D tOverlay;", "void main() {", "gl_FragColor = texture2D( tDiffuse, vUv );", "gl_FragColor.xyz = mulRGB * pow( gl_FragColor.xyz, powRGB );", "gl_FragColor.r = clamp(gl_FragColor.r, 0.0, 1.0);", "gl_FragColor.g = clamp(gl_FragColor.g, 0.0, 1.0);", "gl_FragColor.b = clamp(gl_FragColor.b, 0.0, 1.0);", "vec3 luminanceWeights = vec3(0.2126,0.7152,0.0722);", "float luminance = dot(gl_FragColor.xyz,luminanceWeights);", "vec3 greyscale = vec3(luminance,luminance,luminance);", "gl_FragColor.xyz = mix(gl_FragColor.xyz,greyscale.xyz,saturation.xyz);", "gl_FragColor.r = clamp(gl_FragColor.r, 0.0, 1.0);", "gl_FragColor.g = clamp(gl_FragColor.g, 0.0, 1.0);", "gl_FragColor.b = clamp(gl_FragColor.b, 0.0, 1.0);", "if (enableVolumetricLight){", "vec2 deltaTextCoord = vec2(vUv - vec2(volumetricLightX,volumetricLightY));", "deltaTextCoord *= 1.0 /  float(iSamples) * 0.99;", "vec2 coord = vUv;", "float illuminationDecay = 1.0;", "vec4 FragColor = vec4(0.0);", "for(int i=0; i < iSamples ; i++)", "{", "coord -= deltaTextCoord;", "vec4 texel = texture2D(tVolumetricLight, coord);", "texel *= illuminationDecay * 0.7;", "FragColor += texel;", "illuminationDecay *= 0.91;", "}", "FragColor *= 0.2;", "FragColor = clamp(FragColor, 0.0, 1.0);", "gl_FragColor += FragColor;", "}", "vec2 uv = ( vUv - vec2( 0.5 ) ) * vec2( vignetteOffset );", "gl_FragColor = vec4( mix( gl_FragColor.rgb, vec3( 1.0 - vignetteDarkness ), dot( uv, uv ) ), gl_FragColor.a );", "}"].join("\n");
+    IFLColorCorrectionShader.prototype.fragmentShader = ["uniform sampler2D tDiffuse;", "varying vec2 vUv;", "uniform vec3 powRGB;", "uniform vec3 mulRGB;", "uniform vec4 saturation;", "uniform float vignetteOffset;", "uniform float vignetteDarkness;", "uniform float enableVolumetricLight;", "uniform float volumetricLightX;", "uniform float volumetricLightY;", "uniform sampler2D tVolumetricLight;", "const int iSamples = 10;", "const float volumetricEnabled = 1.0;", "uniform sampler2D tOverlay;", "void main() {", "gl_FragColor = texture2D( tDiffuse, vUv );", "gl_FragColor.xyz = mulRGB * pow( gl_FragColor.xyz, powRGB );", "gl_FragColor.r = clamp(gl_FragColor.r, 0.0, 1.0);", "gl_FragColor.g = clamp(gl_FragColor.g, 0.0, 1.0);", "gl_FragColor.b = clamp(gl_FragColor.b, 0.0, 1.0);", "vec3 luminanceWeights = vec3(0.2126,0.7152,0.0722);", "float luminance = dot(gl_FragColor.xyz,luminanceWeights);", "vec3 greyscale = vec3(luminance,luminance,luminance);", "gl_FragColor.xyz = mix(gl_FragColor.xyz,greyscale.xyz,saturation.xyz);", "gl_FragColor.r = clamp(gl_FragColor.r, 0.0, 1.0);", "gl_FragColor.g = clamp(gl_FragColor.g, 0.0, 1.0);", "gl_FragColor.b = clamp(gl_FragColor.b, 0.0, 1.0);", "if (enableVolumetricLight == volumetricEnabled){", "vec2 deltaTextCoord = vec2(vUv - vec2(volumetricLightX,volumetricLightY));", "deltaTextCoord *= 1.0 /  float(iSamples) * 0.99;", "vec2 coord = vUv;", "float illuminationDecay = 1.0;", "vec4 FragColor = vec4(0.0);", "for(int i=0; i < iSamples ; i++)", "{", "coord -= deltaTextCoord;", "vec4 texel = texture2D(tVolumetricLight, coord);", "texel *= illuminationDecay * 0.7;", "FragColor += texel;", "illuminationDecay *= 0.91;", "}", "FragColor *= 0.2;", "FragColor = clamp(FragColor, 0.0, 1.0);", "gl_FragColor += FragColor;", "}", "vec2 uv = ( vUv - vec2( 0.5 ) ) * vec2( vignetteOffset );", "gl_FragColor = vec4( mix( gl_FragColor.rgb, vec3( 1.0 - vignetteDarkness ), dot( uv, uv ) ), gl_FragColor.a );", "}"].join("\n");
 
     return IFLColorCorrectionShader;
 
@@ -287,6 +287,10 @@
             type: "f",
             value: 30
           },
+          "wrapRGB": {
+            type: "v3",
+            value: new THREE.Vector3(1, 1, 1)
+          },
           "diffuseMultiplier": {
             type: "f",
             value: 1
@@ -298,10 +302,6 @@
           "lightMapMultiplier": {
             type: "f",
             value: 1
-          },
-          "wrapRGB": {
-            type: "v3",
-            value: new THREE.Vector3(1, 1, 1)
           },
           "tAux": {
             type: "t",
@@ -335,9 +335,9 @@
       ]);
     }
 
-    IFLPhongFresnelShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "uniform float mFresnelPower;", "uniform float windScale;", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "varying float vFresnel;", "varying vec3 vReflect;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "#ifdef VERTEX_TEXTURES", "uniform sampler2D tAux;", "#ifdef USE_COLOR", "uniform sampler2D tWindForce;", "#endif", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D( tWindForce , windUV ).x;", "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;", "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "#ifdef USE_ENVMAP", "vec3 nWorld = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * objectNormal;", "vReflect = reflect( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ) );", "#else", "vReflect = vec3(0.0,0.0,0.0);", "#endif", "#ifdef VERTEX_TEXTURES", "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal.xyz ) ), fresnelPow );", "vFresnel = clamp( fresnel, 0.0, 1.0 );", "#endif", "vMvPosition = normalize(mvPosition.xyz);", "vTransformedNormal = normalize(transformedNormal.xyz);", "}"].join("\n");
+    IFLPhongFresnelShader.prototype.vertexShader = [THREE.ShaderChunk["map_pars_vertex"], THREE.ShaderChunk["lightmap_pars_vertex"], THREE.ShaderChunk["color_pars_vertex"], "uniform float mFresnelPower;", "uniform float windScale;", "uniform vec2 windMin;", "uniform vec2 windSize;", "uniform vec3 windDirection;", "varying float vFresnel;", "varying vec3 vReflect;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "#ifdef VERTEX_TEXTURES", "uniform sampler2D tAux;", "#ifdef USE_COLOR", "uniform sampler2D tWindForce;", "#endif", "#endif", "void main() {", THREE.ShaderChunk["map_vertex"], THREE.ShaderChunk["lightmap_vertex"], THREE.ShaderChunk["color_vertex"], THREE.ShaderChunk["defaultnormal_vertex"], "vec4 mvPosition;", "#ifdef USE_COLOR", "#ifdef VERTEX_TEXTURES", "vec4 wpos = modelMatrix * vec4( position.x ,position.y, -position.z, 1.0 );", "vec2 totPos = wpos.xz - windMin;", "vec2 windUV = totPos / windSize;", "float vWindForce = texture2D( tWindForce , windUV ).x;", "float windMod = ( (1.0 - vWindForce) * color.r) * windScale;", "vec4 pos = vec4( position.x + windMod * windDirection.x, position.y + windMod * windDirection.y , position.z + windMod * windDirection.z,  1.0);", "mvPosition = modelViewMatrix *  pos;", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "#else", "mvPosition = modelViewMatrix * vec4( position, 1.0 );", "#endif", "gl_Position = projectionMatrix * mvPosition;", THREE.ShaderChunk["worldpos_vertex"], "#ifdef USE_ENVMAP", "vec3 nWorld = mat3( modelMatrix[ 0 ].xyz, modelMatrix[ 1 ].xyz, modelMatrix[ 2 ].xyz ) * objectNormal;", "vReflect = reflect( normalize( mPosition.xyz - cameraPosition ), normalize( nWorld.xyz ) );", "#else", "vReflect = vec3(0.0,0.0,0.0);", "#endif", "vFresnel = 0.0;", "#ifdef VERTEX_TEXTURES", "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "float fresnel = pow( 1.0 + dot( normalize( mvPosition.xyz ) , normalize( transformedNormal.xyz ) ), fresnelPow );", "vFresnel = clamp( fresnel, 0.0, 1.0 );", "#endif", "vMvPosition = normalize(mvPosition.xyz);", "vTransformedNormal = normalize(transformedNormal.xyz);", "}"].join("\n");
 
-    IFLPhongFresnelShader.prototype.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["specularmap_pars_fragment"], "uniform vec3 diffuse;", "uniform float diffuseMultiplier;", "uniform float envmapMultiplier;", "uniform float lightMapMultiplier;", "uniform float mFresnelPower;", "uniform sampler2D tAux;", "varying float vFresnel;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "varying vec3 vReflect;", "#ifdef USE_ENVMAP", "uniform float reflectivity;", "uniform samplerCube envMap;", "uniform float flipEnvMap;", "uniform int combine;", "#endif", "void main() {", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#ifdef USE_LIGHTMAP", "vec4 map2col = texture2D( lightMap, vUv2 );", "gl_FragColor *= map2col * lightMapMultiplier;", "gl_FragColor.w = map2col.w;", "#endif", THREE.ShaderChunk["alphatest_fragment"], THREE.ShaderChunk["specularmap_fragment"], "#ifdef DOUBLE_SIDED", "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );", "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;", "#else", "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#endif", "float fresnel = 0.0;", "#ifdef VERTEX_TEXTURES", "#ifdef DOUBLE_SIDED", "fresnel = flipNormal * vFresnel;", "#else", "fresnel = vFresnel;", "#endif", "#else", "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);", "#endif", "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );", THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
+    IFLPhongFresnelShader.prototype.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], "uniform sampler2D specularMap;", "uniform vec3 diffuse;", "uniform float diffuseMultiplier;", "uniform float envmapMultiplier;", "uniform float lightMapMultiplier;", "uniform float mFresnelPower;", "uniform sampler2D tAux;", "varying float vFresnel;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "varying vec3 vReflect;", "#ifdef USE_ENVMAP", "uniform float reflectivity;", "uniform samplerCube envMap;", "uniform float flipEnvMap;", "uniform int combine;", "#endif", "void main() {", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#ifdef USE_LIGHTMAP", "vec4 map2col = texture2D( lightMap, vUv2 );", "gl_FragColor *= map2col * lightMapMultiplier;", "gl_FragColor.w = map2col.w;", "#endif", THREE.ShaderChunk["alphatest_fragment"], "#ifdef VERTEX_TEXTURES", "vec4 texelSpecular = texture2D( specularMap, vUv );", "float specularStrength = texelSpecular.r;", "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );", "vec4 cubeColor;", "#ifdef DOUBLE_SIDED", "cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;", "#else", "cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#endif", "float fresnel = flipNormal * vFresnel;", "vec4 reflectTexel = cubeColor * texelSpecular;", "float reflectFresnel =  clamp(fresnel * specularStrength,0.0,1.0);", "gl_FragColor.xyz = mix( gl_FragColor.xyz, reflectTexel.xyz , reflectFresnel );", "#endif", THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
 
     return IFLPhongFresnelShader;
 
@@ -422,7 +422,7 @@
           }
         }
       ]);
-      this.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["specularmap_pars_fragment"], "uniform float lightmapBlend;", "uniform sampler2D lightMap2;", "uniform vec3 diffuse;", "uniform float diffuseMultiplier;", "uniform float envmapMultiplier;", "uniform float lightMapMultiplier;", "uniform float mFresnelPower;", "uniform sampler2D tAux;", "varying float vFresnel;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "varying vec3 vReflect;", "#ifdef USE_ENVMAP", "uniform float reflectivity;", "uniform samplerCube envMap;", "uniform float flipEnvMap;", "uniform int combine;", "#endif", "void main() {", "gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );", "#ifdef USE_MAP", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#endif", "#ifdef USE_MAP", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#endif", "#ifdef USE_LIGHTMAP", "vec4 map2col = mix( texture2D( lightMap, vUv2 ), texture2D( lightMap2, vUv2 ), lightmapBlend);", "gl_FragColor *= map2col * lightMapMultiplier;", "gl_FragColor.w = map2col.w;", "#endif", THREE.ShaderChunk["alphatest_fragment"], THREE.ShaderChunk["specularmap_fragment"], "#ifdef USE_ENVMAP", "#ifdef DOUBLE_SIDED", "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );", "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#else", "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#endif", "float fresnel = 0.0;", "#ifdef VERTEX_TEXTURES", "#ifdef DOUBLE_SIDED", "fresnel = flipNormal * vFresnel;", "#else", "fresnel = vFresnel;", "#endif", "#else", "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;", "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );", "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);", "#endif", "#ifdef USE_SPECULARMAP", "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );", "#else", "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz,  fresnel * specularStrength  );", "#endif", "#endif", THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
+      this.fragmentShader = [THREE.ShaderChunk["color_pars_fragment"], THREE.ShaderChunk["map_pars_fragment"], THREE.ShaderChunk["lightmap_pars_fragment"], THREE.ShaderChunk["fog_pars_fragment"], THREE.ShaderChunk["specularmap_pars_fragment"], "uniform float lightmapBlend;", "uniform sampler2D lightMap2;", "uniform vec3 diffuse;", "uniform float diffuseMultiplier;", "uniform float envmapMultiplier;", "uniform float lightMapMultiplier;", "uniform float mFresnelPower;", "uniform sampler2D tAux;", "varying float vFresnel;", "varying vec3 vMvPosition;", "varying vec3 vTransformedNormal;", "varying vec3 vReflect;", "#ifdef USE_ENVMAP", "uniform float reflectivity;", "uniform samplerCube envMap;", "uniform float flipEnvMap;", "uniform int combine;", "#endif", "void main() {", "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;", "#ifdef USE_LIGHTMAP", "vec4 map2col = mix( texture2D( lightMap, vUv2 ), texture2D( lightMap2, vUv2 ), lightmapBlend);", "gl_FragColor *= map2col * lightMapMultiplier;", "gl_FragColor.w = map2col.w;", "#endif", THREE.ShaderChunk["alphatest_fragment"], "#ifdef VERTEX_TEXTURES", "vec4 texelSpecular = texture2D( specularMap, vUv );", "float specularStrength = texelSpecular.r;", "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );", "vec4 cubeColor;", "#ifdef DOUBLE_SIDED", "cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;", "#else", "cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;", "#endif", "float fresnel = flipNormal * vFresnel;", "vec4 reflectTexel = cubeColor * texelSpecular;", "float reflectFresnel =  clamp(fresnel * specularStrength,0.0,1.0);", "gl_FragColor.xyz = mix( gl_FragColor.xyz, reflectTexel.xyz, reflectFresnel );", "#endif", THREE.ShaderChunk["fog_fragment"], "}"].join("\n");
     }
 
     return IFLPhongFresnelShaderDoubleLightMap;
@@ -5968,6 +5968,8 @@
 
     Base3DChapter.prototype.emptyRenderPluginPost = null;
 
+    Base3DChapter.prototype.excludeFromDOF = null;
+
     THREE.Frustum.prototype.contains = function(object) {
       var distance, i, matrix, me, planes, radius, _i;
       distance = 0.0;
@@ -5994,6 +5996,7 @@
     Base3DChapter.prototype.init = function() {
       var _this = this;
       this.emptyRenderPluginPost = [];
+      this.excludeFromDOF = [];
       this.clock = new THREE.Clock();
       this.pickMouse = {
         x: 0,
@@ -6395,7 +6398,7 @@
     };
 
     Base3DChapter.prototype.doRender = function() {
-      var camerafar, cameranear, numShaderPasses;
+      var camerafar, cameranear, elem, numShaderPasses, _i, _j, _len, _len1, _ref, _ref1;
       if (this.dofpost.enabled) {
         if (this.composer.enabled) {
           this.colorCorrection.renderToScreen = false;
@@ -6407,6 +6410,13 @@
         }
         this.pPost = this.renderer.renderPluginsPost;
         this.renderer.renderPluginsPost = this.emptyRenderPluginPost;
+        _ref = this.sceneDescendants;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          elem = _ref[_i];
+          if (this.excludeFromDOF.indexOf(elem) !== -1) {
+            elem.visible = false;
+          }
+        }
         this.scene.overrideMaterial = this.dofpost.material_depth;
         camerafar = this.camera.far;
         cameranear = this.camera.near;
@@ -6418,6 +6428,13 @@
         this.camera.near = cameranear;
         this.camera.updateProjectionMatrix();
         this.scene.overrideMaterial = null;
+        _ref1 = this.sceneDescendants;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          elem = _ref1[_j];
+          if (this.excludeFromDOF.indexOf(elem) !== -1) {
+            elem.visible = true;
+          }
+        }
         if (this.composer.enabled) {
           numShaderPasses = 0;
           if (this.fxaa.enabled) {
@@ -6869,8 +6886,10 @@
       this.params.bloomPower = this.effectBloom.screenUniforms.opacity.value = 0.75;
       this.effectBloom.enabled = true;
       this.debugPaths = new THREE.Object3D;
-      this.windGenerator = new IFLWindGenerator();
-      this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      if (this.renderer.supportsVertexTextures()) {
+        this.windGenerator = new IFLWindGenerator();
+        this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      }
       this.colorCorrection.uniforms.vignetteOffset.value = 1;
       this.colorCorrection.uniforms.vignetteDarkness.value = 1.3;
       if (this.oz().appView.debugMode) {
@@ -6879,7 +6898,7 @@
       this.onColorCorrectionChange();
       this.autoPerformance.steps.push({
         name: "Wind",
-        enabled: this.windGenerator.enabled,
+        enabled: this.windGenerator != null ? this.windGenerator.enabled : false,
         priority: 50,
         disableFunc: this.onWindEnabledChange
       });
@@ -6968,15 +6987,17 @@
     };
 
     Carnival.prototype.instanceWorld = function() {
-      var blacklist, blacklisted, cfm, customFrustumPos, customFrustumRad, desc, elem, foundObj, isBlacklisted, object, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      var blacklist, blacklisted, cfm, customFrustumPos, customFrustumRad, desc, dofblacklist, dofblacklisted, elem, foundObj, isBlacklisted, object, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2;
       this.loadedScene = this.loader.createModel(true);
       this.createBirdFlocks();
       this.initOrganCharacters();
       this.cutoutsDynamicTextures = [];
       desc = this.loadedScene.getDescendants();
+      blacklist = ["grass", "branch"];
+      dofblacklist = ["grass", "branch"];
       for (_i = 0, _len = desc.length; _i < _len; _i++) {
         elem = desc[_i];
-        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors) {
+        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors && (this.windGenerator != null)) {
           elem.material.uniforms.tWindForce.value = this.windGenerator.noiseMap;
           elem.material.uniforms.windDirection.value.copy(this.windGenerator.windDirection);
         }
@@ -7004,7 +7025,6 @@
           }
         }
         if (this.oz().appView.displayQuality !== "hi") {
-          blacklist = ["grass", "branch"];
           isBlacklisted = false;
           for (_j = 0, _len1 = blacklist.length; _j < _len1; _j++) {
             blacklisted = blacklist[_j];
@@ -7019,6 +7039,13 @@
         } else {
           this.scene.add(elem);
         }
+        for (_k = 0, _len2 = dofblacklist.length; _k < _len2; _k++) {
+          dofblacklisted = dofblacklist[_k];
+          if (elem.name.toLowerCase().indexOf(dofblacklisted.toLowerCase()) !== -1) {
+            this.excludeFromDOF.push(elem);
+            break;
+          }
+        }
       }
       this.initSun();
       if (this.oz().appView.showInterface) {
@@ -7030,8 +7057,8 @@
       this.sceneDescendants = this.scene.getDescendants();
       this.pickableObjects = [];
       _ref2 = this.sceneDescendants;
-      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-        object = _ref2[_k];
+      for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+        object = _ref2[_l];
         if (object.pickable === true) {
           this.pickableObjects.push(object);
         }
@@ -7201,6 +7228,7 @@
         mat.frametime = 1 / 15;
         this.materialManager.matLib.push(mat);
         plane = new THREE.Mesh(geom, mat);
+        this.excludeFromDOF.push(plane);
         plane.position.set(this.randRange(-1000, 1000), this.randRange(100, 350), this.randRange(-1000, -400));
         plane.originalPosition = plane.position.clone();
         plane.name = "bird_" + i;
@@ -7235,7 +7263,9 @@
         mat.blending = THREE.AdditiveBlending;
         this.materialManager.matLib.push(mat);
         this.materialManager.texLib.push(mat.map);
-        shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        if (this.windGenerator != null) {
+          shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        }
         geom = new THREE.Geometry();
         geom.vertices = [];
         num = this.oz().appView.displayQuality !== "low" ? 300 : 150;
@@ -7260,6 +7290,7 @@
           this.dustSettings.push(setting);
         }
         particlesystem = new THREE.ParticleSystem(geom, mat);
+        this.excludeFromDOF.push(particlesystem);
         particlesystem.name = "dustSystem_" + i;
         this.dustSystems.push(particlesystem);
         this.scene.add(particlesystem);
@@ -7300,6 +7331,7 @@
         this.dandelionsSettings.push(setting);
       }
       this.dandelionParticleSystem = new THREE.ParticleSystem(dandelionGeometry, dandelionMaterial);
+      this.excludeFromDOF.push(this.dandelionParticleSystem);
       this.dandelionParticleSystem.name = "dandelion_particlesystem";
       this.scene.add(this.dandelionParticleSystem);
       return this;
@@ -7310,9 +7342,11 @@
       this.gui.add({
         value: -2.5
       }, 'value', -5, 20).name('Fresnel Power').onChange(this.materialManager.changeFresnelPower);
-      this.gui.add({
-        value: this.windGenerator.enabled
-      }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      if (this.windGenerator != null) {
+        this.gui.add({
+          value: this.windGenerator.enabled
+        }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      }
       this.gui.add(this.mouseInteraction, "constantSpeed").name("Use Constant Speed");
       this.gui.add(this.mouseInteraction, "maxspeed", 0, 2).name("Maximum slide speed");
       this.gui.add(this.mouseInteraction, "maxYLookDeviation", 0, 100).name("Maximum Y Look");
@@ -7325,10 +7359,12 @@
     };
 
     Carnival.prototype.onWindEnabledChange = function(value) {
-      var val;
+      var val, _ref;
       val = !(value != null) ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
-      this.windGenerator.enabled = val;
+      if ((_ref = this.windGenerator) != null) {
+        _ref.enabled = val;
+      }
       return this.loader.geometryAttributeEnabled("color", val);
     };
 
@@ -7402,6 +7438,7 @@
     };
 
     Carnival.prototype.onEnterFrame = function() {
+      var _ref;
       if (!this.enableRender) {
         return;
       }
@@ -7419,7 +7456,9 @@
       this.moveDust();
       this.handleMultiCamera();
       this.renderer.clear();
-      this.windGenerator.update(this.renderer, this.delta);
+      if ((_ref = this.windGenerator) != null) {
+        _ref.update(this.renderer, this.delta);
+      }
       this.doRender();
       if (this.capturer) {
         return this.capturer.capture(this.oz().appView.renderCanvas3D);
@@ -7444,7 +7483,9 @@
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
-        this.onWindEnabledChange(this.windGenerator.enabled);
+        if (this.windGenerator != null) {
+          this.onWindEnabledChange(this.windGenerator.enabled);
+        }
         this.windinitialSettings++;
       } else {
         this.windinitialSettings++;
@@ -7967,8 +8008,10 @@
       this.params.bloomPower = this.effectBloom.screenUniforms.opacity.value = 0.75;
       this.effectBloom.enabled = true;
       this.debugPaths = new THREE.Object3D;
-      this.windGenerator = new IFLWindGenerator();
-      this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      if (this.renderer.supportsVertexTextures()) {
+        this.windGenerator = new IFLWindGenerator();
+        this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      }
       this.colorCorrection.uniforms.vignetteOffset.value = 0.2;
       this.colorCorrection.uniforms.vignetteDarkness.value = 1;
       if (this.oz().appView.debugMode) {
@@ -7977,7 +8020,7 @@
       this.onColorCorrectionChange();
       this.autoPerformance.steps.push({
         name: "Wind",
-        enabled: this.windGenerator.enabled,
+        enabled: this.windGenerator != null ? this.windGenerator.enabled : false,
         priority: 50,
         disableFunc: this.onWindEnabledChange
       });
@@ -8072,7 +8115,7 @@
     };
 
     Carnival2.prototype.instanceWorld = function() {
-      var blacklist, blacklisted, cfm, count, customFrustumPos, customFrustumRad, desc, dofplanehack, elem, foundObj, isBlacklisted, object, vols, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
+      var blacklist, blacklisted, cfm, count, customFrustumPos, customFrustumRad, desc, dofblacklist, dofblacklisted, dofplanehack, elem, foundObj, isBlacklisted, object, vols, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2;
       this.loadedScene = this.loader.createModel(true);
       if (this.dofpost.enabled) {
         dofplanehack = new THREE.Mesh(new THREE.PlaneGeometry(27.958, 20.505, 1, 1), new THREE.MeshBasicMaterial({
@@ -8087,9 +8130,11 @@
       vols = [];
       count = 0;
       desc = this.loadedScene.getDescendants();
+      blacklist = ["grass", "branch"];
+      dofblacklist = ["grass", "branch"];
       for (_i = 0, _len = desc.length; _i < _len; _i++) {
         elem = desc[_i];
-        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors) {
+        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors && (this.windGenerator != null)) {
           elem.material.uniforms.tWindForce.value = this.windGenerator.noiseMap;
           elem.material.uniforms.windDirection.value.copy(this.windGenerator.windDirection);
         }
@@ -8122,7 +8167,6 @@
           }
         }
         if (this.oz().appView.displayQuality !== "hi") {
-          blacklist = ["grass", "branch"];
           isBlacklisted = false;
           for (_j = 0, _len1 = blacklist.length; _j < _len1; _j++) {
             blacklisted = blacklist[_j];
@@ -8136,6 +8180,13 @@
           }
         } else {
           this.scene.add(elem);
+        }
+        for (_k = 0, _len2 = dofblacklist.length; _k < _len2; _k++) {
+          dofblacklisted = dofblacklist[_k];
+          if (elem.name.toLowerCase().indexOf(dofblacklisted.toLowerCase()) !== -1) {
+            this.excludeFromDOF.push(elem);
+            break;
+          }
         }
       }
       this.initOcclusionScene();
@@ -8151,8 +8202,8 @@
       this.sceneDescendants = this.scene.getDescendants();
       this.pickableObjects = [];
       _ref2 = this.sceneDescendants;
-      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-        object = _ref2[_k];
+      for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+        object = _ref2[_l];
         if (object.pickable === true) {
           this.pickableObjects.push(object);
         }
@@ -8260,7 +8311,9 @@
         mat.blending = THREE.AdditiveBlending;
         this.materialManager.matLib.push(mat);
         this.materialManager.texLib.push(mat.map);
-        shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        if (this.windGenerator != null) {
+          shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        }
         geom = new THREE.Geometry();
         geom.vertices = [];
         num = this.oz().appView.displayQuality !== "low" ? 300 : 150;
@@ -8285,6 +8338,7 @@
           this.dustSettings.push(setting);
         }
         particlesystem = new THREE.ParticleSystem(geom, mat);
+        this.excludeFromDOF.push(particlesystem);
         this.dustSystems.push(particlesystem);
         this.scene.add(particlesystem);
       }
@@ -8299,9 +8353,11 @@
       this.gui.add({
         value: 1.0
       }, 'value', 0, 10).name('Normal Scale').onChange(this.materialManager.changeNormalScale);
-      this.gui.add({
-        value: this.windGenerator.enabled
-      }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      if (this.windGenerator != null) {
+        this.gui.add({
+          value: this.windGenerator.enabled
+        }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      }
       this.gui.add(this.mouseInteraction, "constantSpeed").name("Use Constant Speed");
       this.gui.add(this.mouseInteraction, "maxspeed", 0, 2).name("Maximum slide speed");
       this.gui.add(this.mouseInteraction, "maxYLookDeviation", 0, 100).name("Maximum Y Look");
@@ -8314,10 +8370,12 @@
     };
 
     Carnival2.prototype.onWindEnabledChange = function(value) {
-      var val;
+      var val, _ref;
       val = !(value != null) ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
-      this.windGenerator.enabled = val;
+      if ((_ref = this.windGenerator) != null) {
+        _ref.enabled = val;
+      }
       this.loader.geometryAttributeEnabled("color", val);
       return null;
     };
@@ -8391,6 +8449,7 @@
     };
 
     Carnival2.prototype.onEnterFrame = function() {
+      var _ref;
       if (!this.enableRender) {
         return;
       }
@@ -8403,7 +8462,9 @@
       this.moveDust();
       this.handleMultiCamera();
       this.renderer.clear();
-      this.windGenerator.update(this.renderer, this.delta);
+      if ((_ref = this.windGenerator) != null) {
+        _ref.update(this.renderer, this.delta);
+      }
       this.updateOcclusionScene();
       this.doRender();
       if (this.capturer) {
@@ -8430,7 +8491,9 @@
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
-        this.onWindEnabledChange(this.windGenerator.enabled);
+        if (this.windGenerator != null) {
+          this.onWindEnabledChange(this.windGenerator.enabled);
+        }
         this.windinitialSettings++;
       } else {
         this.windinitialSettings++;
@@ -8856,9 +8919,11 @@
       this.params.bloomPower = this.effectBloom.screenUniforms.opacity.value = 0.19;
       this.effectBloom.enabled = true;
       this.debugPaths = new THREE.Object3D;
-      this.windGenerator = new IFLWindGenerator();
-      this.windGenerator.noiseSpeed = 0.09;
-      this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      if (this.renderer.supportsVertexTextures()) {
+        this.windGenerator = new IFLWindGenerator();
+        this.windGenerator.noiseSpeed = 0.09;
+        this.windGenerator.enabled = this.oz().appView.displayQuality !== "low" ? true : false;
+      }
       this.colorCorrection.uniforms.vignetteOffset.value = 0.2;
       this.colorCorrection.uniforms.vignetteDarkness.value = 1;
       if (this.oz().appView.debugMode) {
@@ -8867,7 +8932,7 @@
       this.onColorCorrectionChange();
       this.autoPerformance.steps.push({
         name: "Wind",
-        enabled: this.windGenerator.enabled,
+        enabled: this.windGenerator != null ? this.windGenerator.enabled : false,
         priority: 50,
         disableFunc: this.onWindEnabledChange
       });
@@ -8956,12 +9021,14 @@
     };
 
     Carnival3.prototype.instanceWorld = function() {
-      var blacklist, blacklisted, cfm, customFrustumPos, customFrustumRad, desc, elem, foundObj, isBlacklisted, object, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
+      var blacklist, blacklisted, cfm, customFrustumPos, customFrustumRad, desc, dofblacklist, dofblacklisted, elem, foundObj, isBlacklisted, object, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _results;
       this.loadedScene = this.loader.createModel(true);
       desc = this.loadedScene.getDescendants();
+      blacklist = ["grass", "branch"];
+      dofblacklist = ["grass", "branch"];
       for (_i = 0, _len = desc.length; _i < _len; _i++) {
         elem = desc[_i];
-        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors) {
+        if ((((_ref = elem.material) != null ? (_ref1 = _ref.uniforms) != null ? _ref1.tWindForce : void 0 : void 0) != null) && elem.material.vertexColors === THREE.VertexColors && (this.windGenerator != null)) {
           elem.material.uniforms.tWindForce.value = this.windGenerator.noiseMap;
           elem.material.uniforms.windDirection.value.copy(this.windGenerator.windDirection);
         }
@@ -8982,7 +9049,6 @@
           }
         }
         if (this.oz().appView.displayQuality !== "hi") {
-          blacklist = ["grass", "branch"];
           isBlacklisted = false;
           for (_j = 0, _len1 = blacklist.length; _j < _len1; _j++) {
             blacklisted = blacklist[_j];
@@ -8997,6 +9063,13 @@
         } else {
           this.scene.add(elem);
         }
+        for (_k = 0, _len2 = dofblacklist.length; _k < _len2; _k++) {
+          dofblacklisted = dofblacklist[_k];
+          if (elem.name.toLowerCase().indexOf(dofblacklisted.toLowerCase()) !== -1) {
+            this.excludeFromDOF.push(elem);
+            break;
+          }
+        }
       }
       this.initTornado();
       this.initSun();
@@ -9010,8 +9083,8 @@
       this.pickableObjects = [];
       _ref2 = this.sceneDescendants;
       _results = [];
-      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-        object = _ref2[_k];
+      for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+        object = _ref2[_l];
         if (object.pickable === true) {
           _results.push(this.pickableObjects.push(object));
         }
@@ -9041,6 +9114,7 @@
       tornadoSize = 940;
       geom = new THREE.PlaneGeometry(tornadoSize, tornadoSize, 10, 10);
       this.tornado = new THREE.Mesh(geom, this.tornadomaterial);
+      this.excludeFromDOF.push(this.tornado);
       this.tornado.name = "tornado_animated";
       this.tornado.tornadoSize = tornadoSize;
       this.tornado.position.set(835, 470, -4100);
@@ -9081,7 +9155,9 @@
         mat.blending = THREE.AdditiveBlending;
         this.materialManager.matLib.push(mat);
         this.materialManager.texLib.push(mat.map);
-        shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        if (this.windGenerator != null) {
+          shader.uniforms["tWindForce"].value = this.windGenerator.noiseMap;
+        }
         geom = new THREE.Geometry();
         geom.vertices = [];
         num = this.oz().appView.displayQuality !== "low" ? 300 : 150;
@@ -9104,6 +9180,7 @@
           geom.vertices.push(vert);
         }
         particlesystem = new THREE.ParticleSystem(geom, mat);
+        this.excludeFromDOF.push(particlesystem);
         this.dustSystems.push(particlesystem);
         this.scene.add(particlesystem);
       }
@@ -9118,9 +9195,11 @@
       this.gui.add({
         value: 1.0
       }, 'value', 0, 10).name('Normal Scale').onChange(this.materialManager.changeNormalScale);
-      this.gui.add({
-        value: this.windGenerator.enabled
-      }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      if (this.windGenerator != null) {
+        this.gui.add({
+          value: this.windGenerator.enabled
+        }, 'value').name('Enable Wind').onChange(this.onWindEnabledChange);
+      }
       this.gui.add(this.mouseInteraction, "constantSpeed").name("Use Constant Speed");
       this.gui.add(this.mouseInteraction, "maxspeed", 0, 2).name("Maximum slide speed");
       this.gui.add(this.mouseInteraction, "maxYLookDeviation", 0, 100).name("Maximum Y Look");
@@ -9133,10 +9212,12 @@
     };
 
     Carnival3.prototype.onWindEnabledChange = function(value) {
-      var val;
+      var val, _ref;
       val = !(value != null) ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
-      this.windGenerator.enabled = val;
+      if ((_ref = this.windGenerator) != null) {
+        _ref.enabled = val;
+      }
       return this.loader.geometryAttributeEnabled("color", val);
     };
 
@@ -9269,7 +9350,9 @@
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
-        this.onWindEnabledChange(this.windGenerator.enabled);
+        if (this.windGenerator != null) {
+          this.onWindEnabledChange(this.windGenerator.enabled);
+        }
         this.windinitialSettings++;
       } else {
         this.windinitialSettings++;
@@ -18056,6 +18139,10 @@
       this.ctx.scale(-1, 1);
       this.videoDom = $('<video style="display:none;" autoplay="true"/>');
       $('body').prepend(this.videoDom);
+      if (!navigator.getUserMedia) {
+        this.onUserMediaError();
+        return;
+      }
       if (!(this.stream != null)) {
         navigator.getUserMedia({
           video: true,

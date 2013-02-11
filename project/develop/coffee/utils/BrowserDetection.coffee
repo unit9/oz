@@ -25,6 +25,9 @@ class BrowserDetection
         if ( @browser == 'Chrome' and ( @webGL && @webGLAdvanced ) ) || ( @forcePass == true )
             # all good
             @onSuccess()
+            # @onError
+            #     message : 'FF4_Safari_WebGLmessage'
+            #     buttons : ['FF4_Safari_WebGL_button1', 'FF4_Safari_WebGL_button2']            
 
         else if @browser == 'Chrome' and ( @webGL && !@webGLAdvanced )
             # chrome with webgl but no advanced feats (shitty chromebook) 

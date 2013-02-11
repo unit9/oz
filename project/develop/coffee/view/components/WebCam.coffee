@@ -21,6 +21,10 @@ class WebCam
         @videoDom = $('<video style="display:none;" autoplay="true"/>')
         $('body').prepend @videoDom
 
+        if !navigator.getUserMedia
+            @onUserMediaError()
+            return
+
         if !@stream?
             navigator.getUserMedia { video : true, audio : false }, @onUserMediaSuccess, @onUserMediaError
         else

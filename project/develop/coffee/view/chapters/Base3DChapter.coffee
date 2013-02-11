@@ -57,6 +57,7 @@ class Base3DChapter extends AbstractChapter
     lastKeyPress : 0
     pickableObjects : null
     emptyRenderPluginPost : null
+    excludeFromDOF : null
 
 
     # optimized intersects object stuff with custom array
@@ -100,6 +101,7 @@ class Base3DChapter extends AbstractChapter
     init:=>
 
         @emptyRenderPluginPost = []
+        @excludeFromDOF = []
         
         @clock =  new THREE.Clock()
         @pickMouse = 
@@ -606,12 +608,14 @@ class Base3DChapter extends AbstractChapter
                 @renderer.render( @scene, @camera, @dofpost.rtTextureColor );
             
 
-            
 
             # disable plugins
             @pPost = @renderer.renderPluginsPost
             @renderer.renderPluginsPost = @emptyRenderPluginPost
 
+            for elem in @sceneDescendants
+                if @excludeFromDOF.indexOf(elem) != -1
+                    elem.visible = false
 
             # override scene material
             @scene.overrideMaterial = @dofpost.material_depth;
@@ -634,6 +638,9 @@ class Base3DChapter extends AbstractChapter
             # undo override scene material
             @scene.overrideMaterial = null;
 
+            for elem in @sceneDescendants
+                if @excludeFromDOF.indexOf(elem) != -1
+                    elem.visible = true
 
 
             # Render bokeh composite into first composer texture

@@ -9,7 +9,6 @@ $ ->
 
     window.detection.onSuccess = () =>
 
-
         $('#detect').remove()
 
         $('.qualityCheck').css { 'display':'table' }
@@ -69,6 +68,8 @@ $ ->
         $('#detect .title').html( window.error.locale.get('homeTitle'))
         $('#detect .errorMessage span').html( window.error.locale.get(window.errorMessage.message))
 
+        window.addGAError()
+
         for button in window.errorMessage.buttons
 
             if window.showTechOrTrailer(button)
@@ -78,7 +79,7 @@ $ ->
                 b = $('<a/>')
                 b.css {'text-decoration' : 'none'}
 
-                if c == "_!_tryanyway"
+                if button == "FF4_Safari_WebGL_button2"
                     b.click window.tryAnyway
                 else 
                     b.attr
@@ -93,6 +94,13 @@ $ ->
                 if navigator.appVersion.indexOf("Win") != -1
                     $(b).css
                         "padding" : "7px 20px 8px 20px"
+
+    window.addGAError = () =>
+
+        require(["http://google-analytics.com/ga.js"], =>
+            pageTracker = _gat._getTracker("UA-37524215-3")
+            pageTracker._trackPageview('browser_error_page')
+        )
 
     window.getHTML5RocksUrl = (label, url) =>
 
@@ -111,6 +119,10 @@ $ ->
         return true
 
     window.tryAnyway = (event) =>
+        $('head').children().each (index, dom)=>
+            if(dom.src == "http://google-analytics.com/ga.js")
+                $(dom).remove()
+            
         event.preventDefault()
         window.detection.onSuccess()
 

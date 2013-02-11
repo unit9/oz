@@ -6166,6 +6166,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 			parameters.alphaTest ? "#define ALPHATEST " + parameters.alphaTest: "",
 
+			_supportsVertexTextures ? "#define VERTEX_TEXTURES" : "",
 			_this.gammaInput ? "#define GAMMA_INPUT" : "",
 			_this.gammaOutput ? "#define GAMMA_OUTPUT" : "",
 			_this.physicallyBasedShading ? "#define PHYSICALLY_BASED_SHADING" : "",

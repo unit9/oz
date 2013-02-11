@@ -65,16 +65,7 @@ class IFLPhongFresnelShaderDoubleLightMap extends IFLPhongFresnelShader
 
             "void main() {"
 
-                "gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 );"
-                
-                "#ifdef USE_MAP"
-                    "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
-                "#endif"
-
-
-                "#ifdef USE_MAP"
-                    "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
-                "#endif"   
+                "gl_FragColor = texture2D( map, vUv ) * diffuseMultiplier;"
 
                 "#ifdef USE_LIGHTMAP"
                     "vec4 map2col = mix( texture2D( lightMap, vUv2 ), texture2D( lightMap2, vUv2 ), lightmapBlend);"
@@ -83,41 +74,41 @@ class IFLPhongFresnelShaderDoubleLightMap extends IFLPhongFresnelShader
                 "#endif"
 
                 THREE.ShaderChunk[ "alphatest_fragment" ]
-                THREE.ShaderChunk[ "specularmap_fragment" ]
+                # THREE.ShaderChunk[ "specularmap_fragment" ]
 
-                "#ifdef USE_ENVMAP"
+
+                "#ifdef VERTEX_TEXTURES"
+
+                    "vec4 texelSpecular = texture2D( specularMap, vUv );"
+                    "float specularStrength = texelSpecular.r;"
+
+                    "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
+
+                    "vec4 cubeColor;"
                     "#ifdef DOUBLE_SIDED"
-                        "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
-                        "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
+                        "cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;"
                     "#else"
-                        "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
+                        "cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
                     "#endif"
-
 
                     # FRESNEL
-                    "float fresnel = 0.0;"
-
-                    "#ifdef VERTEX_TEXTURES"
-                        "#ifdef DOUBLE_SIDED"
-                            "fresnel = flipNormal * vFresnel;" 
-                        "#else"
-                            "fresnel = vFresnel;" 
-                        "#endif"
-                    "#else"
-                        "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
-                        "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
-                        "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
-                    "#endif"
+                    "float fresnel = flipNormal * vFresnel;"
+                    
+                    # "#if !defined(VERTEX_TEXTURES)"
+                    #     "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
+                    #     "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
+                    #     "fresnel = flipNormal * clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
+                    # "#endif"
 
                     # combine using fresnel term and specularStrength instaead of simple "specular"
                     # also multiply specular color to final result
-                    "#ifdef USE_SPECULARMAP"
-                        "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );"
-                    "#else"
-                        "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz,  fresnel * specularStrength  );"
-                    "#endif"
+                    "vec4 reflectTexel = cubeColor * texelSpecular;"
+                    "float reflectFresnel =  clamp(fresnel * specularStrength,0.0,1.0);"
+                    "gl_FragColor.xyz = mix( gl_FragColor.xyz, reflectTexel.xyz, reflectFresnel );"
 
                 "#endif"
+
+
                 
                 THREE.ShaderChunk[ "fog_fragment" ]
 

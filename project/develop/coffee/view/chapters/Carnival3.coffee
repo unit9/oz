@@ -127,9 +127,12 @@ class Carnival3 extends Base3DChapter
         @effectBloom.enabled = true
         
         @debugPaths = new THREE.Object3D
-        @windGenerator = new IFLWindGenerator()
-        @windGenerator.noiseSpeed = 0.09
-        @windGenerator.enabled = if @oz().appView.displayQuality != "low" then true else false
+
+        if @renderer.supportsVertexTextures()
+            @windGenerator = new IFLWindGenerator()
+            @windGenerator.noiseSpeed = 0.09
+            @windGenerator.enabled = if @oz().appView.displayQuality != "low" then true else false
+
        
         @colorCorrection.uniforms.vignetteOffset.value = 0.2
         @colorCorrection.uniforms.vignetteDarkness.value = 1       
@@ -142,7 +145,7 @@ class Carnival3 extends Base3DChapter
 
         @autoPerformance.steps.push 
             name : "Wind"
-            enabled : @windGenerator.enabled
+            enabled : if @windGenerator? then @windGenerator.enabled else false
             priority : 50
             disableFunc : @onWindEnabledChange
 
@@ -243,9 +246,15 @@ class Carnival3 extends Base3DChapter
         # console.log "Carnival3 instance world"
         @loadedScene = @loader.createModel(true)
         desc = @loadedScene.getDescendants()
+
+
+        blacklist = ["grass","branch"]
+        dofblacklist = ["grass","branch"]
+
+
         for elem in desc
  
-            if elem.material?.uniforms?.tWindForce? && elem.material.vertexColors == THREE.VertexColors
+            if elem.material?.uniforms?.tWindForce? && elem.material.vertexColors == THREE.VertexColors && @windGenerator?
                 elem.material.uniforms.tWindForce.value = @windGenerator.noiseMap
                 elem.material.uniforms.windDirection.value.copy @windGenerator.windDirection
 
@@ -267,7 +276,6 @@ class Carnival3 extends Base3DChapter
 
 
             if @oz().appView.displayQuality != "hi"
-                blacklist = ["grass","branch"]
                 isBlacklisted = false
                 for blacklisted in blacklist
                     if elem.name.toLowerCase().indexOf(blacklisted.toLowerCase()) != -1
@@ -279,6 +287,10 @@ class Carnival3 extends Base3DChapter
             else
                 @scene.add elem
   
+            for dofblacklisted in dofblacklist
+                if elem.name.toLowerCase().indexOf(dofblacklisted.toLowerCase()) != -1
+                    @excludeFromDOF.push(elem)
+                    break 
 
         # @scene.add @loadedScene
         @initTornado()
@@ -331,6 +343,7 @@ class Carnival3 extends Base3DChapter
         geom = new THREE.PlaneGeometry(tornadoSize,tornadoSize,10,10)
 
         @tornado = new THREE.Mesh(geom,@tornadomaterial)
+        @excludeFromDOF.push(@tornado)
         @tornado.name = "tornado_animated"
         @tornado.tornadoSize = tornadoSize
         @tornado.position.set(835,470,-4100)
@@ -374,7 +387,8 @@ class Carnival3 extends Base3DChapter
             @materialManager.matLib.push mat
             @materialManager.texLib.push mat.map
 
-            shader.uniforms["tWindForce"].value = @windGenerator.noiseMap
+            if @windGenerator?
+                shader.uniforms["tWindForce"].value = @windGenerator.noiseMap
 
 
             geom = new THREE.Geometry()
@@ -404,6 +418,7 @@ class Carnival3 extends Base3DChapter
 
                 geom.vertices.push vert
             particlesystem = new THREE.ParticleSystem( geom , mat )
+            @excludeFromDOF.push(particlesystem)
             @dustSystems.push particlesystem
             @scene.add particlesystem
         @
@@ -414,7 +429,8 @@ class Carnival3 extends Base3DChapter
         # fresnel = @gui.addFolder("Fresnel Material")
         @gui.add( {value:-2.5}, 'value',-5,20 ).name('Fresnel Power').onChange(@materialManager.changeFresnelPower)
         @gui.add( {value:1.0}, 'value',0,10 ).name('Normal Scale').onChange(@materialManager.changeNormalScale)
-        @gui.add( {value:@windGenerator.enabled}, 'value').name('Enable Wind').onChange(@onWindEnabledChange)
+        if @windGenerator?
+            @gui.add( {value:@windGenerator.enabled}, 'value').name('Enable Wind').onChange(@onWindEnabledChange)
 
         @gui.add(@mouseInteraction,"constantSpeed").name("Use Constant Speed")
         @gui.add(@mouseInteraction,"maxspeed",0,2).name("Maximum slide speed")
@@ -430,7 +446,7 @@ class Carnival3 extends Base3DChapter
         val = if !value? then false else ( if value? && value == true then true else false )
 
         @materialManager.vertexColorsEnabled(val)
-        @windGenerator.enabled = val
+        @windGenerator?.enabled = val
         @loader.geometryAttributeEnabled("color",val)
 
     onShowDebugPathChange:(value)=>
@@ -528,7 +544,8 @@ class Carnival3 extends Base3DChapter
 
         if !@windinitialSettings? then @windinitialSettings = 0
         if @windinitialSettings == 2
-            @onWindEnabledChange(@windGenerator.enabled)
+            if @windGenerator?
+                @onWindEnabledChange(@windGenerator.enabled)
             @windinitialSettings++        
         else
             @windinitialSettings++      

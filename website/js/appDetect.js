@@ -55,11 +55,8 @@
 
     function Locale() {
       this.get = __bind(this.get, this);
-
       this.loadBackup = __bind(this.loadBackup, this);
-
-      this.onSuccess = __bind(this.onSuccess, this);
-      _.extend(this, Backbone.Events);
+      this.onSuccess = __bind(this.onSuccess, this);      _.extend(this, Backbone.Events);
       this.lang = (navigator.language || navigator.userLanguage).toLowerCase();
       $.ajax({
         url: "/api/localisation/desktop/" + this.lang,
@@ -122,13 +119,9 @@
 
     function BrowserDetection() {
       this.testWebGLContext = __bind(this.testWebGLContext, this);
-
       this.onError = __bind(this.onError, this);
-
       this.onSuccess = __bind(this.onSuccess, this);
-
-      this.compare = __bind(this.compare, this);
-      this.browser = BrowserDetect.browser;
+      this.compare = __bind(this.compare, this);      this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
       try {
         this.webGLContext = this.testWebGLContext();
@@ -229,7 +222,7 @@
 
     BrowserDetection.prototype.testWebGLAdvancedFeats = function() {
       var dxt1Supported, dxt1rgbaSupported, dxt3Supported, dxt5Supported, format, formats, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
-      if (!(this.gl != null)) {
+      if (this.gl == null) {
         return false;
       }
       _glExtensionCompressedTextureS3TC = this.gl.getExtension('WEBGL_compressed_texture_s3tc') || this.gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || this.gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
@@ -343,6 +336,7 @@
       });
       $('#detect .title').html(window.error.locale.get('homeTitle'));
       $('#detect .errorMessage span').html(window.error.locale.get(window.errorMessage.message));
+      window.addGAError();
       _ref = window.errorMessage.buttons;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -353,7 +347,7 @@
           b.css({
             'text-decoration': 'none'
           });
-          if (c === "_!_tryanyway") {
+          if (button === "FF4_Safari_WebGL_button2") {
             b.click(window.tryAnyway);
           } else {
             b.attr({
@@ -377,6 +371,13 @@
       }
       return _results;
     };
+    window.addGAError = function() {
+      return require(["http://google-analytics.com/ga.js"], function() {
+        var pageTracker;
+        pageTracker = _gat._getTracker("UA-37524215-3");
+        return pageTracker._trackPageview('browser_error_page');
+      });
+    };
     window.getHTML5RocksUrl = function(label, url) {
       switch (label) {
         case "Chrome_NoWebGL_button2":
@@ -397,6 +398,11 @@
       return true;
     };
     window.tryAnyway = function(event) {
+      $('head').children().each(function(index, dom) {
+        if (dom.src === "http://google-analytics.com/ga.js") {
+          return $(dom).remove();
+        }
+      });
       event.preventDefault();
       return window.detection.onSuccess();
     };

@@ -4,25 +4,21 @@ class IFLColorCorrectionShader
     
     constructor:->
         @uniforms =
-            "tDiffuse" :    { type: "t", value: null }
-
+            "tDiffuse"              : { type: "t", value: null }
             # color correction
-            "saturation" :  { type: "v4", value: new THREE.Vector4( 0, 0, 0 , 1 ) }
-            "powRGB" :      { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
-            "mulRGB" :      { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
-
+            "saturation"            : { type: "v4", value: new THREE.Vector4( 0, 0, 0 , 1 ) }
+            "powRGB"                : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
+            "mulRGB"                : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
             # vignette 
-            "vignetteOffset":   { type: "f", value: 1.2 }
-            "vignetteDarkness": { type: "f", value: 1.3 }
-
+            "vignetteOffset"        : { type: "f", value: 1.2 }
+            "vignetteDarkness"      : { type: "f", value: 1.3 }
             # volumetric light
-            "volumetricLightX": {type: "f", value: 0.5}
-            "volumetricLightY": {type: "f", value: 0.5}
-            "enableVolumetricLight": {type: "i", value: 0}
-            "tVolumetricLight": { type: "t", value: null }
-
+            "volumetricLightX"      : {type: "f", value: 0.5}
+            "volumetricLightY"      : {type: "f", value: 0.5}
+            "enableVolumetricLight" : {type: "f", value: 0}
+            "tVolumetricLight"      : {type: "t", value: null }
             # overlay
-            "tOverlay": { type: "t", value: null }
+            "tOverlay"              : { type: "t", value: null }
 
     vertexShader: [
         "varying vec2 vUv;"
@@ -48,11 +44,12 @@ class IFLColorCorrectionShader
         "uniform float vignetteDarkness;"
 
         # volumetric light
-        "uniform bool enableVolumetricLight;"        
+        "uniform float enableVolumetricLight;"        
         "uniform float volumetricLightX;"
         "uniform float volumetricLightY;"   
         "uniform sampler2D tVolumetricLight;"
         "const int iSamples = 10;",
+        "const float volumetricEnabled = 1.0;",
 
         # overlay        
         "uniform sampler2D tOverlay;"
@@ -84,7 +81,7 @@ class IFLColorCorrectionShader
 
  
             # volumetric light
-            "if (enableVolumetricLight){"
+            "if (enableVolumetricLight == volumetricEnabled){"
                 "vec2 deltaTextCoord = vec2(vUv - vec2(volumetricLightX,volumetricLightY));"
                 "deltaTextCoord *= 1.0 /  float(iSamples) * 0.99;"
                 "vec2 coord = vUv;"

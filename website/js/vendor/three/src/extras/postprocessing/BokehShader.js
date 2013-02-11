@@ -53,7 +53,8 @@ THREE.BokehShader = {
 
 			"float factor = depth1.x - focus;",
 
-			"vec2 dofblur = vec2 ( clamp( factor * aperture, -maxblur, maxblur ) );",
+			"float blr = clamp( factor * aperture, -maxblur, maxblur );",
+			"vec2 dofblur = vec2 ( blr, blr );",
 
 			"vec2 dofblur9 = dofblur * 0.9;",
 			"vec2 dofblur7 = dofblur * 0.7;",
@@ -106,7 +107,7 @@ THREE.BokehShader = {
 			"col += texture2D( tColor, vUv.xy + ( vec2( -0.29, -0.29 ) * aspectcorrect ) * dofblur4 );",
 			"col += texture2D( tColor, vUv.xy + ( vec2(  0.0,   0.4  ) * aspectcorrect ) * dofblur4 );",
 
-			"gl_FragColor = col / 41.0;",
+			"gl_FragColor = col * 0.024;",
 			"gl_FragColor.a = 1.0;",
 
 		"}"

@@ -11,10 +11,11 @@ class IFLPhongFresnelShader
                 "emissive"              : { type: "c",  value: new THREE.Color( 0x000000 ) }
                 "specular"              : { type: "c",  value: new THREE.Color( 0x111111 ) }
                 "shininess"             : { type: "f",  value: 30 }
+                "wrapRGB"               : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
+                
                 "diffuseMultiplier"     : { type: "f",  value: 1 }
                 "envmapMultiplier"      : { type: "f",  value: 2 }
                 "lightMapMultiplier"    : { type: "f",  value: 1 }
-                "wrapRGB"               : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
                 "tAux"                  : { type: "t",  value: null }
                 "mFresnelPower"         : { type: "f",  value: -2.5 }
                 "windMin"               : { type: "v2", value: new THREE.Vector2(-400,-800) }
@@ -87,6 +88,7 @@ class IFLPhongFresnelShader
                 "vReflect = vec3(0.0,0.0,0.0);" 
             "#endif"
 
+            "vFresnel = 0.0;"
             # fresnel
             "#ifdef VERTEX_TEXTURES"
                 "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"
@@ -108,7 +110,8 @@ class IFLPhongFresnelShader
         THREE.ShaderChunk[ "map_pars_fragment" ]
         THREE.ShaderChunk[ "lightmap_pars_fragment" ]
         THREE.ShaderChunk[ "fog_pars_fragment" ]
-        THREE.ShaderChunk[ "specularmap_pars_fragment" ]
+        # THREE.ShaderChunk[ "specularmap_pars_fragment" ]
+        "uniform sampler2D specularMap;"
 
         "uniform vec3 diffuse;"
         "uniform float diffuseMultiplier;"
@@ -140,36 +143,39 @@ class IFLPhongFresnelShader
             "#endif"
 
             THREE.ShaderChunk[ "alphatest_fragment" ]
-            THREE.ShaderChunk[ "specularmap_fragment" ]
+            # THREE.ShaderChunk[ "specularmap_fragment" ]           
 
-            "#ifdef DOUBLE_SIDED"
-                "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
-                "vec4 cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;"
-            "#else"
-                "vec4 cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
-            "#endif"
-
-
-            # FRESNEL
-            "float fresnel = 0.0;"
 
             "#ifdef VERTEX_TEXTURES"
 
+                "vec4 texelSpecular = texture2D( specularMap, vUv );"
+                "float specularStrength = texelSpecular.r;"
+
+                "float flipNormal = ( -1.0 + 2.0 * float( gl_FrontFacing ) );"
+
+                "vec4 cubeColor;"
                 "#ifdef DOUBLE_SIDED"
-                    "fresnel = flipNormal * vFresnel;" 
+                    "cubeColor = textureCube( envMap, flipNormal * vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) *  envmapMultiplier;"
                 "#else"
-                    "fresnel = vFresnel;" 
+                    "cubeColor = textureCube( envMap, vec3( flipEnvMap * vReflect.x, vReflect.yz ) ) * envmapMultiplier;"
                 "#endif"
 
-            "#else"
-                "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
-                "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
-                "fresnel = clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
-            "#endif"
+                # FRESNEL
+                "float fresnel = flipNormal * vFresnel;"
+                
+                # "#if !defined(VERTEX_TEXTURES)"
+                #     "float fresnelFactor = 1.0 - texture2D( tAux, vUv ).r;"       
+                #     "float fresnelPow =  mFresnelPower + ( 5.0 * fresnelFactor );"
+                #     "fresnel = flipNormal * clamp( pow( 1.0 + dot( vMvPosition, vTransformedNormal ), fresnelPow ), 0.0, 1.0);" 
+                # "#endif"
 
-            # combine using fresnel term and specularStrength instaead of simple "specular"
-            # also multiply specular color to final result
-            "gl_FragColor.xyz = mix( gl_FragColor.xyz, cubeColor.xyz * texelSpecular.xyz ,  fresnel * specularStrength   );"
+                # combine using fresnel term and specularStrength instaead of simple "specular"
+                # also multiply specular color to final result
+                "vec4 reflectTexel = cubeColor * texelSpecular;"
+                "float reflectFresnel =  clamp(fresnel * specularStrength,0.0,1.0);"
+                "gl_FragColor.xyz = mix( gl_FragColor.xyz, reflectTexel.xyz , reflectFresnel );"
+
+            "#endif"
 
             THREE.ShaderChunk[ "fog_fragment" ]
 
