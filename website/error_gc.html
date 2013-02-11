@@ -336,6 +336,10 @@
             sendReport(data.webgl);
         }
 
+        $(document).ready(function(){
+            $('.errorMessage span').html($('.errorMessage span').text().replace("&lt;br&gt;", "<br>"));    
+        })
+
         </script>
     </head>
     <body>
