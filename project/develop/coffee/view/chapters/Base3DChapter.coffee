@@ -512,19 +512,14 @@ class Base3DChapter extends AbstractChapter
     onTouchStart:( event ) => 
         return unless @enableMouse
         @mouseDown = true
-
-        if event.touches.length == 1
-            event.preventDefault()
-            @mouseX = event.touches[ 0 ].pageX - @APP_HALF_X
-            @mouseY = event.touches[ 0 ].pageY - @APP_HALF_Y
     
     onTouchMove:( event ) =>
         return unless @enableMouse
 
-        if event.touches.length == 1
+        if event.originalEvent?.touches?.length == 1
             event.preventDefault()
-            @mouseX = event.touches[ 0 ].pageX - @APP_HALF_X
-            @mouseY = event.touches[ 0 ].pageY - @APP_HALF_Y
+            @mouseX = event.originalEvent.touches[ 0 ].pageX - @APP_HALF_X
+            @mouseY = event.originalEvent.touches[ 0 ].pageY - @APP_HALF_Y
 
     handleVirtualMouse:->
         # 38 up

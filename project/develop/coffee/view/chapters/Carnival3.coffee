@@ -624,6 +624,14 @@ class Carnival3 extends Base3DChapter
         @
 
 
+    onTouchEnd:( event ) => 
+        super
+        @mouseX = @mouseY = 0
+        @onMouseUp(event)  
+
+    onTouchStart:( event ) => 
+        super
+        @onMouseDown(event)
 
     onMouseDown:(event) =>
         super()

@@ -21,47 +21,18 @@ class LandingAgree extends BaseLandingOpenings
         ### Dividers ###
 
         topEnding = new SSAsset 'interface', 'final_end_top'
-
-        bottom = $('<div class="containerBottom" />')
-        bigDividerBottom = new SSAsset 'interface', 'bottomheader'
-        bigDividerBottom.$el.css {display: 'table-cell'}
-        bottom.append bigDividerBottom.$el
-
         header.addChild topEnding
-
-        @titles.$el.find('.openingTitlesHeader').css {'margin-top' : '0'}
-
-        ###bigDividerRight = new SSAsset 'interface', 'divider_large_left'
-        bigDividerLeft = new SSAsset 'interface', 'divider_large_right'
-        landing_top = new SSAsset 'interface', 'landing_top'
-        landing_top.$el.css
-            'margin' : '-10px auto'###
-
 
         bottom = $('<div class="containerBottom" />')
         bigDividerBottom = new SSAsset 'interface', 'landing_bottom'
-        bigDividerBottom.$el.css {display: 'table-cell'}
+        bigDividerBottom.$el.css {margin: '0 auto 0 auto'}
         bottom.append bigDividerBottom.$el
 
-        # ### Heading ###
-
-        # heading = new Abstract
-        # heading.dispose = () => return
-        # heading.$el.addClass 'heading'
-        # heading.$el.append("<span>#{@oz().locale.get 'waltHeader'}</span>")
-
-        # header.addChild bigDividerRight
-        # header.addChild heading
-        # header.addChild bigDividerLeft
-        
         header.$el.insertAfter(@titles.$el.children()[0])
 
         # add bottom divider
         @titles.header.append bottom
         @titles.fluorish.$el.remove()
-
-        bottom.width(bigDividerBottom.$el.width())
-        bottom.height(bigDividerBottom.$el.height())
 
         ### Check Box ###
 
@@ -89,11 +60,12 @@ class LandingAgree extends BaseLandingOpenings
 
         @titles.remove @titles.diamond
         @titles.addChild @buttonContainer
-        # @titles.addChild @titles.diamond
 
         @enableEnterButton false
 
-        #@titles.$el.prepend landing_top.$el
+        if(@oz().locale.lang == "ru" or @oz().locale.lang == "bg" or @oz().locale.lang == "uk")
+            @titles.header.css {'margin-top': '0'}
+            bottom.css {margin: '-5px auto 0 auto'}
 
         @show true
         null

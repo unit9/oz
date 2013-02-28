@@ -881,17 +881,11 @@
 
     function IFLLoader() {
       this.getNeedsUpdateFlag = __bind(this.getNeedsUpdateFlag, this);
-
       this.geometryAttributeEnabled = __bind(this.geometryAttributeEnabled, this);
-
       this.doParseLibrary = __bind(this.doParseLibrary, this);
-
       this.onXHRReadyStatusChange = __bind(this.onXHRReadyStatusChange, this);
-
       this.onXHRProgress = __bind(this.onXHRProgress, this);
-
-      this.onWorkerMessage = __bind(this.onWorkerMessage, this);
-      this.texCache = {};
+      this.onWorkerMessage = __bind(this.onWorkerMessage, this);      this.texCache = {};
       this.matCache = {};
       this.geometryLib = [];
       this.t = new Date().getTime();
@@ -974,7 +968,7 @@
       if (this.disposed) {
         return;
       }
-      if (!(data != null) || data.length === 0) {
+      if ((data == null) || data.length === 0) {
         throw "Error Loading File, length is 0";
       }
       this.t = new Date().getTime();
@@ -993,7 +987,7 @@
       if (this.disposed) {
         return;
       }
-      if (!(data != null) || data.length === 0) {
+      if ((data == null) || data.length === 0) {
         throw "Error Decompressing Library, length is 0";
       }
       time = (new Date().getTime() - this.t) / 1000;
@@ -1032,9 +1026,8 @@
       if (this.disposed) {
         return;
       }
-      if (!(data != null)) {
+      if (data == null) {
         "Error Parsing library, is null";
-
       }
       this.library = data;
       time = (new Date().getTime() - this.t) / 1000;
@@ -1111,7 +1104,7 @@
         return;
       }
       bmp = this.library._content[this.convertTextureIndex - 1];
-      if (!(data != null)) {
+      if (data == null) {
         throw "Bitmap " + bmp._reference.id + " contains invalid data";
       }
       bmp.converted = data;
@@ -1185,14 +1178,14 @@
       var bone, color_length, colors, geometry, index, isSkinnedMesh, material, normals, positions, ret, seconduvs, skinIndices, skinWeights, tangents, uvs, _i, _len, _ref;
       positions = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.POSITION];
       uvs = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.UV];
-      if (!(uvs != null)) {
+      if (uvs == null) {
         if (this.debugWarnings) {
           console.warn("Mesh " + iflmesh._reference.id + " has no UVs");
         }
       }
       seconduvs = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.SECONDARY_UV];
       normals = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.NORMALS];
-      if (!(normals != null)) {
+      if (normals == null) {
         if (this.debugWarnings) {
           console.warn("Mesh " + iflmesh._reference.id + " has no Normals");
         }
@@ -1206,7 +1199,7 @@
       skinWeights = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.JOINT_WEIGHTS];
       skinIndices = iflmesh.verticesDecomposed._data[this.IFLVertexAttribute.JOINT_INDICES];
       isSkinnedMesh = (skinWeights != null) && (skinIndices != null);
-      if (positions.length < 65535 && !isSkinnedMesh && iflmesh.subMeshes.length === 1 && !this.pickableObjects[iflmesh._reference.id] && !(seconduvs != null)) {
+      if (positions.length < 65535 && !isSkinnedMesh && iflmesh.subMeshes.length === 1 && !this.pickableObjects[iflmesh._reference.id] && (seconduvs == null)) {
         geometry = this.convertBufferGeometry(iflmesh, positions, uvs, normals, tangents, colors, color_length, isSkinnedMesh, skinWeights, skinIndices, seconduvs);
       } else {
         geometry = this.convertGeometry(iflmesh, positions, uvs, normals, tangents, colors, color_length, isSkinnedMesh, skinWeights, skinIndices, seconduvs);
@@ -1469,7 +1462,7 @@
       bindings = iflmesh.jointBindings;
       for (i = _i = 0, _ref = bindings.length; _i < _ref; i = _i += 1) {
         jo = this.library.getContent(bindings[i].jointID.id);
-        if (!(jo != null)) {
+        if (jo == null) {
           return null;
         }
         jointToBinding[jo._reference.id] = i;
@@ -1488,7 +1481,6 @@
       sk.name = root.id;
       jointToIndex = [];
       skeletonJoint;
-
       for (i = _k = 0, _ref1 = bindings.length; _k < _ref1; i = _k += 1) {
         skeletonJoint = {};
         skeletonJoint.name = joints[i]._reference.id;
@@ -1505,7 +1497,7 @@
       for (i = _l = 0, _ref2 = bindings.length; _l < _ref2; i = _l += 1) {
         skeletonJoint = sk[i];
         parent = this.library.findJointParent(joints[i]);
-        if (!(parent != null)) {
+        if (parent == null) {
           skeletonJoint.parent = -1;
         } else {
           if (parent.iflType === "IFLJoint") {
@@ -1578,7 +1570,7 @@
 
     IFLLoader.prototype.findJointParent = function(joint, root) {
       var childID, p, _i, _len, _ref;
-      if (!(root != null)) {
+      if (root == null) {
         return null;
       }
       _ref = root.childIDs;
@@ -1757,14 +1749,14 @@
     IFLLoader.prototype.getTexture = function(id) {
       var ret, tex;
       tex = this.library.getContent(id);
-      if (!(tex != null)) {
+      if (tex == null) {
         if (this.debugWarnings) {
           console.warn("[" + this.url + "] Texture " + id + " not found");
         }
         return null;
       }
       if (tex.converted != null) {
-        if (!(this.texCache[tex._reference.id] != null) || !this.enableTextureCache) {
+        if ((this.texCache[tex._reference.id] == null) || !this.enableTextureCache) {
           this.texCache[tex._reference.id] = ret = new THREE.DataTexture(tex.converted, tex._width, tex._height, tex._hasOriginalByteArray ? THREE.RGBFormat : THREE.RGBAFormat);
         } else {
           ret = this.texCache[tex._reference.id];
@@ -1926,7 +1918,7 @@
       },
       findParent: function(node, parent) {
         var ch, childID, p, rootNode, rootNodes, _i, _j, _len, _len1, _ref;
-        if (!(parent != null)) {
+        if (parent == null) {
           rootNodes = this.getRootNodes();
           for (_i = 0, _len = rootNodes.length; _i < _len; _i++) {
             rootNode = rootNodes[_i];
@@ -2316,31 +2308,18 @@
 
     function IFLMaterialManager(params) {
       this.vertexColorsEnabled = __bind(this.vertexColorsEnabled, this);
-
       this.changeNormalScale = __bind(this.changeNormalScale, this);
-
       this.changeFresnelPower = __bind(this.changeFresnelPower, this);
-
       this.instanceFresnelMaterial = __bind(this.instanceFresnelMaterial, this);
-
       this.instanceFresnelDoubleLightmapMaterial = __bind(this.instanceFresnelDoubleLightmapMaterial, this);
-
       this.instanceSimpleDobleLightmapMaterial = __bind(this.instanceSimpleDobleLightmapMaterial, this);
-
       this.instanceSimpleMaterial = __bind(this.instanceSimpleMaterial, this);
-
       this.instanceMeshBasicMaterial = __bind(this.instanceMeshBasicMaterial, this);
-
       this.instanceTerrainMaterial = __bind(this.instanceTerrainMaterial, this);
-
       this.instanceMaterial = __bind(this.instanceMaterial, this);
-
       this.onTextureComplete = __bind(this.onTextureComplete, this);
-
       this.onTextureProgress = __bind(this.onTextureProgress, this);
-
-      this.onTextureError = __bind(this.onTextureError, this);
-      if (params != null) {
+      this.onTextureError = __bind(this.onTextureError, this);      if (params != null) {
         this.init(params);
       }
       this.texLib = [];
@@ -2906,9 +2885,7 @@
 
     function IFLModelManager() {
       this.localCallBack = __bind(this.localCallBack, this);
-
       this.batchLoadingPhaseManager = __bind(this.batchLoadingPhaseManager, this);
-
     }
 
     IFLModelManager.prototype.BatchLoadingPhase = {
@@ -2963,7 +2940,7 @@
     IFLModelManager.prototype.prefetchEnabled = true;
 
     IFLModelManager.getInstance = function() {
-      if (!(this._instance != null)) {
+      if (this._instance == null) {
         this._instance = new this;
         this._instance.init();
       }
@@ -3558,9 +3535,7 @@
 
     function IFLOzifyParticleSystem(centerMesh, scene, appHeight) {
       this.finalize = __bind(this.finalize, this);
-
-      this.updateParticles = __bind(this.updateParticles, this);
-      this.centerMesh = centerMesh;
+      this.updateParticles = __bind(this.updateParticles, this);      this.centerMesh = centerMesh;
       this.scene = scene;
       this.initParticleSystem(appHeight);
     }
@@ -3761,8 +3736,7 @@
     __extends(CollectionSpriteSheets, _super);
 
     function CollectionSpriteSheets() {
-      this.get = __bind(this.get, this);
-      return CollectionSpriteSheets.__super__.constructor.apply(this, arguments);
+      this.get = __bind(this.get, this);      return CollectionSpriteSheets.__super__.constructor.apply(this, arguments);
     }
 
     CollectionSpriteSheets.prototype.model = SpriteSheetModel;
@@ -3819,9 +3793,7 @@
 
     function Router() {
       this.navigateTo = __bind(this.navigateTo, this);
-
-      this.hashChanged = __bind(this.hashChanged, this);
-      return Router.__super__.constructor.apply(this, arguments);
+      this.hashChanged = __bind(this.hashChanged, this);      return Router.__super__.constructor.apply(this, arguments);
     }
 
     Router.EVENT_HASH_CHANGED = 'EVENT_HASH_CHANGED';
@@ -3890,13 +3862,9 @@
 
     function AssetLoader() {
       this.handleFileError = __bind(this.handleFileError, this);
-
       this.handleFileLoaded = __bind(this.handleFileLoaded, this);
-
       this.handleOverallProgress = __bind(this.handleOverallProgress, this);
-
-      this.loadFiles = __bind(this.loadFiles, this);
-      _.extend(this, Backbone.Events);
+      this.loadFiles = __bind(this.loadFiles, this);      _.extend(this, Backbone.Events);
       this.preload = new createjs.PreloadJS;
       this.preload.onFileLoad = this.handleFileLoaded;
       this.preload.onError = this.handleFileError;
@@ -4374,13 +4342,9 @@
 
     function BrowserDetection() {
       this.testWebGLContext = __bind(this.testWebGLContext, this);
-
       this.onError = __bind(this.onError, this);
-
       this.onSuccess = __bind(this.onSuccess, this);
-
-      this.compare = __bind(this.compare, this);
-      this.browser = BrowserDetect.browser;
+      this.compare = __bind(this.compare, this);      this.browser = BrowserDetect.browser;
       this.browserVersion = BrowserDetect.version;
       try {
         this.webGLContext = this.testWebGLContext();
@@ -4481,7 +4445,7 @@
 
     BrowserDetection.prototype.testWebGLAdvancedFeats = function() {
       var dxt1Supported, dxt1rgbaSupported, dxt3Supported, dxt5Supported, format, formats, _glExtensionCompressedTextureS3TC, _glExtensionTextureFilterAnisotropic, _i, _len;
-      if (!(this.gl != null)) {
+      if (this.gl == null) {
         return false;
       }
       _glExtensionCompressedTextureS3TC = this.gl.getExtension('WEBGL_compressed_texture_s3tc') || this.gl.getExtension('MOZ_WEBGL_compressed_texture_s3tc') || this.gl.getExtension('WEBKIT_WEBGL_compressed_texture_s3tc');
@@ -4769,21 +4733,13 @@
 
     function BaseAssets() {
       this.onFileComplete = __bind(this.onFileComplete, this);
-
       this.onFail = __bind(this.onFail, this);
-
       this.onProgress = __bind(this.onProgress, this);
-
       this.get = __bind(this.get, this);
-
       this.onCollectionError = __bind(this.onCollectionError, this);
-
       this.onCollectionSuccess = __bind(this.onCollectionSuccess, this);
-
       this.init = __bind(this.init, this);
-
-      this.loadBatch = __bind(this.loadBatch, this);
-      _.extend(this, Backbone.Events);
+      this.loadBatch = __bind(this.loadBatch, this);      _.extend(this, Backbone.Events);
       null;
     }
 
@@ -4873,11 +4829,8 @@
 
     function Locale() {
       this.get = __bind(this.get, this);
-
       this.loadBackup = __bind(this.loadBackup, this);
-
-      this.onSuccess = __bind(this.onSuccess, this);
-      _.extend(this, Backbone.Events);
+      this.onSuccess = __bind(this.onSuccess, this);      _.extend(this, Backbone.Events);
       this.lang = (navigator.language || navigator.userLanguage).toLowerCase();
       $.ajax({
         url: "/api/localisation/desktop/" + this.lang,
@@ -4973,9 +4926,7 @@
 
     function Templates(templates) {
       this.get = __bind(this.get, this);
-
-      this.parseXML = __bind(this.parseXML, this);
-      _.extend(this, Backbone.Events);
+      this.parseXML = __bind(this.parseXML, this);      _.extend(this, Backbone.Events);
       this.parseXML(templates);
       null;
     }
@@ -5012,55 +4963,30 @@
 
     function Abstract() {
       this.oz = __bind(this.oz, this);
-
       this.onAssetsComplete = __bind(this.onAssetsComplete, this);
-
       this.onUnLock = __bind(this.onUnLock, this);
-
       this.onLock = __bind(this.onLock, this);
-
       this.onLockMouseMove = __bind(this.onLockMouseMove, this);
-
       this.pointerLockChange = __bind(this.pointerLockChange, this);
-
       this.releasePointLock = __bind(this.releasePointLock, this);
-
       this.pointLock = __bind(this.pointLock, this);
-
       this.onAssetsProgress = __bind(this.onAssetsProgress, this);
-
       this.onAssetsInitLoading = __bind(this.onAssetsInitLoading, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.mouseEnabled = __bind(this.mouseEnabled, this);
-
       this.show = __bind(this.show, this);
-
       this.hide = __bind(this.hide, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.remove = __bind(this.remove, this);
-
       this.addChild = __bind(this.addChild, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.move = __bind(this.move, this);
-
       this.empty = __bind(this.empty, this);
-
       this.render = __bind(this.render, this);
-
       this.pause = __bind(this.pause, this);
-
       this.resume = __bind(this.resume, this);
-
       this.update = __bind(this.update, this);
-
-      this.init = __bind(this.init, this);
-      return Abstract.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Abstract.__super__.constructor.apply(this, arguments);
     }
 
     Abstract.prototype.el = null;
@@ -5431,31 +5357,18 @@
 
     function AbstractButton() {
       this.oz = __bind(this.oz, this);
-
       this.show = __bind(this.show, this);
-
       this.hide = __bind(this.hide, this);
-
       this.pause = __bind(this.pause, this);
-
       this.resume = __bind(this.resume, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.changeLabel = __bind(this.changeLabel, this);
-
       this.onclick = __bind(this.onclick, this);
-
       this.onout = __bind(this.onout, this);
-
       this.onover = __bind(this.onover, this);
-
       this.disable = __bind(this.disable, this);
-
       this.enable = __bind(this.enable, this);
-
-      this.init = __bind(this.init, this);
-      return AbstractButton.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return AbstractButton.__super__.constructor.apply(this, arguments);
     }
 
     AbstractButton.prototype.el = null;
@@ -5617,8 +5530,7 @@
     __extends(AbstractChapter, _super);
 
     function AbstractChapter() {
-      this.addChapterInstructions = __bind(this.addChapterInstructions, this);
-      return AbstractChapter.__super__.constructor.apply(this, arguments);
+      this.addChapterInstructions = __bind(this.addChapterInstructions, this);      return AbstractChapter.__super__.constructor.apply(this, arguments);
     }
 
     AbstractChapter.prototype.tagName = 'div';
@@ -5643,29 +5555,17 @@
 
     function AbstractScene() {
       this.dispose = __bind(this.dispose, this);
-
       this.hideShare = __bind(this.hideShare, this);
-
       this.addShare = __bind(this.addShare, this);
-
       this.onClose = __bind(this.onClose, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.removeCloseButton = __bind(this.removeCloseButton, this);
-
       this.addCloseButton = __bind(this.addCloseButton, this);
-
       this.debugBoundary = __bind(this.debugBoundary, this);
-
       this.flashIconHelper = __bind(this.flashIconHelper, this);
-
       this.removeCameraHelper = __bind(this.removeCameraHelper, this);
-
       this.addCameraHelper = __bind(this.addCameraHelper, this);
-
-      this.addLayout = __bind(this.addLayout, this);
-      return AbstractScene.__super__.constructor.apply(this, arguments);
+      this.addLayout = __bind(this.addLayout, this);      return AbstractScene.__super__.constructor.apply(this, arguments);
     }
 
     AbstractScene.prototype.tagName = 'div';
@@ -5831,53 +5731,29 @@
 
     function Base3DChapter() {
       this.dispose = __bind(this.dispose, this);
-
       this.onWorldLoaded = __bind(this.onWorldLoaded, this);
-
       this.onWorldProgress = __bind(this.onWorldProgress, this);
-
       this.onCameraReady = __bind(this.onCameraReady, this);
-
       this.changeView = __bind(this.changeView, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onTouchMove = __bind(this.onTouchMove, this);
-
       this.onTouchStart = __bind(this.onTouchStart, this);
-
       this.onTouchEnd = __bind(this.onTouchEnd, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.onMouseLeave = __bind(this.onMouseLeave, this);
-
       this.onMouseEnter = __bind(this.onMouseEnter, this);
-
       this.onKeyUp = __bind(this.onKeyUp, this);
-
       this.onKeyDown = __bind(this.onKeyDown, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
       this.onMouseClick = __bind(this.onMouseClick, this);
-
       this.onDOFChange = __bind(this.onDOFChange, this);
-
       this.onColorCorrectionChange = __bind(this.onColorCorrectionChange, this);
-
       this.onFogColorChange = __bind(this.onFogColorChange, this);
-
       this.initGUI = __bind(this.initGUI, this);
-
       this.init = __bind(this.init, this);
-
-      this.onRenderingError = __bind(this.onRenderingError, this);
-      return Base3DChapter.__super__.constructor.apply(this, arguments);
+      this.onRenderingError = __bind(this.onRenderingError, this);      return Base3DChapter.__super__.constructor.apply(this, arguments);
     }
 
     Base3DChapter.prototype.guicontainer = null;
@@ -6325,22 +6201,18 @@
       if (!this.enableMouse) {
         return;
       }
-      this.mouseDown = true;
-      if (event.touches.length === 1) {
-        event.preventDefault();
-        this.mouseX = event.touches[0].pageX - this.APP_HALF_X;
-        return this.mouseY = event.touches[0].pageY - this.APP_HALF_Y;
-      }
+      return this.mouseDown = true;
     };
 
     Base3DChapter.prototype.onTouchMove = function(event) {
+      var _ref, _ref1;
       if (!this.enableMouse) {
         return;
       }
-      if (event.touches.length === 1) {
+      if (((_ref = event.originalEvent) != null ? (_ref1 = _ref.touches) != null ? _ref1.length : void 0 : void 0) === 1) {
         event.preventDefault();
-        this.mouseX = event.touches[0].pageX - this.APP_HALF_X;
-        return this.mouseY = event.touches[0].pageY - this.APP_HALF_Y;
+        this.mouseX = event.originalEvent.touches[0].pageX - this.APP_HALF_X;
+        return this.mouseY = event.originalEvent.touches[0].pageY - this.APP_HALF_Y;
       }
     };
 
@@ -6699,39 +6571,24 @@
 
     function Carnival() {
       this.dispose = __bind(this.dispose, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.changeView = __bind(this.changeView, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
+      this.onTouchStart = __bind(this.onTouchStart, this);
+      this.onTouchEnd = __bind(this.onTouchEnd, this);
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onShowDebugPathChange = __bind(this.onShowDebugPathChange, this);
-
       this.onWindEnabledChange = __bind(this.onWindEnabledChange, this);
-
       this.instanceWorld = __bind(this.instanceWorld, this);
-
       this.show = __bind(this.show, this);
-
       this.advanceLoading = __bind(this.advanceLoading, this);
-
       this.onSceneLoaded = __bind(this.onSceneLoaded, this);
-
       this.onSceneProgress = __bind(this.onSceneProgress, this);
-
       this.onTextureComplete = __bind(this.onTextureComplete, this);
-
       this.onTextureProgress = __bind(this.onTextureProgress, this);
-
       this.onSettingsLoaded = __bind(this.onSettingsLoaded, this);
-
-      this.render = __bind(this.render, this);
-      return Carnival.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);      return Carnival.__super__.constructor.apply(this, arguments);
     }
 
     Carnival.prototype.settings = null;
@@ -7360,7 +7217,7 @@
 
     Carnival.prototype.onWindEnabledChange = function(value) {
       var val, _ref;
-      val = !(value != null) ? false : ((value != null) && value === true ? true : false);
+      val = value == null ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
       if ((_ref = this.windGenerator) != null) {
         _ref.enabled = val;
@@ -7467,7 +7324,7 @@
 
     Carnival.prototype.handleMultiCamera = function() {
       if (!this.isGoingToInteractive) {
-        if ((!(this.controls != null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
+        if (((this.controls == null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
           this.camera.matrixAutoUpdate = false;
           return this.mouseInteraction.update(this.delta, this.mouseX, this.mouseY);
         } else {
@@ -7479,7 +7336,7 @@
     };
 
     Carnival.prototype.adjustInitialSettings = function() {
-      if (!(this.windinitialSettings != null)) {
+      if (this.windinitialSettings == null) {
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
@@ -7628,6 +7485,17 @@
       this.hotspotManager.interactiveCameraTween(currentlookat, afterInteractivePosition, afterInteractiveLookat, 50, 500);
       this.currentCutout = name;
       return this;
+    };
+
+    Carnival.prototype.onTouchEnd = function(event) {
+      Carnival.__super__.onTouchEnd.apply(this, arguments);
+      this.mouseX = this.mouseY = 0;
+      return this.onMouseUp(event);
+    };
+
+    Carnival.prototype.onTouchStart = function(event) {
+      Carnival.__super__.onTouchStart.apply(this, arguments);
+      return this.onMouseDown(event);
     };
 
     Carnival.prototype.onMouseDown = function(event) {
@@ -7837,39 +7705,24 @@
 
     function Carnival2() {
       this.dispose = __bind(this.dispose, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
+      this.onTouchStart = __bind(this.onTouchStart, this);
+      this.onTouchEnd = __bind(this.onTouchEnd, this);
       this.changeView = __bind(this.changeView, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onShowDebugPathChange = __bind(this.onShowDebugPathChange, this);
-
       this.onWindEnabledChange = __bind(this.onWindEnabledChange, this);
-
       this.instanceWorld = __bind(this.instanceWorld, this);
-
       this.advanceLoading = __bind(this.advanceLoading, this);
-
       this.show = __bind(this.show, this);
-
       this.onSceneLoaded = __bind(this.onSceneLoaded, this);
-
       this.onSceneProgress = __bind(this.onSceneProgress, this);
-
       this.onTextureComplete = __bind(this.onTextureComplete, this);
-
       this.onTextureProgress = __bind(this.onTextureProgress, this);
-
       this.onSettingsLoaded = __bind(this.onSettingsLoaded, this);
-
-      this.render = __bind(this.render, this);
-      return Carnival2.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);      return Carnival2.__super__.constructor.apply(this, arguments);
     }
 
     Carnival2.prototype.settings = null;
@@ -8371,7 +8224,7 @@
 
     Carnival2.prototype.onWindEnabledChange = function(value) {
       var val, _ref;
-      val = !(value != null) ? false : ((value != null) && value === true ? true : false);
+      val = value == null ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
       if ((_ref = this.windGenerator) != null) {
         _ref.enabled = val;
@@ -8475,7 +8328,7 @@
 
     Carnival2.prototype.handleMultiCamera = function() {
       if (!this.isGoingToInteractive) {
-        if ((!(this.controls != null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
+        if (((this.controls == null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
           this.camera.matrixAutoUpdate = false;
           return this.mouseInteraction.update(this.delta, this.mouseX, this.mouseY);
         } else {
@@ -8487,7 +8340,7 @@
     };
 
     Carnival2.prototype.updateInitialSettings = function() {
-      if (!(this.windinitialSettings != null)) {
+      if (this.windinitialSettings == null) {
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
@@ -8600,6 +8453,17 @@
         }
       }
       return this;
+    };
+
+    Carnival2.prototype.onTouchEnd = function(event) {
+      Carnival2.__super__.onTouchEnd.apply(this, arguments);
+      this.mouseX = this.mouseY = 0;
+      return this.onMouseUp(event);
+    };
+
+    Carnival2.prototype.onTouchStart = function(event) {
+      Carnival2.__super__.onTouchStart.apply(this, arguments);
+      return this.onMouseDown(event);
     };
 
     Carnival2.prototype.onMouseDown = function(event) {
@@ -8753,39 +8617,24 @@
 
     function Carnival3() {
       this.dispose = __bind(this.dispose, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
+      this.onTouchStart = __bind(this.onTouchStart, this);
+      this.onTouchEnd = __bind(this.onTouchEnd, this);
       this.changeView = __bind(this.changeView, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onShowDebugPathChange = __bind(this.onShowDebugPathChange, this);
-
       this.onWindEnabledChange = __bind(this.onWindEnabledChange, this);
-
       this.instanceWorld = __bind(this.instanceWorld, this);
-
       this.advanceLoading = __bind(this.advanceLoading, this);
-
       this.show = __bind(this.show, this);
-
       this.onSceneLoaded = __bind(this.onSceneLoaded, this);
-
       this.onSceneProgress = __bind(this.onSceneProgress, this);
-
       this.onTextureComplete = __bind(this.onTextureComplete, this);
-
       this.onTextureProgress = __bind(this.onTextureProgress, this);
-
       this.onSettingsLoaded = __bind(this.onSettingsLoaded, this);
-
-      this.render = __bind(this.render, this);
-      return Carnival3.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);      return Carnival3.__super__.constructor.apply(this, arguments);
     }
 
     Carnival3.prototype.settings = null;
@@ -9213,7 +9062,7 @@
 
     Carnival3.prototype.onWindEnabledChange = function(value) {
       var val, _ref;
-      val = !(value != null) ? false : ((value != null) && value === true ? true : false);
+      val = value == null ? false : ((value != null) && value === true ? true : false);
       this.materialManager.vertexColorsEnabled(val);
       if ((_ref = this.windGenerator) != null) {
         _ref.enabled = val;
@@ -9325,7 +9174,7 @@
     Carnival3.prototype.handleMultiCamera = function() {
       var _ref, _ref1, _ref2, _ref3;
       if (!this.isGoingToInteractive) {
-        if ((!(this.controls != null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
+        if (((this.controls == null) || ((this.controls != null) && !this.controls.enabled)) && this.enableMouse) {
           if ((_ref = this.camera) != null) {
             _ref.matrixAutoUpdate = false;
           }
@@ -9346,7 +9195,7 @@
     };
 
     Carnival3.prototype.updateInitialSettings = function() {
-      if (!(this.windinitialSettings != null)) {
+      if (this.windinitialSettings == null) {
         this.windinitialSettings = 0;
       }
       if (this.windinitialSettings === 2) {
@@ -9406,6 +9255,17 @@
         this.oz().router.navigateTo(view);
       }
       return this;
+    };
+
+    Carnival3.prototype.onTouchEnd = function(event) {
+      Carnival3.__super__.onTouchEnd.apply(this, arguments);
+      this.mouseX = this.mouseY = 0;
+      return this.onMouseUp(event);
+    };
+
+    Carnival3.prototype.onTouchStart = function(event) {
+      Carnival3.__super__.onTouchStart.apply(this, arguments);
+      return this.onMouseDown(event);
     };
 
     Carnival3.prototype.onMouseDown = function(event) {
@@ -9571,31 +9431,18 @@
 
     function Final() {
       this.dispose = __bind(this.dispose, this);
-
       this.changeView = __bind(this.changeView, this);
-
       this.onWorldProgress = __bind(this.onWorldProgress, this);
-
       this.cleanloading = __bind(this.cleanloading, this);
-
       this.render = __bind(this.render, this);
-
       this.showVideo = __bind(this.showVideo, this);
-
       this.resume = __bind(this.resume, this);
-
       this.pause = __bind(this.pause, this);
-
       this.videoEnded = __bind(this.videoEnded, this);
-
       this.playVideo = __bind(this.playVideo, this);
-
       this.fadeIn = __bind(this.fadeIn, this);
-
       this.changeState = __bind(this.changeState, this);
-
-      this.init = __bind(this.init, this);
-      return Final.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Final.__super__.constructor.apply(this, arguments);
     }
 
     Final.prototype.simulate = null;
@@ -9767,9 +9614,7 @@
 
     function Payoff() {
       this.dispose = __bind(this.dispose, this);
-
-      this.showVideo = __bind(this.showVideo, this);
-      return Payoff.__super__.constructor.apply(this, arguments);
+      this.showVideo = __bind(this.showVideo, this);      return Payoff.__super__.constructor.apply(this, arguments);
     }
 
     Payoff.prototype.className = "payoff";
@@ -9808,55 +9653,30 @@
 
     function Cutout() {
       this.dispose = __bind(this.dispose, this);
-
       this.moveCamera = __bind(this.moveCamera, this);
-
       this.backButtonClick = __bind(this.backButtonClick, this);
-
       this.nextButtonClick = __bind(this.nextButtonClick, this);
-
       this.enableButtons = __bind(this.enableButtons, this);
-
       this.changeButtonsState = __bind(this.changeButtonsState, this);
-
       this.showShareBox = __bind(this.showShareBox, this);
-
       this.requestSaveDone = __bind(this.requestSaveDone, this);
-
       this.fail = __bind(this.fail, this);
-
       this.shareClick = __bind(this.shareClick, this);
-
       this.onPolaroidOz = __bind(this.onPolaroidOz, this);
-
       this.takePicture = __bind(this.takePicture, this);
-
       this.tryAgainClick = __bind(this.tryAgainClick, this);
-
       this.addShareButtons = __bind(this.addShareButtons, this);
-
       this.addTakePictureButtons = __bind(this.addTakePictureButtons, this);
-
       this.onKeyPress = __bind(this.onKeyPress, this);
-
       this.addInterface = __bind(this.addInterface, this);
-
       this.startRenderVideo = __bind(this.startRenderVideo, this);
-
       this.restoreMenu = __bind(this.restoreMenu, this);
-
       this.onCamFailClose = __bind(this.onCamFailClose, this);
-
       this.onCamFail = __bind(this.onCamFail, this);
-
       this.render = __bind(this.render, this);
-
       this.onAssetsComplete = __bind(this.onAssetsComplete, this);
-
       this.onClose = __bind(this.onClose, this);
-
-      this.init = __bind(this.init, this);
-      return Cutout.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Cutout.__super__.constructor.apply(this, arguments);
     }
 
     Cutout.prototype.video = null;
@@ -10274,27 +10094,16 @@
 
     function CutoutCanvas() {
       this.dispose = __bind(this.dispose, this);
-
       this.getPhoto = __bind(this.getPhoto, this);
-
       this.reset = __bind(this.reset, this);
-
       this.createTextureWebCam = __bind(this.createTextureWebCam, this);
-
       this.renderTexture = __bind(this.renderTexture, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.resume = __bind(this.resume, this);
-
       this.pause = __bind(this.pause, this);
-
       this.changeCamera = __bind(this.changeCamera, this);
-
       this.setup = __bind(this.setup, this);
-
-      this.init = __bind(this.init, this);
-      return CutoutCanvas.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return CutoutCanvas.__super__.constructor.apply(this, arguments);
     }
 
     CutoutCanvas.prototype.ctx = null;
@@ -10515,17 +10324,11 @@
 
     function CutoutPolaroid() {
       this.onClick = __bind(this.onClick, this);
-
       this.update = __bind(this.update, this);
-
       this.animateOut = __bind(this.animateOut, this);
-
       this.animateIn = __bind(this.animateIn, this);
-
       this.addShareButtons = __bind(this.addShareButtons, this);
-
-      this.init = __bind(this.init, this);
-      return CutoutPolaroid.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return CutoutPolaroid.__super__.constructor.apply(this, arguments);
     }
 
     CutoutPolaroid.prototype.className = 'cutout_polaroid';
@@ -10691,9 +10494,7 @@
 
     function ThumbCutout() {
       this.initAnimation = __bind(this.initAnimation, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ThumbCutout.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ThumbCutout.__super__.constructor.apply(this, arguments);
     }
 
     ThumbCutout.prototype.fullImg = null;
@@ -10751,25 +10552,15 @@
 
     function Loading() {
       this.dispose = __bind(this.dispose, this);
-
       this.onClick = __bind(this.onClick, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.hide = __bind(this.hide, this);
-
       this.onAnimateOut = __bind(this.onAnimateOut, this);
-
       this.onAnimateIn = __bind(this.onAnimateIn, this);
-
       this.update = __bind(this.update, this);
-
       this.render = __bind(this.render, this);
-
       this.changeCopy = __bind(this.changeCopy, this);
-
-      this.init = __bind(this.init, this);
-      return Loading.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Loading.__super__.constructor.apply(this, arguments);
     }
 
     Loading.prototype.angleX = 0;
@@ -10982,19 +10773,12 @@
 
     function LoadingCard() {
       this.dispose = __bind(this.dispose, this);
-
       this.resetRotation = __bind(this.resetRotation, this);
-
       this.animateOut = __bind(this.animateOut, this);
-
       this.animateIn = __bind(this.animateIn, this);
-
       this.transform = __bind(this.transform, this);
-
       this.update = __bind(this.update, this);
-
-      this.init = __bind(this.init, this);
-      return LoadingCard.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return LoadingCard.__super__.constructor.apply(this, arguments);
     }
 
     LoadingCard.prototype.className = 'card';
@@ -11184,37 +10968,21 @@
 
     function MusicBox() {
       this.dispose = __bind(this.dispose, this);
-
       this.onClose = __bind(this.onClose, this);
-
       this.restore = __bind(this.restore, this);
-
       this.goShare = __bind(this.goShare, this);
-
       this.onDone = __bind(this.onDone, this);
-
       this.pauseState = __bind(this.pauseState, this);
-
       this.playState = __bind(this.playState, this);
-
       this.advance = __bind(this.advance, this);
-
       this.instructionsDismiss = __bind(this.instructionsDismiss, this);
-
       this.createMusicStep = __bind(this.createMusicStep, this);
-
       this.cancel = __bind(this.cancel, this);
-
       this.addCreateMusicButton = __bind(this.addCreateMusicButton, this);
-
       this.looseFocus = __bind(this.looseFocus, this);
-
       this.render = __bind(this.render, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return MusicBox.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return MusicBox.__super__.constructor.apply(this, arguments);
     }
 
     MusicBox.prototype.data = null;
@@ -11449,13 +11217,9 @@
 
     function MusicBoxGrid() {
       this.activateCell = __bind(this.activateCell, this);
-
       this.cellClick = __bind(this.cellClick, this);
-
       this.buildTable = __bind(this.buildTable, this);
-
-      this.init = __bind(this.init, this);
-      return MusicBoxGrid.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return MusicBoxGrid.__super__.constructor.apply(this, arguments);
     }
 
     MusicBoxGrid.prototype.template = "musicbox-grid";
@@ -11521,53 +11285,29 @@
 
     function MusicBoxTable() {
       this.dispose = __bind(this.dispose, this);
-
       this.checkCell = __bind(this.checkCell, this);
-
       this.cleanFlash = __bind(this.cleanFlash, this);
-
       this.removeChord = __bind(this.removeChord, this);
-
       this.addChord = __bind(this.addChord, this);
-
       this.exportSong = __bind(this.exportSong, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.saveUserLoop = __bind(this.saveUserLoop, this);
-
       this.playLoop = __bind(this.playLoop, this);
-
       this.playCell = __bind(this.playCell, this);
-
       this.checkColumn = __bind(this.checkColumn, this);
-
       this.cloneTable = __bind(this.cloneTable, this);
-
       this.removeTable = __bind(this.removeTable, this);
-
       this.resetTimer = __bind(this.resetTimer, this);
-
       this.stop = __bind(this.stop, this);
-
       this.play = __bind(this.play, this);
-
       this.togglePlay = __bind(this.togglePlay, this);
-
       this.fail = __bind(this.fail, this);
-
       this.showShareBox = __bind(this.showShareBox, this);
-
       this.musicSaved = __bind(this.musicSaved, this);
-
       this.goShare = __bind(this.goShare, this);
-
       this.addLine = __bind(this.addLine, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return MusicBoxTable.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return MusicBoxTable.__super__.constructor.apply(this, arguments);
     }
 
     MusicBoxTable.prototype.template = "musicbox-table";
@@ -11904,15 +11644,10 @@
 
     function MusicButtons() {
       this.togglePlay = __bind(this.togglePlay, this);
-
       this.goShare = __bind(this.goShare, this);
-
       this.doneAct = __bind(this.doneAct, this);
-
       this.render = __bind(this.render, this);
-
-      this.init = __bind(this.init, this);
-      return MusicButtons.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return MusicButtons.__super__.constructor.apply(this, arguments);
     }
 
     MusicButtons.prototype.tagName = 'div';
@@ -11966,11 +11701,8 @@
 
     function ShareScene() {
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
-      this.init = __bind(this.init, this);
-      return ShareScene.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return ShareScene.__super__.constructor.apply(this, arguments);
     }
 
     ShareScene.prototype.shareBox = null;
@@ -12029,15 +11761,10 @@
 
     function StormInstructions() {
       this.addLayout = __bind(this.addLayout, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.render = __bind(this.render, this);
-
       this.hideMe = __bind(this.hideMe, this);
-
-      this.init = __bind(this.init, this);
-      return StormInstructions.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return StormInstructions.__super__.constructor.apply(this, arguments);
     }
 
     StormInstructions.prototype.id = "storm";
@@ -12091,15 +11818,10 @@
 
     function SimpleButton() {
       this.dispose = __bind(this.dispose, this);
-
       this.onclick = __bind(this.onclick, this);
-
       this.onout = __bind(this.onout, this);
-
       this.onover = __bind(this.onover, this);
-
-      this.init = __bind(this.init, this);
-      return SimpleButton.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return SimpleButton.__super__.constructor.apply(this, arguments);
     }
 
     SimpleButton.prototype.initialize = function(_id, _label, transitionClass) {
@@ -12143,33 +11865,19 @@
 
     function Zoetrope() {
       this.dispose = __bind(this.dispose, this);
-
       this.restore = __bind(this.restore, this);
-
       this.goShare = __bind(this.goShare, this);
-
       this.goMakeMovie = __bind(this.goMakeMovie, this);
-
       this.next = __bind(this.next, this);
-
       this.cleanCameraListeners = __bind(this.cleanCameraListeners, this);
-
       this.onDisableCamera = __bind(this.onDisableCamera, this);
-
       this.onCamFail = __bind(this.onCamFail, this);
-
       this.onEnableCamera = __bind(this.onEnableCamera, this);
-
       this.addLayout = __bind(this.addLayout, this);
-
       this.onClose = __bind(this.onClose, this);
-
       this.render = __bind(this.render, this);
-
       this.onAssetsComplete = __bind(this.onAssetsComplete, this);
-
-      this.init = __bind(this.init, this);
-      return Zoetrope.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Zoetrope.__super__.constructor.apply(this, arguments);
     }
 
     Zoetrope.prototype.id = "zoetrope";
@@ -12380,19 +12088,12 @@
 
     function ZoetropeCountDown() {
       this.dispose = __bind(this.dispose, this);
-
       this.done = __bind(this.done, this);
-
       this.next = __bind(this.next, this);
-
       this.start = __bind(this.start, this);
-
       this.stopCountDown = __bind(this.stopCountDown, this);
-
       this.startCountDown = __bind(this.startCountDown, this);
-
-      this.init = __bind(this.init, this);
-      return ZoetropeCountDown.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return ZoetropeCountDown.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeCountDown.prototype.className = "counter";
@@ -12504,51 +12205,28 @@
 
     function ZoetropeMakeMovie() {
       this.dispose = __bind(this.dispose, this);
-
       this.showShareBox = __bind(this.showShareBox, this);
-
       this.fail = __bind(this.fail, this);
-
       this.imageSaved = __bind(this.imageSaved, this);
-
       this.get3DTexture = __bind(this.get3DTexture, this);
-
       this.requestSave = __bind(this.requestSave, this);
-
       this.goShare = __bind(this.goShare, this);
-
       this.goTryAgain = __bind(this.goTryAgain, this);
-
       this.addButtons = __bind(this.addButtons, this);
-
       this.recordFrame = __bind(this.recordFrame, this);
-
       this.recordOneFrame = __bind(this.recordOneFrame, this);
-
       this.completed = __bind(this.completed, this);
-
       this.stopRecord = __bind(this.stopRecord, this);
-
       this.resume = __bind(this.resume, this);
-
       this.pause = __bind(this.pause, this);
-
       this.onCountdownComplete = __bind(this.onCountdownComplete, this);
-
       this.startRecord = __bind(this.startRecord, this);
-
       this.onDone = __bind(this.onDone, this);
-
       this.toogleRecord = __bind(this.toogleRecord, this);
-
       this.start = __bind(this.start, this);
-
       this.updateSettings = __bind(this.updateSettings, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ZoetropeMakeMovie.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ZoetropeMakeMovie.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeMakeMovie.prototype.id = "makemovie";
@@ -12932,17 +12610,11 @@
 
     function ZoetropePlayer() {
       this.gotoFrame = __bind(this.gotoFrame, this);
-
       this.stopIt = __bind(this.stopIt, this);
-
       this.play = __bind(this.play, this);
-
       this.nextFrame = __bind(this.nextFrame, this);
-
       this.showAndPlay = __bind(this.showAndPlay, this);
-
-      this.init = __bind(this.init, this);
-      return ZoetropePlayer.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return ZoetropePlayer.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropePlayer.prototype.className = "player";
@@ -13021,13 +12693,9 @@
 
     function ZoetropeReplaceLabel() {
       this.dispose = __bind(this.dispose, this);
-
       this.hide = __bind(this.hide, this);
-
       this.showAt = __bind(this.showAt, this);
-
-      this.init = __bind(this.init, this);
-      return ZoetropeReplaceLabel.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return ZoetropeReplaceLabel.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeReplaceLabel.prototype.className = "labelContainer";
@@ -13107,31 +12775,18 @@
 
     function ZoetropeThumb() {
       this.animate = __bind(this.animate, this);
-
       this.getRandomColor = __bind(this.getRandomColor, this);
-
       this.clear = __bind(this.clear, this);
-
       this.draw = __bind(this.draw, this);
-
       this.onOut = __bind(this.onOut, this);
-
       this.onOver = __bind(this.onOver, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseOut = __bind(this.onMouseOut, this);
-
       this.onMouseOver = __bind(this.onMouseOver, this);
-
       this.disable = __bind(this.disable, this);
-
       this.enable = __bind(this.enable, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ZoetropeThumb.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ZoetropeThumb.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeThumb.prototype.className = "thumb";
@@ -13285,39 +12940,22 @@
 
     function ZoetropeTimeline() {
       this.dispose = __bind(this.dispose, this);
-
       this.enableThumbs = __bind(this.enableThumbs, this);
-
       this.disableThumbs = __bind(this.disableThumbs, this);
-
       this.setStatus = __bind(this.setStatus, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.clear = __bind(this.clear, this);
-
       this.stop = __bind(this.stop, this);
-
       this.record = __bind(this.record, this);
-
       this.upThumb = __bind(this.upThumb, this);
-
       this.clickThumb = __bind(this.clickThumb, this);
-
       this.outThumb = __bind(this.outThumb, this);
-
       this.overThumb = __bind(this.overThumb, this);
-
       this.drawOzElement = __bind(this.drawOzElement, this);
-
       this.shotOnFrame = __bind(this.shotOnFrame, this);
-
       this.addFrame = __bind(this.addFrame, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ZoetropeTimeline.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ZoetropeTimeline.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeTimeline.prototype.className = "timeline";
@@ -13532,23 +13170,14 @@
 
     function ZoetropeWebcamFeed() {
       this.dispose = __bind(this.dispose, this);
-
       this.animate = __bind(this.animate, this);
-
       this.setContrast = __bind(this.setContrast, this);
-
       this.setBrightness = __bind(this.setBrightness, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.addTexture = __bind(this.addTexture, this);
-
       this.flash = __bind(this.flash, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ZoetropeWebcamFeed.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ZoetropeWebcamFeed.__super__.constructor.apply(this, arguments);
     }
 
     ZoetropeWebcamFeed.prototype.className = "webcamfeed";
@@ -13689,35 +13318,20 @@
 
     function Storm() {
       this.dispose = __bind(this.dispose, this);
-
       this.createAxis = __bind(this.createAxis, this);
-
       this.v = __bind(this.v, this);
-
       this.debugaxis = __bind(this.debugaxis, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.flipBalloon = __bind(this.flipBalloon, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onUnLock = __bind(this.onUnLock, this);
-
       this.onLock = __bind(this.onLock, this);
-
       this.onLockMouseMove = __bind(this.onLockMouseMove, this);
-
       this.onDocumentMouseMove = __bind(this.onDocumentMouseMove, this);
-
       this.addPlane = __bind(this.addPlane, this);
-
       this.changeView = __bind(this.changeView, this);
-
       this.activate = __bind(this.activate, this);
-
-      this.init = __bind(this.init, this);
-      return Storm.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Storm.__super__.constructor.apply(this, arguments);
     }
 
     Storm.prototype.clock = null;
@@ -13981,37 +13595,21 @@
 
     function Stormtest() {
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onResize = __bind(this.onResize, this);
-
       this.instanceBasicMaterial = __bind(this.instanceBasicMaterial, this);
-
       this.instanceFresnelMaterial = __bind(this.instanceFresnelMaterial, this);
-
       this.instanceMaterial = __bind(this.instanceMaterial, this);
-
       this.instanceAnimation = __bind(this.instanceAnimation, this);
-
       this.onSceneLoaded = __bind(this.onSceneLoaded, this);
-
       this.onSceneProgress = __bind(this.onSceneProgress, this);
-
       this.onTexLoaded = __bind(this.onTexLoaded, this);
-
       this.onWorldProgress = __bind(this.onWorldProgress, this);
-
       this.onRestart = __bind(this.onRestart, this);
-
       this.randomRange = __bind(this.randomRange, this);
-
       this.onKeyDown = __bind(this.onKeyDown, this);
-
       this.onLockMouseMove = __bind(this.onLockMouseMove, this);
-
       this.onMouseClick = __bind(this.onMouseClick, this);
-
-      this.changeView = __bind(this.changeView, this);
-      return Stormtest.__super__.constructor.apply(this, arguments);
+      this.changeView = __bind(this.changeView, this);      return Stormtest.__super__.constructor.apply(this, arguments);
     }
 
     Stormtest.prototype.SCENE_SCALE = 1 / 12;
@@ -14242,7 +13840,7 @@
         upper = 0;
       }
       start = Math.random();
-      if (!(lower != null)) {
+      if (lower == null) {
         _ref = [0, lower], lower = _ref[0], upper = _ref[1];
       }
       if (lower > upper) {
@@ -15507,8 +15105,7 @@
     __extends(Canvas, _super);
 
     function Canvas() {
-      this.initialize = __bind(this.initialize, this);
-      return Canvas.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Canvas.__super__.constructor.apply(this, arguments);
     }
 
     Canvas.prototype.tagName = 'canvas';
@@ -15550,13 +15147,9 @@
 
     function CheckBox() {
       this.val = __bind(this.val, this);
-
       this.toggleCheck = __bind(this.toggleCheck, this);
-
       this.click = __bind(this.click, this);
-
-      this.init = __bind(this.init, this);
-      return CheckBox.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return CheckBox.__super__.constructor.apply(this, arguments);
     }
 
     CheckBox.prototype.check = null;
@@ -15623,13 +15216,9 @@
 
     function Instructions() {
       this.dispose = __bind(this.dispose, this);
-
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Instructions.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Instructions.__super__.constructor.apply(this, arguments);
     }
 
     Instructions.prototype.className = "instructionsContainer";
@@ -15687,17 +15276,11 @@
 
     function InstructionsChapter() {
       this.dispose = __bind(this.dispose, this);
-
       this.close = __bind(this.close, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.addMouseListener = __bind(this.addMouseListener, this);
-
       this.activate = __bind(this.activate, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return InstructionsChapter.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return InstructionsChapter.__super__.constructor.apply(this, arguments);
     }
 
     InstructionsChapter.prototype.className = "instructionsChapterContainer";
@@ -15793,11 +15376,8 @@
 
     function LocalisedTexture() {
       this.trim = __bind(this.trim, this);
-
       this.wrapText = __bind(this.wrapText, this);
-
-      this.get = __bind(this.get, this);
-      this.diamond = window.oz.baseAssets.get("diamond").result;
+      this.get = __bind(this.get, this);      this.diamond = window.oz.baseAssets.get("diamond").result;
       $('<p style="font-family: \"TradeGothic\"" />');
       null;
     }
@@ -15920,23 +15500,14 @@
 
     function Logo() {
       this.dispose = __bind(this.dispose, this);
-
       this.enable = __bind(this.enable, this);
-
       this.disable = __bind(this.disable, this);
-
       this.onClick = __bind(this.onClick, this);
-
       this.logoRollOut = __bind(this.logoRollOut, this);
-
       this.logoRollOver = __bind(this.logoRollOver, this);
-
       this.showGoogleLogos = __bind(this.showGoogleLogos, this);
-
       this.hideGoogleLogos = __bind(this.hideGoogleLogos, this);
-
-      this.init = __bind(this.init, this);
-      return Logo.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Logo.__super__.constructor.apply(this, arguments);
     }
 
     Logo.prototype.id = 'logo';
@@ -15975,7 +15546,12 @@
         return window.open('http://google.com/');
       });
       this.addChild(this.googleLogo);
-      this.enable();
+      this.logoContainer.bind("click", this.onClick);
+      this.logoContainer.css({
+        "cursor": "pointer"
+      });
+      this.logoContainer.bind("mouseover", this.logoRollOver);
+      this.logoContainer.bind("mouseout", this.logoRollOut);
       return null;
     };
 
@@ -16019,11 +15595,13 @@
       this.canvas.hide();
       this.assetLogoOver.hide(true, null, 200);
       this.assetLogo.show(true, null, 200);
-      this.oz().router.navigateTo('carnival', false);
+      Analytics.track('menu_click_official');
+      window.open('/official.html');
       return null;
     };
 
     Logo.prototype.disable = function() {
+      return;
       this.logoContainer.unbind("click");
       this.logoContainer.css({
         "cursor": "default"
@@ -16034,6 +15612,7 @@
     };
 
     Logo.prototype.enable = function() {
+      return;
       this.disable();
       this.logoContainer.bind("click", this.onClick);
       this.logoContainer.css({
@@ -16061,13 +15640,9 @@
 
     function LogoParticles() {
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
-      this.init = __bind(this.init, this);
-      return LogoParticles.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return LogoParticles.__super__.constructor.apply(this, arguments);
     }
 
     LogoParticles.prototype.className = 'logoParticles';
@@ -16164,13 +15739,9 @@
 
     function Map() {
       this.changeMenuArea = __bind(this.changeMenuArea, this);
-
       this.show = __bind(this.show, this);
-
       this.hide = __bind(this.hide, this);
-
-      this.init = __bind(this.init, this);
-      return Map.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Map.__super__.constructor.apply(this, arguments);
     }
 
     Map.prototype.base = null;
@@ -16264,23 +15835,14 @@
 
     function MapMenu() {
       this.createSequence = __bind(this.createSequence, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.changeMenuArea = __bind(this.changeMenuArea, this);
-
       this.menuEvents = __bind(this.menuEvents, this);
-
       this.menuClick = __bind(this.menuClick, this);
-
       this.animateOut = __bind(this.animateOut, this);
-
       this.animateIn = __bind(this.animateIn, this);
-
       this.render = __bind(this.render, this);
-
-      this.init = __bind(this.init, this);
-      return MapMenu.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return MapMenu.__super__.constructor.apply(this, arguments);
     }
 
     MapMenu.prototype.tagName = 'div';
@@ -16478,17 +16040,11 @@
 
     function MenuFilledCircle(x, y, r, scale, icon, glow) {
       this.menuState = __bind(this.menuState, this);
-
       this.animateOut = __bind(this.animateOut, this);
-
       this.animateIn = __bind(this.animateIn, this);
-
       this.animateCircle = __bind(this.animateCircle, this);
-
       this.draw = __bind(this.draw, this);
-
       this.disable = __bind(this.disable, this);
-
       var _this = this;
       _.extend(this, Backbone.Events);
       this.radius = r;
@@ -16625,11 +16181,8 @@
 
     function MenuSeparator(x, y) {
       this.menuState = __bind(this.menuState, this);
-
       this.animateOut = __bind(this.animateOut, this);
-
-      this.animateIn = __bind(this.animateIn, this);
-      this.current = {
+      this.animateIn = __bind(this.animateIn, this);      this.current = {
         y: 200
       };
       this.view = new createjs.Container;
@@ -16685,13 +16238,9 @@
 
     function OpeningTitles() {
       this.dispose = __bind(this.dispose, this);
-
       this.render = __bind(this.render, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return OpeningTitles.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return OpeningTitles.__super__.constructor.apply(this, arguments);
     }
 
     OpeningTitles.prototype.template = 'openingTitles';
@@ -16765,7 +16314,7 @@
           });
         }
         return callback();
-      }, (timed ? 200 : 0));
+      }, (timed ? 200 : 100));
       return null;
     };
 
@@ -16817,17 +16366,11 @@
 
     function Particle(args) {
       this.fadeOut = __bind(this.fadeOut, this);
-
       this.reset = __bind(this.reset, this);
-
       this.move = __bind(this.move, this);
-
       this.rand = __bind(this.rand, this);
-
       this.drawParticle = __bind(this.drawParticle, this);
-
-      this.draw = __bind(this.draw, this);
-      this.speed = args._speed;
+      this.draw = __bind(this.draw, this);      this.speed = args._speed;
       this.maxSize = args._maxSize;
       this.canvas = args._canvas;
       this.w = args._w;
@@ -16955,17 +16498,11 @@
 
     function ParticleCard(args) {
       this.fadeOut = __bind(this.fadeOut, this);
-
       this.reset = __bind(this.reset, this);
-
       this.move = __bind(this.move, this);
-
       this.rand = __bind(this.rand, this);
-
       this.drawParticle = __bind(this.drawParticle, this);
-
-      this.draw = __bind(this.draw, this);
-      this.speed = args._speed;
+      this.draw = __bind(this.draw, this);      this.speed = args._speed;
       this.maxSize = args._maxSize;
       this.canvas = args._canvas;
       this.w = args._w;
@@ -17058,15 +16595,10 @@
 
     function Particles() {
       this.onResize = __bind(this.onResize, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Particles.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Particles.__super__.constructor.apply(this, arguments);
     }
 
     Particles.prototype.tagName = 'canvas';
@@ -17203,15 +16735,10 @@
 
     function Controller() {
       this.pauseState = __bind(this.pauseState, this);
-
       this.playState = __bind(this.playState, this);
-
       this.progress = __bind(this.progress, this);
-
       this.toggleVideo = __bind(this.toggleVideo, this);
-
-      this.init = __bind(this.init, this);
-      return Controller.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Controller.__super__.constructor.apply(this, arguments);
     }
 
     Controller.prototype.className = 'controller';
@@ -17279,15 +16806,10 @@
 
     function PlayPause() {
       this.playState = __bind(this.playState, this);
-
       this.pauseState = __bind(this.pauseState, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.toggle = __bind(this.toggle, this);
-
-      this.init = __bind(this.init, this);
-      return PlayPause.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return PlayPause.__super__.constructor.apply(this, arguments);
     }
 
     PlayPause.prototype.className = 'playPauseButton';
@@ -17340,27 +16862,16 @@
 
     function VideoPlayer() {
       this.dispose = __bind(this.dispose, this);
-
       this.onClose = __bind(this.onClose, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.show = __bind(this.show, this);
-
       this.videoEnded = __bind(this.videoEnded, this);
-
       this.resume = __bind(this.resume, this);
-
       this.pause = __bind(this.pause, this);
-
       this.toggleVideo = __bind(this.toggleVideo, this);
-
       this.getLocalisedVideo = __bind(this.getLocalisedVideo, this);
-
       this.init = __bind(this.init, this);
-
-      this.changeView = __bind(this.changeView, this);
-      return VideoPlayer.__super__.constructor.apply(this, arguments);
+      this.changeView = __bind(this.changeView, this);      return VideoPlayer.__super__.constructor.apply(this, arguments);
     }
 
     VideoPlayer.prototype.className = 'videoPlayer';
@@ -17610,19 +17121,12 @@
 
     function ShareBox() {
       this.dispose = __bind(this.dispose, this);
-
       this.getFloodlight = __bind(this.getFloodlight, this);
-
       this.onShare = __bind(this.onShare, this);
-
       this.onBackClick = __bind(this.onBackClick, this);
-
       this.onLinkClick = __bind(this.onLinkClick, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return ShareBox.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return ShareBox.__super__.constructor.apply(this, arguments);
     }
 
     ShareBox.prototype.className = "shareContainer";
@@ -17756,23 +17260,14 @@
 
     function SSAsset() {
       this.dispose = __bind(this.dispose, this);
-
       this.center = __bind(this.center, this);
-
       this.changeState = __bind(this.changeState, this);
-
       this.removeClass = __bind(this.removeClass, this);
-
       this.addClass = __bind(this.addClass, this);
-
       this.css = __bind(this.css, this);
-
       this.out = __bind(this.out, this);
-
       this.over = __bind(this.over, this);
-
-      this.init = __bind(this.init, this);
-      return SSAsset.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return SSAsset.__super__.constructor.apply(this, arguments);
     }
 
     SSAsset.prototype.ss = null;
@@ -17883,27 +17378,16 @@
 
     function SubLoader() {
       this.dispose = __bind(this.dispose, this);
-
       this.activateMouseInteraction = __bind(this.activateMouseInteraction, this);
-
       this.hideCard = __bind(this.hideCard, this);
-
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
       this.onClick = __bind(this.onClick, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.update = __bind(this.update, this);
-
       this.showError = __bind(this.showError, this);
-
       this.addSpinner = __bind(this.addSpinner, this);
-
-      this.init = __bind(this.init, this);
-      return SubLoader.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return SubLoader.__super__.constructor.apply(this, arguments);
     }
 
     SubLoader.prototype.className = "subLoader";
@@ -18115,19 +17599,12 @@
 
     function WebCam() {
       this.dispose = __bind(this.dispose, this);
-
       this.flipImage = __bind(this.flipImage, this);
-
       this.dom = __bind(this.dom, this);
-
       this.get = __bind(this.get, this);
-
       this.onUserMediaError = __bind(this.onUserMediaError, this);
-
       this.onUserMediaSuccess = __bind(this.onUserMediaSuccess, this);
-
-      this.init = __bind(this.init, this);
-      _.extend(this, Backbone.Events);
+      this.init = __bind(this.init, this);      _.extend(this, Backbone.Events);
       null;
     }
 
@@ -18143,7 +17620,7 @@
         this.onUserMediaError();
         return;
       }
-      if (!(this.stream != null)) {
+      if (this.stream == null) {
         navigator.getUserMedia({
           video: true,
           audio: false
@@ -18171,7 +17648,7 @@
 
     WebCam.prototype.get = function() {
       var src;
-      if (!(this.stream != null)) {
+      if (this.stream == null) {
         this.init();
         return;
       }
@@ -18210,8 +17687,7 @@
     __extends(Copyright, _super);
 
     function Copyright() {
-      this.init = __bind(this.init, this);
-      return Copyright.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Copyright.__super__.constructor.apply(this, arguments);
     }
 
     Copyright.prototype.className = 'copyright';
@@ -18232,21 +17708,13 @@
 
     function Footer() {
       this.disableOver = __bind(this.disableOver, this);
-
       this.hideMenu = __bind(this.hideMenu, this);
-
       this.showMenu = __bind(this.showMenu, this);
-
       this.showCC = __bind(this.showCC, this);
-
       this.showShare = __bind(this.showShare, this);
-
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
-      this.init = __bind(this.init, this);
-      return Footer.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Footer.__super__.constructor.apply(this, arguments);
     }
 
     Footer.prototype.id = 'footer';
@@ -18388,27 +17856,16 @@
 
     function MainMenu() {
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
       this.toggleItem = __bind(this.toggleItem, this);
-
       this.disableMouseMove = __bind(this.disableMouseMove, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.hideThis = __bind(this.hideThis, this);
-
       this.showThis = __bind(this.showThis, this);
-
       this.hideMenu = __bind(this.hideMenu, this);
-
       this.showMenu = __bind(this.showMenu, this);
-
       this.toggleMenu = __bind(this.toggleMenu, this);
-
-      this.init = __bind(this.init, this);
-      this.templateVars = {
+      this.init = __bind(this.init, this);      this.templateVars = {
         open: this.oz().locale.get('menuOpen'),
         official: this.oz().locale.get('menuOfficial'),
         tech: this.oz().locale.get('menuTech'),
@@ -18567,9 +18024,7 @@
 
     function Ratings() {
       this.dispose = __bind(this.dispose, this);
-
-      this.init = __bind(this.init, this);
-      return Ratings.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Ratings.__super__.constructor.apply(this, arguments);
     }
 
     Ratings.prototype.className = 'ratings';
@@ -18603,25 +18058,15 @@
 
     function ShareMenu() {
       this.toogleSound = __bind(this.toogleSound, this);
-
       this.disableSound = __bind(this.disableSound, this);
-
       this.enableSound = __bind(this.enableSound, this);
-
       this.showSoundButton = __bind(this.showSoundButton, this);
-
       this.hideSoundButton = __bind(this.hideSoundButton, this);
-
       this.addWeibo = __bind(this.addWeibo, this);
-
       this.addRenRen = __bind(this.addRenRen, this);
-
       this.onLibLoaded = __bind(this.onLibLoaded, this);
-
       this.rerender = __bind(this.rerender, this);
-
-      this.render = __bind(this.render, this);
-      return ShareMenu.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);      return ShareMenu.__super__.constructor.apply(this, arguments);
     }
 
     ShareMenu.prototype.className = 'share_menu';
@@ -18810,13 +18255,9 @@
 
     function BaseLandingOpenings() {
       this.dispose = __bind(this.dispose, this);
-
       this.render = __bind(this.render, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return BaseLandingOpenings.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return BaseLandingOpenings.__super__.constructor.apply(this, arguments);
     }
 
     BaseLandingOpenings.prototype.className = 'staticPage';
@@ -18889,17 +18330,11 @@
 
     function Credits() {
       this.dispose = __bind(this.dispose, this);
-
       this.render = __bind(this.render, this);
-
       this.getPartner = __bind(this.getPartner, this);
-
       this.getPerson = __bind(this.getPerson, this);
-
       this.parse = __bind(this.parse, this);
-
-      this.init = __bind(this.init, this);
-      return Credits.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return Credits.__super__.constructor.apply(this, arguments);
     }
 
     Credits.prototype.className = 'staticPage';
@@ -18988,13 +18423,9 @@
 
     function LandingAgree() {
       this.onEnterClick = __bind(this.onEnterClick, this);
-
       this.clickAgree = __bind(this.clickAgree, this);
-
       this.enableEnterButton = __bind(this.enableEnterButton, this);
-
-      this.init = __bind(this.init, this);
-      return LandingAgree.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return LandingAgree.__super__.constructor.apply(this, arguments);
     }
 
     LandingAgree.prototype.checkBox = null;
@@ -19021,34 +18452,16 @@
       */
 
       topEnding = new SSAsset('interface', 'final_end_top');
-      bottom = $('<div class="containerBottom" />');
-      bigDividerBottom = new SSAsset('interface', 'bottomheader');
-      bigDividerBottom.$el.css({
-        display: 'table-cell'
-      });
-      bottom.append(bigDividerBottom.$el);
       header.addChild(topEnding);
-      this.titles.$el.find('.openingTitlesHeader').css({
-        'margin-top': '0'
-      });
-      /*bigDividerRight = new SSAsset 'interface', 'divider_large_left'
-      bigDividerLeft = new SSAsset 'interface', 'divider_large_right'
-      landing_top = new SSAsset 'interface', 'landing_top'
-      landing_top.$el.css
-          'margin' : '-10px auto'
-      */
-
       bottom = $('<div class="containerBottom" />');
       bigDividerBottom = new SSAsset('interface', 'landing_bottom');
       bigDividerBottom.$el.css({
-        display: 'table-cell'
+        margin: '0 auto 0 auto'
       });
       bottom.append(bigDividerBottom.$el);
       header.$el.insertAfter(this.titles.$el.children()[0]);
       this.titles.header.append(bottom);
       this.titles.fluorish.$el.remove();
-      bottom.width(bigDividerBottom.$el.width());
-      bottom.height(bigDividerBottom.$el.height());
       /* Check Box
       */
 
@@ -19073,6 +18486,14 @@
       this.titles.remove(this.titles.diamond);
       this.titles.addChild(this.buttonContainer);
       this.enableEnterButton(false);
+      if (this.oz().locale.lang === "ru" || this.oz().locale.lang === "bg" || this.oz().locale.lang === "uk") {
+        this.titles.header.css({
+          'margin-top': '0'
+        });
+        bottom.css({
+          margin: '-5px auto 0 auto'
+        });
+      }
       this.show(true);
       return null;
     };
@@ -19135,11 +18556,8 @@
 
     function LandingFinal() {
       this.onTrailerClick = __bind(this.onTrailerClick, this);
-
       this.onResetClick = __bind(this.onResetClick, this);
-
-      this.init = __bind(this.init, this);
-      return LandingFinal.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return LandingFinal.__super__.constructor.apply(this, arguments);
     }
 
     LandingFinal.prototype.checkBox = null;
@@ -19224,9 +18642,7 @@
 
     function LandingPause() {
       this.dispose = __bind(this.dispose, this);
-
-      this.init = __bind(this.init, this);
-      return LandingPause.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return LandingPause.__super__.constructor.apply(this, arguments);
     }
 
     LandingPause.prototype.particles = null;
@@ -19278,29 +18694,17 @@
 
     function StaticOverlay() {
       this.restoreAddress = __bind(this.restoreAddress, this);
-
       this.dispose = __bind(this.dispose, this);
-
       this.onClose = __bind(this.onClose, this);
-
       this.addCloseButton = __bind(this.addCloseButton, this);
-
       this.has = __bind(this.has, this);
-
       this.animateComplete = __bind(this.animateComplete, this);
-
       this.close = __bind(this.close, this);
-
       this.hide = __bind(this.hide, this);
-
       this.show = __bind(this.show, this);
-
       this.showPage = __bind(this.showPage, this);
-
       this.changePage = __bind(this.changePage, this);
-
-      this.init = __bind(this.init, this);
-      return StaticOverlay.__super__.constructor.apply(this, arguments);
+      this.init = __bind(this.init, this);      return StaticOverlay.__super__.constructor.apply(this, arguments);
     }
 
     StaticOverlay.prototype.className = 'staticOverlay';
@@ -19554,13 +18958,9 @@
 
     function Circle() {
       this.setProgress = __bind(this.setProgress, this);
-
       this.draw = __bind(this.draw, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Circle.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Circle.__super__.constructor.apply(this, arguments);
     }
 
     Circle.prototype.tagName = "canvas";
@@ -19662,27 +19062,16 @@
 
     function Slider() {
       this.dispose = __bind(this.dispose, this);
-
       this.enabled = __bind(this.enabled, this);
-
       this.updateGUI = __bind(this.updateGUI, this);
-
       this.setProgress = __bind(this.setProgress, this);
-
       this.updateProgress = __bind(this.updateProgress, this);
-
       this.onEnterFrame = __bind(this.onEnterFrame, this);
-
       this.onMouseUp = __bind(this.onMouseUp, this);
-
       this.onMouseDown = __bind(this.onMouseDown, this);
-
       this.onMouseMove = __bind(this.onMouseMove, this);
-
       this.init = __bind(this.init, this);
-
-      this.initialize = __bind(this.initialize, this);
-      return Slider.__super__.constructor.apply(this, arguments);
+      this.initialize = __bind(this.initialize, this);      return Slider.__super__.constructor.apply(this, arguments);
     }
 
     Slider.prototype.className = "slider";
@@ -19819,53 +19208,29 @@
 
     function AppView() {
       this.onAgreed = __bind(this.onAgreed, this);
-
       this.showMap = __bind(this.showMap, this);
-
       this.addChapter = __bind(this.addChapter, this);
-
       this.addFinal = __bind(this.addFinal, this);
-
       this.addTermsScreen = __bind(this.addTermsScreen, this);
-
       this.hideSubLoader = __bind(this.hideSubLoader, this);
-
       this.onWorldLoaded = __bind(this.onWorldLoaded, this);
-
       this.onWorldProgress = __bind(this.onWorldProgress, this);
-
       this.removeLoading = __bind(this.removeLoading, this);
-
       this.onCameraReady = __bind(this.onCameraReady, this);
-
       this.isDeepLink = __bind(this.isDeepLink, this);
-
       this.checkSub = __bind(this.checkSub, this);
-
       this.getCurrentScene = __bind(this.getCurrentScene, this);
-
       this.addNewView = __bind(this.addNewView, this);
-
       this.changeMapState = __bind(this.changeMapState, this);
-
       this.hideArea = __bind(this.hideArea, this);
-
       this.changeView = __bind(this.changeView, this);
-
       this.changeOpening = __bind(this.changeOpening, this);
-
       this.looseFocus = __bind(this.looseFocus, this);
-
       this.startFocus = __bind(this.startFocus, this);
-
       this.listenToEvents = __bind(this.listenToEvents, this);
-
       this.onAssetsProgress = __bind(this.onAssetsProgress, this);
-
       this.onAssetsComplete = __bind(this.onAssetsComplete, this);
-
-      this.render = __bind(this.render, this);
-      return AppView.__super__.constructor.apply(this, arguments);
+      this.render = __bind(this.render, this);      return AppView.__super__.constructor.apply(this, arguments);
     }
 
     AppView.prototype.footer = null;
@@ -20141,7 +19506,7 @@
             this.wrapper.remove(this.area);
           }
           areaClass = eval(this.scene);
-          if (!(areaClass != null)) {
+          if (areaClass == null) {
             this.scene = currentScene = "Carnival";
             areaClass = eval(this.scene);
           }

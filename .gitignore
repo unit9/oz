@@ -28,3 +28,5 @@ website/m/videos
 website/css/new_fonts
 project/assets/new_fonts
 website/locale/en/strings copy.txt
+website/locale/en/!!strings.txt
+website/locale/en/!-strings.txt

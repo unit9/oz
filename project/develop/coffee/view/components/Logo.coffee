@@ -42,7 +42,11 @@ class Logo extends Abstract
             window.open 'http://google.com/'
         @addChild @googleLogo
 
-        @enable()
+        @logoContainer.bind "click", @onClick
+        @logoContainer.css { "cursor" : "pointer" }
+        @logoContainer.bind "mouseover", @logoRollOver
+        @logoContainer.bind "mouseout", @logoRollOut
+        
         null
 
     hideGoogleLogos : =>
@@ -95,11 +99,15 @@ class Logo extends Abstract
         @canvas.hide()
         @assetLogoOver.hide true, null, 200
         @assetLogo.show true, null, 200
+
+        Analytics.track 'menu_click_official'
         
-        @oz().router.navigateTo 'carnival', false
+        window.open '/official.html'
+
         null
 
     disable : =>
+        return
         @logoContainer.unbind "click"
         @logoContainer.css { "cursor" : "default" }
         @logoContainer.unbind "mouseover"
@@ -107,6 +115,7 @@ class Logo extends Abstract
         null
 
     enable : =>
+        return
         @disable()
         @logoContainer.bind "click", @onClick
         @logoContainer.css { "cursor" : "pointer" }

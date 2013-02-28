@@ -64,7 +64,7 @@ class OpeningTitles extends Abstract
 
             callback()
 
-        , (if timed then 200 else 0)
+        , (if timed then 200 else 100)
         null
    
 

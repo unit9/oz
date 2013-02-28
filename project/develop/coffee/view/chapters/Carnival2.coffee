@@ -772,6 +772,16 @@ class Carnival2 extends Base3DChapter
                 @oz().router.navigateTo view
         @
 
+
+    onTouchEnd:( event ) => 
+        super
+        @mouseX = @mouseY = 0
+        @onMouseUp(event)  
+
+    onTouchStart:( event ) => 
+        super
+        @onMouseDown(event)
+
     onMouseDown:(event) =>
         super()
         return unless @enableMouse
