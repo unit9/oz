@@ -263,7 +263,7 @@ class Cutout extends AbstractScene
 
         Analytics.track 'cutout_take_another'
         @contButtonsCont.hide true, => 
-            $(".scene3d").css { "-webkit-filter": "blur(0px)" }
+            $(".scene3d").css { "-webkit-filter": "" }
             @canvas.reset()
             @addTakePictureButtons()
             @changeButtonsState()

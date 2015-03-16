@@ -330,7 +330,7 @@ class Carnival2 extends Base3DChapter
         @initOcclusionScene()
         @initProjection()
 
-        @initSun()
+        # @initSun()
 
 
         if @oz().appView.showInterface

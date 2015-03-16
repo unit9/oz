@@ -7,7 +7,10 @@ class Analytics
     @GA_ACCOUNT : '37524215-3'
 
     @start : =>
-        window._gaq = window._gaq or [['_setAccount',"UA-#{@GA_ACCOUNT}"],['_trackPageview']]
+        window._gaq = window._gaq or []
+        window._gaq.push ['_setAccount',"UA-#{@GA_ACCOUNT}"]
+        window._gaq.push ['_trackPageview']
+
         @tags = JSON.parse window.oz.baseAssets.get('trackingTags').result
         @tagsFlood = JSON.parse window.oz.baseAssets.get('trackingTagsFloodlight').result
         @started = true        

@@ -191,23 +191,22 @@ class Abstract extends Backbone.View
 
 
     pointLock : =>
-
         if !@pointLocked
-            $(document).bind 'pointerlockchange', @pointerLockChange
-            $(document).bind 'mozpointerlockchange', @pointerLockChange
-            $(document).bind 'webkitpointerlockchange', @pointerLockChange
+            document.addEventListener 'pointerlockchange', @pointerLockChange, false
+            document.addEventListener 'mozpointerlockchange', @pointerLockChange, false
+            document.addEventListener 'webkitpointerlockchange', @pointerLockChange, false
 
-            b = $('body')[0]
+            b = document.body
             b.requestPointerLock = b.requestPointerLock || b.mozRequestPointerLock || b.webkitRequestPointerLock
             b.requestPointerLock()
 
         null
 
     releasePointLock : =>
-        $(document).unbind 'pointerlockchange', @pointerLockChange
-        $(document).unbind 'mozpointerlockchange', @pointerLockChange
-        $(document).unbind 'webkitpointerlockchange', @pointerLockChange
-        $(document).unbind 'mousemove', @onLockMouseMove
+        document.removeEventListener 'pointerlockchange', @pointerLockChange
+        document.removeEventListener 'mozpointerlockchange', @pointerLockChange
+        document.removeEventListener 'webkitpointerlockchange', @pointerLockChange
+        document.removeEventListener 'mousemove', @onLockMouseMove
 
         # Ask the browser to release the pointer
         b = document
@@ -218,12 +217,12 @@ class Abstract extends Backbone.View
 
 
     pointerLockChange : (event) =>
-        if (document.mozPointerLockElement == $('body')[0] || document.webkitPointerLockElement == $('body')[0])
-            $(document).bind 'mousemove', @onLockMouseMove
+        requestedElement = document.body
+        console.log document.pointerLockElement, document.mozPointerLockElement, document.webkitPointerLockElement
+        if (document.pointerLockElement is requestedElement || document.mozPointerLockElement is requestedElement || document.webkitPointerLockElement is requestedElement) 
             @onLock()
         else
             @releasePointLock()
-            $(document).unbind 'mousemove', @onLockMouseMove
             @onUnLock()
 
         null
@@ -233,11 +232,13 @@ class Abstract extends Backbone.View
 
     onLock : =>
         @pointLocked = true
+        document.addEventListener 'mousemove', @onLockMouseMove, false
         console.log "POINTLOCK"
         null
 
     onUnLock : =>
         console.log "POINTUNLOCK"
+        document.removeEventListener 'mousemove', @onLockMouseMove
         @pointLocked = false
         null
 

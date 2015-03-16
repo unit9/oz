@@ -35,6 +35,9 @@ class VideoPlayer extends AbstractScene
         null
 
     getLocalisedVideo : =>
+        return '/videos/bubbles_en.webm'
+
+        ###
         locale = (navigator.language || navigator.userLanguage).toLowerCase()
 
         country = geoip_country_code().toLowerCase()
@@ -84,8 +87,7 @@ class VideoPlayer extends AbstractScene
 
             else 
                 return '/videos/bubbles_en.webm'
-
-        return '/videos/bubbles_en.webm'
+        ###
 
 
     toggleVideo : =>

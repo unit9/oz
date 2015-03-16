@@ -75,11 +75,11 @@ class AppView extends Abstract
 
         #### ADD GEOIP for videos
 
-        script = document.createElement('script')
-        script.src = 'http://j.maxmind.com/app/country.js'
-        script.charset = 'ISO-8859-1'
-        script.type = "text/javascript"
-        document.getElementsByTagName('head')[0].appendChild script
+        # script = document.createElement('script')
+        # script.src = 'http://j.maxmind.com/app/country.js'
+        # script.charset = 'ISO-8859-1'
+        # script.type = "text/javascript"
+        # document.getElementsByTagName('head')[0].appendChild script
 
         @textureQuality = (window || document).textureQuality
         @displayQuality = (window || document).displayQuality
@@ -176,8 +176,8 @@ class AppView extends Abstract
         $(window).unbind 'focus', @startFocus
         @static.off 'staticPageClose', @startFocus
 
-        $(".scene3d").css { "-webkit-filter": "blur(0px)" }
-        $("#wrapper").css { "-webkit-filter": "blur(0px)" }
+        $(".scene3d").css { "-webkit-filter": "" }
+        $("#wrapper").css { "-webkit-filter": "" }
 
         @changeMapState()
 
@@ -198,7 +198,7 @@ class AppView extends Abstract
     looseFocus : =>
 
         Analytics.track 'pause'
-
+        
         if !@subArea?.instructions.active && @pauseEnabled
 
             $(window).unbind 'blur', @looseFocus

@@ -101,7 +101,7 @@ class AbstractScene extends Abstract
 
     onClose: =>
         if !(@oz().appView.static.page instanceof LandingPause)
-            $(".scene3d").css { "-webkit-filter": "blur(0px)" }
+            $(".scene3d").css { "-webkit-filter": "" }
             @oz().router.navigateTo ''
 
         null

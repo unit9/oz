@@ -130,8 +130,8 @@ class StaticOverlay extends Abstract
 
         # When you leave the credtis because the wrapper was paused manually we should resume it here
         if @currentPage == "credits"
-            $(".scene3d").css { "-webkit-filter": "blur(0px)" }
-            $("#wrapper").css { "-webkit-filter": "blur(0px)" }
+            $(".scene3d").css { "-webkit-filter": "" }
+            $("#wrapper").css { "-webkit-filter": "" }
 
             @oz().appView.pauseEnabled = true
             @oz().appView.wrapper.resume()

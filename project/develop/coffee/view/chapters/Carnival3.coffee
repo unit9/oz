@@ -294,7 +294,9 @@ class Carnival3 extends Base3DChapter
 
         # @scene.add @loadedScene
         @initTornado()
-        @initSun()
+
+        # @initSun()
+        
         if @oz().appView.showInterface
             @hotspotManager.init(@settings,@scene,@materialManager,@oz().localeTexture,@camera)
         # @initHotspots()

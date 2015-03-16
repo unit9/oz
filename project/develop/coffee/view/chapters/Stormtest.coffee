@@ -92,9 +92,15 @@ class Stormtest extends Base3DChapter
         MOUSE_RANGE_X = 400
         MOUSE_RANGE_Y = 400
 
-        e = event.originalEvent
-        @prevPos.x += e.webkitMovementX * SPEED
-        @prevPos.y += e.webkitMovementY * SPEED
+        e = event
+
+        movementX = e.movementX or e.mozMovementX or e.webkitMovementX or 0
+        movementY = e.movementY or e.mozMovementY or e.webkitMovementY or 0
+
+        console.log movementX, movementY
+
+        @prevPos.x += movementX * SPEED
+        @prevPos.y += movementY * SPEED
 
         @prevPos.x = UTILS.clamp( @prevPos.x, -MOUSE_RANGE_X, MOUSE_RANGE_X )
         @prevPos.y = UTILS.clamp( @prevPos.y, -MOUSE_RANGE_Y, MOUSE_RANGE_Y )
@@ -326,27 +332,27 @@ class Stormtest extends Base3DChapter
         textureFlare0 = THREE.ImageUtils.loadTexture( "/models/textures/lensflare/lensflare0_low.png", null, @onTexLoaded );
         # textureFlare2 = THREE.ImageUtils.loadTexture( "/models/textures/lensflare/lensflare2.png" );
         textureFlare3 = THREE.ImageUtils.loadTexture( "/models/textures/lensflare/hexangle.png", null, @onTexLoaded );
-        flareColor = new THREE.Color( 0xFFFFFF )
-        @lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
+        # flareColor = new THREE.Color( 0xFFFFFF )
+        # @lensFlare = new THREE.LensFlare( textureFlare0, 1000, 0.0, THREE.AdditiveBlending, flareColor );
 
         # lensFlare.add( textureFlare2, 512, 0.0, THREE.AdditiveBlending );
         # lensFlare.add( textureFlare2, 512, 0.0, THREE.AdditiveBlending );
         # lensFlare.add( textureFlare2, 512, 0.0, THREE.AdditiveBlending );
 
-        @lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
-        @lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
-        @lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
-        @lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
+        # @lensFlare.add( textureFlare3, 60, 0.6, THREE.AdditiveBlending );
+        # @lensFlare.add( textureFlare3, 70, 0.7, THREE.AdditiveBlending );
+        # @lensFlare.add( textureFlare3, 120, 0.9, THREE.AdditiveBlending );
+        # @lensFlare.add( textureFlare3, 70, 1.0, THREE.AdditiveBlending );
         
-        @lensFlare.customUpdateCallback = (object)=>
-            vecX = -object.positionScreen.x * 2;
-            vecY = -object.positionScreen.y * 2;
-            for flare in object.lensFlares
-                flare.x = object.positionScreen.x + vecX * flare.distance;
-                flare.y = object.positionScreen.y + vecY * flare.distance;
-                flare.rotation = 0;
-            object.lensFlares[ 2 ].y += 0.025;
-            object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + 45 * Math.PI / 180
+        # @lensFlare.customUpdateCallback = (object)=>
+        #     vecX = -object.positionScreen.x * 2;
+        #     vecY = -object.positionScreen.y * 2;
+        #     for flare in object.lensFlares
+        #         flare.x = object.positionScreen.x + vecX * flare.distance;
+        #         flare.y = object.positionScreen.y + vecY * flare.distance;
+        #         flare.rotation = 0;
+        #     object.lensFlares[ 2 ].y += 0.025;
+        #     object.lensFlares[ 3 ].rotation = object.positionScreen.x * 0.5 + 45 * Math.PI / 180
 
     initTornado:()->
         # Tornado RT
@@ -1133,7 +1139,7 @@ class Stormtest extends Base3DChapter
         @oz_sky.visible = false
         @balloon.visible = false
         @balloon.visible = true
-        @scene.add( @lensFlare ) if time < 18 or time > 30
+        # @scene.add( @lensFlare ) if time < 18 or time > 30
         debris.obj.visible = debris.front && time < @TIME_ENTER_TORNADO for debris in @debrisOutside
         debris.obj.visible = true for debris in @debrisInside if time > @TIME_ENTER_TORNADO
         cloud.visible = time < @TIME_ENTER_TORNADO for cloud in @fdclouds
@@ -1143,13 +1149,13 @@ class Stormtest extends Base3DChapter
             @renderer.render( @scene, @camera, @godrays.rtTextureColors )
         else
             @renderer.render( @scene, @camera, @sceneRT )
-        @scene.remove( @lensFlare )        
+        # @scene.remove( @lensFlare )        
 
         # ==============================================================================================================
         # PASS 4: Godrays
         # ==============================================================================================================
         if @godrays.enabled
-            flare.visible = false for flare in @lensFlare.lensFlares
+            # flare.visible = false for flare in @lensFlare.lensFlares
             cloud.visible = false for cloud in @ftclouds
             cloud.visible = false for cloud in @farclouds
             debris.obj.visible = false for debris in @debrisOutside
@@ -1273,10 +1279,10 @@ class Stormtest extends Base3DChapter
         @updateDebris( debris, cameraAngle ) for debris in @debrisInside
 
         # Lensflare
-        if time < @TIME_ENTER_TORNADO
-            @lensFlare.position.set( -150, 120, -300 )
-        else
-            @lensFlare.position.set( 7, 90, -30 )
+        # if time < @TIME_ENTER_TORNADO
+        #     @lensFlare.position.set( -150, 120, -300 )
+        # else
+        #     @lensFlare.position.set( 7, 90, -30 )
 
         # Drops options
         if @OPTIONS.overrideValues

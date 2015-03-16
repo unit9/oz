@@ -24,7 +24,7 @@ class ShareMenu extends Abstract
         @disableSound()
         @$el.append @sound
 
-        require ["http://platform.twitter.com/widgets.js", "//apis.google.com/js/plusone.js"], @onLibLoaded
+        require ["//platform.twitter.com/widgets.js", "//apis.google.com/js/plusone.js"], @onLibLoaded
     
     rerender :=>
 

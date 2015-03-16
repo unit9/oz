@@ -321,7 +321,9 @@ class Carnival extends Base3DChapter
 
         # @scene.add @skyCube
         # @scene.add loadedScene
-        @initSun()
+
+        # @initSun()
+        
         if @oz().appView.showInterface
             @hotspotManager.init(@settings,@scene,@materialManager,@oz().localeTexture,@camera)
         @initDustSystems()

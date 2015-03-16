@@ -139,7 +139,7 @@ class SubLoader extends Abstract
         super anim, callback, time, ease, hide
         
         # Remove blur from the scene
-        $(".scene3d").css { "-webkit-filter": "blur(0px)" }
+        $(".scene3d").css { "-webkit-filter": "" }
 
         @$el.css { "background-color" : "rgba(0,0,0,0.6)" }
 
