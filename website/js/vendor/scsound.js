@@ -27,7 +27,7 @@ var SCSound = {
         } else {
             SCSound.console = SCSound.dummyConsole;
         }
-        if (typeof webkitAudioContext !== "undefined") {
+        if (typeof AudioContext !== "undefined") {
             SCSound.webaudio = true;
             SCSound.initWebAudio();
         } else {
@@ -167,8 +167,8 @@ SCSound.Core.SoundController = function(xmlPath, soundPath, initCallback) {
 };
 SCSound.Core.SoundController.prototype = {
     init: function() {
-        
-        this.context = new webkitAudioContext();
+
+        this.context = new AudioContext();
         this.listener = this.context.listener;
         this.master = this.context.createGain();
         this.compressor = this.context.createDynamicsCompressor();
@@ -370,7 +370,10 @@ SCSound.Core.SoundController.prototype = {
                 so.soundNames = soSoundNames;
                 so.name = name;
                 so.mode = mode;
-                so.volume = volume;
+                if ( volume.toLowerCase() === 'top' ){
+                  volume = 1;
+                }
+                so.volume = parseFloat(volume);
                 so.gainNode.gain.value = so.volume;
                 so.parentBus = parentBus;
                 if (loop == "1") {
@@ -489,7 +492,7 @@ SCSound.Core.SoundController.prototype = {
                 var buffer;
 
                 that.context.decodeAudioData(request.response, function onSuccess(decodedBuffer) {
-                    
+
                     buffer = decodedBuffer;
 
                     nameArray = that.soundNames[i].split(".");
@@ -835,12 +838,10 @@ SCSound.Core.SoundController.prototype = {
             bus.panner.setOrientation(frontX, frontY, frontZ, upX, upY, upZ);
         } else {
             bus.panner.setPosition(soundX, soundY, soundZ);
-            bus.panner.setVelocity(deltaX, deltaY, deltaZ);
         }
     },
     setListenerPosition: function(cameraX, cameraY, cameraZ, deltaX, deltaY, deltaZ, frontX, frontY, frontZ, upX, upY, upZ) {
         this.listener.setPosition(cameraX, cameraY, cameraZ);
-        this.listener.setVelocity(deltaX, deltaY, deltaZ);
     },
     setBusVolume: function(name, vol, time) {
         if (time > 0) {
@@ -1351,7 +1352,7 @@ SCSound.Core.Sound.prototype = {
             {
                 this.voice.stop(0);
             }
-            
+
             this.isPlaying = false;
             if (this.mediaElement) {
                 this.mediaElement.pause();
